@@ -13,7 +13,8 @@
 		|---  Employee.java
 	+ \src\main\java\com\suji\sample\controller
 		|---  EmployeeController.java
-		|---  TestController.java
+		|---  TestControllerEasy.java
+		|---  TestControllerMedium.java
 	+ \src\main\java\com\suji\sample\service
 		|---  EmployeeService.java
 	+ \src\main\java\com\suji\sample\serviceImpl
@@ -24,11 +25,12 @@
 1. resources\application.properties
 2. \model\Employee.java
 3. \src\main\java\com\suji\sample\controller\EmployeeController.java
-4. \src\main\java\com\suji\sample\controller\TestController.java
-5. \src\main\java\com\suji\sample\SampleDemoFirstApplication.java
-6. \src\main\java\com\suji\sample\service\EmployeeService.java
-7. \src\main\java\com\suji\sample\serviceImpl\EmployeeServiceImpl.java
-8. E:\SpringBoot STS\Workspace\sample-demo-first\pom.xml
+4. \src\main\java\com\suji\sample\controller\TestControllerEasy.java
+5. \src\main\java\com\suji\sample\controller\TestControllerMedium.java
+6. \src\main\java\com\suji\sample\SampleDemoFirstApplication.java
+7. \src\main\java\com\suji\sample\service\EmployeeService.java
+8. \src\main\java\com\suji\sample\serviceImpl\EmployeeServiceImpl.java
+9. E:\SpringBoot STS\Workspace\sample-demo-first\pom.xml
 
 ```
 
@@ -127,8 +129,6 @@ package com.suji.sample.controller;
 
 import java.util.List;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -148,7 +148,7 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@GetMapping(path = "")
+	@GetMapping(path = "/test")
 	public String test() {
 		return "Hello World";
 	}
@@ -175,17 +175,19 @@ public class EmployeeController {
 
 ---
 
-### 4. TestController.java
+### 4. TestControllerEasy.java
 
-#### \src\main\java\com\suji\sample\controller\TestController.java
+#### \src\main\java\com\suji\sample\controller\TestControllerEasy.java
 
 ```java
 
 package com.suji.sample.controller;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -193,11 +195,121 @@ import org.springframework.web.bind.annotation.RestController;
 import com.suji.sample.model.Employee;
 
 @RestController
-@RequestMapping("/test")
-public class TestController {
+@RequestMapping("/easy")
+public class TestControllerEasy {
 	
-	//________GET MAPPING__________//
-	
+	// NOTE: No two APIs must not have same METHOD and SAME Mapping.
+
+	// ________GET MAPPING__________//
+	// GET Method is used for READ/GET data
+
+	// Say Hello
+	@GetMapping("/hi")
+	public String sayHi() {
+		return "Hello world";
+	}
+
+	// Add two numbers
+	// "Path variable name" and "Method parameter variable" name must be same.
+
+	@GetMapping("/add/{num1}/{num2}")
+	public String add(@PathVariable int num1, @PathVariable int num2) {
+
+		return "Sum is: " + (num1 + num2);
+	}
+
+	// Reverse String
+	// "Path variable name" and "Method parameter variable" name must be same.
+
+	@GetMapping("/reverse/{inputStr}")
+	public String add(@PathVariable String inputStr) {
+		return "Reverse String is: " + new StringBuilder(inputStr).reverse();
+	}
+
+	// Get Fake employee
+	// "Path variable name" and "Method parameter variable" name must be same.
+
+	@GetMapping("/fake/{empId}")
+	public Employee getFake(@PathVariable int empId) {
+
+		return new Employee(empId, "FAke name", "Fake Dept", 10000);
+	}
+
+	// ________POST MAPPING__________//
+	// POST Method is used for CREATE/SAVE data
+
+	// Double Employee salary and id
+	// "Request Body" must be provide as JSON Object
+
+	@PostMapping("/double")
+	public Employee doubleIt(@RequestBody Employee e) {
+		return new Employee(e.getId() * 2, e.getName(), e.getDept(), e.getSalary() * 2);
+	}
+
+	// Employee Details in String
+	// "Request Body" must be provide as JSON Object
+
+	@PostMapping("/instr")
+	public String details(@RequestBody Employee e) {
+		return e.toString();
+	}
+
+	// ________PUT MAPPING__________//
+	// PUT Method is used for UPDATE data
+
+	// Update Employee
+	// "Path variable name" and "Method parameter variable" name must be same.
+	// "Request Body" must be provide as JSON Object
+
+	@PutMapping("/update/{empId}")
+	public Employee updateEmployee(@PathVariable int empId, @RequestBody Employee emp) {
+		Employee newEmp = new Employee(empId, "Updated Name", "Updated Dept", 10000);
+		return newEmp;
+	}
+
+	// ________DELETE MAPPING__________//
+	// DELETE Method is used for DELETE data
+
+	// Update Employee
+	// "Path variable name" and "Method parameter variable" name must be same.
+
+	@DeleteMapping("/delete/{empId}")
+	public String deleteEmployeeById(@PathVariable int empId) {
+		return "Employee with id '" + empId + "' has been deleted";
+	}
+
+}
+
+```
+
+---
+
+### 5. TestControllerMedium.java
+
+#### \src\main\java\com\suji\sample\controller\TestControllerMedium.java
+
+```java
+
+package com.suji.sample.controller;
+
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.suji.sample.model.Employee;
+
+@RestController
+@RequestMapping("/medium")
+public class TestControllerMedium {
+
+	// ________GET MAPPING__________//
+	// GET Method is used for READ/GET data
+
 	// Say Hi
 	@GetMapping("/hi")
 	public String sayHi() {
@@ -206,42 +318,66 @@ public class TestController {
 
 	// Add two numbers
 	@GetMapping("/add/{num1}/{num2}")
-	public String add(@PathVariable(required = true, name = "num1") int a, @PathVariable(required = true, name = "num1") int b) {
-		return "Sum is: "+(a+b);
+	public String add(@PathVariable(required = true, name = "num1") int a,
+			@PathVariable(required = true, name = "num2") int b) {
+		
+		return "Sum is: " + (a + b);
 	}
-	
+
 	// Reverse String
 	@GetMapping("/reverse/{inputStr}")
 	public String add(@PathVariable(required = true, name = "inputStr") String str) {
-		return "Reverse String is: "+ new StringBuilder(str).reverse();
+		
+		return "Reverse String is: " + new StringBuilder(str).reverse();
 	}
-	
+
 	// Get Fake employee
 	@GetMapping("/fake/{empId}")
 	public Employee getFake(@PathVariable(required = true, name = "empId") int id) {
+		
 		return new Employee(id, "FAke name", "Fake Dept", 10000);
 	}
-	
-	//________POST MAPPING__________//
+
+	// ________POST MAPPING__________//
+	// POST Method is used for CREATE/SAVE data
 
 	// Double Employee salary and id
 	@PostMapping("/double")
 	public Employee doubleIt(@RequestBody(required = true) Employee e) {
 		return new Employee(e.getId() * 2, e.getName(), e.getDept(), e.getSalary() * 2);
 	}
-	
+
 	// Employee Details in String
 	@PostMapping("/instr")
 	public String details(@RequestBody(required = true) Employee e) {
 		return e.toString();
 	}
+
+	// ________PUT MAPPING__________//
+	// PUT Method is used for UPDATE data
+
+	@PutMapping("/update/{empId}")
+	public Employee updateEmployee(@PathVariable(required = true, name = "empId") int id,
+			@RequestBody(required = true) Employee e) {
+		Employee newEmp = new Employee(id, "Updated Name", "Updated Dept", 10000);
+		return newEmp;
+	}
+
+	// ________DELETE MAPPING__________//
+	// DELETE Method is used for DELETE data
+
+	@DeleteMapping("/delete/{empId}")
+	public String deleteEmployeeById(@PathVariable(required = true, name = "empId") int id) {
+		return "Employee with id '" + id + "' has been deleted";
+	}
+
 }
 
 ```
 
 ---
 
-### 5. SampleDemoFirstApplication.java
+### 6. SampleDemoFirstApplication.java
 
 #### \src\main\java\com\suji\sample\SampleDemoFirstApplication.java
 
@@ -272,8 +408,8 @@ public class SampleDemoFirstApplication implements ApplicationRunner {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 		 employeeService.saveEmployee(new Employee(1, "Pranisha", "IT", 50000));
-		 employeeService.saveEmployee(new Employee(1, "Sujith", "OP", 35000));
-		 employeeService.saveEmployee(new Employee(1, "Sravaki", "Medical", 20000));
+		 employeeService.saveEmployee(new Employee(2, "Sujith", "OP", 35000));
+		 employeeService.saveEmployee(new Employee(3, "Sravaki", "Medical", 20000));
 	}
 
 }
@@ -282,7 +418,7 @@ public class SampleDemoFirstApplication implements ApplicationRunner {
 
 ---
 
-### 6. EmployeeService.java
+### 7. EmployeeService.java
 
 #### \src\main\java\com\suji\sample\service\EmployeeService.java
 
@@ -309,7 +445,7 @@ public interface EmployeeService {
 
 ---
 
-### 7. EmployeeServiceImpl.java
+### 8. EmployeeServiceImpl.java
 
 #### \src\main\java\com\suji\sample\serviceImpl\EmployeeServiceImpl.java
 
@@ -362,7 +498,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 ---
 
-### 8. pom.xml
+### 9. pom.xml
 
 #### E:\SpringBoot STS\Workspace\sample-demo-first\pom.xml
 
