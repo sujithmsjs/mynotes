@@ -1,4 +1,4 @@
-# Crud Operation with Thymeleaf
+# Simple Rest API
 
 
 ### File Structure
