@@ -1,0 +1,19 @@
+MongoDB Shell vs MongoDB Server
+---
+
+"Mondo" command to start Shell
+"Mondod" command to start Server
+
+Shell works like a client
+Server execute the client request/quries and provides results.
+
+---
+> show dbs
+// Shows Logical Databases
+
+> use durgadb;
+> db.dropDatabase();
+
+
+drop durgadb;
+

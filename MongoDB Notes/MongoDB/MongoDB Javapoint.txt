@@ -1,0 +1,332 @@
+What is MongoDB
+
+
+
+
+"MongoDB is a scalable, open source, high performance, document-oriented database." - 10gen
+
+
+
+
+db.createCollection("emp", 
+	{
+	empno : 7369,
+	ename : "",
+	job : "",
+	mgr : 7902,
+	hiredate : new Date(),
+	sal : 0,
+	comm : 0,
+	deptno : 20
+	}
+)
+
+db.emp.insert(
+{
+        "empno" : 7369,
+        "ename" : "SMITH",
+        "job" : "CLERK",
+        "mgr" : 7902,
+        "hiredate" : new Date(1980-12-17),
+        "sal" : 800.00,
+        "comm" : "NULL",
+        "deptno" : 20
+}
+
+
+
+
+{"t":{"$date":"2022-07-09T19:40:28.058+05:30"},"s":"E",  "c":"CONTROL",  "id":20557,   "ctx":"initandlisten","msg":"DBException in initAndListen, terminating","attr":{"error":"NonExistentPath: Data directory C:\\data\\db\\ not found. Create the missing directory or specify another path using (1) the --dbpath command line option, or (2) by adding the 'storage.dbPath' option in the configuration file."}}
+
+
+JSON will converted into BSON and stored.
+
+
+Javascript only has 6 types:
+String, Number, Object, Array, Boolean, Null
+
+
+
+BSON:
+Efficient Storage and Extro data types.
+
+EJSON:
+Extended JSON
+At the time of Extention, EJSON will be displayed.
+
+
+db is implicit object in MOngoDB
+
+
+db.createCollection("<Name>")
+db.collection.drop()
+db.dropDatabase(); //Current DB will be deleted.
+
+
+CRUD Operations:
+db.getName()
+
+// Default DB: test
+
+1. CREATE
+
+db.collection.insertOne()
+db.collection.insertMany()
+db.collection.insert()
+
+> db.nitro.insertOne({
+	eno:100,
+	ename:"Sujith",
+	esal:100.665,
+	eddr:"Hyd" })
+
+O/p:
+{
+        "acknowledged" : true,
+        "insertedId" : ObjectId("62ca6d849c6bc0e0e11d914f")
+}
+
+
+READ:
+-----
+
+db.<collection>.findOne()
+
+
+UPDATE:
+-------
+db.collection.updateOne()
+db.collection.updateMany()
+db.collection.replaceOne()
+
+
+Test:
+
+> db.vin.updateOne(
+	{ename:"Sujith"},
+	{sal:50000}
+)
+
+uncaught exception: Error: the update operation document must contain atomic operators.
+
+atomic operators: $set
+
+#1
+
+> db.vin.updateOne( 
+	{ename:"Sujith"},
+	
+	{$set :
+		{sal:50000}
+	} 
+)
+
+O/p:
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+Note: If anything prefexed with $ symbol, then it is predefined work in MongoDB.
+
+
+Delete:
+---------
+db.collection.deleteOne(ename:"Vinney")
+
+Ex:
+> db.vin.deleteOne(
+	{ename:"Sujith"}
+)
+
+Output:
+
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+
+==============
+Capped Collections:
+Max: 1000 doucs
+Size: 3736578 bytes
+
+
+db.createCollection(name="")
+db.createCollection(name, options)
+
+
+>db.createCollection("testCap"
+	{
+		capped: true,
+		size : 3736578,
+		max:1000
+	})
+	
+{ "ok" : 1 }
+
+
+---
+How to know a collection is capped or not?
+How to change a collection to cappped collection?
+
+What is Capped collections?
+----
+
+CRUD:
+
+1. db.coll.insertOne()
+2. db.coll.insertMany()
+3. db.coll.insert()
+
+1. db.coll.insertOne()
+----------------------
+db.coll.insertOne({...}) only one JSON Argument.
+
+2. db.coll.insertMany([{},{},{},...])
+-----------------------
+Array of Objects as an Argument.
+
+
+3. db.coll.insert({}) or db.coll.insert([{}])
+To insert either a sngle doc or many of docs.
+
+
+---
+var emp = {}
+emp.eno = 7777;
+emp.ename = "Sujith";
+emp.esal = 7777;
+emp.eaddr = "HYD"
+
+db.employees.insertOne(emp)
+db.employees.insertMany([emp])
+db.employees.insert([emp])
+
+---
+
+Commands are available in JS file?
+Array of Docs available in JSON fiel?
+Ordered Insertion
+Nested Documents
+Array to Documents
+ObjectID
+
+---
+
+db.createCollection(<name>)
+db.employees.drop()
+db.createCollection(<name>,<options>)
+
+<name>: Name of collection
+<options>: JS Object, Document;
+
+Doc properties:
+size in bytes, no of max Docs, capped, 
+
+
+db.createCollection("employees",{
+	capped: true,
+	size: 654464,
+	max: 100
+})
+
+
+---
+Inserting Docs from JS file also:
+load(path of the file)
+
+
+students.js
+-----------
+db.students.insertOne({...})
+db.students.insertOne({...})
+db.students.insertOne({...})
+
+> load("D:\students.js")
+
+
+------------
+
+JSON file contains an array of JS objects:
+mongoimport tool
+
+in json file, the data should in array form.
+Make sure the data should be of JSON
+
+students.json
+-------------
+[
+	{
+		"name": "Sujith",
+		"roll": 51
+	},
+	{
+		"name": "Vineeth",
+		"roll": 49
+	},{
+		"name": "Vamshi",
+		"roll": 32
+	},{
+		"name": "Ajay",
+		"roll": 1
+	},{
+		"name": "Divya",
+		"roll": 29
+	}
+]
+
+> Must use utility
+mongod --> to start MongoDBServer
+mongo  -->
+mongoimport --> tool to import documents from json file into MongoDB.
+
+Mongoimport is not available by default, we have to install utility.
+
+GOTO: Try free -> Tools -> MongoDB DB tools -> download zip file.
+Unzip and copy all files and paste into MongoDB bin folder.
+
+mongoimport cmd should be execute from cmd, but not from Mongo shell.
+
+DB name: studentsdb
+Collections: students
+GOTO: where the JSON file is located.
+Syntax:
+mongoimport --db databasename --collectionName --file fileName --jsonArray
+
+Ex:
+mongoimport --db studentsdb --collection students --file students.json  --jsonArray
+
+
+
+
+
+CSV/EXCEL
+
+
+
+
+
+
+json vs javascript object:
+--------------------------
+In JS obj, quote symbols for keys are optional.
+But in JSON, quote symbols are mandatory for keys.
+
+
+db.collection.insertOne(JS Object) // Quotes are optional.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

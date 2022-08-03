@@ -1,0 +1,348 @@
+
+MongoDB
+--------
+
+Collection = Table
+Document = Row/Record
+
+Linux Shell --> Kernal/Execution engine.
+MongoDB Shell --> MongoDB Server
+Client -(Queries)-> Server
+
+---
+> show dbs
+Default Logical dbs: admid, config, local.
+Admin is responsible to use these dbs.
+
+1. Admin: Adminstrator
+User creations and assign roles.
+User authenticaion and authorization like username, passwords, roles etc.
+User by Admins to creating, deleting and updating users and while assigning roles.
+
+2. Confing: Configuration info
+To store configurations of MongoDB server.
+
+3. Local: Can be used in Replication process.
+Replica = duplicate, to create clone.
+
+---
+Data Formats in MongoDB
++---+---+---+---+---+
+Prevent damage: Protection
+
+json: {name:'durgo'}
+
+JSON --(Converted into)--> BSON
+BSON --(Converted into)--> EJSON
+BSON: Binary JSON
+
+End user/dev will provide data in json form, In MongoDB server data will be stored in BSON.
+
+1. In JS only 6 types are available.
+String, Number, Object, Array, Boolean, Null
+
+but BSON  provides some extra types also like 32-Bit Integer--->NumberInt
+ObjectId
+Date
+etc
+
+2. BSON Format requires less memory.
+JSON ---> 10kb
+BSON ---> 4 to 5 kb
+
+Note: Efficient Storage and Extra data types are speciality of BSON over JSON.
+
+EJSON - Extended JSON
+--------------------
+At the time of retieval BSON data will be converted into EJSON for understanding.
+
+
+INSERTION OF DOCUMENT/CREATION
+Insertion of doc: JSON -> BSON
+Read op/Retrieval op: BSON -> EJSON
+
+Q. What data formats used in MongoDB?
+3 Formats: JSON, BSON, EJSON
+
+---------
+Creation of DB and Collection
+
+> use durgadb
+> 
+
+Database will be created dynamically whenever we are creating or inserting document then database will be created dynamically.
+
+How to create collection?
+> db.createCollection("employees")
+{"ok":1}
+> show dbs
+> show collections
+employees
+
+How to know current db?
+> db.getName()
+
+How to drop collection?
+> db.<collection object>.drop()
+> db.students.drop()
+
+How to drop database?
+db.dropDatabase()
+current DB will be deleted.
+
+Can we rollback/(retrieve back) droped DB?
+Can we rollback droped Collection?
+
+BASIC CRUD OPERATIONS
+---------------------
+CREATION:
+db.collection.insertOne()
+Ex:
+db.employees.insertOne(
+{
+	eno: 100,
+	ename: "Sunny",
+	esal: 1000,
+	eaddr: "Hyd"
+}
+)
+
+Unique Id called ObjectId will be created for every successfully inserted Document.
+
+
+How data types wil be identified by DB?
+
+db.collection.insertMany()
+db.collection.insert()
+
+
+READ/RETRIEVAL:
+
+db.collection.find() --> To get all Docs.
+db.collection.findOne() --> based on matched.
+Eg:-
+db.employees.find()
+> db.testdb.find({comm : "NULL"})
+> db.testdb.find({comm : "NULL", job : "MANAGER"})
+> db.inventory.find( { status: { $in: [ "A", "D" ] } } )
+
+Pretty print
+db.employees.find().pretty
+
+UPDATE:
+db.collection.updateOne()
+db.collection.updateMany()
+db.collection.replaceOne()
+Eg:
+db.collection.updateOne(
+	{
+		ename: "Vinny"
+	},
+	{
+		esal: 10000
+	}
+)
+Output:
+Error: the update operation doc must contain atomic operators.
+
+db.collection.updateOne(
+	{
+		ename: "Vinny"
+	},
+	{	
+		$set:
+		{
+			esal: 10000
+		}
+	}
+)
+Output:
+{
+	"acknowledged" : true,
+	"matchedCount" : 1,
+	"modifiedCount" : 1
+}
+
+Will it updateOne modify all the docs having "Vinny" ename? If not, how it choose single doc to modify?
+
+Note: If anything prefixed with $ symbol, than it is predefined word in MongoDB.
+
+DELETE:
+db.collection.deleteOne()
+db.collection.deleteMany()
+Eg:-
+db.employees.deleteOne(
+	{
+		ename:  "Vinny"
+	}
+)
+
+Note: Database and Collection will be created automatically/dynamically when we insert a document.
+
+
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

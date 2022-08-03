@@ -1,0 +1,14 @@
+SPRING WITH MONGODB
+-------------------
+
+Dependencies:
+
+Lombok
+Spring Web
+Spring Data MongoDB
+
+---
+
+Exception opening socket
+
+
