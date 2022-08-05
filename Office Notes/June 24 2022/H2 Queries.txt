@@ -1,0 +1,47 @@
+show columns from authors;
+SELECT * FROM authors;
+INSERT INTO authors(id, name) values(1, 'James Clear');
+INSERT INTO authors(id, name) values(2, 'Joseph Morphy');
+
+Referential integrity constraint violation
+Unique index or primary key violation
+
+Caused by: org.hibernate.TransientPropertyValueException: Not-null property references a transient value - transient instance must be saved before current operation : com.suji.mapping.model.Author.address -> com.suji.mapping.model.Address
+
+SHOW COLUMNS FROM BOOKS;
+
+
+SELECT * FROM BOOKS;
+INSERT INTO authors(id, name) values(3, 'Prame');
+
+INSERT INTO BOOKS(ID,TITLE, AID) VALUES(101,'Eat that frog',3);
+
+
+PropertyValueException: not-null property references a null or transient value
+
+---
+
+
+# Data Source
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+
+# To Standard Output
+#spring.jpa.show-sql=true
+#spring.jpa.properties.hibernate.format_sql=true
+
+#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+
+#spring.jpa.defer-datasource-initialization=false
+
+#spring.jpa.hibernate.ddl-auto = create
+
+spring.h2.console.enabled=true
+
+# Change Server Port Number
+server.port = 8080
+
+application.name=demo

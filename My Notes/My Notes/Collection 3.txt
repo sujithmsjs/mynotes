@@ -1,0 +1,269 @@
+Collection:
+https://www.slideshare.net/SurendarMeesala/java-collections-notes-73810555
+Group of individual object as a single entity.
+
+
+List
+- Insertion Order
+- Duplicates
+
+ArrayList
+- 1.2v
+- Non-Sync
+- Underlaying Growable Array
+- Heteogeneous elements are allowed.
+- Nulls can be inserted.
+- Best for frequent operation is Retrieval.
+- worst at insertion/deletion in the middle.
+
+Note: Except TreeSet and TreeMap everywhere heterogeneous elements are allowed.
+Sync ArrayList
+Collections.syncronizedList(new ArrayList());
+
+
+
+LinkedList
+- Double LL
+- Same as ArrayList expect underlaying structure.
+- Best for insertion and deletion in middle.
+- Worst for frequent operations.
+
+Vector
+- 1.0v
+- Sync
+- Underlaying DS is Growable Array.
+- Heterogeneouselements are allowed.
+- Nulls allowed.
+
+
+Stack
+- LIFO
+java.util.Stack<E>:
+	boolean empty()
+	E peek() : Return Top
+	E pop() : Remove Top and Return
+	E push(E) : Insert
+	int search(Object)
+	
+Collection Cursors
+1. Enumeration
+- Read only
+- Legacy 1.0v
+java.util.Enumeration<E>:
+	boolean hasMoreElements()
+	E nextElement()
+
+How to use:
+Enumeration<E> elements() // Vector class method.
+
+2. Iterator
+java.lang.Iterator<E>:
+
+	boolean hasNext()
+	E next()
+	void remove()
+
+How to use:
+For every Collection<E>:
+Iterator<T> iterator()
+
+3. ListIterator
+ListIterator<E> extends Iterator<E>:
+
+	int nextIndex()
+	boolean hasNext()
+	E next()
+	
+	int previousIndex()
+	boolean hasPrevious()
+	E previous()
+	
+	void remove()
+	void add(E)
+	void set(E)
+
+How to use:
+For every List<E>
+ListIterator<E> listIterator()
+ListIterator<E> listIterator(int)
+	
++++++++++++++
+
+Set
+- Duplicates are not allowed.
+- Insertion order not preserved.
+- Only one null value is allowed.
+- Should not be e1.equals(e2)
+- No new methods.
+
+HOW SET FINDS DUPLICATES?
+Every class must override equals method.
+@Override
+public boolean equals(Object obj){...}
+
+
+
+
+
+HashSet
+java.util.HashSet<E>
+- 1.2v
+- No new methods.
+- DS: Hash Table.
+- No duplicates.
+- No insertion order.
+- 1 null value is allowed.
+- Heteogeneous elements are allowed.
+- Best for Search Operations.
+
+	Underlaying DS: Hash Table
+	Duplicates: Not allowed
+	Insertion Order: Not preserved
+	Sorting Order: NA
+	Heterogeneous Objects: Allowed
+	Null Acceptance: Allowed
+	Best for:
+	Worst for:
+
+
+Fill Ratio/Load Factor:
+After filling how much ratio a new HashSet object will be created, this ratio is called Fill Ratio.
+
+LinkedHashSet
+- 1.4v
+- DS: LinkedList and Hash table.
+- Insertion order preserved.
+- 1 null value is allowed.
+
+	Underlaying DS: LinkedList + Hash Table
+	Duplicates: Not allowed
+	Insertion Order: Preserved
+	Sorting Order: NA
+	Heterogeneous Objects: Not Allowed
+	Null Acceptance: Allowed
+	Best for:
+	Worst for:
+
+
+
+SortedSet
+interface java.util.SortedSet<E>:
+	Comparator comparator()
+	E first() // First E
+	E last() // Last E
+	SortedSet<E> headSet(E) // Objects < E
+	SortedSet<E> subSet(E1,E2) // E1 < Objects < E2
+	SortedSet<E> tailSet(E) // // Objects > E
+	
+interface java.util.NavigableSet<E>:
+	E ceiling(E)
+	Iterator<E> descendingIterator()
+	NavigableSet<E> descendingSet()
+	E floor(E)
+	NavigableSet<E> headSet(E,boolean)
+	E higher(E)
+	E lower(E)
+	E pollFirst()
+	E pollLast()
+	NavigableSet<E> subSet(E,boolean,E,boolean)
+	NavigableSet<E> tailSet(E,boolean)
+	
+	
+TreeSet
+class java.util.TreeSet<E>
+- Balanced Tree.
+- No Duplicates.
+- Sorted order.
+- Heterogenous elements are not allowed.
+- No null values.
+- No new methods.
+- Homogeneous and Comparable
+
+TreeSet()
+TreeSet(Comparator c)
+TreeSet(Collection coll)
+
+	Underlaying DS: Balanced Tree
+	Duplicates: Not allowed
+	Insertion Order: Not preserved
+	Sorting Order: Applicable
+	Heterogeneous Objects: Not Allowed
+	Null Acceptance: No
+	Best for:
+	Worst for:
+
+
+
+Object is said to be Comparable.
+ClassCastException:
+cannot be cast to java.lang.Comparable
+
+APPROCH 1:
+
+// Default Comparator
+class Box implements Comparable<Box>{
+	@Override
+    public int compareTo(Box box) {
+        ...
+    }
+}
+
+TreeSet<Box> tree = new TreeSet<>();
+
+APPROCH 2:
+
+class Box{...}
+
+//Custom Comparator
+class BoxComp implements Comparator<Box>{
+    @Override
+    public int compare(Box b1, Box b2) {
+       ...
+    }
+}
+
+TreeSet<Box> tree = new TreeSet<>(new BoxComp());
+
+APPROCH 3:
+
+class Box implements Comparable<Box>{...}
+class BoxComp implements Comparator<Box>{...}
+
+tree = new TreeSet<>(); // Uses Comparable
+tree = new TreeSet<>(new BoxComp()); // Uses Comparator
+
+APPROCH 4:
+
+class Box implements Comparator<Box>{...}
+tree = new TreeSet<>(new Box()); // Not a good apporach.
+
+
+Comparable
+- Default Sorting
+- java.lang package
+- 1 method
+	int compareTo(E e)
+
+Comparator
+- Customized Sorting
+- java.util package
+- 2 methods
+	- int compare(E e, E e)
+	- boolean equals(E e)
+
+
+Queue:
+interface Queue<E> extends Collection<E>
+	E element() - Return Head, if empty NoSuchElementEx
+	boolean offer(E) - Add Tail
+	E peek() - Return Head, if empty returns null.
+	E poll() - Return & Remove Head, if empty null.
+	E remove() - Return & Remove Head, if empty NoSuchElementEx
+	
+PriorityQueue:
+class java.util.PriorityQueue<E>
+- implements Queue
+- No insertion order
+- No duplicates
+- No null values
+- Object should be homogeneous and Comparable otherwise we will get RE as ClassCastException.

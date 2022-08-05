@@ -1,0 +1,335 @@
+
+Cheat Sheet Spring-Hibernate
+=============================
+
+Date: Jan 30, 2022;
+Time: 18:00;   
+
+Version
+-------
+
+MySQL version:	8.0.23
+java version:	1.8.0_271
+Eclipse IDE Version:	2021-12 (4.22.0)
+mysql-connector version: 	8.0.16
+hibernate-core version: 	5.4.10.Final
+
+=================
+New Maven Project
+=================
+Group Id	: org.apache.maven.archetypes
+Artifact Id	: maven-archetype-quickstart
+Version		: 1.1
+
+===========================
+Hibernate Cofiguration File
+===========================
+DB Dialect		: org.hibernate.dialect.MySQL8Dialect
+Driver Class	: com.mysql.cj.jdbc.Driver
+Connection URL	: jdbc:mysql://localhost:3306/<db-name>
+Username	: root
+Password	: apple
+
+
+
+===============
+	pom.xml
+===============
+<project>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+
+	<dependencies>
+	
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+	
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>5.3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.6.4.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.16</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.22</version>
+			<scope>provided</scope>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>3.3.1</version>
+			</plugin>
+		</plugins>
+		<finalName>...</finalName>
+	</build>
+</project>
+
+
+==========================
+web.xml with sprint config
+==========================
+<servlet>
+	<servlet-name>telusko</servlet-name>
+	<servlet-class>
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+</servlet>
+<servlet-mapping>
+	<servlet-name>telusko</servlet-name>
+	<url-pattern>*.htm</url-pattern>
+</servlet-mapping>
+
+
+	
+
+
+
+
+===========
+spring.xml
+===========
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+   	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+   	http://www.springframework.org/schema/context 
+   	http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:annotation-config></context:annotation-config>
+	<context:component-scan base-package="com.suji.spring.model"></context:component-scan>
+
+
+	<bean id="car" class="com.suji.spring.model.Car">
+		<property name="name" value="Tesla"></property>
+		<constructor-arg value="BMW"></constructor-arg>
+	</bean>
+
+</beans>  
+
+========================
+	log4j.properties
+========================
+# Root logger details
+log4j.rootLogger=INFO,stdout, file
+# Redirect log messages to console
+log4j.appender.stdout=org.apache.log4j.ConsoleAppender
+log4j.appender.stdout.Target=System.out
+log4j.appender.stdout.layout=org.apache.log4j.PatternLayout
+log4j.appender.stdout.layout.ConversionPattern=[%p] %m%n
+
+# Redirect log messages to a log file
+log4j.appender.file=org.apache.log4j.FileAppender
+log4j.appender.file.File=myapp.log
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern=[%p] %m%n
+
+
+=========
+opencsv
+=========
+<dependency>
+	<groupId>com.opencsv</groupId>
+	<artifactId>opencsv</artifactId>
+	<version>4.6</version>
+</dependency>
+
+
+
+
+
+
+
+
+===========
+JDBC UTIL
+===========
+public class DBUtil {
+	private static Connection con;
+
+	static {
+		if (con == null) {
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				con = DriverManager.getConnection("jdbc:mysql://localhost:3306/db7", "root", "apple");
+			} catch (SQLException ex) {
+				ex.printStackTrace();
+			} catch (ClassNotFoundException ex) {
+				ex.printStackTrace();
+			}
+		}
+	}
+
+	public static Connection getConnection() throws ClassNotFoundException, SQLException {
+		return con;
+	}
+}
+
+==============
+AWS JDBC UTIL
+=============
+
+
+public static Connection getAWSConnection() {
+	Connection con = null;
+	if (con == null) {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			String host= "mysqldb.c7iowgwompfy.ap-south-1.rds.amazonaws.com";
+			
+			con = DriverManager.getConnection("jdbc:mysql://"+host+":3306/suji", "admin", "NvrStle#22");
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		}
+	}
+	return con;
+}
+
+=============
+URL Mapping
+=============
+web.xml
+-------
+<web-app>
+  <servlet>
+  	<servlet-name>HelloCtrl</servlet-name>
+  	<servlet-class>com.suji.ctrl.HelloCtrl</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>HelloCtrl</servlet-name>
+  	<url-pattern>/hello</url-pattern>
+  </servlet-mapping>
+</web-app>
+
+Simple form
+------------
+<form action="hello">
+	<input type="submit" />
+</form>
+
+Controller class
+----------------
+@Controller
+public class AddCtrl {
+	@RequestMapping("/hello")
+	public String add() {
+		return "display.jsp";
+	}
+}
+
+SPRINT MVC CONFIG
+=================
+
+@Configuration
+@EnableWebMvc
+@ComponentScan({ "com.suji.ctrl" })
+public class MyConfig {
+	public MyConfig() {
+		System.out.println("MyConfig");
+	}
+
+	@Bean
+	public InternalResourceViewResolver viewResolver() {
+		InternalResourceViewResolver vr = new InternalResourceViewResolver();
+		vr.setPrefix("/");
+		vr.setSuffix(".jsp");
+		System.out.println("viewResolver");
+		return vr;
+	}
+}
+
+
+public class MyFrontController extends AbstractAnnotationConfigDispatcherServletInitializer {
+	@Override
+	protected Class<?>[] getRootConfigClasses() {
+		return new Class[] {MyConfig.class};
+	}
+	@Override
+	protected Class<?>[] getServletConfigClasses() {
+		return new Class[] {MyConfig.class};
+	}
+	@Override
+	protected String[] getServletMappings() {
+		return new String[] {"/"};
+	}
+}
+
+
+<!-- Hibernate Connection -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver"></property>
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe"></property>
+		<property name="username" value="system"></property>
+		<property name="password" value="oracle"></property>
+	</bean>
+
+	<bean id="mysessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"></property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="template"
+		class="org.springframework.orm.hibernate3.HibernateTemplate">
+		<property name="sessionFactory" ref="mysessionFactory"></property>
+	</bean>

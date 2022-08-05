@@ -1,0 +1,41 @@
+10:13 21-06-2022
+
+@VALID:
+
+When Spring Boot finds an argument annotated with @Valid, it automatically bootstraps the default JSR 380 implementation — Hibernate Validator — and validates the argument.
+
+When the target argument fails to pass the validation, Spring Boot throws a MethodArgumentNotValidException exception.
+
+Spring Boot will call "@ExceptionHandler(MethodArgumentNotValidException.class)" when the specified User object is invalid.
+
+The method stores the name and post-validation error message of each invalid field in a Map.
+
+interpolatedMessage = Error Message
+
+"MethodArgumentNotValidException"
+
+https://www.baeldung.com/javax-validationReference: https://www.baeldung.com/javax-validation
+
+
+What is javax.validation.ConstraintViolationException?
+
+
+MethodArgumentNotValidException extends BindException
+List<ObjectError> list = ex.getBindingResult().getAllErrors();
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

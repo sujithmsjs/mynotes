@@ -1,0 +1,67 @@
+Spring Framework
+- Java framework.
+- Open source, lossely coupled, lightweight.
+
+ORM: Object–relational mapping
+
+
+
+AOP (Aspect Oriented Programming)
+
+
+Core Container
+Data Access/Integration
+Web
+AOP (Aspect Oriented Programming)
+Instrumentation
+Messaging
+Test
+
+IoC (Inversion of Control)  that supports objects to give their dependencies rather than looking for creating dependent objects.
+
+
+Spring container forms the core of the Spring Framework.
+
+Spring Container
+The Spring container uses Dependency Injection (DI) for managing the application components by creating objects, wiring them together along with configuring and managing their overall life cycles.
+
+Dependency Injection:
+You don’t have to create your objects but you just have to describe how they should be created.
+The IoC container present in Spring will wire them up together.
+
+2 Major ways
+1. Constructor injection
+2. Setter injection
+
+
+
+Spring beans are instantiated, configured, wired, and managed by IoC container.
+
+Configuration meta data
+1. XML based
+2. Java based @Configuration, @Bean
+3. Annotation based @Component, @ComponentScan
+
+
+Bean scopes
+singleton
+prototype
+request
+session
+global-session
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

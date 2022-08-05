@@ -1,0 +1,5 @@
+@Configuration
+@ComponentScan(basePackages = "com.suji.spring.app2")
+public class App2Config {
+
+}

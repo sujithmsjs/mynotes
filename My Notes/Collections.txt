@@ -1,0 +1,114 @@
+Utilities:
+
+	void 	copy(List<? super T>,List<? extends T>)
+	void 	fill(List<? super T>,T)
+	int 	frequency(Collection<?>,Object)
+	
+	Enumeration<T> enumeration(Collection<T>)
+	
+	
+	To Convert Enumeration to ArrayList:
+	ArrayList<T> list(Enumeration<T>)
+	
+	boolean disjoint(Collection<?>,Collection<?>)
+	boolean addAll(Collection<? super T>,T[])
+	boolean replaceAll(List<T>,T,T)
+	
+	Queue<T>	asLifoQueue(Deque<T>)
+	List<T>		nCopies(int,T)
+	Set<E>		newSetFromMap(Boolean>)
+	
+	
+Binary Search:
+Uses default natural sorting order.
+	int binarySearch(List<? extends T>,T,Comparator<? super T>)
+	int binarySearch(Comparable<? super T>,T)
+	
+Checked Collection:
+	Collection<E>	checkedCollection(Collection<E>,Class<E>)
+	List<E>			checkedList(List<E>,Class<E>)
+	Map<K, V> 		checkedMap(Map<K, V>,Class<K>,Class<V>)
+	NavigableMap<K, V>	checkedNavigableMap(NavigableMap<K, V>,Class<K>,Class<V>)
+	NavigableSet<E>	checkedNavigableSet(NavigableSet<E>,Class<E>)
+	Queue<E>		checkedQueue(Queue<E>,Class<E>)
+	Set<E>			checkedSet(Set<E>,Class<E>)
+	SortedMap<K, V> checkedSortedMap(SortedMap<K, V>,Class<K>,Class<V>)
+	SortedSet<E>	checkedSortedSet(SortedSet<E>,Class<E>)
+	
+	
+	
+	
+	
+	
+Getting Empties:
+	Enumeration<T> 	emptyEnumeration()
+	Iterator<T> 	emptyIterator()
+	List<T> 		emptyList()
+	ListIterator<T> emptyListIterator()
+	Map<K, V> 		emptyMap()
+	NavigableMap<K, V> emptyNavigableMap()
+	NavigableSet<E> emptyNavigableSet()
+	Set<T> 			emptySet()
+	SortedMap<K, V> emptySortedMap()
+	SortedSet<E> 	emptySortedSet()
+
+
+
+Index:
+	int indexOfSubList(List<?>,List<?>)
+	int lastIndexOfSubList(List<?>,List<?>)
+	
+Max and Min:
+	T max(Collection<? extends T>,Comparator<? super T>)
+	T max(Collection<? extends T>)
+	T min(Collection<? extends T>)
+	T min(Collection<? extends T>,Comparator<? super T>)
+	
+
+Reversing:
+	void 			reverse(List<?>)
+	
+	//Gives Reversing order of the given Comparator.
+	Comparator<T> 	reverseOrder(Comparator<T>)
+	
+	Comparator<T> 	reverseOrder()
+	
+Shuffle:
+	void 	shuffle(List<?>,Random)
+	void 	shuffle(List<?>)
+	
+Singleton:
+	Set<T> 		singleton(T)
+	List<T> 	singletonList(T)
+	Map<K, V> 	singletonMap(K,V)
+	
+Sort:
+	void 	sort(List<T>,Comparator<? super T>)
+	void 	sort(List<T>)
+
+Swap:
+	void 	swap(List<?>,int,int)
+	
+Rotate:
+	void rotate(List<?>,int)
+	
+Synchronized Collection:
+	Collection<T> 	synchronizedCollection(Collection<T>)
+	List<T> 		synchronizedList(List<T>)
+	Map<K, V> 		synchronizedMap(Map<K, V>)
+	NavigableMap<K, V> synchronizedNavigableMap(NavigableMap<K, V>)
+	NavigableSet<T> synchronizedNavigableSet(NavigableSet<T>)
+	Set<T>			synchronizedSet(Set<T>)
+	SortedMap<K, V> synchronizedSortedMap(SortedMap<K, V>)
+	SortedSet<T> 	synchronizedSortedSet(SortedSet<T>)
+	
+	
+Unmodifiable Collection:
+	Collection<T> 	unmodifiableCollection(Collection<? extends T>)
+	List<T> 		unmodifiableList(List<? extends T>)
+	Map<K, V> 		unmodifiableMap(Map<? extends K, ? extends V>)
+	NavigableMap<K, V> unmodifiableNavigableMap(NavigableMap<K, ? extends V>)
+	NavigableSet<T> unmodifiableNavigableSet(NavigableSet<T>)
+	Set<T> 			unmodifiableSet(Set<? extends T>)
+	SortedMap<K, V> unmodifiableSortedMap(SortedMap<K, ? extends V>)
+	SortedSet<T> 	unmodifiableSortedSet(SortedSet<T>)

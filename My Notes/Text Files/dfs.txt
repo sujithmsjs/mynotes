@@ -1,0 +1,6 @@
+
+FCLM permissions
+egregious 
+One tote can hold either one Multis or AFE shipment or several Singlesshipments.
+
+Reminder: Do not use “Move Items” app to shift items out of Overage bin or any POPS chute as POPS will continue to assume the item is still there or basically it will generate stale inventory data.

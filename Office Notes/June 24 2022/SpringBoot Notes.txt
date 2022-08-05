@@ -1,0 +1,73 @@
+spring-boot-starter-data-rest
+used to build - hypermedia-based RESTful APIs
+
+REST or Representational State Transfer:  is an architectural style that advocates the use of standard HTTP protocol to expose such an interface.
+
+@RepositoryRestResource
+Note the parameters collectionResourceRel and path
+
+ @RequestMapping(value="/check",method=RequestMethod.GET,produces="application/json")
+
+These are all critical factors on building resilient services.
+
+@Entity is a JPA annotation to make this object ready for storage in a JPA-based data store.
+
+@SpringBootApplication is a meta-annotation that pulls in component scanning, autoconfiguration, and property support.
+
+
+@RestController indicates that the data returned by each method will be written straight into the response body instead of rendering a template.
+
+
+orElseThrow(Supplier<? extends X> exceptionSupplier)
+
+CrudRepository is a Spring Data interface for generic CRUD operations on a repository of a specific type.
+
+Transactions?
+Transactional Methods?
+
+
+https://stackoverflow.com/questions/11881479/how-do-i-update-an-entity-using-spring-data-jpa
+
+
+https://zetcode.com/springboot/controlleradvice/#:~:text=%40ControllerAdvice%20is%20a%20specialization%20of,annotated%20with%20%40RequestMapping%20and%20similar.
+
+@ControllerAdvice is a specialization of the @Component annotation which allows to handle exceptions across the whole application in one global handling component. It can be viewed as an interceptor of exceptions thrown by methods annotated with @RequestMapping and similar.
+
+It declares
+1.	@ExceptionHandler
+2.	@InitBinder
+3.	@ModelAttribute
+methods to be shared across multiple @Controller classes.
+
+@ExceptionHandler({ CustomException1.class, CustomException2.class })
+
+the HandlerExceptionResolver
+1.	ExceptionHandlerExceptionResolver
+2.	DefaultHandlerExceptionResolver
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,95 @@
+limit-server : 8080
+Dependencies: Lombok, Web, DevTools, Config Client, Actuator
+
+App props:
+spring.application.name=limit-server
+sever.port = 8080
+
+limit-server.maximun = 100
+limit-server.minimun = 1
+
+@RestController
+LimitRestController{
+	
+	@Autowired
+	private LimitConfiguration config;
+
+	@GetMapping("/default")
+	public Limit getLimits(){
+		return new Limit(config.getMin(),config.getMax());
+	}
+}
+
+Limit{
+	maximun, minimun;
+}
+
+@Component
+@ConfigurationProperties("limit-server")
+LimitConfiguration{
+	// Automatically reads the values from properties and bind with the matched varables.
+
+	maximun, minimun;
+
+}
+
+
+
+----
+sprint-cloud-config-server: 8888
+Dependencies: DevTools, Config Server
+
+App props:
+spring.application.name=sprint-cloud-config-server
+sever.port = 8888
+
+@EnableConfigServer
+@SpringApplication
+main(){
+
+}
+
+
+-------
+IMPL
+
+http://localhost:8081/default
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+CLIENT SIDE ERROR:
+
+No spring.config.import property has been defined
+
+Action:
+
+Add a spring.config.import=configserver: property to your configuration.
+	If configuration is not required add spring.config.import=optional:configserver: instead.
+	To disable this check, set spring.cloud.config.enabled=false or 
+	spring.cloud.config.import-check.enabled=false.
+
+Solution:
+spring.cloud.config.enabled=false
+
+SERVER SIDE ERROR:
+
+Description:
+
+Invalid config server configuration.
+
+Action:
+
+If you are using the git profile, you need to set a Git URI in your configuration.  If you have set spring.cloud.config.server.bootstrap=true, you need to use a composite configuration.
+
+
+
+
+---
+Spring Cloud Config provides support for using a file system as a configuration source.
+
+spring.cloud.config.server.native.search-locations=resources/other.properties
+
+
+

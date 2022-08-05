@@ -1,0 +1,182 @@
+Nav Menus
+
+<ul>
+	<li>
+		<a></a>
+	</li>
+</ul>
+
+ul	> .nav, justify-content-*align, .nav-*shape, .nav-justified
+li	> .nav-item
+a	> .nav-link, .disabled, .active
+
+*align : center, end
+*shape : tabs, pills
+
+----------------
+Utilities & Flex
+----------------
+
+
+data-bs-toggle="tooltip"
+
+<span class="border border-0"></span>
+.border
+.border-*size
+.border-*side-*side
+
+*side	: top, end, botton, start
+*size	: 1-5
+
+
+------
+FORMS
+------
+
+div: .mt-3 .mb-3
+label: .form-label
+input: .form-control .form-control-lg .form-control-sm
+<input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+
+
+<textarea class="form-control" rows="5" id="comment" name="text"></textarea>
+
+
+<input type="text">
+<input type="text" ... disabled>
+<input type="text" ... readonly>
+
+-------------
+Color Picker
+-------------
+<input type="color" class="form-control form-control-color" value="#CCCCCC">
+
+--------------
+Dropdown List
+--------------
+
+<select class="form-select"  name="">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+</select>
+
+-----------
+List Menu
+-----------
+
+<select multiple class="form-select" name="">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+</select>
+
+------------
+Checkboxes
+------------
+Simple format
+<div>
+	<input type="radio" ... />
+	<label>Option 3</label>
+</div>
+
+
+div >	.form-check
+input >	.form-check-input
+label >	.form-check-label
+
+<input type="checkbox" ... checked>
+<input type="checkbox" ... disabled>
+
+--------------
+Radio buttons
+--------------
+<div>
+	<input type="radio" .../>
+	<label> ... </label>
+</div>
+
+div >	.form-check
+input >	.form-check-input
+label >	.form-check-label
+
+
+<input type="radio" ... checked>
+<input type="radio" ... disabled>
+
+---------------
+Toggle Switches
+----------------
+.form-switch
+
+<div>
+	<input type="checkbox" ... />
+	<label> ... </label>
+</div>
+
+div >	.form-check .form-switch
+radio >	.form-check-input
+label >	.form-check-label
+
+
+------------
+Custom Range
+------------
+
+<input type="range" ... />
+
+Attributes:
+
+class="form-range"
+name="points"
+min="0"
+step="0.5"
+max="100"
+
+------------
+Input Groups
+------------
+<div>
+      <span> ... </span>
+      <input type="text" ... />
+</div>
+
+<div>
+  	<span > ... </span>
+	<span > ... </span>
+  	<input type="text" ... />
+	<input type="text" ... />
+</div>
+
+
+div		.input-group
+span	.input-group-text
+input	.from-control
+
+---------------
+Floating Labels
+---------------
+<div class="form-floating mb-3 mt-3">
+  <input type="text" class="form-control" id="email" placeholder="Enter email" name="email">
+  <label for="email">Email</label>
+</div>
+
+<div class="form-floating mt-3 mb-3">
+  <input type="text" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+  <label for="pwd">Password</label>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+

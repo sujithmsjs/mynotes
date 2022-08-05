@@ -1,0 +1,282 @@
+
++-----------------------+
+|  hibernate.cfg.xml	|	
++-----------------------+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+		
+<hibernate-configuration>
+    <session-factory>
+
+    	<!-- Connection properties -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.password">apple</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hib</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        <property name="hibernate.order_inserts">true</property>
+
+		<!-- Hibernate properties -->
+        <property name="show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
+        
+        <!-- Class Mappings -->
+        <mapping class="com.suji.Student"></mapping>
+        
+    </session-factory>
+</hibernate-configuration>
+
++---------------------+
+|	Hibernate Util	  |	
++---------------------+
+	
+package com.suji.dbutil;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.Metadata;
+import org.hibernate.boot.MetadataSources;
+import org.hibernate.boot.registry.StandardServiceRegistry;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+
+public class HibernateUtil {
+	private static SessionFactory sessionFactory = buildSessionFactory();
+	
+	private static SessionFactory buildSessionFactory() {
+		try {
+			if(sessionFactory == null) {
+				StandardServiceRegistry standardRegistry = new StandardServiceRegistryBuilder()
+						.configure("hibernate.cfg.xml").build();
+				Metadata metaData = new MetadataSources(standardRegistry).getMetadataBuilder().build();
+				sessionFactory = metaData.getSessionFactoryBuilder().build();
+				
+			}
+			return sessionFactory;
+		} catch (Throwable e) {
+			throw new ExceptionInInitializerError(e);
+		}
+	}
+	
+	public static Session openSession() {
+		if(sessionFactory == null) {
+			buildSessionFactory();
+		}
+		return sessionFactory.openSession();
+	}
+	
+	public static SessionFactory getSessionFactory() {
+		return sessionFactory;	
+	}
+	
+	public static void shutdown() {
+		sessionFactory.close();
+	}
+}
+
++---------------------+
+|	Annotations		  |	
++---------------------+
+
+@Entity
+@Table(name = "Employee", uniqueConstraints = {
+	@UniqueConstraint(columnNames = "ID"),
+	@UniqueConstraint(columnNames = "EMAIL") }
+)
+@Column(name = "FIRST_NAME", unique = false, nullable = false, length = 100)
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
+@Column(name = "ID", unique = true, nullable = false)
+
+
++---------------------+
+|		Main		  |	
++---------------------+
+Session session = HibernateUtil.getSessionFactory().openSession();
+session.beginTransaction();
+session.getTransaction().commit();
+
+
+
+@Entity
+@Table(name = "demo1")
+public class User {
+
+	@Id
+	@Column(name = "user_id", length = 5)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int uid;
+	
+	@Column(length = 25)
+	private String name;
+	
+	@Column(name = "username",length = 20,unique = true,updatable = false, nullable = false)
+	private String username;
+	
+	@Column(nullable = false, length = 10)
+	private String password;
+	
+	private Calendar dob;
+	
+	@Temporal(TemporalType.TIME)
+	@Column(name="birth_time")
+	private Date birthtime;
+
+	@Column(precision = 2)
+	private double cgpa;
+	
+	@Column(precision = 2)
+	private float percentage;
+	private byte section;
+	private int marks;
+	
+	@Column(name = "has_ncc", nullable = false)
+	private boolean hasNCC;
+	
+	@CreationTimestamp
+	@Column(name = "create_date")
+	private Calendar createdOn;
+
+	@UpdateTimestamp
+	@Column(name = "modify_date")
+	private Date modifyDate;
+}
+
++-------------+-------------+------+-----+
+| Field       | Type        | Null | Key |
++-------------+-------------+------+-----+
+| user_id     | int         | NO   | PRI |
+| birth_time  | time        | YES  |     |
+| cgpa        | double      | YES  |     |
+| create_date | datetime(6) | YES  |     |
+| dob         | datetime(6) | YES  |     |
+| has_ncc     | bit(1)      | NO   |     |
+| marks       | int         | NO   |     |
+| modify_date | datetime(6) | YES  |     |
+| name        | varchar(25) | YES  |     |
+| password    | varchar(10) | NO   |     |
+| percentage  | float       | YES  |     |
+| section     | tinyint     | NO   |     |
+| username    | varchar(20) | NO   | UNI |
++-------------+-------------+------+-----+
+
+
+
+
+===============================================================
+@Entity
+@Table(name = "stds")
+public class Student {
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int id;
+	private String name;
+	private LocalDate dob;
+	private LocalTime examTime;
+	
+	@CreationTimestamp
+	private java.time.LocalDateTime created;
+	
+	@UpdateTimestamp
+	private java.time.LocalDateTime updated;
+	
+	//Setters and Getters
+}
+
+Student s = new Student("Sujith", LocalDate.of(1994, 9, 2), LocalTime.of(21, 30));
+
+mysql> desc stds;
++----------+--------------+------+-----+
+| Field    | Type         | Null | Key |
++----------+--------------+------+-----+
+| id       | int          | NO   | PRI |
+| created  | datetime(6)  | YES  |     |
+| dob      | date         | YES  |     |
+| examTime | time         | YES  |     |
+| name     | varchar(255) | YES  |     |
+| updated  | datetime(6)  | YES  |     |
++----------+--------------+------+-----+
+
+
+
+@Entity
+public class Acc {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
+	
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "uid")
+	@OrderColumn(name="type")  
+	private User user;
+}
+
+@Entity
+public class User {
+	@Id
+	//@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	//@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	//@OrderColumn(name="type")
+	//@JoinColumn(name="aid")
+	private List<Acc> acc;
+}
+
+
+INHERITANCE TYPE: SINGLE_TABLE
+------------------------------
+
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="type",discriminatorType=DiscriminatorType.STRING)  
+@DiscriminatorValue(value="Animal")  
+public class Animal {
+	@Id
+	private int id;
+	private int legs;
+	private String name;
+	private double speed;
+}
+
+@DiscriminatorValue(value="Bird")  
+public class Bird extends Animal {
+	private int wings;
+}
+
+@DiscriminatorValue(value="Parrot")  
+public class Parrot extends Bird {
+	@Column(name = "beak_color")
+	private String beakColor;
+
+}
+
++------------+--------------+------+-----+
+| Field      | Type         | Null | Key |
++------------+--------------+------+-----+
+| type       | varchar(31)  | NO   |     |
+| id         | int          | NO   | PRI |
+| legs       | int          | NO   |     |
+| name       | varchar(255) | YES  |     |
+| speed      | double       | NO   |     |
+| beak_color | varchar(255) | YES  |     |
++------------+--------------+------+-----+
+
+
+	
++-------+--------------+------+-----+---------+-------+
+| Field | Type         | Null | Key | Default | Extra |
++-------+--------------+------+-----+---------+-------+
+| id    | int          | NO   | PRI | NULL    |       |
+| legs  | int          | NO   |     | NULL    |       |
+| name  | varchar(255) | YES  |     | NULL    |       |
+| speed | double       | NO   |     | NULL    |       |
++-------+--------------+------+-----+---------+-------+

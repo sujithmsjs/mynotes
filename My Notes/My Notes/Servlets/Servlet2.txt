@@ -1,0 +1,74 @@
+Attribute in Servlet
+The servlet programmer can pass informations from one servlet to another using attributes.
+
+1. request scope	: ServletRequest
+2. session scope	: HttpSession 
+3. application scope: ServletContext 
+
+public void setAttribute(String name,Object object)
+public Object getAttribute(String name)
+public Enumeration getInitParameterNames()
+
+SEND REDIRECT
+We can send our request within and outside the server.
+The sendRedirect() method of HttpServletResponse interface can be used to redirect response to another resource, it may be servlet, jsp or html file.
+* the forward() method of RequestDispatcher and sendRedirect() method of HttpServletResponse interface.
+
+When you call sendRedirect/forward 2nd time.
+java.lang.IllegalStateException: Cannot forward/sendRedirect after response has been committed
+
+SESSION TRACKING IN SERVLETS
+
+
+TYPES OF COOKIE
+
+There are 2 types of cookies in servlets.
+Non-persistent cookie
+
+1.	Persistent cookie
+2.	Non-persistent cookie
+
+It is valid for single session only. It is removed each time when user closes the browser.
+
+Persistent cookie
+It is valid for multiple session . It is not removed each time when user closes the browser. It is removed only if user logout or signout.
+
+Creating
+Cookie ck=new Cookie("user","Sujith");
+
+Deleting
+Cookie ck=new Cookie("user","");
+
+ck.setMaxAge(0);
+response.addCookie(ck);
+Cookie ck[]=request.getCookies(); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+forward():
+It sends the same request and response objects to another servlet.
+
+The sendRedirect()
+It always sends a new request.
+
+
+
+
+
+
+
+
+
+
+

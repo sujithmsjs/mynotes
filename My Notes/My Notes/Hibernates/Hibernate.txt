@@ -1,0 +1,205 @@
+HIBERNATE
+
+SQL Dialects in Hibernate:
+The dialect specifies the type of database used in hibernate so that hibernate generate appropriate type of SQL statements.
+
+MySQL8Dialect(org.hibernate.dialect.MySQL8Dialect) is available in hibernate bundle 5.3.1.Final.
+
+There are a number of different dialects that could potentially be specified in the hibernate.cfg.xml for MySQL The correct dialect to choose depends upon the MySQL version in use and the type of database engine in play, like MyISAM or InnoDB
+
+import org.hibernate.dialect.MySQL8Dialect;
+
+
+
+
+
+dialect:	org.hibernate.dialect.MySQL8Dialect
+connection.driver_class: com.mysql.cj.jdbc.Driver
+
+
+
+
+ADVANTAGES
+1. LGPL
+2. Uses Cache
+3. HQL (Hibernate Query Language)
+4. Automatic Table Creation
+5. Simplifies Complex Join
+6. Provides Query Statistics and Database Status
+
+
+The Hibernate architecture is categorized in four layers.
+
+1. Java application layer
+2. Hibernate framework layer
+Session Factory
+Transaction Factory
+Connection Provider
+Session
+
+3. Backhand api layer
+JDBC
+JNDI
+JTA
+
+4. Database layer
+
+First Project
+-------------
+
+1. Create the Persistent class
+2. Create the mapping file for Persistent class
+3. Create the Configuration file
+4. Create the class that retrieves or stores the persistent object
+5. Load the jar file
+6. Run the first hibernate application by using command prompt
+
+
+
+
+
+
+
+ORM (Object Relational Mapping)
+Hibernate implements the specifications of JPA (Java Persistence API) for data persistence.
+
+ORM Tool
+An ORM tool simplifies the data creation, data manipulation and data access. It is a programming technique that maps the object to the data stored in the database.
+
+
+What is JPA?
+Java Persistence API (JPA) is a Java specification that provides certain functionality and standard to ORM tools. The javax.persistence package contains the JPA classes and interfaces.
+
+
+ACID Proprities.
+
+
+
+
+
+
+Maven QUICK START Project structure
+
+
+Project{
+	src{
+		main{
+			java{
+				...
+			}
+			 
+			resources{
+				hibernate.cfg.xml
+			}
+		}
+		
+		test{
+			java{
+				...
+			}
+		
+		}
+	}
+	
+	target{
+	}
+	
+	.classpath
+	.project
+	pom.xml
+}
+
+Error 1:
+Connection cannot be null when 'hibernate.dialect' not set
+
+Error 2:
+/hibernate.cfg.xml not found
+
+
++++++++++++++
+Error 3:
+Unknown entity: com.suji.model.Student
+
+
+@Entity before class
+@
+
+
+
++++++++++++++
+Error 4:
+No identifier specified for entity: com.suji.model.Student
+
+Every table in hibernate should have a primary key.
+
+@Id before Java varaiable.
++++++++++++++
+Error 5:
+Table 'hiber.student' doesn't exist
+
+Property
+name="hbm2ddl.auto"
+create: 
+update: if table is not there.
+
+
+
+
+
+++++++++++++++
+
+Install Hibernate Plugins
+Help > Eclipse MarketPlace > Find: hibernate
+Install: JBoss Tools 4.3.1.Final
+
+
+
+Dialect: MySQL
+Driver class: com.mysql.jdbc.Driver
+Conn URL: jdbc:mysql://localhosst:3306/db
+Username:
+And Password:
+
+
+
+
+Connection established.
+
+
+The last packet successfully received from the server was 172 milliseconds ago.
+The last packet sent successfully to the server was 160 milliseconds ago.
+
++++++++++++++
+ACID Proprities
+
+Transaction tx = new session.beg
+
+
++++++++++++++
+
+Table 'hiber.student' doesn't exist
+
+
+
+
+
+
+
+
+
+
+
+HIBERNATE DIALECT
+
+mysql 8.0.23
+hibernate 5.2.16
+
+5.3.1.Final
+org.hibernate.dialect.MySQL8Dialect
+
+
+src/main/resources
+com.mysql.jdbc.Driver
+jdbc:mysql://localhost:3306/hiber
+root
+org.hibernate.dialect.MySQLDialect

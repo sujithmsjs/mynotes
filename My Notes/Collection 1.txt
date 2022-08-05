@@ -1,0 +1,12 @@
+Iterable<T>
+Implementing this interface allows an object to be the target of the "for-each loop" statement. See For-each Loop
+
+
+Iterator<T>	iterator()
+Spliterator<T>	spliterator()
+
+
+
+
+
+A Spliterator also reports a set of characteristics() of its structure, source, and elements from among ORDERED, DISTINCT, SORTED, SIZED, NONNULL, IMMUTABLE, CONCURRENT, and SUBSIZED.

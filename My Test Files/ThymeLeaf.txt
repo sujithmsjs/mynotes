@@ -1,0 +1,68 @@
+THYMELEAF
+
+Thymeleaf is a modern server-side Java template engine for both web and standalone environments, capable of processing HTML, XML, JavaScript, CSS and even plain text.
+
+The main goal of Thymeleaf is to provide an elegant and highly-maintainable way of creating templates. 
+
+What are Natural Templates?
+
+
+What are Template Modes?
+There are two markup template modes (HTML and XML ), three textual template modes (JavaScript,Text and  CSS) and a no-op template mode(RAW)
+
+<html xmlns:th="https://thymeleaf.org">
+</html>
+
+Dialects: The Standard Dialect
+Thymeleaf is an extremely extensible template engine (in fact it could be called a template engine framework) that allows you to define and customize the way your templates will be processed to a fine level of detail.
+
+
+SELECTED OBJECT
+
+<div th:object="${session.user}">
+user is selected object, The result of an expression using the attribute.
+
+Note: The asterisk syntax evaluates expressions on selected objects rather than on the whole context.
+
+Ex:-
+<div th:object="${session.user}">
+    <p>Name: <span th:text="*{firstName}">Sebastian</span>.</p>
+    <p>Surname: <span th:text="*{lastName}">Pepper</span>.</p>
+    <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+ </div>
+ 
+ Eg:-
+ 
+ <form  th:object="${studentPojo}" method="post">
+ 
+ 
+ 
+ WITHOUT SELECTED OBJECT
+ 
+ Eg:-
+ <div>
+  <p>Name: <span th:text="${session.user.firstName}">Sebastian</span>.</p>
+  <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+  <p>Nationality: <span th:text="${session.user.nationality}">Saturn</span>.</p>
+</div>
+ 
+ DOLLAR AND ASTERISK SYNTAX CAN BE MIXED
+ 
+ Eg:- 
+ <div th:object="${session.user}">
+  <p>Name: <span th:text="*{firstName}">Sebastian</span>.</p>
+  <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+  <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+</div>
+
+ACCESS SELECTED OBJECT WITH DOLLAR
+
+When an object selection is in place, the selected object will also be available to dollar expressions as the expression variable:#object
+
+Eg:-
+<div th:object="${session.user}">
+  <p>Name: <span th:text="${#object.firstName}">Sebastian</span>.</p>
+  <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+  <p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+</div>
+

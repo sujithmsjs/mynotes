@@ -1,0 +1,24 @@
+
+# Data Source
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+
+# To Standard Output
+#spring.jpa.show-sql=true
+#spring.jpa.properties.hibernate.format_sql=true
+
+#spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+
+#spring.jpa.defer-datasource-initialization=false
+
+#spring.jpa.hibernate.ddl-auto = create
+
+spring.h2.console.enabled=true
+
+# Change Server Port Number
+server.port = 8080
+
+application.name=demo

@@ -1,0 +1,12 @@
+Before DoFilter... @Order(1)
+Before DoFilter... @Order(2)
+Before DoFilter... @Order(3)
+Before DoFilter... @Order(4)
+preHandle
+/home requested.
+postHandle
+afterCompletion
+After DoFilter... @Order(4)
+After DoFilter... @Order(3)
+After DoFilter... @Order(2)
+After DoFilter... @Order(1)

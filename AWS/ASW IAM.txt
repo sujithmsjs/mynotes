@@ -1,0 +1,86 @@
+IAM Identities
+1. IAM Users
+
+
+2. IAM Groups
+A user group is a collection of IAM users.
+
+3. IAM Roles
+
+
+AWS Account Root User
+root user credentials
+unrestricted access to all the resources in AWS account
+
+
+
+3. ROLES
+Collection of Policies.
+
+A role is a set of permissions that grant access to actions and resources in AWS. These permissions are attached to the role, not to an IAM User or a group.
+
+Role is also an AWS identity with permission policies that determine what the identity can and cannot do in AWS.
+
+A role is not uniquely associated with a single person; it can be used by anyone who needs it.
+
+
+
+POLICIES AND PERMISSIONS IN IAM
+
+
+POLICIES:
+You manage access in AWS by creating policies and attaching them to IAM identities (users, groups of users, or roles) or AWS resources.
+
+A policy is an object in AWS that, when associated with an identity or resource, defines their permissions.
+
+AWS supports six types of policies:
+1. Identity-based policies
+2. Resource-based policies
+3. Permissions boundaries
+4. Organizations SCPs
+5. ACLs
+6. Session policies
+
+AWS evaluates these policies when an IAM principal (user or role) makes a request.
+Permissions in the policies determine whether the request is allowed or denied. Most policies are stored in AWS as JSON documents.
+
+
+IAM policies define permissions for an action regardless of the method that you use to perform the operation.
+
+For example, if a policy allows the GetUser action, then a user with that policy can get user information from
+1. the AWS Management Console
+
+If console access is allowed, the IAM user can sign in to the console using a user name and password.
+
+2. the AWS CLI
+3. the AWS API
+If programmatic access is allowed, the user can use access keys to work with the CLI or API.
+
+
+One Liners
+
+POLICY
+A policy defines the AWS permissions that you can assign to a user, group, or role.
+
+ROLE
+An IAM role is an identity you can create that has specific permissions with credentials that are valid for short durations. Roles can be assumed by entities that you trust.
+
+
+MFA: Multi-Factor AuthenticationIAM
+IAM: Identity and Access Management
+
+
+Users:
+An IAM user is an identity with long-term credentials that is used to interact with AWS in an account.
+
+Select AWS credential type
+1. Access key - Programmatic access
+
+Enables an access key ID and secret access key for the AWS API, CLI, SDK, and other development tools.
+
+2. Password - AWS Management Console access
+
+Enables a password that allows users to sign-in to the AWS Management Console.
+
+Account ID: 6990-6959-8518
+IAM user: Maximus

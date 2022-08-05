@@ -1,0 +1,21 @@
+Stream: It conveys elements form a source, through a pipeline or computational operations.
+
+- No Storage: Streams 
+- Functional in Nature: Doesn't modify its source.
+- Laziness-seeking
+- Consumable
+
+Stream operations
+1. Intermediate (Stream-producing) operations
+2. Terminal (value- or side-effect-producing) operations.
+
+Obtaining Streams:
+
+
+
+
+
+
+
+
+

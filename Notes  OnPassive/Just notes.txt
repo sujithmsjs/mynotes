@@ -1,0 +1,9 @@
+
+C:\MySQL\bin\mysqlshow
+C:\MySQL\bin\mysql" test
+
+
+
+C:\Program Files\MySQL\MySQL Server 8.0\bin>mysql -u=root -p=root
+mysql: [Warning] Using a password on the command line interface can be insecure.
+ERROR 1045 (28000): Access denied for user '=root'@'localhost' (using password: YES)

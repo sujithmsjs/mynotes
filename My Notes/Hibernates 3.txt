@@ -1,0 +1,147 @@
+HQL Language
+============
+
+
+Query Syntax Exception:
+
+BeanInfo testBeanInfo = Introspector.getBeanInfo(row.getClass());
+testBeanInfo.getPropertyDescriptors()[columnIndex].getReadMethod().invoke(row);
+
+(Object[])row)[columnIndex].getClass().getName()
+
+
+Keywords like SELECT, FROM, and WHERE, etc., are not case sensitive, but properties like table and column names are case sensitive in HQL.
+persistent objects
+
+String hql = "FROM Employee";
+String hql = "FROM com.hibernatebook.criteria.Employee";
+String hql = "FROM Employee AS E"; // As is Optional.
+String hql = "FROM Employee E";
+String hql = "SELECT E.firstName FROM Employee E";
+String hql = "FROM Employee E WHERE E.id = 10";
+String hql = "FROM Employee E WHERE E.id > 10 ORDER BY E.salary DESC";
+String hql = "FROM Employee E WHERE E.id > 10 ORDER BY E.firstName DESC, E.salary DESC";
+
+String hql = "SELECT SUM(E.salary), E.firtName FROM Employee E GROUP BY E.firstName";
+
+String hql = "SELECT count(distinct E.firstName) FROM Employee E";
+
+Query query = session.createQuery(hql);
+List results = query.list();
+
+USING NAMED PARAMETERS:
+=======================
+String hql = "FROM Employee E WHERE E.id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("employee_id",10);
+List results = query.list();
+
+
+UPDATE CLAUSE:
+==============
+String hql = "UPDATE Employee set salary = :salary WHERE id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("salary", 1000);
+query.setParameter("employee_id", 10);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+
+DELETE CLAUSE
+=============
+String hql = "DELETE FROM Employee WHERE id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("employee_id", 10);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+
+INSERT CLAUSE
+=============
+String hql = "INSERT INTO Employee(firstName, lastName, salary) SELECT firstName, lastName, salary FROM old_employee";
+Query query = session.createQuery(hql);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+
+Pagination using Query
+======================
+Query setFirstResult(int startPosition)
+Query setMaxResults(int maxResult)
+Ex:-
+String hql = "FROM Employee";
+Query query = session.createQuery(hql);
+query.setFirstResult(1);
+query.setMaxResults(10);
+List results = query.list();
+
+Criteria Queries
+================
+Criteria cr = session.createCriteria(Employee.class);
+cr.add(Restrictions.eq("salary", 2000));
+cr.add(Restrictions.gt("salary", 2000));
+cr.add(Restrictions.isNull("salary"));
+List results = cr.list();
+
+
+
+
+
+Criteria cr = session.createCriteria(Employee.class);
+
+Criterion salary = Restrictions.gt("salary", 2000);
+Criterion name = Restrictions.ilike("firstNname","zara%");
+
+// To get records matching with OR conditions
+LogicalExpression orExp = Restrictions.or(salary, name);
+cr.add( orExp );
+
+// To get records matching with AND conditions
+LogicalExpression andExp = Restrictions.and(salary, name);
+cr.add( andExp );
+
+List results = cr.list();
+
+
+NATIVE SQL
+==========
+ createSQLQuery() method on the Session interface
+ 
+public SQLQuery createSQLQuery(String sqlString) throws HibernateException
+
+
+
+
+Scalar Queries
+==============
+String sql = "SELECT first_name, salary FROM EMPLOYEE";
+SQLQuery query = session.createSQLQuery(sql);
+query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+List results = query.list();
+
+
+Entity Queries
+==============
+String sql = "SELECT * FROM EMPLOYEE";
+SQLQuery query = session.createSQLQuery(sql);
+query.addEntity(Employee.class);
+List results = query.list();
+
+Named SQL Queries
+=================
+String sql = "SELECT * FROM EMPLOYEE WHERE id = :employee_id";
+SQLQuery query = session.createSQLQuery(sql);
+query.addEntity(Employee.class);
+query.setParameter("employee_id", 10);
+List results = query.list();
+
+
+
+session.load()
+
+It only searchs by id assuming that the Entity exists
+It will ALWAYS return a “proxy” (Hibernate term) without hitting the database. In Hibernate, proxy is an object with the given identifier value, its properties are not initialized yet, it just looks like a temporary fake object.
+Use this only to retrieve an instance that you assume exists, where non-existence would be an ObjectNotFoundException.
+
+query.uniqueResult()
+
+You can query with complex conditions, not only by the id
+Convenience method to return a single instance that matches the query, or null if the query returns no results.
+It will return an entity with its collection initialized or not depending on the FetchType.

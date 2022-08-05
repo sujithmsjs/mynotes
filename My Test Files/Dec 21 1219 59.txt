@@ -1,0 +1,47 @@
+! AWS Day 1
+
+Intro:
+Amazon
+
+$ Clound Computing Platforms :
+> AWS
+> Azure
+> GCP
+> Oracle Cloud
+
+$ Wt AWS Offer?
+> Availability
+> Scalability
+> Pay as you go
+
+
+Availability:
+* Its 99.99999999 availability.
+* Gmail alsa a cloud.
+
+
+Scalability:
+* Ability to grow in size.
+* Instant Elasticity.
+* Hardware can't be upgradable. Don't invest money on hardware.
+
+
+Pay-as-you-go:
+* No up-front expenses.
+* No long-term commitments.
+
+$ Clound Computing Platform providers.
+1. Amazon
+2. MS
+3. Google
+
+$ Gartner Magic Quadrant:
+Know about it.
+
+$ Certification:
+* Foundatianal
+* Associate
+* professional
+* Speciality
+
+$ AWS Certified solution Architect.

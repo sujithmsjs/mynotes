@@ -1,0 +1,65 @@
+IntStream(I) ==> BaseStream(I) ==> AutoCloseable(RI)
+
+Methods:
+
+Reduction Operations
+--------------------
+int	sum()
+int	reduce(int,IntBinaryOperator)
+OptionalInt	max()
+OptionalInt	min()
+OptionalInt	findAny()
+OptionalInt	findFirst()
+OptionalInt	reduce(IntBinaryOperator)
+OptionalDouble	average()
+long	count()
+int[]	toArray()
+boolean	noneMatch(IntPredicate)
+boolean	allMatch(IntPredicate)
+boolean	anyMatch(IntPredicate)
+
+Intermediate Operations
+-----------------------
+IntStream	filter(IntPredicate)
+IntStream	map(IntUnaryOperator)
+IntStream	limit(long)
+IntStream	peek(IntConsumer)
+IntStream	skip(long)
+IntStream	sorted()
+IntStream	distinct()
+IntStream	flatMap(IntStream)
+IntStream	dropWhile(IntPredicate)
+IntStream	takeWhile(IntPredicate)
+
+Boxing Operations
+-----------------
+Stream	boxed()
+
+Terminal Operations
+-------------------
+Object	collect(Supplier<R>,ObjIntConsumer<R>,BiConsumer<R, R>)
+void	forEach(IntConsumer)
+void	forEachOrdered(IntConsumer)
+
+Static Source Functions
+-----------------------
+static	IntStream$Builder	builder()
+static	IntStream	concat(IntStream,IntStream)
+static	IntStream	empty()
+static	IntStream	generate(IntSupplier)
+static	IntStream	iterate(int,IntPredicate,IntUnaryOperator)
+static	IntStream	iterate(int,IntUnaryOperator)
+static	IntStream	of(int)
+static 	IntStream	of(int[])
+static	IntStream	range(int,int)
+static	IntStream	rangeClosed(int,int)
+
+Conversion Functions
+--------------------
+IntSummaryStatistics	summaryStatistics()
+Stream	mapToObj(IntFunction<? extends U>)
+DoubleStream	asDoubleStream()
+LongStream	asLongStream()
+IntStream	mapMulti(IntStream$IntMapMultiConsumer)
+DoubleStream	mapToDouble(IntToDoubleFunction)
+LongStream	mapToLong(IntToLongFunction)

@@ -1,0 +1,5 @@
+Transitive dependency: means that if A depends on B and B depends on C, then A depends on both B and C. Sometimes, transitivity brings a very serious problem when different versions of the same artifacts are included by different dependencies. It may cause version mismatch issues in runtime.
+
+/login 
+
+Query methods:

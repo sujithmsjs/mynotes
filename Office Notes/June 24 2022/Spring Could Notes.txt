@@ -1,0 +1,96 @@
+Spring Could Tutorial
+---------------------
+09:55 22-06-2022
+
+Spring Cloud is a Spring module that provides the RAD (Rapid Application Development) feature to the Spring framework.
+
+Spring Cloud framework provides tools for developers to build a robust cloud application quickly.
+
+Bear metal data centers:
+> It is a physical server dedicated to a single-tenant.
+> The bare metal data centers are also known as Single-tenant physical server or managed dedicated server.
+> The operating system is installed directly on the bare metal server and delivers better performance.
+
+
+Cloud Foundry:
+Cloud Foundry is an open-source, multi-cloud Platform as a Service (PaaS). You can deploy your application on your own computing infrastructure.
+
+
+Features of Spring Cloud?
+A primary concern to deal with the first two primary microservices: configuration service and the discovery service.
+
+Load Balancing
+
+Load balancing efficiently distributes network traffic to multiple backend servers or server pool.
+1. Maximize throughput
+2. Minimize response time
+3. Increase efficiency
+4. Optimize resource
+
+Distributed Messaging
+Apache Kafka and RabbitMQ are the popular high throughput messaging system.
+
+Spring Cloud is a framework that provides facilities to use cloud services in your application. When it is used with Eureka, it acts as a container orchestration tool.
+
+
+
+Microservice Architecture is a Service Oriented Architecture. In the microservice architecture, there are a large number of microservices. By combining all the microservices, it constructs a big service. In the microservice architecture, all the services communicate with each other.
+
+
+Microservice Based Architecture (MSA)
+Service-Oriented Architecture (SOA)
+
+
+Microservices Monitoring Tool
+There are three monitoring tools are as follows:
+1. Hystrix dashboard
+2. Eureka admin dashboard
+3. Spring boot admin dashboard
+
+
+Microservice Virtualization
+Microservices virtualization is the method to simulate the behavior of specific components in various component-based application like cloud-based application, SOA, and API driven architecture.
+
+
+Components of Microservices
+There are the following components of microservices:
+
+Spring Cloud Config Server
+Netflix Eureka Naming Server
+Hystrix Server
+Netflix ZuulAPI Gateway Server
+Netflix Ribbon
+Zipkin Distributed Tracing Server
+
+#Project Design
+---------------
+
+Dependencies
+1. DevTools
+2. Actuator
+3. Config client
+4. Spring Web
+
+//name of application  
+spring.application.name=limits-service      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

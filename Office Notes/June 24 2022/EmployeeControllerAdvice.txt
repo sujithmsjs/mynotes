@@ -1,0 +1,126 @@
+package com.example.demo.advice;
+
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+import com.example.demo.excep.CustomExceptionDetails;
+import com.example.demo.excep.EmployeeNotFoundException;
+
+@ControllerAdvice
+public class EmployeeControllerAdvice { // extends ResponseEntityExceptionHandler {
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy");
+		System.out.println("Date Format prompted: "+dateFormat);
+		binder.registerCustomEditor(LocalDate.class, new CustomDateEditor(dateFormat, true));
+
+	}
+
+	// EMPLOYEE NOT FOUND EXPECTION HANDLER
+	@ResponseBody
+	@ExceptionHandler(EmployeeNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public ResponseEntity<CustomExceptionDetails> employeeNotFoundHandler(EmployeeNotFoundException ex) {
+
+		// Adding details about exception
+		CustomExceptionDetails customEx = new CustomExceptionDetails();
+
+		customEx.setStatus(HttpStatus.NOT_FOUND.value());
+		customEx.setMessage(ex.getMessage());
+		customEx.setExceptionClass(ex.getClass());
+		customEx.setTimestamp(LocalDateTime.now());
+
+		// Returning ResponseEntity with Exception details.
+		return new ResponseEntity<CustomExceptionDetails>(customEx, HttpStatus.NOT_FOUND);
+	}
+
+	// GENERIC EXCEPTION HANDLER
+	@ResponseBody
+	@ExceptionHandler(Exception.class)
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public ResponseEntity<CustomExceptionDetails> badRequestHandler(Exception ex) {
+
+		// Adding details about exception
+		CustomExceptionDetails customEx = new CustomExceptionDetails();
+		customEx.setStatus(HttpStatus.BAD_REQUEST.value());
+		customEx.setMessage(ex.getMessage());
+		customEx.setExceptionClass(ex.getClass());
+		customEx.setTimestamp(LocalDateTime.now());
+
+		// Returning ResponseEntity with Exception details.
+		return new ResponseEntity<CustomExceptionDetails>(customEx, HttpStatus.BAD_REQUEST);
+	}
+
+	// Hibernate Validaiton Check
+
+	// @ResponseStatus(HttpStatus.BAD_REQUEST)
+	@ExceptionHandler(MethodArgumentNotValidException.class)
+	public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
+
+		// Creating a HashMap
+		Map<String, String> errors = new LinkedHashMap<>();
+
+		// Adding details about exception
+		errors.put("status", String.valueOf(HttpStatus.BAD_REQUEST));
+		errors.put("exception", ex.getClass().getCanonicalName());
+		errors.put("timestamp", LocalDateTime.now().toString());
+
+		List<ObjectError> list = ex.getBindingResult().getAllErrors();
+
+		ex.getBindingResult().getAllErrors().forEach((error) -> {
+
+			String fieldName = ((FieldError) error).getField();
+
+			String errorMessage = error.getDefaultMessage();
+
+			errors.put(fieldName, errorMessage);
+
+			System.out.println(fieldName + " : " + errorMessage);
+
+		});
+
+		return new ResponseEntity<Map<String, String>>(errors, HttpStatus.BAD_REQUEST);
+
+	}
+
+//	@Override
+//	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+//			HttpHeaders headers, HttpStatus status, WebRequest request) {
+//
+//		
+//		Map<String, Object> body = new LinkedHashMap<>();
+//		
+//		
+//		body.put("timestamp", LocalDate.now());
+//		body.put("status", status.value());
+//
+//		List<String> errors = ex.getBindingResult().getFieldErrors().stream().map(x -> x.getDefaultMessage())
+//				.collect(Collectors.toList());
+//
+//		body.put("errors", errors);
+//		System.out.println("MethodArgumentNotValidException Data: " + body);
+//
+//		return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
+//	}
+
+}

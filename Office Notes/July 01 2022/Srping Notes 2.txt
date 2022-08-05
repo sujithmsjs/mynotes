@@ -1,0 +1,78 @@
+Keywords:
+
+Ingest
+Externalize
+
+
+
+Spring Cloud Config is a library that makes it easy to externalize configuration for Spring applications.
+
+The most common use case for Spring Cloud Config is to store configuration data inside a git repository.
+
+several advantages:
+Flexibility
+Security
+Auditing
+Standardized
+Distributed
+
+Microservice Virtualization
+
+Components of Microservices:
+
+1. Spring Cloud Config Server: @EnableConfigServer
+
+2. Netflix Eureka Naming Server
+
+- Discovery Server
+-	Eureka naming server is an application that holds information about all client service applications. Each microservice registers itself with the Eureka naming server. The naming server registers the client services with their port numbers and IP addresses. It is also known as Discovery Server.  Eureka naming server comes with the bundle of Spring Cloud. It runs on the default port 8761. It also comes with a Java-based client component, the eureka client, which makes interactions with the service much easier.
+
+
+
+
+3. Hystrix Server
+
+- Acts as a fault-tolerance robust system.
+- Using the Circuit Breaker mechanism.
+
+4. Netflix ZuulAPI Gateway Server
+
+- Gateway server: The API Gateway Service is a Spring Boot application that routes client requests to the Message service.
+
+5. Netflix Ribbon
+
+- Netflix Ribbon is the client-side Inter-Process Communication (IPC) library.
+- Load balancing
+
+6. Zipkin Distributed Tracing Serve
+
+
+Spring Cloud Config Server		8888
+Netflix Eureka Naming Server		8761
+Netflix Zuul API gateway Server		8765
+Zipkin distributed Tracing Server	9411
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Our choice of data store does not impact the client component. Only the server is impacted.
+
+EnvironmentRepository interface:
+
+Microservices Monitoring Tool:
+1. Hystrix dashboard
+2. Eureka admin dashboard
+3. Spring boot admin dashboard

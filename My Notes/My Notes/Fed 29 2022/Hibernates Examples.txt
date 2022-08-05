@@ -1,0 +1,101 @@
+Example 3:
+
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class User {
+	@Id
+	private int uid;
+	private String name;
+	private double height;
+	private int marks;
+	private Date dob;
+	...
+	...
+	public User() {
+	}
+
+	public User(int uid, String name, double height) {
+		this.uid = uid;
+		this.name = name;
+		this.height = height;
+	}
+)
+
+// Writing Data
+public static void main2(String[] args) {
+
+	// Getting Session Object
+	Configuration config = new Configuration().configure();
+	SessionFactory sf = config.buildSessionFactory();
+	Session session = sf.openSession();
+	
+	// Creating User
+	User user = new User(3, "Sumanth", 6.2);
+	user.setDob(new Date());
+	user.setMarks(78);
+	
+	Transaction trn = session.getTransaction();
+	trn.begin();
+	
+	session.save(user);
+	
+	trn.commit();
+	
+	session.close();
+	sf.close();
+}
+
+How table will be create.
+sql> desc mark.user;
++--------+--------------+------+-----+---------+
+| Field  | Type         | Null | Key | Default |
++--------+--------------+------+-----+---------+
+| uid    | int          | NO   | PRI | NULL    |
+| dob    | datetime(6)  | YES  |     | NULL    |
+| height | double       | NO   |     | NULL    |
+| marks  | int          | NO   |     | NULL    |
+| name   | varchar(255) | YES  |     | NULL    |
++--------+--------------+------+-----+---------+
+
+
+mysql> select * from mark.user;
++-----+----------------------------+--------+-------+---------+
+| uid | dob                        | height | marks | name    |
++-----+----------------------------+--------+-------+---------+
+|   1 | NULL                       |    5.7 |    78 | Sujith  |
+|   2 | 2022-01-22 20:34:55.414000 |    6.2 |     0 | Vamshi  |
+|   3 | 2022-01-22 20:34:09.708000 |    5.6 |    78 | Sumanth |
++-----+----------------------------+--------+-------+---------+
+
+//Fetching Data
+public static void main(String[] args) {
+
+	Configuration config = new Configuration().configure();
+	SessionFactory sessionFactory = config.buildSessionFactory();
+	Session session = sessionFactory.openSession();
+	
+	Transaction trn = session.getTransaction();
+	trn.begin();
+	
+	User user = session.get(User.class, 3);
+	System.out.println(user);
+}
+
+Case 1: session.get(User.class, 1);
+User [uid=1, name=Sujith, height=5.7, marks=78, dob=null]
+
+Case 2: session.get(User.class, 2);
+User [uid=3, name=Sumanth, height=5.6, marks=78, dob=2022-01-22 20:34:09.708]
+
+Case 3: session.get(User.class, 4);
+null
+
+Example 2:
+
+MappingException: Unknown entity: com.suji.model.Student
+
+Could not locate cfg.xml resource
+Place the cfg.xml in proper location.

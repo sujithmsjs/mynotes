@@ -1,0 +1,20 @@
+
+SPRING NOTES
+
+
+// to View Singup form
+@RequestMapping(value = "/signup", method = RequestMethod.GET)
+public String singupStudent(@ModelAttribute("student") Person person) {
+	return "signupn";
+}
+
+@ModelAttribute
+public void justTest(Model model) {
+	model.addAttribute("msg", "This is @ModelAttribute");
+	System.out.println("This is ModelAttribute just check line.");
+}
+
+Total Model Objects: 3
+msg=This is @ModelAttribute
+student=Person(pin=0, name=null, email=null, mobile=null)
+org.springframework.validation.BindingResult.student=org.springframework.validation.BeanPropertyBindingResult: 0 errors

@@ -1,0 +1,11 @@
+One to Many mapping
+-------------------
+class Question{
+
+	@OneToMany(cascade = CascadeType.ALL)  
+	@JoinColumn(name="qid")  
+	@OrderColumn(name="type")  
+	private List<Answer> answers;  
+
+}
+

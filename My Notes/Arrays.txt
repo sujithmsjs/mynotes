@@ -1,0 +1,137 @@
+Arrays
+
+
+Note:
+<pri>: byte,short,int,long,float,double.
+<pri_arr>: primitive array byte[],short[],int[],long[],float[],double[].
+
+
+
+java.util.Arrays:
+
+	List<T> asList(T[])
+	
+Binary Search:
+	int binarySearch(<pri_arr>,<pri>)
+	int binarySearch(Object[],Object)
+	
+	int binarySearch(<pri_arr>,int,int,<pri>)
+	int binarySearch(Object[],int,int,Object)
+	
+	int binarySearch(T[],int,int,T,Comparator<? super T>)
+	int binarySearch(T[],T,Comparator<? super T>)
+	
+	
+	
+Copy Of:
+	<pri_arr> copyOf(<pri_arr>,int)
+	boolean[]	copyOf(boolean[],int)
+
+	T[]		copyOf(U[],int,Class<? extends T[]>)
+	T[]		copyOf(T[],int)
+	
+	
+Copy Of Range:
+
+	<pri_arr> copyOfRange(<pri_arr>,int,int)
+	boolean[] copyOfRange(boolean[],int,int)
+
+	T[] copyOfRange(T[],int,int)
+	T[] copyOfRange(U[],int,int,Class<? extends T[]>)
+
+	
+	
+	
+Deep Hash Code:	
+	int deepHashCode(Object[])
+	String deepToString(Object[])
+	
+Equals:	
+
+	<pri_arr> must be same type here.
+	boolean equals(<pri_arr>,<pri_arr>)
+	boolean equals(boolean[],boolean[])
+	boolean equals(Object[],Object[])
+	
+Fill:
+	void fill(<pri_arr>,<pri>)
+	void fill(boolean[],boolean)
+	void fill(Object[],Object)
+	
+	void fill(<pri_arr>,int,int,<pri>)
+	void fill(boolean[],int,int,boolean)
+	void fill(Object[],int,int,Object)
+	
+Hash Code:	
+	int hashCode(<pri_arr>)
+	int hashCode(boolean[])
+	int hashCode(Object[])
+	
+Parallel Prefix:
+	void parallelPrefix(long[],int,int,LongBinaryOperator)
+	void parallelPrefix(T[],int,int,BinaryOperator<T>)
+	void parallelPrefix(T[],BinaryOperator<T>)
+	void parallelPrefix(int[],IntBinaryOperator)
+	void parallelPrefix(double[],int,int,DoubleBinaryOperator)
+	void parallelPrefix(long[],LongBinaryOperator)
+	void parallelPrefix(int[],int,int,IntBinaryOperator)
+	void parallelPrefix(double[],DoubleBinaryOperator)
+	void parallelSetAll(T[],IntFunction<? extends T>)
+	void parallelSetAll(long[],IntToLongFunction)
+	void parallelSetAll(double[],IntToDoubleFunction)
+	void parallelSetAll(int[],IntUnaryOperator)
+	
+	
+	
+Parallel Sort:
+	void parallelSort(<pri_arr>)
+	void parallelSort(<pri_arr>,int,int)
+
+	void parallelSort(T[],int,int,Comparator<? super T>)
+	void parallelSort(T[])
+	void parallelSort(T[],Comparator<? super T>)
+	
+Set All:	
+	void setAll(int[],IntUnaryOperator)
+	void setAll(long[],IntToLongFunction)
+	void setAll(double[],IntToDoubleFunction)
+	void setAll(T[],IntFunction<? extends T>)
+	
+Sort:
+	void sort(<pri_arr>)
+	void sort(<pri_arr>,int,int)
+	
+	void sort(Object[])
+	
+	void sort(T[],int,int,Comparator<? super T>)
+	void sort(T[],Comparator<? super T>)
+	
+	
+	
+	
+	
+Spliterator:
+	
+	Spliterator<T> 			spliterator(T[])
+	Spliterator$OfDouble 	spliterator(double[])
+	Spliterator<T> 			pliterator(T[],int,int)
+	Spliterator$OfLong 		spliterator(long[])
+	Spliterator$OfInt 		spliterator(int[],int,int)
+	Spliterator$OfInt 		spliterator(int[])
+	Spliterator$OfLong 		spliterator(long[],int,int)
+	Spliterator$OfDouble 	spliterator(double[],int,int)
+	
+Stream:
+	DoubleStream	stream(double[])
+	IntStream		stream(int[])
+	LongStream		stream(long[])
+	IntStream		stream(int[],int,int)
+	Stream<T>		stream(T[],int,int)
+	DoubleStream	stream(double[],int,int)
+	Stream<T>		stream(T[])
+	LongStream		stream(long[],int,int)
+	
+To String:
+	String toString(<pri_arr>)
+	String toString(boolean[])
+	String toString(Object[])

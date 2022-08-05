@@ -1,0 +1,544 @@
+Persistent class
+1. Must have default constructor.
+2. Provide an identifier property, @Id.
+3. Declare getter and setter methods
+4. Prefer non-final class.
+
+Mapping file for Persistent class
+
+hibernate-mapping: Contains all the mapping elements.
+class:It specifies the Persistent class.
+id:It specifies the primary key attribute in the class.
+generator : Generates the primary key. There are many generator classes such as assigned, increment, hilo, sequence, native etc.
+property : It is the sub-element of class that specifies the property name of the Persistent class.
+
+employee.hbm.xml
+================
+<hibernate-mapping>
+	<class name="com.javatpoint.mypackage.Employee" table="emp1000">
+		<id name="id">
+			<generator class="assigned"/>
+		</id>
+		<property name="firstName"/>
+		<property name="lastName"/>
+	</class>
+</hibernate-mapping>  
+
+
+CONFIGURATION FILE
+The configuration file contains information about the database and mapping file.
+
+hibernate.cfg.xml
+=================
+<hibernate-configuration>
+	<session-factory>
+		<property name="hbm2ddl.auto">update</property>
+		<property name="dialect">org.hibernate.dialect.Oracle9Dialect</property>
+		<property name="connection.url">jdbc:oracle:thin:@localhost:1521:xe</property>
+		<property name="connection.username">system</property>
+		<property name="connection.password">jtp</property>
+		<property name="connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<mapping resource="employee.hbm.xml"/>
+	</session-factory>
+</hibernate-configuration>
+
+
+Creating org.hibernate.Session Object
+=====================================
+
+StandardServiceRegistry ssr = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();  
+Metadata meta = new MetadataSources(ssr).getMetadataBuilder().build();  
+SessionFactory factory = meta.getSessionFactoryBuilder().build();  
+Session session = factory.openSession();  
+
+
+
+MappingException: Unknown entity: <class_name>
+-Need to define the entity
+
+
+
+package com.suji.hib;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class SessionUtil {
+
+	private static SessionFactory sessionFactory = buildSessionFactory();
+
+	private static SessionFactory buildSessionFactory() {
+		Configuration cfg = new Configuration().configure();
+    	SessionFactory sf = cfg.buildSessionFactory();
+		return sf;
+	}
+	
+	public static Session openSession() {
+		return sessionFactory.openSession();
+	}
+}
+
+Annotation in Eclipse
+=====================
+All the JPA annotations are defined in the javax.persistence package.
+The core advantage of using hibernate annotation is that you don't need to create mapping (hbm) file.
+
+@Entity annotation marks this class as an entity.
+
+@Table annotation specifies the table name where data of this entity is to be persisted. If you don't use @Table annotation, hibernate will use the class name as the table name by default.
+
+@Id annotation marks the identifier for this entity.
+
+@Column annotation specifies the details of the column for this property or field. If @Column annotation is not specified, property name will be used as the column name by default.
+
+package com.suji.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Employee")
+public class Emp {
+	@Id
+	private int eid;
+	private String ename;
+	
+	public Emp() {}
+
+	public Emp(int eid, String ename) {
+		this.eid = eid;
+		this.ename = ename;
+	}
+
+	public int getEid() {
+		return eid;
+	}
+
+	public void setEid(int eid) {
+		this.eid = eid;
+	}
+
+	public String getEname() {
+		return ename;
+	}
+
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+
+	@Override
+	public String toString() {
+		return "Emp [eid=" + eid + ", ename=" + ename + "]";
+	}
+}
+
+
+Generator classes in Hibernate
+==============================
+@Id annotation.
+Simple ids are mapped using @Id to a single property of one of these types: Java primitive and primitive wrapper types, String, Date, BigDecimal and BigInteger.
+
+
+SEQUENCE is the generation type recommended by the Hibernate documentation.
+
+Here, an extra column (also known as discriminator column) is created in the table to identify the class.
+
+ org.hibernate.MappingException: Unknown entity: java.util.ArrayList
+ 
+ 
+ private Long id; 
+private String name;
+private Set<AuctionEnt> auctionEnts = new HashSet<AuctionEnt>();
+
+public CategoryEnt(String name){this.name = name;
+
+@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE})
+@Cascade(value = org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+public Set<AuctionEnt> getAuctionEnts() {return auctionEnts;}
+
+@Id
+@GeneratedValue(strategy=GenerationType.AUTO)
+public Long getId() {return id;}
+
+@Column(nullable = false)
+public String getName() {return name;}
+
+
+
+https://howtodoinjava.com/hibernate/hibernate-jpa-cascade-types/
+
+hibernate.engine.jdbc.batch.internal.AbstractBatchImpl
+
+
+
+
+ONE TO ONE
+===================
+@Entity
+public class User {
+	
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Acc acc;
+	
+	...
+	...
+}
+
+@Entity
+public class Acc {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
+	...
+	...
+}
+
+mysql> select * from user;
++----+--------+--------+
+| id | name   | acc_id |
++----+--------+--------+
+|  1 | Sujith |      2 |
++----+--------+--------+
+
+mysql> select * from acc;
++----+------+
+| id | name |
++----+------+
+|  2 | HDFC |
++----+------+
+
+
+ONE TO MANY
+===================
+
+@Entity
+public class Acc {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
+}
+
+@Entity
+public class User {
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Acc> accList;
+}
+
+
+
+mysql> select * from acc;
++----+------+
+| id | name |
++----+------+
+|  2 | HDFC |
+|  3 | SBI  |
++----+------+
+
+mysql> select * from user;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | Sujith |
++----+--------+
+
+mysql> select * from user_acc;
++---------+--------+
+| User_id | acc_id |
++---------+--------+
+|       1 |      2 |
+|       1 |      3 |
++---------+--------+
+
+
+MANY TO ONE
+===================
+@Entity
+public class Acc {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
+	@ManyToOne
+	private User user;
+}
+
+@Entity
+public class User {
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Acc> acc = new ArrayList<Acc>();
+}
+
+
+mysql> select * from user;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | Sujith |
++----+--------+
+
+mysql> select * from acc;
++----+------+---------+
+| id | name | user_id |
++----+------+---------+
+|  2 | HDFC |       1 |
+|  3 | SBI  |       1 |
++----+------+---------+
+
+mysql> select * from user_acc;
++---------+--------+
+| User_id | acc_id |
++---------+--------+
+|       1 |      2 |
+|       1 |      3 |
++---------+--------+
+
+
+
+
+MANY TO ONE
+===================
+
+@Entity
+public class Acc {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
+	@ManyToOne
+	private User user;
+}
+
+@Entity
+public class User {
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	@OneToMany(cascade = CascadeType.ALL,
+		fetch = FetchType.EAGER,
+		mappedBy = "user") //Acc class's User user; variable name.
+	private List<Acc> acc = new ArrayList<Acc>();
+}
+
+mysql> select * from user;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | Sujith |
+|  4 | James  |
+|  7 | Mark   |
++----+--------+
+
+mysql> select * from acc;
++----+--------+---------+
+| id | name   | user_id | 
++----+--------+---------+
+|  2 | HDFC   |       1 |
+|  3 | SBI    |    	  1 |
+|  5 | CITY   |       4 |
+|  6 | BARODA |       4 |
+|  8 | CITY   |       7 |
+|  9 | HDFC   |       7 |
++----+--------+---------+
+
+
+MANY TO MANY
+===================
+@Entity
+public class Acc {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int id;
+	private String name;
+	@ManyToMany(mappedBy = "acc") //User class's List<Acc> acc; variable name.
+	private List<User> users;
+	...
+	...
+}
+
+@Entity
+public class User {
+
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Acc> acc = new ArrayList<Acc>();
+	...
+	...
+}
+
+
+=================================================================
+@Entity
+public class User {
+	// @GeneratedValue(strategy = GenerationType.AUTO)
+
+	@Id
+	@GeneratedValue
+	private int id;
+	private String name;
+	@OneToMany(cascade = CascadeType.ALL, 
+			fetch = FetchType.EAGER,
+			mappedBy = "user",
+			orphanRemoval = false)
+	private List<Acc> acc = new ArrayList<Acc>();
+	
+}
+
+mysql> select * from user;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | Sujith |
++----+--------+
+
+mysql> select * from acc;
++----+------+---------+
+| id | name | user_id |
++----+------+---------+
+|  2 | HDFC |       1 |
+|  3 | CITY |       1 |	  orphanRemoval = false
+|  4 | DBS  |    NULL |<--Orphan Object
++----+------+---------+
+
+===========================
+Jan 24, Mon, 2022
+8:08 AM
+
+Insert:
+session.save(Object)
+
+Update:
+session.saveOrUpdate(Object)
+
+Select:
+session.get(Object, <primary_key>)
+session.load(Object, <primary_key>)
+
+Select All:
+//Use HQL Syntax
+session.createQuery("from Object").list();
+
+
+Delete:
+Object obj = session.get(Object, <primary_key>)
+session.delete(obj);
+
+
+HQL: Hibernate Query Language
+=============================
+
+Columns: Class variables
+Tables: Class Names
+
+Ex:
+class Student{
+	int rollno;
+	String name;
+	int marks;
+}
+
+Select:
+-------
+Query q = session.createQuery("from Student");
+
+List<Student> students = q.list();
+
+Select with where:
+------------------
+Query q = session.createQuery("from Student where marks > 50");
+
+List<Student> students = q.list();
+
+Unique Result:
+--------------
+Query q = session.createQuery("from Student where rollno=7");
+
+Student student = (Student) q.uniqueResult();
+
+Specific Columns
+----------------
+select rollno, name, marks from Student where rollno = ?;
+Object[] student =(Object[])q.uniqueResult()
+
+
+select rollno, name, marks from Student;
+List<Object[]> student =(List<Object[]>)q.list();
+
+
+select sum(marks) from Student
+List<Student> students = q.uniqueResult();
+List students = (List) q.uniqueResult();
+Long marks = (long) q.uniqueResult();
+
+Placeholders
+-------------
+int b=60;
+Query q = session.createQuery("from Student where marks > :b");
+q.setParameter("b",b);
+
+
+
+WORKING WITH SQL
+================
+String query = "select * from student where makrs>60";
+SQLQuery q = session.createSQLQuery(query);
+List students = query.list();
+
+
+String query = "select * from student where makrs>60";
+SQLQuery q = session.createSQLQuery(query);
+q.addEntity(Student.class);
+List<Student> students = q.list();
+
+
+String query = "select name, makrs from student where makrs>60";
+SQLQuery q = session.createSQLQuery(query);
+q.setResultTramform(Criteria.ALIAS_TO_ENTITY_MAP);
+q.addEntity(Student.class);
+List<Student> students = q.list();
+Map m = (Map) list.get(1);
+m.get("name")
+m.get("marks")
+
+PERSISTANCE LIFE CYCLE
+======================
+New ---> Grabage.
+
+ |
+ |
+ |
+
+
+
+
+
+
+

@@ -1,0 +1,13 @@
+		Page<Student> all = repository.findStudentsWhoFailed(PageRequest.of(0, 10).withPage(0));	
+		
+		System.out.println("Total pages: "+all.getTotalPages()); // (0 to N-1)
+		System.out.println("Total Elements: "+all.getTotalElements());
+		System.out.println("The current Slice Number: "+all.getNumber()); // Current page number
+		System.out.println("Number Of Elements: "+all.getNumberOfElements()); // No. of Elements in current page number.
+		System.out.println("The size of the Slice: "+all.getSize()); // Default size of slice
+		
+
+
+		
+		all.forEach(s -> System.out.println(s.getName()+"\t\t"+s.getMath()+"\t"+s.getScience()+"\t"+s.getEnglish()));
+		

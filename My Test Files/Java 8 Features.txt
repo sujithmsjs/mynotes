@@ -1,0 +1,305 @@
+JAVA 8 FEATURES
+---------------
+
+#1
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Collections01 {
+	public static void main(String[] args) {
+
+		Collections.nCopies(10, null)
+		.stream()
+		.map(n -> (int) (Math.random() * 100))
+		.filter(n -> n % 2 == 0)
+		.sorted()
+		.collect(Collectors.toList())
+		.forEach(n -> System.out.println(n));
+		
+	}
+}
+
+#2
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class Collections02 {
+	public static void main(String[] args) {
+
+		List<Integer> list = Collections.nCopies(20, null).stream().map(n -> (int) (Math.random() * 10)).sorted()
+				.collect(Collectors.toList());
+		
+		Collections.addAll(list, 1,20,30);
+		System.out.println(list);
+		
+		int search = Collections.binarySearch(list, 50, (n,m) -> n-m);
+		int search2 = Collections.binarySearch(list, 20);
+		
+		System.out.println(search);
+		System.out.println(search2);
+		
+		Collection<Integer> collection = Collections.checkedCollection(list, Integer.class);
+		System.out.println(collection);
+		
+		//Collections.copy(null, null);
+		boolean disjoint = Collections.disjoint(list, collection);
+		System.out.println(disjoint);
+		
+		Collections.frequency(list, 20);
+		
+		List<Integer> list2 = list.stream().distinct().limit(10).collect(Collectors.toList());
+		System.out.println(list2);
+		
+		Collections.fill(list2, 7);
+		System.out.println(list2);
+		
+		Collections.shuffle(list);
+		System.out.println(list);
+	}
+}
+
+#3
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.function.IntSupplier;
+import java.util.stream.Collectors;
+
+public class Collections03 {
+	public static void main(String[] args) {
+
+		IntSupplier sup = () -> {
+			int n = 10;
+			return n++;
+		};
+	
+		List<Integer> list = Collections.nCopies(20, null).stream().map(n -> sup.getAsInt()).sorted()
+				.collect(Collectors.toList());
+		System.out.println(list);
+		
+		
+		List<Integer> list2 = Collections.nCopies(0, null);
+		System.out.println(list2);
+	}
+}
+
+#4
+import java.util.stream.Stream;
+
+public class Collections04 {
+	public static void main(String[] args) {
+		Stream<Integer> stream = orderedNumberStream(10, 5, 10);
+		Stream<Integer> stream2 = getNumbers(10, 20);
+
+		
+		//stream.forEach(System.out::println);
+		stream2.forEach(System.out::println);
+		
+		
+		Stream<Integer> stream3 = Stream.generate(() -> 3).limit(10);
+		stream3.forEach(System.out::println);
+	}
+
+	public static Stream<Integer> orderedNumberStream(int initialNum, int stepSize, int size) {
+		return (Stream.iterate(initialNum, n -> n + stepSize).limit(size));
+	}
+	
+	public static Stream<Integer> getNumbers(int start, int end){
+		return Stream.iterate(start, n -> n + 1).limit(end);
+	}	
+}
+
+#5
+
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;import org.w3c.dom.ls.LSOutput;
+
+public class Collections05 {
+	public static void main(String[] args) {
+		
+	List<Integer> list = Stream.iterate(1, n -> n+1).limit(100).collect(Collectors.toList());
+	/*
+	 int n = 1;
+	 for(int i=0;i<limit;i++){
+	 	n = n+1;
+	 }	
+	 */
+	
+	list.forEach( n -> System.out.print(n+","));
+	
+	
+	List<Integer> list2 = IntStream.range(1, 101).boxed().collect(Collectors.toList());
+	Collections.shuffle(list2);
+	list2.forEach( n -> System.out.print(n+" "));
+		
+	}	
+}
+
+#6
+
+public class Collections06 {
+	public static void main(String[] args) {
+		
+		int[] arr = {6,4,3,2,1,0,9,7,8};
+		//Arrays.sort(arr);
+		List<Integer> list = Arrays.asList(6,5,4,5,4,6,7,7);
+		
+		Stream<int[]> stream = Stream.of(arr);
+		
+		// Premitive Array to List
+		List<Integer> list2 = IntStream.of(arr).boxed().collect(Collectors.toList());
+		System.out.println(list2);
+		
+		// Premitive Array to Stream
+		Stream<Integer> boxed = IntStream.of(arr).boxed();
+		
+		System.out.println(Arrays.toString(arr));
+		System.out.println(list);	
+	}	
+}
+
+#7
+
+String uname = "swap";
+boolean b = Optional.ofNullable(uname).filter(s -> s.length() >= 4).isPresent();
+System.out.println(b);
+
+#8
+String uname = null;
+String str = Optional.ofNullable(uname)
+	.filter(s -> s.length() >= 4)
+	.map(s -> s.toLowerCase().substring(0, 4).concat("@gmail.com"))
+	.orElse("empty");
+
+System.out.println(str);
+
+#9
+public class OptionalDemo {
+	public static void main(String[] args) {
+		
+		String name = "Sujith";
+
+		Optional<String> optional = Optional.ofNullable(null);
+		System.out.println(optional.orElse("Hey"));
+		
+		System.out.println("isEmpty: "+optional.isEmpty());
+		System.out.println("isPresent: "+optional.isPresent());
+		
+		System.out.println(optional.orElseGet(() -> "Hey girl"));
+		optional.ifPresent(s -> System.out.println("Hey consume: "+s));
+	
+		//Option with Filter and FlatMap and Map
+		Optional<String> filter = optional.filter(s -> s.length()<=4);
+		System.out.println(filter.isPresent());
+		
+		boolean present = optional.filter(s -> s.length() > 4).isPresent();
+		System.out.println(present);
+		
+		Optional<String> map = optional.map(s -> s.concat("@gmail.com"));
+		System.out.println(map);
+		
+		boolean map2 = optional.map(s -> s.concat("@gmail.com")).isPresent();
+		System.out.println(map2);
+		
+		String string = optional.map(s -> s.concat("@gmail.com")).get();
+		System.out.println(string);
+	}
+}
+
+#10
+Function<Rectangle, Integer> getArea = rect -> rect.getWidth() * rect.getLenght();
+Comparator<Rectangle> areaComp = (re1, re2) -> getArea.apply(re1) - getArea.apply(re2);
+
+Function<Rectangle, Integer> getPerimeter = rect -> 2 * (rect.getWidth() + rect.getLenght());
+Comparator<Rectangle> permiterComp = (re1, re2) -> getArea.apply(re1) - getArea.apply(re2);
+
+
+#11
+public class ComparatorDemo {
+	public static void main(String[] args) {
+
+		TreeSet<Student> set = new TreeSet<>((s1, s2) -> (s1.getName().compareTo(s2.getName())));
+		populate(set);
+
+		Consumer<Collection<Student>> prettyPrint = students -> {
+			for (Student student : students) {
+				System.out.println(student);
+			}
+		};
+
+		prettyPrint.accept(set);
+
+		List<Student> list = new ArrayList<>();
+		list.addAll(set);
+
+		// Sort by marks
+		Collections.sort(list, (s1, s2) -> (int) (s2.getMarks() - s1.getMarks()));
+		System.out.println();
+		prettyPrint.accept(list);
+
+		// Sort by age
+		Collections.sort(list, (s1, s2) -> s1.getAge() - s2.getAge());
+		System.out.println();
+		prettyPrint.accept(list);
+
+		// Sort by gender and age
+		Collections.sort(list, (s1, s2) -> s1.getAge() - s2.getAge());
+		System.out.println();
+		prettyPrint.accept(list);
+
+		// Only females
+		Predicate<Student> isFemale = s -> s.getGender().equals(Gender.Female);
+		System.out.println();
+		for (Student student : list) {
+			if (isFemale.test(student))
+				System.out.println(student + " is female");
+		}
+
+		System.out.println();
+		for (Student student : list) {
+			if (isFemale.negate().test(student))
+				System.out.println(student + " is female");
+		}
+	}
+
+#12
+
+public void printTable() {
+		
+	Function<Integer, Integer> getInterest = time -> (data.principal/100)*data.rate*time;
+	Function<Integer, Integer> getTotal = time2 -> data.principal + getInterest.apply(time2);
+	
+	
+	Consumer<Integer> print = time -> {
+		System.out.println(data.principal+"\t"+data.rate+"\t"+time+"\t"+getInterest.apply(time)+"\t"+getTotal.apply(time));
+	};
+	
+	for (int i = 1; i <= data.timeInMonths; i++) {
+		print.accept(i);
+	}
+	}
+#13
+List<Integer> list =
+	Collections.nCopies(10, null)
+	.stream()
+	.map( n -> (int)(Math.random()*100))
+	.filter( n -> n%2==0 )
+	.sorted()
+	.collect(Collectors.toList());
+		
+
+Collections.nCopies(10, null)
+	.stream()
+	.map(n -> (int) (Math.random() * 100))
+	.filter(n -> n % 2 == 0)
+	.sorted()
+	.collect(Collectors.toList())
+	.forEach(n -> System.out.println(n));
+		
+//cc.addAll(Collections.unmodifiableList(Arrays.asList(elements))

@@ -1,0 +1,98 @@
+MAVEN is a powerful project management tool that is based on POM (project object model). It is used for projects build, dependency and documentation
+
+
+Understanding the problem without Maven
+There are many problems that we face during the project development. They are discussed below:
+
+1) Adding set of Jars in each project: In case of struts, spring, hibernate frameworks, we need to add set of jar files in each project. It must include all the dependencies of jars also.
+
+2) Creating the right project structure: We must create the right project structure in servlet, struts etc, otherwise it will not be executed.
+
+3) Building and Deploying the project: We must have to build and deploy the project so that it may work.
+
+What it does?
+Maven simplifies the above mentioned problems. It does mainly following tasks.
+
+1. It makes a project easy to build
+2.It provides uniform build process (maven project can be shared by all the maven projects)
+3. It provides project information (log document, cross referenced sources, mailing list, dependency list, unit test reports etc.)
+4. It is easy to migrate for new features of Maven
+
+APACHE MAVEN HELPS TO MANAGE
+Builds
+Documentation
+Reporing
+SCMs
+Releases
+Distribution
+
+BUILD TOOL:
+A build tool takes care of everything for building a process. It does following:
+
+* Generates source code (if auto-generated code is used)
+* Generates documentation from source code
+* Compiles source code
+* Packages compiled code into JAR of ZIP file
+* Installs the packaged code in local repository, server
+repository, or central repository
+
+MAVEN REPOSITORY:
+A maven repository is a directory of packaged JAR file with pom.xml file
+Maven searches for dependencies in the repositories. There are 3 types of maven repository:
+
+1. LOCAL REPOSITORY:
+Maven local repository is located in your local system. It is created by the maven when you run any maven command.
+
+2. CENTRAL REPOSITORY:
+Maven central repository is located on the web. It has been created by the apache maven community itself.
+
+3. REMOTE REPOSITORY.
+Maven remote repository is located on the web. Most of libraries can be missing from the central repository such as JBoss library etc, so we need to define remote repository in pom.xml file.
+
+MAVEN POM.XML FILE:
+
+POM is an acronym for Project Object Model.
+The pom.xml file contains information of project and configuration information for the maven to build the project such as dependencies, build directory, source directory, test source directory, plugin, goals etc.
+
+ELEMENTS:
+project: root element
+modelVersion
+groupId
+artifactId
+version
+
+ADDITIONAL ELEMENTS
+packaging: defines packaging type such as jar, war etc.
+name: defines name of the mavel project.
+url
+dependencies: Defines dependencies
+dependency: defines a dependency.
+scope: defines scope for this maven project. It can be compile, provided, runtime, test and system.
+
+
+How to build the maven project or how to package maven project?
+The mvn package command completes the build life cycle of the maven project such as:
+
+validate
+compile
+test
+package
+integration-test
+verify
+install
+deploy
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

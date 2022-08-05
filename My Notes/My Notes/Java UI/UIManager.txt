@@ -1,0 +1,316 @@
+
+Properties props = new Properties();
+props.put("logoString", "Sujith Manchala");
+props.put("logoString", "Sujith Manchala");
+props.put("centerWindowTitle", "on");
+McWinLookAndFeel.setTheme("Modern-Large-Font");
+McWinLookAndFeel.setCurrentTheme(props);
+javax.swing.UIManager.setLookAndFeel("com.jtattoo.plaf.mcwin.McWinLookAndFeel");
+
+
+
+
+Setting Theme
+try {
+            
+            // setTheme(String themeName, String licenseKey, String logoString)
+            com.jtattoo.plaf.acryl.AcrylLookAndFeel.setTheme("Green", "INSERT YOUR LICENSE KEY HERE", "my company");
+            
+            // select the Look and Feel
+            UIManager.setLookAndFeel("com.jtattoo.plaf.acryl.AcrylLookAndFeel");
+            
+            // start the demo application
+            new SimpleThemesDemo();
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+         
+
+
+
+javax.swing.UIManager
+---------------------
+public class UIManager is a class. It manages all the look and feel properties.
+
+Static Methods in UIManager.
+void		put(Object key, Object value);
+Object		get(Object key);
+UIDefaults	getDefaults();
+LookAndFeelInfo[] getInstalledLookAndFeels();
+
+
+Get already installed LookAndFeels
+----------------------------------
+javax.swing.UIManager.LookAndFeelInfo  is a class which contains all the properties of UI.
+It contains two methods.
+1. getName()
+2. getClassName()
+
+Metal : javax.swing.plaf.metal.MetalLookAndFeel
+Nimbus : javax.swing.plaf.nimbus.NimbusLookAndFeel
+Motif : com.sun.java.swing.plaf.motif.MotifLookAndFeel
+Windows : com.sun.java.swing.plaf.windows.WindowsLookAndFeel
+Windows Classic : com.sun.java.swing.plaf.windows.WindowsClassicLookAndFeel
+
+
+Applying Look and Feel	
+----------------------
+javax.swing.UIManager.setLookAndFeel(String className);
+Ex:-
+UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
+
+UI Font Change
+---------------
+
+Step 1:
+UIDefaults ud = UIManager.getDefaults();
+Enumeration keys = ud.keys();
+while (keys.hasMoreElements()) {
+	Object key = keys.nextElement();
+	Object value = UIManager.get(key);   
+}
+
+Step 2:
+Identify which key values are belongs to javax.swing.plaf.FontUIResource class.
+use following syntax:
+
+value instanceof javax.swing.plaf.FontUIResource
+
+Several value are in FontUIResource instance. All we have to do it to change them.
+
+Step 3:
+Create fur Instance.
+FontUIResource fur = new  FontUIResource("Serif",Font.BOLD,24);
+
+Step 4:
+Change the values of the keys which belongs to FontUIResource using UIManager put() method.
+
+Code:
+FontUIResource fur = new  FontUIResource("Serif",Font.BOLD,24);
+setUIFont (fur);
+               
+
+private static void setUIFont(javax.swing.plaf.FontUIResource f) {
+        
+        java.util.Enumeration keys = UIManager.getDefaults().keys();
+        UIDefaults ud = UIManager.getDefaults();
+        
+        while (keys.hasMoreElements()) {
+            Object key = keys.nextElement();
+            Object value = UIManager.get(key);   
+
+                if (value instanceof javax.swing.plaf.FontUIResource) {
+                System.out.println(key+" : "+UIManager.get(value));
+                UIManager.put(key, f);
+                
+            }
+        }
+}
+
+JTattoo
+-------
+Below package contains subpackages with 13 Look and Feels.
+com.jtattoo.plaf 
+Ex:-
+com.jtattoo.plaf.acryl
+com.jtattoo.plaf.mint
+com.jtattoo.plaf.luna
+
+Each subpackage contains a LookAndFeel class.
+
+Ex:
+com.jtattoo.plaf.acryl.AcrylLookAndFeel
+com.jtattoo.plaf.mint.MintLookAndFeel
+com.jtattoo.plaf.luna.LunaLookAndFeel
+
+Look and Feel Properties.
+
+
+
+How to Apply
+------------
+Below method is used to apply the Look and Feel.
+javax.swing.UIManager.setLookAndFeel(info.getClassName());
+
+Example:
+MintLookAndFeel mint = new MintLookAndFeel();
+UIManager.setLookAndFeel(mint);
+or
+UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+
+
+
+AbstractLookAndFeel
+--------------------
+Each JTattoo LookAndFeel classes are Sub-Class of AbstractLookAndFeel classes.
+It contains certain static methods.
+
+void setTheme(AbstractTheme theme)
+AbstractTheme getTheme()
+
+void setTheme(String name)
+MetalTheme getCurrentTheme()
+List getThemes()
+
+List the Themes which are available for FookAndFeel
+Ex:
+List themesList = MintLookAndFeel.getThemes();
+Output:
+themesList
+[Default, Small-Font, Large-Font, Giant-Font]
+
+
+
+Apply Themes
+------------
+Properties pro =  MintLookAndFeel.getThemeProperties("Large-Font");
+<LookAndFeel>.setTheme(Properties themesProps)
+Ex:
+MintLookAndFeel.setTheme(pro);
+
+Property Keys
+--------------
+subTextFont
+windowTitleFont
+controlTextFont
+systemTextFont
+userTextFont
+menuTextFont
+
+pro.setProperty("windowTitleFont", "Dialog 10");
+pro.setProperty("userTextFont", "Dialog 30");
+
+<LookAndFeel>.setTheme(pro)
+
+All Look and Feels
+------------------
+com.jtattoo.plaf.aero.AeroLookAndFeel;
+com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+com.jtattoo.plaf.aluminium.AluminiumLookAndFeel;
+com.jtattoo.plaf.bernstein.BernsteinLookAndFeel;
+com.jtattoo.plaf.fast.FastLookAndFeel;
+com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
+com.jtattoo.plaf.hifi.HiFiLookAndFeel;
+com.jtattoo.plaf.luna.LunaLookAndFeel;
+com.jtattoo.plaf.mcwin.McWinLookAndFeel;
+com.jtattoo.plaf.mint.MintLookAndFeel;
+com.jtattoo.plaf.noire.NoireLookAndFeel;
+com.jtattoo.plaf.smart.SmartLookAndFeel;
+com.jtattoo.plaf.texture.TextureLookAndFeel;
+
+
+All look and feels
+------------------
+Aero
+1. Default
+2. Small-Font
+3. Large-Font
+4. Giant-Font
+5. Gold
+6. Gold-Small-Font
+7. Gold-Large-Font
+8. Gold-Giant-Font
+9. Green
+10. Green-Small-Font
+11. Green-Large-Font
+12. Green-Giant-Font
+Code:
+AeroLookAndFeel.setTheme("Giant-Font");
+UIManager.setLookAndFeel(new AeroLookAndFeel());
+
+
+Acryl
+1. Default
+2. Small-Font
+3. Large-Font
+4. Giant-Font
+5. Green
+6. Green-Small-Font
+7. Green-Large-Font
+8. Green-Giant-Font
+9. Lemmon
+10. Lemmon-Small-Font
+11. Lemmon-Large-Font
+12. Lemmon-Giant-Font
+13. Red
+14. Red-Small-Font
+15. Red-Large-Font
+16. Red-Giant-Font
+Code:
+AcrylLookAndFeel.setTheme("Giant-Font");
+UIManager.setLookAndFeel(new AcrylLookAndFeel());
+
+
+Aluminium
+Bernstein
+Fast
+Graphite
+HiFi
+
+
+
+Luna
+----------
+Themes
+Default
+Small-Font
+Large-Font
+Giant-Font
+LunaLookAndFeel.setTheme(?);
+UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+
+
+
+
+McWin
+Mint
+-----------
+Themes:
+1. Default
+2. Small-Font
+3. Large-Font
+4. Giant-Font
+LunaLookAndFeel.setTheme(?);
+UIManager.setLookAndFeel("com.jtattoo.plaf.luna.LunaLookAndFeel");
+
+
+
+Noire
+Smart
+Texture
+Metal
+Nimbus
+Motif
+Windows
+Windows Classic
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

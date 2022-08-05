@@ -1,0 +1,36 @@
+EC2
+Elastic Compute Cloud
+
+* Amazon EC2 is a web service that provides resizable compute capacity in the cloud.
+* Amazon has provided an EC2 which is a virtual machine in the cloud.
+* You can scale the compute capacity up and down as per the computing requirement changes.
+
+Decrypt Password
+
+Public DNS: ec2-3-110-83-204.ap-south-1.compute.amazonaws.com
+User name: Administrator
+Password: CAkp7)ZVjZ
+
+
+Public IPv4 DNS
+ ec2-3-110-83-204.ap-south-1.compute.amazonaws.com
+
+
+
+Remote Desktop Protocol:
+It is a proprietary protocol developed by Microsoft which provides a user with a graphical interface to connect to another computer over a network connection. The user employs RDP client software for this purpose, while the other computer must run RDP server software.
+
+What is DNS?
+DNS, or the Domain Name System, translates human readable domain names (for example, www.amazon.com) to machine readable IP addresses (for example, 192.0.2.44).
+
+
+DNS servers translate requests for names into IP addresses, controlling which server an end user will reach when they type a domain name into their web browser. These requests are called queries.
+
+https://aws.amazon.com/route53/what-is-dns/#:~:text=DNS%2C%20or%20the%20Domain%20Name,2.44).
+
+DNS Basics
+All computers on the Internet, from your smart phone or laptop to the servers that serve content for massive retail websites, find and communicate with one another by using numbers. These numbers are known as IP addresses. When you open a web browser and go to a website, you don't have to remember and enter a long number. Instead, you can enter a domain name like example.com and still end up in the right place.
+
+A DNS service such as Amazon Route 53 is a globally distributed service that translates human readable names like www.example.com into the numeric IP addresses like 192.0.2.1 that computers use to connect to each other. The Internet’s DNS system works much like a phone book by managing the mapping between names and numbers. DNS servers translate requests for names into IP addresses, controlling which server an end user will reach when they type a domain name into their web browser. These requests are called queries.
+
+

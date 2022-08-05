@@ -1,0 +1,6 @@
+
+Exceptions:
+
+org.hibernate.AnnotationException: No identifier specified for entity: com.suji.SpringHib.model.GameRunner
+
+ org.hibernate.MappingException: Could not determine type for: com.suji.SpringHib.model.Game

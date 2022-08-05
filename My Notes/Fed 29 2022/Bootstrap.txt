@@ -1,0 +1,34 @@
+Bootsrap
+=========
+
+Day 1:
+
+The Grid System
+---------------
+flexbox and allows up to 12 columns across the page.
+
+
+<div class="row">
+    <div class="col-sm-4 bg-primary text-white">33.33%</div>
+    <div class="col-sm-4 bg-dark text-white">33.33%</div>
+    <div class="col-sm-4 bg-primary text-white">33.33%</div>
+</div>
+
+
+col-*-*
+
+1* represents the responsiveness: sm, md, lg, xl or xxl
+2* represents a number, which should add up to 12 for each row.
+
+Colors:
+--------
+colors are:
+
+.*-primary [blue]
+.*-success [white]
+.*-info 
+.*-warning
+.*-danger
+.*-secondary
+.*-dark
+.*-light

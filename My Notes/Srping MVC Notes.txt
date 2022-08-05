@@ -1,0 +1,206 @@
+https://siva-nadupuru.medium.com/spring-boot-web-mvc-and-rest-flows-2e9fbb6344d9
+
+WebApplicationInitializer(I)
+Abstract_AnnotationConfig_DispatcherServlet_Initializer
+Abstract_ContextLoader_Initializer
+Abstract_DispatcherServlet_Initializer
+Abstract_Reactive_WebInitializer
+
+
+abstract class AbstractAnnotationConfigDispatcherServletInitializer
+WebApplicationInitializer to register a DispatcherServlet and use Java-based Spring configuration.
+
+In the Web MVC framework, each DispatcherServlet has its own WebApplicationContext, which inherits all the beans already defined in the root WebApplicationContext.
+
+
+if you configure an InternalResourceViewResolver, the default list of ViewResolver implementations is ignored.
+
+
+@Controller
+@RequestMapping("/appointments")
+public class AppointmentsController {
+
+    private final AppointmentBook appointmentBook;
+
+    @Autowired
+    public AppointmentsController(AppointmentBook appointmentBook) {
+        this.appointmentBook = appointmentBook;
+    }
+
+    @RequestMapping(method = RequestMethod.GET)
+    public Map<String, Appointment> get() {
+        return appointmentBook.getAppointmentsForToday();
+    }
+
+    @RequestMapping(value="/{day}", method = RequestMethod.GET)
+    public Map<String, Appointment> getForDay(@PathVariable @DateTimeFormat(iso=ISO.DATE) Date day, Model model) {
+        return appointmentBook.getAppointmentsForDay(day);
+    }
+
+    @RequestMapping(value="/new", method = RequestMethod.GET)
+    public AppointmentForm getNewForm() {
+        return new AppointmentForm();
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public String add(@Valid AppointmentForm appointment, BindingResult result) {
+        if (result.hasErrors()) {
+            return "appointments/new";
+        }
+        appointmentBook.addAppointment(appointment);
+        return "redirect:/appointments";
+    }
+@RequestMapping("/vets")
+    public ModelMap vetsHandler() {
+        return new ModelMap(this.clinic.getVets());
+    }
+}
+
+
+@RequestMapping annotations, as well as any other type and method-level annotations (e.g. @ModelAttribute, @InitBinder) 
+
+Template Patterns:
+
+Spring MVC will match the method argument name to the URI template variable name:
+@RequestMapping(value="/owners/{ownerId}", method=RequestMethod.GET)
+public String findOwner(@PathVariable String ownerId, Model model) {
+}
+
+@RequestMapping(value="/owners/{ownerId}/pets/{petId}", method=RequestMethod.GET)
+public String findPet(@PathVariable String ownerId, @PathVariable String petId, Model model) {
+  
+  return "displayPet";
+}
+
+public String findOwner(@PathVariable("ownerId") String theOwner, Model model) {
+  // implementation omitted
+}
+
+
+RegEx pattern
+
+The syntax is {varName:regex}
+Consider the URL "/spring-web/spring-web-3.0.5.jar".
+@RequestMapping("/spring-web/{symbolicName:[a-z-]+}-{version:\\d\\.\\d\\.\\d}{extension:\\.[a-z]+}")
+  public void handle(@PathVariable String version, @PathVariable String extension) {
+  }
+}
+
+Ant-style path pattern:
+/owners/*/pets/{petId}
+
+Matrix Variables
+"color=red;color=green;color=blue".
+// GET /pets/42;q=11;r=22
+
+@RequestMapping(value = "/pets/{petId}", method = RequestMethod.GET)
+public void findPet(@PathVariable String petId, @MatrixVariable int q) {
+
+  // petId == 42
+  // q == 11
+}
+
+Consumable Media Types
+
+@Controller
+@RequestMapping(value = "/pets", method = RequestMethod.POST, consumes="application/json")
+public void addPet(@RequestBody Pet pet, Model model) {
+    // implementation omitted
+}
+
+Producible Media Types
+@Controller
+@RequestMapping(value = "/pets/{petId}", method = RequestMethod.GET, produces="application/json")
+@ResponseBody
+public Pet getPet(@PathVariable String petId, Model model) {
+    // implementation omitted
+}
+
+
+Supported method return types
+
+ModelAndView 
+@ModelAttribute
+
+A String value that is interpreted as the logical view name, with the model implicitly determined through command objects and @ModelAttribute annotated reference data accessor methods.
+
+A HttpEntity<?> or ResponseEntity<?> object to provide access to the Servlet response HTTP headers and contents. The entity body will be converted to the response stream using HttpMessageConverters.
+
+A ModelAndView object, with the model implicitly enriched with command objects and the results of @ModelAttribute annotated reference data accessor methods.
+
+A Model object, with the view name implicitly determined through a RequestToViewNameTranslator and the model implicitly enriched with command objects and the results of @ModelAttribute annotated reference data accessor methods.
+
+A Map object for exposing a model, with the view name implicitly determined through a RequestToViewNameTranslator and the model implicitly enriched with command objects and the results of @ModelAttribute annotated reference data accessor methods.
+
+A View object, with the model implicitly determined through command objects and @ModelAttribute annotated reference data accessor methods. The handler method may also programmatically enrich the model by declaring a Model argument (see above).
+
+A String value that is interpreted as the logical view name, with the model implicitly determined through command objects and @ModelAttribute annotated reference data accessor methods. The handler method may also programmatically enrich the model by declaring a Model argument (see above).
+
+@RequestMapping(method = RequestMethod.GET)
+    public String setupForm(@RequestParam("petId") int petId, ModelMap model) {
+        Pet pet = this.clinic.loadPet(petId);
+        model.addAttribute("pet", pet);
+        return "petForm";
+    }
+
+@RequestMapping(value = "/something", method = RequestMethod.PUT)
+public void handle(@RequestBody String body, Writer writer) throws IOException {
+  writer.write(body);
+}
+
+
+Using HttpEntity<?>
+
+@RequestMapping("/something")
+public ResponseEntity<String> handle(HttpEntity<byte[]> requestEntity) throws UnsupportedEncodingException {
+  String requestHeader = requestEntity.getHeaders().getFirst("MyRequestHeader"));
+  byte[] requestBody = requestEntity.getBody();
+  // do something with request header and body
+
+  HttpHeaders responseHeaders = new HttpHeaders();
+  responseHeaders.set("MyResponseHeader", "MyValue");
+  return new ResponseEntity<String>("Hello World", responseHeaders, HttpStatus.CREATED);
+}
+
+Model Attribute Usage:
+
+@ModelAttribute
+public Account addAccount(@RequestParam String number) {
+    return accountManager.findAccount(number);
+}
+
+// Add multiple attributes
+
+@ModelAttribute
+public void populateModel(@RequestParam String number, Model model) {
+    model.addAttribute(accountManager.findAccount(number));
+    // add more ...
+}
+
+@RequestMapping(value="/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)
+public String processSubmit(@ModelAttribute Pet pet) {
+
+}
+
+
+@RequestMapping(value="/accounts/{account}", method = RequestMethod.PUT)
+public String save(@ModelAttribute("account") Account account) {
+
+}
+
+
+@RequestMapping(value="/owners/{ownerId}/pets/{petId}/edit", method = RequestMethod.POST)
+public String processSubmit(@ModelAttribute("pet") Pet pet, BindingResult result) {
+
+    if (result.hasErrors()) {
+        return "petForm";
+    }
+}
+
+By default all model attributes are considered to be exposed as URI template variables in the redirect URL. 
+
+
+
+
+
+

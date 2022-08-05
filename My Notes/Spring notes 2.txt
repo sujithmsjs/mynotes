@@ -1,0 +1,60 @@
+Spring Project
+
+
+
+Hands-on:
+Controller pkg
+@GetMapping("/courses")
+public List<Course> getAllCourses(){
+...
+}
+
+Spring Boot Magic
+1. Starter Projects
+spring-boot-starter-web
+spring-boot-starter-tomcat
+spring-boot-starter-actuator
+spring-boot-starter-web
+
+
+2. Auto Configuration: Framesworks are in the class path.
+logging.level.org.spring.framework=DEGUB
+Positive/Negitive Matches
+
+
+Embedded Server
+
+
+Spring Boot Actuator:
+management.endpoints.web.exposure.include=*
+management.endpoints.web.exposure.include=health,metrics
+
+
+Spring boot DevTools:
+
+
+SpringBoot
+Spring MVC
+Spring: Dependency Injection
+
+
+Restful Project
+Need starters: H2, JPA, Rest Repository
+
+spring.h2.console.enabled= ture
+spring.datasource.platform=h2
+spring.datasource.url = jdbc:h2:mem:navin
+
+Initial data
+
+src/main/resources/data.sql
+
+@RepositoryRestResource(collectionResourceRel="std",path="std");
+public interface StudentDao extends JPARepository<Student,Integer>{
+}
+
+
+
+
+
+

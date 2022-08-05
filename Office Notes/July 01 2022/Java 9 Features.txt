@@ -1,0 +1,55 @@
+===================
+Java 9 Features
+===================
+
+#1. Interface Private Methods
+
+can create private methods inside an interface
+
+#2. Try-With Resources
+
+
+
+#3. Anonymous Classes Improvement
+
+#4.  Java New Version-String Scheme
+
+
+#5. JShell
+It is an interactive Java Shell tool, it allows us to execute Java code from the shell and shows output immediately.
+
+C:\Users\sujith.manchala>jshell -v
+
+#6. takeWhile
+
+#7. dropWhile
+
+#8. ofNullable
+
+#9. iterate
+
+#10.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,327 @@
+BootStrap Notes
+---------------
+
+<div class="container-fluid p-5 bg-primary text-white text-center"></div>
+
+p: Padding
+bg: background
+text:
+text:
+
+<div class="container mt-5"></div>
+mt: Margin Top
+
+CONTAINERS
+----------
+1. The .container class provides a responsive fixed width container
+2. The .container-fluid class provides a full width container, spanning the entire width of the viewport
+
+
+Container Border and Color
+--------------------------
+<div class="container p-5 my-5 border text-white text-center"></div>
+<div class="container p-5 my-5 bg-dark text-white"></div>
+<div class="container p-5 my-5 bg-primary text-white"></div>
+
+Responsive Containers
+---------------------
+.container-sm|md|lg|xl|xxl
+The max-width of the container will change on different screen sizes/viewports:
+
+Example:
+<div class="container-sm">.container-sm</div>
+<div class="container-md">.container-md</div>
+<div class="container-lg">.container-lg</div>
+
+Grid System
+-----------
+Bootstrap's grid system is built with flexbox and allows up to 12 columns across the page.
+
+<div class="col-sm-4"></div>
+
+<!-- Control the column width, and how they should appear on different devices -->
+
+<div class="row">
+  <div class="col-*-*"></div>
+  <div class="col-*-*"></div>
+</div>
+
+The first star (*) represents the responsiveness: sm, md, lg, xl or xxl, while the second star represents a number, which should add up to 12 for each row.
+
+
+<!-- Or let Bootstrap automatically handle the layout -->
+
+<div class="row">
+  <div class="col"></div>
+  <div class="col"></div>
+  <div class="col"></div>
+</div>
+
+
+
+Display Headings
+----------------
+Six classes to choose from: .display-1 to .display-6
+
+Colors
+------
+muted, primary, success, info, warning, danger, secondary, white, dark, body, light.
+
+Text And Backgrounds
+--------------------
+text-<color>
+text-<color>-<opacity>
+bg-<color>
+
+Tables
+------
+classes:
+Ex: <table class="table">
+
+.table
+.table-striped
+.table-bordered
+.table-hover
+.table-dark
+.table-dark and .table-striped
+.table-dark and. table-hover
+.table-borderless
+
+
+Row Color:
+<tr class="table-<color>">
+
+Header Color:
+<table class="table">
+    <thead class="table-<color>">
+		<tr>
+			<th></th>
+			<th></th>
+			<th></th>
+		</tr>
+    </thead>
+	<tbody>
+		<tr>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+Jumbotron
+---------
+<div class="container mt-3">
+	<h1><h1>
+	<div class="mt-4 p-5 bg-primary text-white rounded">
+		<h1></h1>
+		<p></p>
+	</div>
+</div>
+
+
+Alerts
+------
+<div class="alert alert-success">
+    <strong>Success!</strong> This alert box could indicate a successful or positive action.
+</div>
+
+<div class="alert alert-*color alert-dismissible">
+    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    <strong>Success!</strong> Please click here: <a href="#" class="alert-link">.
+ </div>
+
+.alert-dismissible: To close the alert message.
+
+
+
+
+
+Buttons
+-------
+<a href="#" class="btn btn-success">Link Button</a>
+<button type="button" class="btn btn-success">Button</button>
+<input type="button" class="btn btn-success" value="Input Button">
+<input type="submit" class="btn btn-success" value="Submit Button">
+<input type="reset" class="btn btn-success" value="Reset Button">
+
+
+classes:
+.btn
+.btn-*(color)
+.btn-outline-*(color)
+.btn-lg/sm
+.btn-block
+.active
+.disabled
+
+Button Groups
+-------------
+<div class="btn-group">
+  <button type="button" class="btn btn-primary">Apple</button>
+  <button type="button" class="btn btn-primary">Samsung</button>
+  <button type="button" class="btn btn-primary">Sony</button>
+</div>
+
+
+Pagination
+----------
+<ul class="pagination">
+  <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+  <li class="page-item"><a class="page-link" href="#">1</a></li>
+  <li class="page-item"><a class="page-link" href="#">2</a></li>
+  <li class="page-item"><a class="page-link" href="#">3</a></li>
+  <li class="page-item"><a class="page-link" href="#">Next</a></li>
+</ul>
+
+li classes:
+.active
+.disabled
+
+
+Navigation
+----------
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+		<a class="nav-link active" href="#">Active</a>
+    </li>
+    <li class="nav-item">
+		<a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+		<a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+		<a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+ </ul>
+ 
+ classes:
+ ul:
+ .nav
+ .nav-tabs
+ .nav nav-pills
+ li:
+ .nav-item
+ a:
+ .nav-link
+ .active
+ .disabled
+ 
+ 
+Navigation Bar
+--------------
+<nav>
+	<div>
+		<ul>
+			<li>
+				<a></a>
+			</li>
+			<li>
+				<a></a>
+			</li>
+			<li>
+				<a></a>
+			</li>
+	</div>
+</nav>
+
+classes:
+nav: 
+.navbar
+.navbar-expand-xxl|xl|lg|md|sm
+.bg-*(color)
+.justify-content-center
+.navbar-dark
+.bg-dark
+
+div:
+.container-fluid
+
+ul:
+.navbar-nav
+
+li:
+.nav-item
+
+a:
+.nav-link
+.active
+.disabled
+
+
+
+
+Form
+----
+<div class="container mt-3">
+  <h2> Title </h2>
+  <form>
+  
+    <div class="mb-1">
+      <label for="email">Email:</label>
+      <input type="email" class="form-control" placeholder="Email" id="email ">
+    </div>
+	
+    <div class="mb-1">
+      <label for="pwd">Password:</label>
+      <input type="password" class="form-control"  placeholder="Password" id="pwd" >
+    </div>
+    
+	<button type="submit" class="btn  btn-primary">Submit</button>
+  
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

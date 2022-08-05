@@ -1,0 +1,140 @@
+Springbook full notes:
+
+Auto Configuration
+Spring Boot Auto Configuration automatically configures your Spring application based on 
+the JAR dependencies you added in the project.
+
+
+If you added @SpringBootApplication annotation to the class, you do not need to add 
+the @EnableAutoConfiguration, @ComponentScan and @SpringBootConfiguration
+annotation.
+
+Important Annoatations:
+
+@RestController
+@ComponentScan
+@RequestMapping
+
+
+Main Method:
+This class should be 
+annotated with @SpringBootApplication.
+
+Rest Endpoint:
+@RestController
+
+
+The @ComponentScan annotation is used to find beans and the corresponding
+injected with @Autowired annotation.
+
+
+
+@SpringBootApplication
+ |-@EnableAutoConfiguration
+ |-@ComponentScan
+ |-@Configuration
+
+
+Runners
+Application Runner and Command Line Runner interfaces lets you to execute the code 
+after the Spring Boot application is started.
+
+
+@SpringBootApplication
+public class DemoApplication implements ApplicationRunner {
+public static void main(String[] args) {
+SpringApplication.run(DemoApplication.class, args);
+}
+
+@Override
+public void run(ApplicationArguments arg0) throws Exception {
+}
+}
+
+
+@SpringBootApplication
+public class DemoApplication implements CommandLineRunner {
+}
+
+
+
+Application Properties
+
+1. Command Line properties
+2. application.properties file.
+3. YAML file
+4. Externalized Properties
+5. Use of @Value Annotation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+https://docs.oracle.com/javase/tutorial/java/generics/genTypes.html
+WILDCARDS AND SUBTYPING
+
+Given that Integer is a subtype of Number, what is the relationship between List<Integer> and List<Number>?
+
+List<Integer> is not List<Number>
+List<Integer> is List<?>
+List<Number> is List<?>
+
+List<? extends Integer> intList = new ArrayList<>();
+List<? extends Number>  numList = intList;  // OK.
+List<? extends Integer> is a subtype of List<? extends Number>
+
+Although Integer is a subtype of Number, List<Integer> is not a subtype of List<Number> and, in fact, these two types are not related. The common parent of List<Number> and List<Integer> is List<?>.
+
+
+In order to create a relationship between these classes so that the code can access Number's methods through List<Integer>'s elements, use an upper bounded wildcard:
+
+List<? extends Integer> intList = new ArrayList<>();
+List<? extends Number>  numList = intList;  // OK. List<? extends Integer> is a subtype of List<? extends Number>
+
+
+Wildcard Capture
+https://docs.oracle.com/javase/tutorial/java/generics/capture.html
+In some cases, the compiler infers the type of a wildcard. For example, a list may be defined as List<?> but, when evaluating an expression, the compiler infers a particular type from the code. This scenario is known as wildcard capture.
+
+
+The WildcardError example produces a capture error when compiled:
+
+public class WildcardError {
+    void foo(List<?> i) {
+        i.set(0, i.get(0));
+    }
+}
+
+
+
+Helper Methods
+You can fix it by writing a private helper method which captures the wildcard. By convention, helper methods are generally named originalMethodNameHelper.
+
+public class WildcardFixed {
+
+    void foo(List<?> i) {
+        fooHelper(i);
+    }
+
+
+    // Helper method created so that the wildcard can be captured
+    // through type inference.
+    private <T> void fooHelper(List<T> l) {
+        l.set(0, l.get(0));
+    }
+
+}

@@ -1,0 +1,23 @@
+HTML File Editor Rules
+
+<h1> tages must start with '!'
+<h2> tages must start with '@'
+
+<h3> 
+Line start with '#'
+All uppercase letters in line.
+Line ends with ':'
+
+<h4> tages must start with '$'
+<h5> tages must start with '%'
+<h6> tages must start with '^'
+
+<p> start with [a-zA-Z]
+
+<hr /> 
+Horizontal line "---"
+
+Pages:
+breaker "---"
+page must contain '!' in it.
+

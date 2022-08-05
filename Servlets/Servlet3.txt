@@ -1,0 +1,7 @@
+request.getSession() will return a current session. if current session does not exist, then it will create a new one.
+
+request.getSession(true) will return current session. If current session does not exist, then it will create a new session.
+
+So basically there is not difference between both method.
+
+request.getSession(false) will return current session if current session exists. If not, it will not create a new session.

@@ -1,0 +1,116 @@
+Standard Expression Syntax
+
+Simple expressions:
+Variable Expressions: ${...}
+Selection Variable Expressions: *{...}
+Message Expressions: #{...}
+Link URL Expressions: @{...}
+Fragment Expressions: ~{...}
+
+Text operations:
+String concatenation: +
+Literal substitutions: |The name is ${name}|
+
+Arithmetic operations:
+Binary operators: +, -, *, /, %
+
+Minus sign (unary operator): -
+
+Boolean operations:
+Binary operators: and, or
+Boolean negation (unary operator): !, not
+
+Comparisons and equality:
+Comparators: >, <, >=, <= (gt, lt, ge, le)
+Equality operators: ==, != (eq, ne)
+
+Conditional operators:
+If-then: (if) ? (then)
+If-then-else: (if) ? (then) : (else)
+Default: (value) ?: (defaultvalue)
+
+Special tokens:
+No-Operation: _
+
+'User is of type ' + (${user.isAdmin()} ? 'Administrator' : (${user.type} ?: 'Unknown'))
+
+<p>Today is: <span th:text="${today}">13 february 2011</span>.</p>
+ctx.getVariable("today");
+
+<p th:utext="#{home.welcome(${session.user.name})}">
+  Welcome to our grocery store, Sebastian Pepper!
+</p>
+((User) ctx.getVariable("session").get("user")).getName();
+
+
+
+Expression Basic Objects
+#ctx: the context object.
+#vars: the context variables.
+#locale: the context locale.
+#request: (only in Web Contexts) the HttpServletRequest object.
+#response: (only in Web Contexts) the HttpServletResponse object.
+#session: (only in Web Contexts) the HttpSession object.
+#servletContext: (only in Web Contexts) the ServletContext object.
+
+Established locale country: <span th:text="${#locale.country}">US</span>.
+
+
+---
+
+th:text="${session.user.firstName}"
+
+th:object="${session.user}
+th:text="*{firstName}"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

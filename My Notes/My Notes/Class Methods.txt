@@ -1,0 +1,5 @@
+Class Methods
+
+CANONICAL NAME
+the canonical name is the name that would be used in an import statement. It might be useful during toString or logging operations.
+

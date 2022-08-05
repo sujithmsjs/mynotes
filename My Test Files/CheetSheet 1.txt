@@ -1,0 +1,250 @@
+#1 Cheat sheet.
+Emp Mgnt System
+
+package com.suji.crud.ctrl;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.suji.crud.entity.Student;
+
+@Controller
+public class StudentCtrl {
+
+	@RequestMapping("/home")
+	public String home(Model model) {
+		
+		List<Student> stds = new ArrayList<>();
+		stds.add(new Student(109, "Sujith", 9.4));
+		stds.add(new Student(343, "Sumanth", 8.4));
+		stds.add(new Student(234, "Anitha", 7.4));
+		stds.add(new Student(267, "Shamala", 4.4));
+		
+		model.addAttribute("stds", stds);
+		
+		return "home";
+	}
+	
+	@RequestMapping("/std/edit/{sno}")
+	public String editStd(@PathVariable("sno") int sno, Model model) {
+		
+		//Retrive data from database
+		Student std = new Student(943,"Johncena", 87.54);
+		std.setSno(sno);
+		
+		//Adding new object to model
+		model.addAttribute("std", std);
+		
+		return "editStd";
+	}
+	
+	@RequestMapping("/atest")
+	@ResponseBody
+	public String checkTest(Model model,Student tudent) {
+		Map<String, Object> map = model.asMap();
+		Set<String> keySet = map.keySet();
+		for (String string : keySet) {
+			System.out.println("Key:"+string+" ; Value: "+model.getAttribute(string));
+			
+		}
+		
+		return "Check console";
+		
+	}
+	
+	
+	@RequestMapping("/std/new")
+	public String newStd(Model model) {
+		
+		//New Student object created.
+		Student std = new Student();
+		
+		//Adding new object to model
+		model.addAttribute("std", std);
+		
+		System.out.println("New empty student object has been created.");
+		
+	return "newStd";
+	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		System.out.println("In Test Controller...");
+		return "test";
+	}
+	
+	
+	
+	
+	@RequestMapping("/std/delete/{sno}")
+	public String delStd(@PathVariable("sno") int sno) {
+		
+		System.out.println("Student with sno:"+sno+" wil be deleted. Redirecting to home.");
+		
+		return "redirect:/home";
+	}
+	
+	@RequestMapping("/std/save")
+	public String saveStd(Student std) {
+		
+		System.out.println("Saving... std:"+std+" Redirecting to home.");
+		
+		return "redirect:/home";
+	}
+	
+	
+	
+	
+	
+}
+
+
+
+basic styles:
+-------------
+
+div, form, table {
+	margin: auto;
+	width: 60%;
+	/*  border: 3px solid rgb(0, 255, 64);*/
+	padding: 10px;
+}
+
+form {
+	text-align: center;
+}
+
+a, h1, h2, p {
+	text-align: center;
+	display: block;
+}
+
+table, th, td {
+	margin: 10px;
+	padding: 10px;
+	border: 2px solid black;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+home.html
+---------
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div>
+
+		<a th:href="@{/std/new}">Create New Student</a>
+
+		<table>
+			<tr>
+				<th>Sno</th>
+				<th>Name</th>
+				<th>CGPA</th>
+				<th>Actions</th>
+			</tr>
+
+			<tr th:each="std : ${stds}">
+				<td th:text="${std.sno}"></td>
+				<td th:text="${std.name}"></td>
+				<td th:text="${std.cgpa}"></td>
+
+				<td><a th:href="@{/std/edit/{sno}(sno=${std.sno})}">Edit</a> <a
+					th:href="@{/std/delete/{sno}(sno=${std.sno})}">Delete</a></td>
+
+			</tr>
+		</table>
+	</div>
+</body>
+
+</html>
+
+newStd.html
+-----------
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Create New</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body bgcolor="cyan">
+	<div>
+		<h1>Create new student</h1>
+		<form th:object="${std}" th:action="@{/std/save}">
+
+			<label for="fname">Sno:</label><br />
+			<input type="text" th:field="*{sno}"><br />
+
+			<label for="lname">Name:</label><br />
+			<input type="text" th:field="*{name}"><br />
+
+			<label for="lname">CGPA:</label><br />
+			<input type="text" th:field="*{cgpa}"><br />
+
+			<input type="submit" value="Signup">
+		</form>
+
+	</div>
+</body>
+
+</html>
+
+
+editstudent.html
+----------------
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Update Student</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body bgcolor="orange">
+	<div>
+		<h1>Update new student</h1>
+		
+		<form th:object="${std}" th:action="@{/std/save}">
+			<label for="fname">Sno:</label><br />
+			<input type="text" th:field="*{sno}"><br />
+
+			<label for="lname">Name:</label><br />
+			<input type="text" th:field="*{name}"><br />
+
+			<label for="lname">CGPA:</label><br />
+			<input type="text" th:field="*{cgpa}"><br />
+			<input type="submit" value="Signup">
+		</form>
+
+	</div>
+</body>
+
+</html>
+

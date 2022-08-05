@@ -1,0 +1,27 @@
+My Requirement
+---------------
+
+Author
+------
+id(PK), name, address
+
+Address
+-------
+id(PK)
+area
+pin
+
+Book
+----
+id(PK), title, aid(FK)
+
+Chapter
+-------
+id(PK), headline,bid(FK), aid(FK)
+
+
+
+
+
+
+

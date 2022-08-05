@@ -1,0 +1,12 @@
+Project 1: Student Management System.
+Pkgs
+controller
+service
+repositoty
+enitity
+
+?useSSL=false&serverTimeZone=UTC&useLagacyDateTeCode=false
+
+logging.level.org.hibernate.SQL=DEBUG
+
+ 

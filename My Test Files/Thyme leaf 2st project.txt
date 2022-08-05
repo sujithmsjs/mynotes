@@ -1,0 +1,187 @@
+APPLICATION PROPERTIES
+----------------------------
+# Datasource
+
+spring.datasource.url=jdbc:mysql://localhost:3306/nitro
+spring.datasource.username=root
+spring.datasource.password=apple
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# Hibernate Settings
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+
+# Logging Settings
+logging.level.root=INFO
+logging.level.springframework.context=debug
+logging.level.com.suji.crudrepo=DEBUG
+
+
+# DateTimeFormatters
+
+spring.mvc.format.date=yyyy-MM-dd
+spring.mvc.format.date-time=yyyy-MM-dd HH:mm:ss
+spring.mvc.format.time=HH:mm:ss
+
+
+# Email
+
+spring.main.banner-mode=off
+
+spring.mail.protocol=smtp
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=sujithmsjs@gmail.com
+spring.mail.password=jSyr3nf2my#Lf7-6
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+---------
+package com.suji.crudrepo.model;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.springframework.data.annotation.LastModifiedDate;
+
+import com.suji.crudrepo.configuration.validation.FieldsValueMatch;
+import com.suji.crudrepo.configuration.validation.PersonConstraint;
+import com.suji.crudrepo.configuration.validation.UniquePersonUsernameContraint;
+
+import lombok.Data;
+
+@Data
+@Entity
+@Table(name = "persons")
+@PersonConstraint
+public class PersonPojo {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Size(min = 4, max=16)
+	@Column(name = "name", nullable = false)
+	private String name;
+	
+	
+	@Column(name = "uname", nullable = false)
+	@Size(min = 4, max=10)
+	private String username;
+	
+	@Size(min = 4, max=16)
+	@Column(name = "pw", nullable = false)
+	private String password;
+	
+	@Transient
+	private String verifyPassword;
+	
+	@Column(name = "sex")
+	private char gender;
+	
+	@Column(name = "height")
+	private double height;
+	@Column(name = "ncc")
+	private boolean hasNCC;
+
+	@Past
+	@Column(name = "date_of_birth")
+	private LocalDate dob;
+	@Column(name = "registered_on")
+	@CreationTimestamp
+	private LocalDateTime registered;
+	@Column(name = "last_update")
+	@LastModifiedDate
+	private LocalDateTime lastUpdate;
+}
+
+
+//name,username,password,gender,dob,height,hasNCC,id,registered, lastUpdate
+
+
+------------------------
+package com.suji.crudrepo.model;
+
+import java.time.LocalDate;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "students")
+public class StudentPojo {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int id;
+	
+	@NotNull(message = "LastName can not be null!!")
+	@NotEmpty(message = "LastName can not be empty!!")
+	private String name;
+	
+	@NotNull(message = "Choose the subject count you are going to study!")
+	@Min(value = 4, message = "Student should enroll to minimum 4 subjects!!")
+	@Max(value = 8, message = "Student can enroll to maximum 8 subjects!!")
+	private int subjectCount;
+	
+	@NotNull
+	@Min(1)
+	@Max(12)
+	private int grade;
+	
+	@NotNull
+	@Size(max = 10, min = 10, message = "Mobile number should be of 10 digits")
+	@Pattern(regexp = "[7-9][0-9]{9}", message = "Mobile number is invalid!!")
+	private String mobileNo;
+	
+	@NotNull(message = "Please enter birth date")
+	@Past(message = "Birth date should be less than current date!!")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private LocalDate birthDate;
+}
+
+---------------------
+boolean existsByUsername(String value);
+-------------------
+
+
+
+
+
+
+
+
+
+
+

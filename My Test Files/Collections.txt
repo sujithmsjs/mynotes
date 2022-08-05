@@ -1,0 +1,114 @@
+Object(C)
+
+
+Methods:
+boolean	equals(Object)
+String	toString()
+
++---++---++---++---++---++---+
+
+Collections(C) >> Object(C)
+
+Sort, Shuffle, Swap, nCopies, fill, Max, Min, Reverse, Frequency, Binary Search, Copy, Rotate
+
+
+Methods:
+boolean	addAll(Collection<? super T>,T[])
+
+
+
+Queue	asLifoQueue(Deque<T>)
+int		binarySearch(Comparable<? super T>>,T)
+int		binarySearch(List<? extends T>,T,Comparator<? super T>)
+
+void	copy(List<? super T>,List<? extends T>)
+boolean	disjoint(Collection<?>,Collection<?>)
+
+Enumeration	enumeration(Collection<T>)
+void	fill(List<? super T>,T)
+int		frequency(Collection<?>,Object)
+int	indexOfSubList(List<?>,List<?>)
+int	lastIndexOfSubList(List<?>,List<?>)
+ArrayList	list(Enumeration<T>)
+Object	max(Collection<? extends T>)
+Object	max(Collection<? extends T>,Comparator<? super T>)
+Object	min(Collection<? extends T>)
+Object	min(Collection<? extends T>,Comparator<? super T>)
+List	nCopies(int,T)
+Set		newSetFromMap(Boolean)
+boolean	replaceAll(List<T>,T,T)
+void	rotate(List<?>,int)
+
+void	shuffle(List<?>)
+List<Integer> list = IntStream
+	.rangeClosed(1, 40)
+	.boxed()
+	.collect(Collectors.toList());
+Collections.shuffle(list);
+		
+
+void	shuffle(List<?>,Random)
+void	sort(List<T>)
+void	sort(List<T>,Comparator<? super T>)
+void	swap(List<?>,int,int)
+
+REVERSE
+-------
+void		reverse(List<?>)
+Comparator	reverseOrder()
+Comparator	reverseOrder(Comparator<T>)
+
+SINGLETON
+---------
+Set		singleton(T)
+List	singletonList(T)
+Map		singletonMap(K,V)
+
+
+SYNCHRONIZED COLLECTION
+-----------------------
+Collection	synchronizedCollection(Collection<T>)
+List		synchronizedList(List<T>)
+Map			synchronizedMap(Map<K, V>)
+NavigableMap	synchronizedNavigableMap(NavigableMap<K, V>)
+NavigableSet	synchronizedNavigableSet(NavigableSet<T>)
+Set			synchronizedSet(Set<T>)
+SortedMap	synchronizedSortedMap(SortedMap<K, V>)
+SortedSet	synchronizedSortedSet(SortedSet<T>)
+
+
+UNMODIFIABLE COLLECTION
+-----------------------
+Collection	unmodifiableCollection(Collection<? extends T>)
+List		unmodifiableList(List<? extends T>)
+Map			unmodifiableMap(Map<? extends K, ? extends V>)
+NavigableMap	unmodifiableNavigableMap(NavigableMap<K, ? extends V>)
+NavigableSet	unmodifiableNavigableSet(NavigableSet<T>)
+Set			unmodifiableSet(Set<? extends T>)
+SortedMap	unmodifiableSortedMap(SortedMap<K, ? extends V>)
+SortedSet	unmodifiableSortedSet(SortedSet<T>)
+
+CHECKED COLLECTION
+------------------
+Collection	checkedCollection(Collection<E>,Class<E>)
+List		checkedList(List<E>,Class<E>)
+Map			checkedMap(Map<K, V>,Class<K>,Class<V>)
+NavigableMap	checkedNavigableMap(NavigableMap<K, V>,Class<K>,Class<V>)
+NavigableSet	checkedNavigableSet(NavigableSet<E>,Class<E>)
+Queue		checkedQueue(Queue<E>,Class<E>)
+Set			checkedSet(Set<E>,Class<E>)
+SortedMap	checkedSortedMap(SortedMap<K, V>,Class<K>,Class<V>)
+SortedSet	checkedSortedSet(SortedSet<E>,Class<E>)
+
+EMPTY COLLECTION
+----------------
+Enumeration		emptyEnumeration()
+Iterator		emptyIterator()
+List			emptyList()
+ListIterator	emptyListIterator()
+Map				emptyMap()
+NavigableMap	emptyNavigableMap()
+NavigableSet	emptyNavigableSet()
+Set				emptySet()
+SortedMap		emptySortedMap()
+SortedSet		emptySortedSet()

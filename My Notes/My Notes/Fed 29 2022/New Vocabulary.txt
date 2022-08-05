@@ -1,0 +1,100 @@
+To facilitate the verification
+the scheduled commencement 
+Scribble
+ STRICTLY
+PROHIBITED
+During the examination, candidates may be checked for possession of any of the prohibited items
+ candidate will be debarred from the examination and/or subjected to disciplinary action, which may
+include ban from appearing in future examinations
+
+MASK must be in proper position throughout
+candidate’s presence in the examination hall.
+
+Before entry to the examination centre, the centre officials may assess the health condition of the candidate. All candidates MUST
+adhere to the COVID related protocols in compliance with the orders and directives of Government of India and local authorities.
+ast fortnight
+
+Violation of any of the above guidelines including impersonation or breaking of code of conduct for GATE 2022 exam will lead to
+cancellation of candidature and/or legal action.
+
+Repetition of all these codes from one to another database logic is a time consuming task.
+As displayed in the figure, all the incoming request is intercepted by the DispatcherServlet that works as the front controller.
+
+Skipped:
+Advantages of Spring MVC Framework
+
+Directory Structure of Spring MVC using Maven
+
+Project
+	src
+		main
+			java
+				//Java Packages
+			resources
+			webapp
+				WEB-INF
+					spring-servlet.xml
+					web.xml
+				index.jsp
+	pom.xml
+
+controller class:
+-----------------
+@Controller  
+public class HelloController {  
+@RequestMapping("/")  
+    public String display()  
+    {  
+        return "index";  
+    }     
+}
+
+spring-servlet.xml
+------------------
+
+<context:component-scan base-package="" />
+<mvc:annotation-driven/> 
+
+web.xml
+-------
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+	<display-name>SpringMVC</display-name>
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+</web-app>
+
+
+
+
+
+
+
+
+spring-servlet.xml
+------------------
+
+<bean>
+	<context:component-scan base-package="com.javatpoint"/>
+	
+	<mvc:annotation-driven/>
+	
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+</bean>
+
+
+
+
+
+
+

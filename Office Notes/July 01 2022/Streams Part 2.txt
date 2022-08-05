@@ -1,0 +1,15 @@
+Stream<String> map = list.stream().filter(emp -> emp.getSal().intValue() > 2500).map(Employee::getEname);
+		map.forEach(System.out::println);
+
+		// Sum of Salary
+		Optional<Employee> max = list.stream().max((p, q) -> p.getSal().compareTo(q.getSal()));
+		System.out.println("Maximum salary: " + max);
+		
+		double sum = list.stream().map( Employee::getSal).mapToDouble(BigDecimal::doubleValue).sum();
+		System.out.println("Sum of employees: "+sum);
+		
+		BigDecimal summ = new BigDecimal(0);
+		for(Employee e: list) {
+		 	 summ = summ.add(e.getSal());
+		}
+		System.out.println("Total Sum: "+summ);

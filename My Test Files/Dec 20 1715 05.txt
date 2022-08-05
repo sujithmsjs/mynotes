@@ -1,0 +1,41 @@
+Bucket overview
+
+1. Name
+2. AWS Region
+3. ARN(Amazon Resource Name)
+4. Creation date
+
+
+S3 URI
+
+Bucket Versioning
+
+Versioning is a means of keeping multiple variants of an object in the same bucket. You can use versioning to preserve, retrieve, and restore every version of every object stored in your Amazon S3 bucket. With versioning, you can easily recover from both unintended user actions and application failures.
+
+MFA
+Multi-factor authentication delete:
+
+An additional layer of security that requires multi-factor authentication for changing Bucket Versioning settings and permanently deleting object versions. To modify MFA delete settings, use the AWS CLI, AWS SDK, or the Amazon S3 REST API.
+
+Tags
+Track storage cost or other criteria by tagging your bucket.
+
+
+Default encryption
+Automatically encrypt new objects stored in this bucket.
+
+Object Lock
+Store objects using a write-once-read-many (WORM) model to help you prevent objects from being deleted or overwritten for a fixed amount of time or indefinitely. 
+
+
+Transfer acceleration
+Use an accelerated endpoint for faster data transfers.
+
+Static website hosting
+Use this bucket to host a website or redirect requests.
+
+
+
+
+
+

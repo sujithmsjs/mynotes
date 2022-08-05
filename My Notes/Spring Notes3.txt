@@ -1,0 +1,46 @@
+Bean has id, class, scope
+
+bean has properties and constructor-args
+Property name, ref,value
+
+Bean Definition:
+Literal Values
+
+
+Properties File
+-----------------
+1. Creae Properties File
+foo.email=msjs@gmail.com
+foo.team=Power11
+${property_name}
+2. Load
+
+Bean Scopes:
+1. Scope refers to the lifecycle of a bean
+default scope: Singleton
+Singleton: Single object
+prototype
+request
+session
+global-session
+2. How long does the bean live?
+3. How many instances are created?
+4. How is the bean shared?
+
+
+Bean LifeCycle Methods
+Container started -> Bean instantiated -> Dependencies Injected -> Internal Spring Processing -> Your custom  init method -> Bean is Ready for use -> Container is shutdown -> Your Custom Destroy Method -> Stop
+
+Bean Initialization:
+doMyCleanUpStuff
+doMyCleanUpStuff
+
+
+In contrast
+ although initialization lifecycle callback methods are called on all objects regardless of scope
+
+
+
+
+
+

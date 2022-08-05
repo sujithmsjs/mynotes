@@ -1,0 +1,538 @@
+SPRINGBOOT CHEET SHEET
+
+
+++---++---++---++---++---++---++---
+HIBERNATE CONFIG
+++---++---++---++---++---++---++---
+
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.show-sql=true
+
+spring.datasource.username=root
+spring.datasource.password=apple
+spring.datasource.url=jdbc:mysql://localhost:3306/nitro
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driverus
+
+logging.level.org.springframework.context.config=DEBUG
+
+
+# Datasource
+
+spring.datasource.url=jdbc:mysql://localhost:3306/nitro
+spring.datasource.username=root
+spring.datasource.password=apple
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# Hibernate Settings
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+
+
+# Logging Settings
+logging.level.root=INFO
+logging.level.springframework.context=debug
+logging.level.com.suji.crudrepo=DEBUG
+
+
+# DateTimeFormatters
+
+spring.mvc.format.date=yyyy-MM-dd
+spring.mvc.format.date-time=yyyy-MM-dd HH:mm:ss
+spring.mvc.format.time=HH:mm:ss
+
+
+
+++---++---++---++---++---++---++---
+SIMPLE THYMELEAF
+++---++---++---++---++---++---++---
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title></title>
+    <meta
+		http-equiv="Content-Type"
+		content="text/html;
+		charset=UTF-8" />
+  </head>
+  <body>
+  </body>
+</html>
+
+
+
+++---++---++---++---++---++---++---
+SECURITY SETUP
+++---++---++---++---++---++---++---
+
+Step 1:
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+
+Step 2:
+@Configuration
+@EnableWebSecurity
+public class BasicConfiguration extends WebSecurityConfigurerAdapter {
+
+	@Override
+	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	}
+	
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+	}	
+}
+
+Step 3:
+#predefined security properies
+spring.security.user.name=sujith
+spring.security.user.password=suji@123
+
+
+
+++---++---++---++---++---++---++---
+CRUD OPERATIONS
+++---++---++---++---++---++---++---
+
+
+@Controller
+public class StudentCtrl {
+
+	@RequestMapping("/home"oon)
+	public String home(Model model) {
+		List<Student> stds = new ArrayList<>();
+		model.addAttribute("stds", stds);
+		return "home";
+	}
+	
+	@RequestMapping("/std/edit/{sno}")
+	public String editStd(@PathVariable("sno") int sno, Model model) {
+		
+		//Retrive data from database
+		Student std = new Student(943,"Johncena", 87.54);
+		std.setSno(sno);
+		
+		//Adding new object to model
+		model.addAttribute("std", std);
+		
+		return "editStd";
+	}
+	
+	
+	@RequestMapping("/std/new")
+	public String newStd(Model model) {
+		
+		//New Student object created.
+		Student std = new Student();
+		
+		//Adding new object to model
+		model.addAttribute("std", std);
+		
+		System.out.println("New empty student object has been created.");
+		
+	return "newStd";
+	}
+	
+	@RequestMapping("/test")
+	public String test() {
+		System.out.println("In Test Controller...");
+		return "test";
+	}
+	
+	
+	
+	
+	@RequestMapping("/std/delete/{sno}")
+	public String delStd(@PathVariable("sno") int sno) {
+		
+		System.out.println("Student with sno:"+sno+" wil be deleted. Redirecting to home.");
+		
+		return "redirect:/home";
+	}
+	
+	@RequestMapping("/std/save")
+	public String saveStd(Student std) {
+		
+		System.out.println("Saving... std:"+std+" Redirecting to home.");
+		
+		return "redirect:/home";
+	}
+	
+	
+	
+	
+	
+}
+
+++---++---++---++---++---++---++---
+Scheduled -- AjaxDemo
+++---++---++---++---++---++---++---
+
+File 1:
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
+@Component
+public class DemoScheduling {
+
+	//@Scheduled(cron = "0 * 9 * * ?")
+	//@Scheduled(cron = "* * * ? * *")
+	//@Scheduled(fixedRate = 1000)
+	@Scheduled(fixedDelay = 1000, initialDelay = 1000)
+	public void cronJobSch() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
+		Date now = new Date();
+		String strDate = sdf.format(now);
+		System.out.println("Java cron job expression:: " + strDate);
+	}
+}
+
+File 2:
+import org.springframework.scheduling.annotation.EnableScheduling;
+@SpringBootApplication
+@EnableScheduling
+public class AjaxDemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(AjaxDemoApplication.class, args);
+	}
+
+}
+
+File 3:
+@Controller
+public class TimeController {
+
+	@GetMapping("/time")
+	public ResponseEntity<HashMap> getTime() {
+		HashMap<String,String> map = new HashMap<>();
+		map.put("time", LocalDateTime.now().toString());
+		return new ResponseEntity<HashMap>(map,HttpStatus.OK);
+	}
+	
+	@GetMapping("/home")
+	public String getName() {
+		return "home";
+	}
+	
+	@PostMapping("/AjaxHandler")
+	@ResponseBody
+	public String getHome(String name) {
+		System.out.println("requesed from AJAX");
+		return new StringBuilder(name).reverse().toString();
+	}	
+}
+
+-------------------
+@SpringBootApplication
+public class CheckSpringApplication {
+
+	public static void main(String[] args) {
+		
+		ConfigurableApplicationContext context = SpringApplication.run(CheckSpringApplication.class, args);
+		Car car = (Car) context.getBean("car");
+		
+		System.out.println("Hello world "+car);
+	}
+
+}
+
+----------------
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.suji.crud.entity.Student;
+
+@Controller
+public class StudentCtrl {
+
+	@RequestMapping("/home")
+	public String home(Model model) {
+		
+		List<Student> stds = new ArrayList<>();
+		stds.add(new Student(109, "Sujith", 9.4));
+		stds.add(new Student(343, "Sumanth", 8.4));
+		stds.add(new Student(234, "Anitha", 7.4));
+		stds.add(new Student(267, "Shamala", 4.4));
+		
+		model.addAttribute("stds", stds);
+		
+		return "home";
+	}
+	
+	@RequestMapping("/std/edit/{sno}")
+	public String editStd(@PathVariable("sno") int sno, Model model) {
+		
+		//Retrive data from database
+		Student std = new Student(943,"Johncena", 8 7.54);
+		std.setSno(sno);
+		
+		//Adding new object to model
+		model.addAttribute("std", std);
+		
+		return "editStd";
+	}
+	
+	
+	@RequestMapping("/std/new")
+	public String newStd(Model model) {
+		
+		//New Student object created.
+		Student std = new Student();
+		
+		//Adding new object to model
+		model.addAttribute("std", std);
+		
+		System.out.println("New empty student object has been created.");
+		
+	return "newStd";
+	} 
+	
+	@RequestMapping("/test")
+	public String test() {
+		System.out.println("In Test Controller...");
+		return "test";
+	}
+	
+	
+	
+	
+	@RequestMapping("/std/delete/{sno}")
+	public String delStd(@PathVariable("sno") int sno) {
+		
+		System.out.println("Student with sno:"+sno+" wil be deleted. Redirecting to home.");
+		
+		return "redirect:/home";
+	}
+	
+	@RequestMapping("/std/save")
+	public String saveStd(Student std) {
+		
+		System.out.println("Saving... std:"+std+" Redirecting to home.");
+		
+		return "redirect:/home";
+	}
+	
+	
+	
+	
+	
+}
+
+
+++---++---++---++---++---++---++---
+THYMELEAF SIGNUP FORM. CrudOps
+++---++---++---++---++---++---++---
+
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Update Student</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body bgcolor="orange">
+	<div>
+		<h1>Update new student</h1>
+		
+		<form th:object="${std}" th:action="@{/std/save}">
+		
+			<label for="fname">Sno:</label><br />
+			<input type="text" th:field="*{sno}"><br />
+
+			<label for="lname">Name:</label><br />
+			<input type="text" th:field="*{name}"><br />
+
+			<label for="lname">CGPA:</label><br />
+			<input type="text" th:field="*{cgpa}"><br />
+			
+			<input type="submit" value="Signup">
+		</form>
+	</div>
+</body>
+
+</html>
+
+---
+TEST PAGE
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Test Page</title>
+		<meta charset="UTF-8">
+		<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+	</head>
+	
+	<body>
+		<h1>This is just testing page.</h1>
+	</body>
+</html>
+
+
+----
+INDEX
+
+<table>
+	<tr>
+		<th>Sno</th>
+		<th>Name</th>
+		<th>CGPA</th>
+		<th>Actions</th>
+	</tr>
+
+	<tr th:each="std : ${stds}">
+		<td th:text="${std.sno}"></td>
+		<td th:text="${std.name}"></td>
+		<td th:text="${std.cgpa}"></td>
+
+		<td>
+			<a th:href="@{/std/edit/{sno}(sno=${std.sno})}">Edit</a>
+			<a th:href="@{/std/delete/{sno}(sno=${std.sno})}">Delete</a>
+		</td>
+
+	</tr>
+</table>
+-------
+package com.suji.crud.ctrl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.suji.crud.entity.Student;
+
+@Controller
+public class StudentCtrl {
+
+	@RequestMapping("/home")
+	public String home(Model model) {
+	
+		List<Student> stds = new ArrayList<>();
+		model.addAttribute("stds", stds);
+		
+		return "home";
+	}
+	
+	// <form th:object="${std}" th:action="@{/std/save}">
+	
+	@RequestMapping("/std/edit/{sno}")
+	public String editStd(@PathVariable("sno") int sno, Model model) {
+		
+		Student std = //...
+		model.addAttribute("std", std);
+		
+		return "editStd";
+	}
+	
+	
+	@RequestMapping("/std/new")
+	public String newStd(Model model) {
+		
+		// New Student object created.
+		Student std = new Student();
+		
+		// Adding new object to model
+		model.addAttribute("std", std);
+		
+	return "newStd";
+	}
+	
+	
+	
+	
+	@RequestMapping("/std/delete/{sno}")
+	public String delStd(@PathVariable("sno") int sno) {
+		return "redirect:/home";
+	}
+	
+	
+	// <form th:object="${std}" th:action="@{/std/save}">
+	
+	@RequestMapping("/std/save")
+	public String saveStd(Student std) {
+	
+		return "redirect:/home";
+	}
+}
+
+---------------------------------------------------------------
+
+package com.suji.crudrepo;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
+
+import com.suji.crudrepo.service.EmailService;
+
+@Component
+public class MyRunner  implements CommandLineRunner{
+	
+	private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
+
+	@Override
+	public void run(String... args) throws Exception {
+	
+		logger.debug("Email Sent Successfully.");
+		logger.info("This is just some info");
+		logger.debug("This is just some info");
+	}
+
+}
+
+-----------------------------------------------------------------
+package com.suji.crudrepo.configuration;
+import org.springframework.boot.web.server.ErrorPage;
+import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+
+@Configuration
+public class WebApplicationConfig implements WebMvcConfigurer {
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		
+		
+		System.out.println("Checking for ViewControllers.");
+		//registry.addViewController("/notFound").setViewName("forward:/error-page.html");
+	}
+
+	@Bean
+	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> containerCustomizer() {
+		
+		return container -> {
+			container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/notFound"));
+		};
+	}
+
+}
+
+
+-------------------
+private static final Logger LOG = LoggerFactory.getLogger(MyRunner.class);
+----------------------
+IllegalStateException: Neither BindingResult nor plain target object for bean name 'student' available as request attribute

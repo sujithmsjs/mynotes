@@ -1,0 +1,58 @@
+package com.suji.SpringHib.depricated;
+
+import java.util.Properties;
+
+import org.apache.commons.dbcp.BasicDataSource;
+import org.hibernate.SessionFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.orm.hibernate3.LocalSessionFactoryBean;
+
+
+
+//@Configuration
+//@ComponentScan(basePackages = "com.suji.SpringHib.config")
+public class MyConfig02 {
+	
+	@Bean
+	public BasicDataSource getDataSource() {
+		BasicDataSource bds = new BasicDataSource();
+		bds.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		bds.setUrl("jdbc:mysql://localhost:3306/demo1");
+		bds.setUsername("root");
+		bds.setPassword("apple");
+		return bds;
+	}
+	
+	@Bean
+	public LocalSessionFactoryBean getSessionFactory() {
+		
+		LocalSessionFactoryBean sessionFactoryBean = new LocalSessionFactoryBean();
+		sessionFactoryBean.setHibernateProperties(getHibernateProperties());
+		sessionFactoryBean.setDataSource(getDataSource());
+		
+		
+		return sessionFactoryBean;
+	}
+	
+	@Bean
+	public Properties getHibernateProperties() {
+		
+		Properties p = new Properties();
+		p.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+		p.setProperty("hibernate.hbm2ddl.auto", "update");
+		p.setProperty("hibernate.show_sql", "true");
+
+		return p;
+	}
+	
+	@Bean(name = "template")
+	public HibernateTemplate getHibernateTemplate() {
+		HibernateTemplate template = new HibernateTemplate();
+		template.setSessionFactory((SessionFactory) getSessionFactory());
+		return template;
+	}
+
+}

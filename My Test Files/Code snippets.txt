@@ -1,0 +1,26 @@
+JAVA 8 FEATURES
+---------------
+A stream is a sequence of elements. Unlike a collection, it is not a data structure that stores elements. Instead, a stream carries values from a source through a pipeline. This example creates a stream from the collection roster by invoking the method stream.
+
+
+double a = Math.random()*(max-min+1)+min;
+int b = (int)(Math.random()*(max-min+1)+min);  
+
+
+ints():
+
+The pseudorandom int values generated the same as calling the nextInt() method. It returns an unlimited stream of pseudorandom int values.
+
+
+# Program to generate Random Name 
+String[] name = {"ka","zu","mi","te","tu","lu","ji","ri",
+				"ki","zu","me","ta","rin","to","mo","no",
+				"ke","shi","ari","chi","do","ru","mei","na","fu","z"};
+Random r = new Random();
+r.ints((int)(Math.random()*2+2), 1,26 ).boxed().map(n-> name[n]).forEach( n -> System.out.print(n));
+
+
+
+# Stream Math Methods
+
+		

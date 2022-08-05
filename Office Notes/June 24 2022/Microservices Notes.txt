@@ -1,0 +1,48 @@
+09:53 22-06-2022
+Microservices
+Source: https://www.javatpoint.com/microservices
+
+
+Microservices are the small services that work together.
+- Sam Newman
+
+The microservice architectural style is an approach to develop a single application as a suite of small services. Each microservice runs its process and communicates with lightweight mechanisms. These services are built around business capabilities and independently developed by fully automated deployment machinery.
+
+
+Points to remember
+- These are the services which are exposed by REST.
+- These are small well-chosen deployable units.
+- The services must be cloud-enabled.
+
+
+Service-Oriented Architecture (SOA)
+
+Microservice helps in breaking the application and build a logically independent smaller applications. For example, we can build a cloud application with the help of Amazon AWS with minimum efforts.
+
+
+Two types of Architecture
+1. Monolithic Architecture
+2. Microservice Architecture
+
+> Each microservice has its own business layer and database.
+> Change in one microservice, it does not affect the other services.
+> These services communicate with each other by using lightweight protocols such as HTTP or REST or messaging protocols.
+
+
+Principles of Microservices
+There are the following principles of Microservices:
+
+1. Single Responsibility principle: a class or a module in a program should have only one responsibility.
+
+
+2. Modelled around business domain: Microservice never restrict itself from accepting appropriate technology stack or database.
+
+3. Isolate Failure: The large application can remain mostly unaffected by the failure of a single module.
+
+4. Infrastructure automation
+
+5. Deploy independently: Microservices are platform agnostic. It means we can design and deploy them independently without affecting the other services.
+
+
+Prerequisites
+Java, Spring, and Spring Cloud Framework.

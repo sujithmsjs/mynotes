@@ -1,0 +1,34 @@
+Spring Core Fundamentals
+1. Dependency Injection
+	1.1 Setter based
+	1.2 Constructor based
+2. Spring IOC Containers
+	2.1 Application Context types
+3. Spring Beans
+	3.1 Types
+	3.2 Scopes
+4. Different ways to configure Spring beans
+	4.1 Java based configure
+	4.2 XML based configure
+	4.3 Annotation based configure
+
+
+
+
+
+
+@Component
+public class Mobile {
+	@Autowired
+	Processer pro;
+	@Autowired
+	Screen screen;
+}
+
+UnsatisfiedDependencyException: Error creating bean with name 'mobile': Unsatisfied dependency expressed through field 'pro'; 
+
+NoSuchBeanDefinitionException: No qualifying bean of type 'com.suji.SpringHib.mod.Processer' available: expected at least 1 bean which qualifies as autowire candidate.
+
+
+=================
+

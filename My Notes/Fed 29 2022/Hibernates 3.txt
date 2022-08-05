@@ -1,0 +1,73 @@
+HQL Language
+============
+
+
+Query Syntax Exception:
+
+BeanInfo testBeanInfo = Introspector.getBeanInfo(row.getClass());
+testBeanInfo.getPropertyDescriptors()[columnIndex].getReadMethod().invoke(row);
+
+(Object[])row)[columnIndex].getClass().getName()
+
+
+Keywords like SELECT, FROM, and WHERE, etc., are not case sensitive, but properties like table and column names are case sensitive in HQL.
+persistent objects
+
+String hql = "FROM Employee";
+String hql = "FROM com.hibernatebook.criteria.Employee";
+String hql = "FROM Employee AS E"; // As is Optional.
+String hql = "FROM Employee E";
+String hql = "SELECT E.firstName FROM Employee E";
+String hql = "FROM Employee E WHERE E.id = 10";
+String hql = "FROM Employee E WHERE E.id > 10 ORDER BY E.salary DESC";
+String hql = "FROM Employee E WHERE E.id > 10 ORDER BY E.firstName DESC, E.salary DESC";
+
+String hql = "SELECT SUM(E.salary), E.firtName FROM Employee E GROUP BY E.firstName";
+
+String hql = "SELECT count(distinct E.firstName) FROM Employee E";
+
+Query query = session.createQuery(hql);
+List results = query.list();
+
+USING NAMED PARAMETERS:
+=======================
+String hql = "FROM Employee E WHERE E.id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("employee_id",10);
+List results = query.list();
+
+
+UPDATE CLAUSE:
+==============
+String hql = "UPDATE Employee set salary = :salary WHERE id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("salary", 1000);
+query.setParameter("employee_id", 10);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+
+DELETE CLAUSE
+=============
+String hql = "DELETE FROM Employee WHERE id = :employee_id";
+Query query = session.createQuery(hql);
+query.setParameter("employee_id", 10);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+
+INSERT CLAUSE
+=============
+String hql = "INSERT INTO Employee(firstName, lastName, salary) SELECT firstName, lastName, salary FROM old_employee";
+Query query = session.createQuery(hql);
+int result = query.executeUpdate();
+System.out.println("Rows affected: " + result);
+
+Pagination using Query
+======================
+Query setFirstResult(int startPosition)
+Query setMaxResults(int maxResult)
+Ex:-
+String hql = "FROM Employee";
+Query query = session.createQuery(hql);
+query.setFirstResult(1);
+query.setMaxResults(10);
+List results = query.list();

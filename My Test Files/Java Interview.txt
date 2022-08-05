@@ -1,0 +1,58 @@
+Lexicographical comparison:
+
+Platform independent language: 
+	1. Not depend on hardware/software.
+	2. Compiler compiles the code and conver into plantform independent byte code.
+	3. It can be run in on multiple systerms.
+	
+Runtime environment (JRE):
+Stack Memory: Variables, Methods, etc.
+Heap Memory: Objects
+
+
+Compiler: The compiler is nothing but a translator of source code to machine-executable co	de. .java to .class
+Interpretter: runs .byte
+
+Diamond problem in C++:Java doesn't support multiple inheritance And it is due to avoiding the complexity of name ambiguity that causes the diamond problem
+
+Data encapsulation: Concept of hiding the data attributes and their behaviours in a single unit.
+	- Data hiding
+	- To provide modularity
+	
+JIT Compiler:
+	- Stands for Just-In-Time
+	- Part of JVM
+	- When the JIT compiler is enabled, the JVM analyzes the method calls in the .class files and compiles them to get more efficient and native code.
+	-  It also ensures that the prioritized method calls are optimized.
+	- Once the above step is done, the JVM executes the optimized code directly instead of interpreting the code again.
+
+Final static variables: Must assign value.
+Final instance variables: Must assign value or Must assing using constructor.
+Final Constructor: Illegal modifier for the constructor
+Final method over ridding: IncompatibleClassChangeError: Overrides final method.
+Overring Static Method: Instance method cannot override the static method.
+
+
+WE CAN NOT OVERRIDE STATIC AND FINAL METHODS.
+BOTH STATIC AND FINAL METHODS CAN BE OVERRIDE.
+
+Run time polymorphism:
+Dynamic polymorphism:
+Objective of garbage collection:
+ClassLoader:
+ShallowCopy and Deep copy:
+
+String Pool: a storage area in Java heap.
+No external synchronization is required if the String objects are immutable.
+
+Singleton class:
+
+Daemon thread:
+
+
+
+n
+
+
+
+

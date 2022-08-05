@@ -1,0 +1,223 @@
+================
+Eureka Server
+================
+
+Eureka Server is an application that holds the information about all client-service applications. Every Micro service will register into the Eureka server and Eureka server knows all the client applications running on each port and IP address. Eureka Server is also known as Discovery Server.
+
+Eureka Server comes with the bundle of Spring Cloud.
+
+Default port no 8761.
+
+Note:
+The @EnableEurekaServer annotation is used to make your Spring Boot application acts as a Eureka Server.
+
+Dependency needed:
+<dependency>
+   <groupId>org.springframework.cloud</groupId>
+   <artifactId>spring-cloud-starter-eureka</artifactId>
+</dependency>
+
+Note:
+The @EnableEurekaClient annotation makes your Spring Boot application act as a Eureka client.
+
+Server application.props
+------------------------
+eureka.client.registerWithEureka = false
+eureka.client.fetchRegistry = false
+server.port = 8761
+
+Client application.props
+-------------------------
+eureka.client.serviceUrl.defaultZone  = http://localhost:8761/eureka
+eureka.client.instance.preferIpAddress = true
+spring.application.name = eurekaclient
+
+
+================================
+Zuul Proxy Server and Routing
+================================
+
+Zuul Server is a gateway application that handles all the requests and does the dynamic routing of microservice applications. The Zuul Server is also known as Edge Server.
+
+The Zuul Server is bundled with Spring Cloud dependency
+
+@EnableZuulProxy: The @EnableZuulProxy annotation is used to make your Spring Boot application act as a Zuul Proxy server.
+
+Dependency:
+
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-netflix-zuul</artifactId>
+    <version>2.2.0.RELEASE</version>
+</dependency>
+
+application props
+-----------------
+spring.application.name = zuulserver
+zuul.routes.products.path = /api/demo/**
+zuul.routes.products.url = http://localhost:8080/
+server.port = 8111
+
+DTO: Date Transfer Object
+
+Zuul is an edge service that proxies requests to multiple backing services.
+
+
+It provides a unified “front door” to your ecosystem, which allows any browser, mobile app or other user interface to consume services from multiple hosts
+
+
+
+Zuul Serviec will intercept all the requests and then route the requests to actual services.
+
+Zuul Components
+----------------
+pre, post, route, error.
+
+
+pre filters – are invoked before the request is routed.
+post filters – are invoked after the request has been routed.
+route filters – are used to route the request.
+error filters – are invoked when an error occurs while handling the request.
+
+Client > pre > route > MS > post
+
+-------------------------------
+spring.application.name=student
+server.port=8090
+--------------------------------
+
+
+
+@EnableZuulProxy
+
+----------------------
+#Zuul routes. Here for /student path, we are routing to localhost:8090 with extra path after that.
+
+zuul.routes.student.url=http://localhost:8090
+ 
+#Ribbon is auto integrated with Zuul and for this exercise we are not using that.
+ribbon.eureka.enabled=false
+ 
+#Will start the gateway server @8080
+server.port=8080
+
+spring.application.name=netflix-zuul-api-gateway-server  
+server.port=8765  
+eureka.client.service-url.default-zone=http://localhost:8765/eureka
+------------------------
+
+
+
+
+
+
+
+
+
+Add the following dependencies: Zuul, Eureka Discovery, Actuator, and DevTools.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

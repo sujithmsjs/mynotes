@@ -1,0 +1,147 @@
+
+HTTP Special features
+1. Session
+It is browser specific.
+
+2. Cookies
+3. Cache memory
+
+After session invalidate disabling going back.
+response.setHeader("Cache-Control","no-cache,no-stroe, must-revalidate"); // HTTP 1.1
+response.setHeader("Pragma","no-cache"); //HTTP 1.0
+response.setHeader("Expires","0"); // Proxies
+
+
+
+Attributes can contain any object not just strings. And are used to pass data between requests.
+
+There are three different scopes:
+
+1. Request Scope
+2. Session Scope
+3. Application Scope.
+
+REQUEST SCOPE: are most useful when processing the results of a submitted form. With request scope you are also guaranteed that no other request will be able to affect your objects in that request scope while your request is being handled. This scope has the shortest lifspan.
+SESSION SCOPE: is associated with a user. When a user visits your web application, a session is created by the web container. So the session’s lifespan lives as long as the user interacts with your application or when session.invalidate() is called.
+APPLICATION SCOPE: or global scope is associated with your web application. This scope lives as long as the web application is deployed.
+
+++++++++++++++++++
+
+CONTAINER
+It is used in java for dynamically generating the web pages on the server side.
+
+CONTENT TYPE
+It is HTTP header that provides the description about what are you sending to the browser.
+
+SERVLET COLLABORATION
+
+A WEB APPLICATION is an application accessible from the web. A web application is composed of web components like Servlet, JSP, Filter, etc. and other elements such as HTML, CSS, and JavaScript. The web components typically execute in Web Server and respond to the HTTP request.
+
+
+CGI (COMMON GATEWAY INTERFACE)
+CGI technology enables the web server to call an external program and pass HTTP request information to the external program to process the request. For each request, it starts a new process.
+It uses platform dependent language e.g. C, C++, perl.
+
+ADVANTAGES OF SERVLET
+The web container creates threads for handling the multiple requests to the Servlet. Threads have many benefits over the Processes such as they share a common memory area, lightweight, cost of communication between the threads are low.
+
+
+
+
+Difference between RequestDispatcher and sendRedirect.
+
+Difference between ServletConfig and ServletContext.
+
+How can we upload and download the file from the server?
+
+SERVLET API
+
+The javax.servlet package contains many interfaces and classes that are used by the servlet or web container. These are not specific to any protocol.
+
+The javax.servlet.http package contains interfaces and classes that are responsible for http requests only.
+
+
+interface Servlet
+
+	Life-Cycle methods
+    1. void init(ServletConfig config);
+    2. void service(ServletRequest req, ServletResponse res);
+    3. void destroy();
+	
+	NonLife-Cycle methods
+	4. String getServletInfo();
+	5. ServletConfig getServletConfig();
+
+
+interface ServletConfig
+	1.	String getServletName();
+	2.	ServletContext getServletContext();
+	3.	String getInitParameter(String name);
+	4.	Enumeration<String> getInitParameterNames();
+
+
+
+public abstract class GenericServlet implements Servlet, ServletConfig, Serializable {
+	...
+	...
+	private ServletConfig	config;
+	private ServletContext	contex;
+	
+	void init(ServletConfig config){
+		this.config = config;
+		init();
+	}
+	
+	void init(){}
+	
+	String getServletInfo(){
+		config.getServletName();
+	}
+	
+	ServletConfig getServletConfig(){
+		return config;
+	}
+	
+	ServletContext getServletContext(){
+		return contex;
+	}
+	
+	
+	void log(String msg){}
+	public void log(String message, Throwable t){}
+	...
+	...
+}
+
+
+public abstract class HttpServlet extends GenericServlet {
+
+}
+
+How to get ServletConfig?
+
+1. GenericServlet's getServletConfig() method.
+2. By overriding init(ServletConfig config) method.
+	
+	CustomServlet extends GenericServlet{
+		void init(ServletConfig config){
+			super.config = config; // Must be first statement.
+		}
+	}
+
+
+How to use init() method?
+
+CustomServlet extends GenericServlet{
+	void init(){
+		...
+		...
+	}
+}
+
+How to get ServletContext object?
+
+1. getServletContext() of GenericServlet class.
+	
+2. getServletContext() of ServletConfig class.
+   getServletConfig().getServletContext();

@@ -1,0 +1,263 @@
+IntStream(I) ==> BaseStream(I) ==> AutoCloseable(RI)
+
+Methods:
+
+Reduction Operations
+--------------------
+int	sum()
+Ex:-
+int[] arr = {6,1,5,2,9,3,4,8,7};
+int sum = IntStream.of(arr).sum();
++-+-+-+
+
+OptionalInt	max()
+OptionalInt	min()
+Ex:-
+int[] arr = {6,1,5,2,9,3,4,8,7};
+OptionalInt min = IntStream.of(arr).min();
+min.ifPresent( n -> System.out.println(n));
+int minVal = min.getAsInt();
++-+-+-+
+
+OptionalDouble	average()
+Ex:-
+int[] arr = {6,1,5,2,9,3,4,8,7};
+OptionalDouble min = IntStream.of(arr).average();
+min.getAsDouble();
+
++-+-+-+
+
+OptionalInt	findAny()
+Ex:-
+OptionalInt min = IntStream.of(arr).findAny();
++-+-+-+
+OptionalInt	findFirst()
+Ex:-
+int[] arr = {6,1,5,2,9,3,4,8,7};
+OptionalInt first = IntStream.of(arr).skip(0).findFirst(); // 6
+skip(1).findFirst(); // 1
+skip(3).findFirst(); // 2
+skip(8).findFirst(); // 7
+skip(9).findFirst(); // NoSuchElementEx
+sorted().skip(0).findFirst(); // 1
+sorted().skip(arr.length).findFirst(); // NoSuchElementEx
+sorted().skip(arr.length-1).findFirst(); //9
+sorted().skip(arr.length-2).findFirst(); //8
++-+-+-+
+
+
+OptionalInt	reduce(IntBinaryOperator)
+Example 1:
+int[] arr = { 6, 1, 5, 2, 9, 3, 4, 8, 7 };
+
+IntStream.of(arr).reduce(
+	(p, q) -> {
+		System.out.println(p + " " + q);
+		return p + q;
+	}
+);
+
+Output:-
+6 1
+7 5
+12 2
+14 9
+23 3
+26 4
+30 8
+38 7
+
+Example 2:
+OptionalInt op = IntStream.of(arr).reduce((p, q) -> p + q);
+System.out.println(op.getAsInt()); // 45
+
++-+-+-+
+int	reduce(int,IntBinaryOperator)
+Example 1:
+int[] arr = { 6, 1, 5, 2, 9, 3, 4, 8, 7 };
+int reduce = IntStream.of(arr).reduce(10,(p, q) -> {
+	System.out.println(p + " " + q);
+	return p + q;
+});
+System.out.println(reduce);
+
+Output:
+10 6
+16 1
+17 5
+22 2
+24 9
+33 3
+36 4
+40 8
+48 7
+55
+
++-+-+-+
+long	count()
+int[] arr = {6,1,5,2,9,3,4,8,7};
+long count = IntStream.of(arr).count();
+
+IntStream.of(6).count();
+IntStream.of(1,2,3,4).count();
+
++-+-+-+
+		
+
+
+int[]	toArray()
++-+-+-+
+
+boolean	noneMatch(IntPredicate)
+boolean	allMatch(IntPredicate)
+boolean	anyMatch(IntPredicate)
+
+Ex:-
+int[] arr = {6,1,5,2,9,3,4,8,7};		
+boolean anyMatch = IntStream.of(arr).anyMatch( n -> n>10);
+boolean noneMatch = IntStream.of(arr).noneMatch(n -> n>10);
+boolean allMatch = IntStream.of(arr).allMatch( n -> n>10);
+System.out.println(anyMatch); // false
+System.out.println(noneMatch); // true
+System.out.println(allMatch); // false
+
+
+Intermediate Operations
+-----------------------
+IntStream	filter(IntPredicate)
+# Example 1:
+int[] arr = {  2400,1700, 1800, 1600,  1988, 1992,  1900, 2100, 2000, 2200, 2300 };
+
+IntPredicate p1 = n -> (n % 4 == 0 && n % 100 != 0);
+IntPredicate p2 = n -> (n % 400 == 0);
+IntPredicate isLeapYear = p1.or(p2);
+
+System.out.println("\np1:");
+IntStream.of(arr).filter(p1).forEach(n -> System.out.print(n+" "));
+
+System.out.println("\np2:");
+IntStream.of(arr).filter(p2).forEach(n -> System.out.print(n+" "));
+
+System.out.println("\nisLeap:");
+IntStream.of(arr).filter(isLeapYear).forEach(n -> System.out.print(n+" "));
+
+Output:
+p1:
+1988 1992
+p2:
+2400 1600 2000
+isLeap:
+2400 1600 1988 1992 2000
+
+# Example 2:
+Find Female employees who's salary is greater than 5000;
+List<Employee> list = Employee.findAll();
+	
+List<Employee> col2 = list.stream()
+	.filter( e -> e.getGender() == 2)
+	.collect(Collectors.toList());
+		
+List<Employee> col1 = list.stream()
+	.filter( e -> e.getGender() == 2)
+	.filter(e -> e.getSal() > 5000)
+	.collect(Collectors.toList());
+	
+col1.forEach( e -> System.out.print(e.getName()+" "));
+System.out.println();
+col2.forEach( e -> System.out.print(e.getName()+" "));
+		
+
++-+-+-+
+
+IntStream	map(IntUnaryOperator)
+IntStream	limit(long)
+
++-+-+-+
+
+IntStream	peek(IntConsumer)
+int sum = IntStream.range(1, 10)
+.filter(e -> e > 5)
+.peek(e -> System.out.println("Filtered value: " + e))
+.map(e -> e * e)
+.peek(e -> System.out.println("Mapped value: " + e))
+.sum();
+System.out.println("Sum: "+sum);
+
+Output:
+Filtered value: 6
+Mapped value: 36
+Filtered value: 7
+Mapped value: 49
+Filtered value: 8
+Mapped value: 64
+Filtered value: 9
+Mapped value: 81
+Sum: 230
+
++-+-+-+
+
+IntStream	skip(long)
+
++-+-+-+
+
+IntStream	sorted()
+Example:
+List<Employee> list = Employee.findAll();
+
+// Sort by salary
+list.stream()
+.sorted((p, q) -> q.getSal() - p.getSal())
+.forEach(e -> System.out.print(e.getName()+" "));
+
+// Sort by Name
+list.stream()
+.sorted((p, q) -> p.getName().compareTo(q.getName()))
+.forEach(e -> System.out.print(e.getName()+" "));
+
+s// Sort by Gender
+list.stream()
+.sorted((p, q) -> p.getGender()-q.getGender())
+.forEach(e -> System.out.print(e.getName()+" "));
+		
++-+-+-+
+
+IntStream	distinct()
+
+IntStream	flatMap(IntStream)
+
+IntStream	dropWhile(IntPredicate)
+
+IntStream	takeWhile(IntPredicate)
+
+Boxing Operations
+-----------------
+Stream	boxed()
+
+Terminal Operations
+-------------------
+Object	collect(Supplier<R>,ObjIntConsumer<R>,BiConsumer<R, R>)
+void	forEach(IntConsumer)
+void	forEachOrdered(IntConsumer)
+
+Static Source Functions
+-----------------------
+static	IntStream$Builder	builder()
+static	IntStream	concat(IntStream,IntStream)
+static	IntStream	empty()
+static	IntStream	generate(IntSupplier)
+static	IntStream	iterate(int,IntPredicate,IntUnaryOperator)
+static	IntStream	iterate(int,IntUnaryOperator)
+static	IntStream	of(int)
+static 	IntStream	of(int[])
+static	IntStream	range(int,int)
+static	IntStream	rangeClosed(int,int)
+
+Conversion Functions
+--------------------
+IntSummaryStatistics	summaryStatistics()
+Stream	mapToObj(IntFunction<? extends U>)
+DoubleStream	asDoubleStream()
+LongStream	asLongStream()
+IntStream	mapMulti(IntStream$IntMapMultiConsumer)
+DoubleStream	mapToDouble(IntToDoubleFunction)
+LongStream	mapToLong(IntToLongFunction)

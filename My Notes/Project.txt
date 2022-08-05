@@ -1,0 +1,99 @@
+CRUD SpringBoot Project
++++++++++++++++++++++++
+
+package com.suji.crud.ctrl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.suji.crud.entity.Student;
+
+@Controller
+public class StudentCtrl {
+
+	@RequestMapping("/home")
+	public String home(Model model) {
+		
+		List<Student> stds = // Retrive students data
+		model.addAttribute("stds", stds);
+		return "home";
+	}
+	
+	@RequestMapping("/std/edit/{sno}")
+	public String editStd(@PathVariable("sno") int sno, Model model) {
+		
+		Student std = //Get Student by SNO
+		model.addAttribute("std", std);
+
+		return "editStd";
+	}
+	
+	
+	@RequestMapping("/std/new")
+	public String newStd(Model model) {
+		
+		//New Student object created.
+		Student std = new Student();
+		
+		//Adding new object to model
+		model.addAttribute("std", std);
+		
+		return "newStd";
+	}
+
+	@RequestMapping("/std/delete/{sno}")
+	public String delStd(@PathVariable("sno") int sno) {
+		
+		// Delete Student by SNO
+		
+		return "redirect:/home";
+	}
+	
+	@RequestMapping("/std/save")
+	public String saveStd(Student std) {
+		
+		//Save new student "std"
+		
+		return "redirect:/home";
+	}
+}
+
+home.html
+---------
+<div>
+	<a th:href="@{/std/new}">Create New Student</a>
+	<table>
+		<tr>
+			<th>Sno</th>
+			<th>Name</th>
+			<th>CGPA</th>
+			<th>Actions</th>
+		</tr>
+		<tr th:each="std : ${stds}">
+			<td th:text="${std.sno}"/>
+			<td th:text="${std.name}"/>
+			<td th:text="${std.cgpa}"/>
+			<td>
+				<a th:href="@{/std/edit/{sno}(sno=${std.sno})}">Edit</a>
+				<a th:href="@{/std/delete/{sno}(sno=${std.sno})}">Delete</a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+newStd.html and Update student
+------------------------------
+<div>
+	<form th:object="${std}" th:action="@{/std/save}">
+		<input type="text" th:field="*{sno}"/>
+		<input type="text" th:field="*{name}"/>
+		<input type="text" th:field="*{cgpa}"/>
+		<input type="submit" value="Signup"/>
+	</form>
+</div>
+

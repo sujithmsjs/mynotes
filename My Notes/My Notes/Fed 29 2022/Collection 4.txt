@@ -1,0 +1,76 @@
+Generics:
+
+Object obj = "Sujith";
+sout(obj.getClass()); // java.lang.String
+
+ClassCastException
+
+Box<String> box = new Box(1234);
+It will accept any object without dimond operator.
+but it will generate ClassCastException in run time.
+
+To avoid this.
+Box<String> box = new Box<>(1234);
+It will show the error on creation of object.
+
+
+Box<String> box = new Box<>("Sujith");
+String name = box.getData();
+
+
+Box<Color> box = new Box<>(Color.RED);
+Color color = box.getData();
+System.out.println("Color = " + box);
+box.setData(Color.GREEN);
+System.out.println("Color = " + box);
+
+Code:
+class A<T>{
+
+    private T data;
+
+    public A(T data) {
+        this.data = data;
+    }   
+}
+class B extends A{ 
+    public B(Object data) {
+        super(data);
+    }
+}
+Compiled as:
+class B extends A {
+  public B(Object data) {
+    super((T)data);
+  }
+}
+
+Code:
+class B<T> extends A{ 
+    public B(Object data) {
+        super(data);
+    }
+}
+Compiled as:
+class B<T> extends A {
+  public B(Object data) {
+    super((T)data);
+  }
+}
+
+class A<T> as same as
+class A<T extends Object> {}
+
+
+
+class A<T extends Number> {}
+Accepts only Number and it's subclasses at the constructor.
+
+new A(2.5); //Valid
+new A("Str"); //Invalid
+A<Integer> a = new A<>(2); //Valid
+A<Double> a2 = new A<>(2d);//Valid
+
+
+
+

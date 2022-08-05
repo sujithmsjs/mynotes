@@ -1,0 +1,28 @@
+Predicate
+- test, and, or, nagate, isEquals
+
+Function
+- apply, andThen, compose, identity
+
+Comsumer
+- accept, andThen
+
+Supplier
+- get
+
+Comparable
+- compareTo
+
+Comparator
+- compare,equals
+
+Optional
+- empty, of, ofNullable
+
+- optional.get() : if obj is null, No Such Element Exception.
+isEmpty, isPresent
+- optional.orElse(T t)
+
+
+
+

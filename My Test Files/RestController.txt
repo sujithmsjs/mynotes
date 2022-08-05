@@ -1,0 +1,4 @@
+@RestController(v4.o) = It's a convenient annotation that combines @Controller and @ResponseBody.
+
+@ResponseBody: This annotation enables automatic serialization of the return object into the HttpResponse.
+

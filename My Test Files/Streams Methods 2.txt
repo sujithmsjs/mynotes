@@ -1,0 +1,95 @@
+Streams
+-------
+AutoCloseable(RI)
+
+Methods:
+void	close()
+
++---++---++---++---++---++---+
+
+BaseStream(I) ==> AutoCloseable(RI)
+
+Methods:
+boolean	isParallel()
+Iterator	iterator()
+BaseStream	onClose(Runnable)
+BaseStream	parallel()
+BaseStream	sequential()
+Spliterator	spliterator()
+BaseStream	unordered()
+
++---++---++---++---++---++---+
+
+Stream(I) ==> BaseStream(I) ==> AutoCloseable(RI)
+
+Methods:
+Reductions Operations:
+Optional	max(Comparator<? super T>)
+Optional	min(Comparator<? super T>)
+Optional	reduce(BinaryOperator<T>)
+Object		reduce(T,BinaryOperator<T>)
+Object		reduce(U,BiFunction<U, ? super T, U>,BinaryOperator<U>)
+
+Optional	findAny()
+Optional	findFirst()
+
+Terminal Operations:
+Object[]	toArray()
+Object[]	toArray(IntFunction<A[]>)
+
+List	toList()
+void	forEach(Consumer<? super T>)
+void	forEachOrdered(Consumer<? super T>)
+long	count()
+
+
+boolean	allMatch(Predicate<? super T>)
+boolean	anyMatch(Predicate<? super T>)
+
+
+static	Stream$Builder	builder()
+Object	collect(Collector<? super T, A, R>)
+Object	collect(Supplier<R>,BiConsumer<R, ? super T>,BiConsumer<R, R>)
+static	Stream	concat(Stream<? extends T>,Stream<? extends T>)
+static	Stream	empty()
+
+
+
+Stream	filter(Predicate<? super T>)
+Stream	map(Function<? super T, ? extends R>)
+Stream	skip(long)
+Stream	sorted()
+Stream	sorted(Comparator<? super T>)
+Stream	distinct()
+Stream	limit(long)
+
+static	Stream	iterate(T,Predicate<? super T>,UnaryOperator<T>)
+static	Stream	iterate(T,UnaryOperator<T>)
+static	Stream	generate(Supplier<? extends T>)
+
+Stream	dropWhile(Predicate<? super T>)
+
+Stream	flatMap(Stream<? extends R>>)
+
+Stream	mapMulti(Consumer<R>>)
+DoubleStream	mapMultiToDouble(DoubleConsumer>)
+IntStream	mapMultiToInt(IntConsumer>)
+LongStream	mapMultiToLong(LongConsumer>)
+DoubleStream	mapToDouble(ToDoubleFunction<? super T>)
+IntStream	mapToInt(ToIntFunction<? super T>)
+LongStream	mapToLong(ToLongFunction<? super T>)
+
+boolean	noneMatch(Predicate<? super T>)
+static	Stream	of(T)
+static transient	Stream	of(T[])
+static	Stream	ofNullable(T)
+Stream	peek(Consumer<? super T>)
+Stream	takeWhile(Predicate<? super T>)
+
+
+
+DoubleStream	flatMapToDouble(DoubleStream>)
+IntStream	flatMapToInt(IntStream>)
+LongStream	flatMapToLong(LongStream>)
++---++---++---++---++---++---+
+

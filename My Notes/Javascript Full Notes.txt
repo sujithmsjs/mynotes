@@ -1,0 +1,194 @@
+document
+.getElementById("demo")
+.innerHTML = "My First JavaScript";
+
+Functions:
+function <name>(){
+}
+
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Paragraph changed.";
+}
+
+<button type="button" onclick="myFunction()">Try it</button>
+
+
+JavaScript Display Possibilities
+
+document.getElementById("demo").innerHTML = 5 + 6;
+document.write(5 + 6);
+window.alert(5 + 6);
+window.print()
+
+In JavaScript, the window object is the global scope object, that means that variables, properties, and methods by default belong to the window object.
+alert(5 + 6);
+print()
+
+A good practice is to put spaces around operators ( = + - * / ):
+
+var	Declares a variable
+let	Declares a block variable
+const	Declares a block constant
+if	Marks a block of statements to be executed on a condition
+switch	Marks a block of statements to be executed in different cases
+for	Marks a block of statements to be executed in a loop
+function	Declares a function
+return	Exits a function
+try	Implements error handling to a block of statements
+
+JavaScript uses the keywords var, let and const to declare variables.
+
+let x;
+x = 6;
+let y = 10;
+let a, b, c;
+a = b = c = 10;
+a = a + b + c;
+document.getElementById("demo").innerHTML = a; //30
+
+All JavaScript identifiers are case sensitive. 
+JavaScript does not interpret LET or Let as the keyword let.
+
+let person = "John Doe", carName = "Volvo", price = 200;
+
+JavaScript Hoisting.
+
+
+try {
+  carName = "Saab";
+  let carName = "Volvo";
+}
+catch(err) {
+  document.getElementById("demo").innerHTML = err;
+}
+
+---
+ // let carName = "Volvo";
+
+try {
+  carName = "Sujith Manchala";
+  hey = "This is Game";
+//  let carName = "Volvo";
+}
+catch(err) {
+  document.getElementById("demo").innerHTML = err;
+}
+ document.getElementById("msg").innerHTML = hey;
+---
+
+Constant Arrays
+
+const cars = ["Saab", "Volvo", "BMW"];
+cars[0] = "Toyota";
+cars.push("Audi");
+
+Object
+const car  = {type:"Fiat", model:"500", color:"white"};
+
+=	x = y	x = y
++=	x += y	x = x + y
+-=	x -= y	x = x - y
+*=	x *= y	x = x * y
+/=	x /= y	x = x / y
+%=	x %= y	x = x % y
+**=	x **= y	x = x ** y
+
+==	equal to
+===	equal value and equal type
+!=	not equal
+!==	not equal value or not equal type
+>	greater than
+<	less than
+>=	greater than or equal to
+<=	less than or equal to
+?	ternary operator
+
+&&	logical and
+||	logical or
+!	logical not
+
+typeof	Returns the type of a variable
+instanceof	Returns true if an object is an instance of an object type
+
+
+let x = 16 + 4 + "Volvo"; //20Volvo
+let x = "Volvo" + 16 + 4; // Volvo164
+
+
+Arrays
+--------
+[ , , ]
+const cars = ["Saab", "Volvo", "BMW"];
+
+Objects
+----------
+const person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+
+typeof "" + "<br>" +
+typeof "John" + "<br>" + 
+typeof document;
+
+Undefined Values
+let car; 
+
+Empty Values
+let car = "";  
+
+Functions:
+-----------
+function add(a, b){
+	return a+b;
+}
+document.getElementById("demo").innerHTML = add(3,6);
+
+Objects
+----------
+const person = {
+  firstName: "John",
+  lastName : "Doe",
+  id       : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+objectName.propertyName
+person.lastName;
+
+
+objectName["propertyName"]
+person["lastName"];
+
+objectName.methodName()
+name = person.fullName();
+name = person.fullName;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

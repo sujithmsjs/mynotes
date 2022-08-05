@@ -1,0 +1,53 @@
+Java 8 Features
+
+SAM: Single Abstract Method
+Java lambda expression is treated as a function, so compiler does not create .class file.
+Functional Interface: only one abstract method
+
+New classes
+java.util.Optional class
+java.util.StringJoiner class
+java.util.Collectors
+
+forEach
+Collection classes which extends Iterable interface can use forEach() method to iterate elements.
+
+API
+Date/Time API
+Stream API
+
+Default Methods
+(argument-list) -> {body}  
+
+
+Java Lambda:
+------------
+Drawable d=new Drawable(){  
+    public void draw(){
+		System.out.println("Drawing "+width);
+	}  
+};
+d.draw();  
+
+Drawable d2=()->{  
+	System.out.println("Drawing "+width);  
+};  
+d2.draw();  
+
+		
+A a = () -> {
+    System.out.println("Hello");
+};
+
+B b =  name -> {
+...
+};
+
+
+
+Method Reference
+------ ---------
+
+
+
+

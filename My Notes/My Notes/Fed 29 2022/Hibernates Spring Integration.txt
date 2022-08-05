@@ -1,0 +1,158 @@
+Hibernate and Spring Integration
+--------------------------------
+Feb 1, 2022;
+
+Package Structure
+-----------------
+Project
+	src
+	|---main
+	|	|---java
+	|		 |---HibernateConfig.java
+	|		 |---App.java
+	pom.xml
+
+
+App.java
+--------
+
+import org.hibernate.SessionFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.suji.SpringHib.config.HibernateConfig;
+
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+    	ApplicationContext context = new AnnotationConfigApplicationContext(HibernateConfig.class);
+
+    	String[] names = context.getBeanDefinitionNames();
+    	for (String string : names) {
+			System.out.println(string);
+		}
+    	
+		//Get SessionFactory Object
+    	SessionFactory factory = (SessionFactory) context.getBean("sessionFactory");
+    }
+}
+
+
+pom.xml
+-------
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.suji</groupId>
+	<artifactId>SpringHib</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>SpringHib</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>5.3.14</version>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.16</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.22</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.6.4.Final</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>5.1.6.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-dbcp</artifactId>
+			<version>9.0.1</version>
+		</dependency>
+
+	</dependencies>
+</project>
+
+
+HibernateConfig.java
+--------------------
+
+import java.util.Properties;
+import javax.sql.DataSource;
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;	//tomcat-dbcp-9.0.1.jar
+import org.springframework.context.annotation.Bean;		//spring-context-5.3.14.jar
+import org.springframework.context.annotation.Configuration;//spring-context-5.3.14.jar
+import org.springframework.orm.hibernate5.HibernateTransactionManager; //spring-orm-5.1.6.RELEASE.jar
+import org.springframework.orm.hibernate5.LocalSessionFactoryBean; 	//spring-orm-5.1.6.RELEASE.jar
+import org.springframework.transaction.PlatformTransactionManager;	//spring-tx-5.1.6.RELEASE.jar
+import org.springframework.transaction.annotation.EnableTransactionManagement; //spring-tx-5.1.6.RELEASE.jar
+
+@Configuration
+@EnableTransactionManagement
+public class HibernateConfig {
+
+	@Bean
+    public LocalSessionFactoryBean sessionFactory() {
+        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+        
+        sessionFactory.setDataSource(dataSource());
+        sessionFactory.setPackagesToScan("com.suji.SpringHib.model" );
+        sessionFactory.setHibernateProperties(hibernateProperties());
+
+        return sessionFactory;
+    }
+
+	@Bean
+	public DataSource dataSource() {
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+		dataSource.setUrl("jdbc:mysql://localhost:3306/neon");
+		dataSource.setUsername("root");
+		dataSource.setPassword("apple");
+	
+		return dataSource;
+	}
+
+	@Bean
+	public PlatformTransactionManager hibernateTransactionManager() {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+		transactionManager.setSessionFactory(sessionFactory().getObject());
+		return transactionManager;
+	}
+
+	private final Properties hibernateProperties() {
+		Properties hibernateProperties = new Properties();
+
+		hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL8Dialect");
+		hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
+		hibernateProperties.setProperty("hibernate.show_sql", "true");
+		
+		return hibernateProperties;
+	}
+}

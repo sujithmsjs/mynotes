@@ -1,0 +1,72 @@
+1607105423617	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=schedule)
+1607105454474	Sync.RemoteTabs	INFO	Generating tab list with filter
+1607105454474	Sync.RemoteTabs	INFO	Final tab list has 0 clients with 0 tabs.
+1607105731071	Sync.SyncScheduler	DEBUG	Network link status changed to "changed". Offline?: false
+1607106262131	Sync.SyncScheduler	DEBUG	Network link status changed to "down". Offline?: false
+1607106262131	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1607106262133	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=schedule)
+1607106263231	Sync.SyncScheduler	DEBUG	Network link status changed to "up". Offline?: false
+1607106263231	Sync.SyncScheduler	DEBUG	Network link looks up. Syncing.
+1607106263234	Sync.Service	DEBUG	User-Agent: Firefox/83.0 (Windows NT 10.0; Win64; x64) FxSync/1.85.0.20201112153044.desktop
+1607106263234	Sync.Service	INFO	Starting sync at 2020-12-04 23:54:23 in browser session 2oNfRgQcneBj
+1607106263235	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1607106263238	Sync.Status	INFO	Resetting Status.
+1607106263238	Sync.Status	DEBUG	Status.service: success.status_ok => success.status_ok
+1607106263239	FirefoxAccounts	DEBUG	FxAccountsProfileClient: Requested profile
+1607106263239	FirefoxAccounts	DEBUG	getOAuthToken enter
+1607106263242	FirefoxAccounts	TRACE	getCachedToken returning cached token
+1607106263242	FirefoxAccounts	DEBUG	getOAuthToken returning a cached token
+1607106263242	Services.Common.RESTRequest	DEBUG	GET request to https://profile.accounts.firefox.com/v1/profile
+1607106263245	Sync.SyncScheduler	DEBUG	Network link status changed to "up". Offline?: false
+1607106263245	Sync.SyncScheduler	DEBUG	Network link looks up. Syncing.
+1607106263251	Sync.Service	DEBUG	User-Agent: Firefox/83.0 (Windows NT 10.0; Win64; x64) FxSync/1.85.0.20201112153044.desktop
+1607106263252	Sync.Service	INFO	Starting sync at 2020-12-04 23:54:23 in browser session 2oNfRgQcneBj
+1607106263252	Sync.Service	DEBUG	Exception calling anonymous function: LockException: Could not acquire lock. Label: "service.js: sync".(resource://services-sync/util.js:62:5) JS Stack trace: LockException@util.js:62:5
+throwLockException@util.js:148:11
+WrappedLock@util.js:162:15
+_lockedSync@service.js:1370:6
+sync/<@service.js:1334:18
+WrappedCatch@util.js:133:27
+sync@service.js:1335:7
+1607106263252	Sync.Service	INFO	Cannot start sync: already syncing?
+1607106263265	Services.Common.RESTRequest	DEBUG	GET https://profile.accounts.firefox.com/v1/profile failed: 2152398878 - NS_ERROR_UNKNOWN_HOST
+1607106263265	FirefoxAccounts	ERROR	Background refresh of profile failed: {"name":"FxAccountsProfileClientError","code":null,"errno":998,"error":"NETWORK_ERROR","message":"[Exception... \"NS_ERROR_UNKNOWN_HOST\"  nsresult: \"0x804b001e (NS_ERROR_UNKNOWN_HOST)\"  location: \"JS frame :: resource://services-common/rest.js :: onStopRequest :: line 488\"  data: no]"}
+1607106264343	Sync.SyncScheduler	DEBUG	Network link status changed to "changed". Offline?: false
+1607106265518	Sync.SyncScheduler	DEBUG	Network link status changed to "changed". Offline?: false
+1607106279349	Sync.SyncScheduler	DEBUG	Network link status changed to "down". Offline?: false
+1607106279350	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1607106279352	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=schedule)
+1607106279366	Sync.SyncScheduler	DEBUG	Network link status changed to "down". Offline?: false
+1607106279366	Sync.SyncScheduler	DEBUG	Clearing sync triggers and the global score.
+1607106285510	Sync.SyncScheduler	DEBUG	Network link status changed to "up". Offline?: false
+1607106285510	Sync.SyncScheduler	DEBUG	Network link looks up. Syncing.
+1607106285513	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=schedule)
+1607106285516	Sync.Service	DEBUG	User-Agent: Firefox/83.0 (Windows NT 10.0; Win64; x64) FxSync/1.85.0.20201112153044.desktop
+1607106285516	Sync.Service	INFO	Starting sync at 2020-12-04 23:54:45 in browser session 2oNfRgQcneBj
+1607106285516	Sync.Service	DEBUG	Exception calling anonymous function: LockException: Could not acquire lock. Label: "service.js: sync".(resource://services-sync/util.js:62:5) JS Stack trace: LockException@util.js:62:5
+throwLockException@util.js:148:11
+WrappedLock@util.js:162:15
+_lockedSync@service.js:1370:6
+sync/<@service.js:1334:18
+WrappedCatch@util.js:133:27
+sync@service.js:1335:7
+1607106285517	Sync.Service	INFO	Cannot start sync: already syncing?
+1607106285521	Sync.SyncScheduler	DEBUG	Network link status changed to "up". Offline?: false
+1607106285522	Sync.SyncScheduler	DEBUG	Network link looks up. Syncing.
+1607106285523	Sync.Service	DEBUG	User-Agent: Firefox/83.0 (Windows NT 10.0; Win64; x64) FxSync/1.85.0.20201112153044.desktop
+1607106285523	Sync.Service	INFO	Starting sync at 2020-12-04 23:54:45 in browser session 2oNfRgQcneBj
+1607106285524	Sync.Service	DEBUG	Exception calling anonymous function: LockException: Could not acquire lock. Label: "service.js: sync".(resource://services-sync/util.js:62:5) JS Stack trace: LockException@util.js:62:5
+throwLockException@util.js:148:11
+WrappedLock@util.js:162:15
+_lockedSync@service.js:1370:6
+sync/<@service.js:1334:18
+WrappedCatch@util.js:133:27
+sync@service.js:1335:7
+1607106285524	Sync.Service	INFO	Cannot start sync: already syncing?
+1607106286511	Sync.SyncScheduler	DEBUG	Network link status changed to "changed". Offline?: false
+1607106310344	Sync.Resource	WARN	GET request to https://sync-1-us-west1-g.sync.services.mozilla.com/1.5/174343456/info/collections failed: [Exception... "The lookup of the hostname failed"  nsresult: "0x804b001e (NS_ERROR_UNKNOWN_HOST)"  location: "<unknown>"  data: no] No traceback available
+1607106310345	Sync.Status	DEBUG	Status.sync: success.sync => error.login.reason.network
+1607106310345	Sync.Status	DEBUG	Status.service: success.status_ok => error.sync.failed
+1607106310346	Sync.ErrorHandler	ERROR	Sync encountered an error: [Exception... "The lookup of the hostname failed"  nsresult: "0x804b001e (NS_ERROR_UNKNOWN_HOST)"  location: "<unknown>"  data: no] No traceback available
+1607106310347	Sync.SyncScheduler	DEBUG	Next sync in 3600000 ms. (why=reschedule)
+1607106310354	Sync.Service	DEBUG	Exception calling anonymous function: [Exception... "The lookup of the hostname failed"  nsresult: "0x804b001e (NS_ERROR_UNKNOWN_HOST)"  location: "<unknown>"  data: no] No traceback available

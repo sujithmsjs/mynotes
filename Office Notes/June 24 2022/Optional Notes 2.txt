@@ -1,0 +1,7 @@
+Optional in Java 8
+------------------
+11:41 21-06-2022
+
+de-facto coding style
+
+the Optional is a wrapper class that makes a field optional which means it may or may not have values. 

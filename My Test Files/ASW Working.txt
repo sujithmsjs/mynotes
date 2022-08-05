@@ -1,0 +1,47 @@
+Install Java
+++++++++++++
+sudo yum update
+cd ../..
+
+Create a folder in usr
+
+cd /usr
+mkdir java
+cd java
+
+Install JDK and Tomcat in this folder.
+
+yum install wget
+
+
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u141-b15/336fa29ff2bb4ef291e347e091f7f4a7/jdk-8u141-linux-x64.rpm
+
+
+
+wget ... javajdk.rpm
+
+yum install javajdk.rpm
+
+Install Tomcat
+++++++++++++++
+
+tar.gz file url need to be copied.
+wget url
+tar xvfz <tar file>
+rm -r <file name> // To remove file
+
+
+Go to bin folder...
+./start.bh
+ps -ef | grep tomcat // To check whether TomCat is running or not.
+
+
+
+
+
+
+
+
+
+
+

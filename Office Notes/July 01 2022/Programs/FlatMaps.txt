@@ -1,0 +1,27 @@
+package com.suji.streamstest;
+
+import java.util.List;
+
+import com.suji.streamstest.model.Employee;
+import com.suji.streamstest.model.EmployeeRepo;
+import com.suji.streamstest.model.Institute;
+
+public class FlatMaps {
+	public static void main(String[] args) {
+		
+		List<Institute> list = Institute.getData();
+		list.stream().map(Institute::getName).forEach(System.out :: println);
+		
+		list.stream().map(Institute :: getLocations).forEach(System.out :: println);
+		//https://javaconceptoftheday.com/differences-between-java-8-map-and-flatmap/
+		System.out.println("\nFlat Maps: \n");
+		
+		list.stream().flatMap( ins -> ins.getLocations().stream()).distinct().forEach(System.out :: println); 
+		
+		
+		
+		
+	}
+}
+
+

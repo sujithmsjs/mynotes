@@ -1,0 +1,72 @@
+https://manifesto.co.uk/java-jdk-8-features/
+
+============
+Flat Maps
+============
+Flattening means transforming data from Stream<Stream<T>> to Stream<T>
+
+<R> Stream<R> flatMap(Function<? super T, ? extends Stream<? extends R>> mapper);
+
+
+
+
+========================
+Passing Behaviours
+========================
+public <T> T get(Function<Employee, T> function) {
+	return function.apply(this);
+}
+How to call:
+String name = e.get(Employee::getName);
+Integer age = e.get(Employee::getAge);
+Integer age2 = e.get(emp -> emp.getAge());
+
+
+public static <T> void  print(List<T> list, Predicate<T> predicate) {
+	list.stream().filter(predicate).forEach(System.out :: println);
+}
+How to call:
+print(list, s -> s.length() > 8);
+print(list, s -> s.length() < 8);
+
+========================
+Parallel Streams
+========================
+https://www.baeldung.com/java-when-to-use-parallel-stream#:~:text=2.2.-,Parallel%20Streams,listOfNumbers%20%3D%20Arrays.
+
+Sequential Streams:
+	Sequential streams use a single thread to process the pipeline.
+
+Parallel Streams:
+	Parallel streams enable us to execute code in parallel on separate cores. The final result is the combination of each individual outcome.
+
+Fork-Join Framework:
+	The fork-join framework was added to java.util.concurrent in Java 7 to handle task management between multiple threads.
+
+
+Splitting Source:
+	The fork-join framework is in charge of splitting the source data between worker threads and handling callback on task completion.
+
+
+Common Thread Pool:
+The number of threads in the common pool is equal to the number of processor cores.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

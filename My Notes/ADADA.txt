@@ -1,0 +1,8 @@
+ValidatorAdapter.validate(ValidatorAdapter.java:65)
+
+
+inclusively
+entails 
+
+@Valid : By doing this, we’re telling Spring to pass the object to a Validator  before doing anything else.
+If the validation fails, it will trigger a MethodArgumentNotValidException. By default, Spring will translate this exception to a HTTP status 400 (Bad Request).

@@ -1,0 +1,169 @@
+
+
+
+# Data Source
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=password
+
+# JPA Props
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.ddl-auto = create
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+
+spring.jpa.defer-datasource-initialization=true
+
+
+spring.h2.console.enabled=true
+
+#View
+spring.mvc.view.prefix = /WEB-INF/jsp/
+spring.mvc.view.suffix = .jsp
+
+
+	<h1 sec:authentication="principal.username"></h1>
+	<h1 sec:authentication="principal.authorities"></h1>
+
+<h1 sec:authentication="principal.username"></h1>
+	<h1 sec:authentication="principal.authorities"></h1>
+	<h1 sec:authentication="principal"></h1>
+	<h1 sec:authentication="Authorities"></h1>
+	<h1 sec:authentication="details"></h1>
+
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+
+<meta charset="ISO-8859-1">
+
+<style>
+table, th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+</style>
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>Admin!</h1>
+	<!-- The Spring Security Authentication interface exposes useful methods concerning the authenticated principal or authentication request. -->
+
+	<table>
+		<tr>
+			<td>name</td>
+			<td sec:authentication="name"></td>
+		</tr>
+
+		<tr>
+			<td>principal.username</td>
+			<td sec:authentication="principal.username"></td>
+		</tr>
+
+		<tr>
+			<td>principal.authorities</td>
+			<td sec:authentication="principal.authorities"></td>
+		</tr>
+
+		<tr>
+			<td>principal</td>
+			<td sec:authentication="principal"></td>
+		</tr>
+
+		<tr>
+			<td>Authorities</td>
+			<td sec:authentication="authorities"></td>
+		</tr>
+
+		<tr>
+			<td>Details</td>
+			<td sec:authentication="details"></td>
+		</tr>
+
+	</table>
+
+	<div sec:authorize="isAuthenticated()">Text visible only to
+		authenticated users.</div>
+
+	<div sec:authorize="hasRole('ADMIN')">Text visible to admin.</div>
+	
+	
+	<a href="/login">Login</a>
+	<a href="/inbox">Inbox</a>
+	<a href="/admin">Admin</a>
+	<a href="/home">Home</a>
+	<a href="/emp">Emp Details</a>
+	<a href="/tasks">Tasks</a>
+	<a href="/logout">Logout</a>
+</body>
+</html>
+
+--------------------------------------------
+ Swagger 2 for a Spring REST web service,
+--------------------------------------------
+
+<!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-swagger2</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+
+For the Spring Boot based projects, it's enough to add a single springfox-boot-starter dependency:
+
+<dependency>
+    <groupId>io.springfox</groupId>
+    <artifactId>springfox-boot-starter</artifactId>
+    <version>3.0.0</version>
+</dependency>
+
+
+MappingException: Could not determine type:
+
+AnnotationException: @OneToOne or @ManyToOne references an unknown entity:
+
+
+JWT
+		<!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+--------------
+Formatter
+---------
+public void addCustomFormatter(Formatter formatter)
+
+
+AbstractNumberFormatter, CurrencyStyleFormatter, CurrencyUnitFormatter, DateFormatter, InstantFormatter, MonetaryAmountFormatter, NumberStyleFormatter, PercentStyleFormatter
+
+
+----
+self-explanatory word
+
+@JsonFormat(pattern="yyyy-MM-dd")
+private LocalDate birthday;
+     
+@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+private LocalDateTime lastUpdate;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

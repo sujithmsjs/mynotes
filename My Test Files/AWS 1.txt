@@ -1,0 +1,86 @@
+AWS: AWS stands for Amazon Web Services which uses distributed IT infrastructure to provide different IT resources on demand.
+
+It provides different services such as 1. infrastructure as a service (IaaS)
+2. platform as a service (PaaS) and packaged
+3. software as a service (SaaS).
+
+Amazon launched AWS, a cloud computing platform to allow the different organizations to take advantage of reliable IT infrastructure.
+
+Uses of AWS
+___________
+1. Availability
+2. Scalability
+3. Pay-As-You-Go: AWS provides services to customers when required without any prior commitment or upfront investment.
+	Computing
+	Programming models
+	Database storage
+	Networking
+
+
+Advantages of AWS
+_________________
+
+1. Flexibility: Instant availability.
+2. Cost-effectiveness
+3. Scalability/Elasticity
+4. Security
+
+
+History:
+________
+
+
+
+Features of ASW:
+________________
+
+1. Flexibility
+2. Cost-effective
+3. Scalableand Elastic
+4. Secure
+5. Experienced
+
+
+AWS Global Infrastructure
+_________________________
+The following are the components that make up the AWS infrastructure:
+
+* Data Center: we can have multiple servers, switches, load balancing, firewalls. The things which interact with the cloud sits inside the data centers.
+* Region: A region is a geographical area. Each region consists of 2 more availability zones
+* Edge locations
+* Regional Edge Caches
+
+
+AWS Free Tier
+_____________
+Firstly visit the website https://aws.amazon.com.
+
+AWS Account Identifiers
+________________________
+AWS assigns two types of unique ID to each user's account:
+
+1. An AWS account ID: AWS account ID is a 12-digit number such as 123456780123 which can be used to construct Amazon Resource Names (ARNs).
+
+2. A canonical user ID: A Canonical user ID is 64-digit hexadecimal encoded a 256-bit number.
+
+AWS account ID is a 12-digit number such as 123456780123. A canonical user ID is used in an Amazon S3 bucket policy for cross-account access means that AWS account can access the resources in another AWS account.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

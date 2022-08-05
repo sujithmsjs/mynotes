@@ -1,0 +1,32 @@
+package com.suji.streamstest;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+
+public class IntStreamDemo 
+{
+    public static void main( String[] args )
+    {
+    	
+    	int[] is = IntStream.of(42,3,21,56,11,12,18).distinct().sorted().toArray();
+    	Optional<Integer> secMax = Optional.ofNullable(is[is.length-2]);
+    	System.out.println(secMax);
+    	
+    	
+    	int[] in2 = IntStream.of(42,3,3,21,0,56,42,3,3,21,56,11,12,18).toArray();
+    	TreeSet<Integer> treeSet = Arrays.stream(in2).boxed().collect(Collectors.toCollection(TreeSet::new));
+    	System.out.println(treeSet);
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    }
+}

@@ -1,0 +1,17 @@
+Hi Sir,
+
+I've read all the POPS mannual but nothing has been told about missing unit in chute.
+
+
+
+
+NOT POSSIBLE WAYS:
+1. Do not use “Move Items” app to shift items out of Overage bin or any POPS chute as POPS will continue to assume the item is still there or basically it will generate stale inventory data.
+
+2. Check-in Dwelling Shipment: POPS Deletes items in totes/cart when shipment is reported as dwelling. POPS blocksshipments in condition 222, 29 from being reported asdwelling
+
+As far as I understand we can use below methods to 
+
+1. Send Shipments toPack : Units which are being in chute have to be moved to tote/rebin cart. We can make lost by Re-Check-In in POPS again.
+
+2. Pack from POPS: We can make missed the item at this station in the time of packing.

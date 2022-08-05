@@ -1,0 +1,46 @@
+package com.suji.streamstest;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.suji.streamstest.model.Author;
+import com.suji.streamstest.model.Book;
+import com.suji.streamstest.model.BooksProvider;
+
+public class FilterDemo 
+{
+    public static void main2( String[] args )
+    {
+    	List<Book> list = BooksProvider.findAll();
+    	
+    	// Extract Authors from the books
+    	System.out.println("All:");
+    	
+    	List<Author> collect = list.stream().map( book -> book.getAuthor()).collect(Collectors.toList());
+    	collect.forEach(System.out :: println);
+    	
+    	// Find Authors who's age is more than 15years
+    	System.out.println("Age more than 15:");
+    	 	
+    	List<Author> list2 = list.stream().map( book -> book.getAuthor() ).filter( auth -> auth.getAge() > 15).collect(Collectors.toList());
+    	list2.forEach(System.out :: println);
+    	
+    	// Get Author names in Uppercase of those who had written more than 2 books.
+    	System.out.println("More than one book written Authors:");
+    	
+    	List<String> list3 = list.stream().map(Book :: getAuthor).filter( auth -> auth.getBooks() > 5).map(Author :: getName).map(String :: toUpperCase).collect(Collectors.toList());
+    	list3.forEach(System.out :: println);
+    	
+    	
+    	
+    	
+    	/*
+    	 * Note
+    	 * map( book -> book.getAuthor()) is equals to
+    	 * map(Book :: getAuthor)
+    	 */
+    	
+    	
+        System.out.println( "Hello World!" );
+    }
+}

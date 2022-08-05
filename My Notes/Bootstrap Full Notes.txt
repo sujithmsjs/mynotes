@@ -1,0 +1,98 @@
+Boot Strap Notes:
+
+8:32 PM 2/27/2022
+
+fluid: a liquid; a substance that can flow
+
+cyan: sayaan
+
+Primary
+Secondary
+Success
+Danger
+Warning
+Info
+Light
+Dark
+
+Class infix:{breakpoints}
+xs,sm,  md, lg, xl, xxl
+
+.container
+.container-fluid
+.container-{breakpoint}
+
+Border Width
+.border-1 to .border-5
+border-{color}
+rounded-{size}
+
+<div class="container-fluid pt-0 mg-0 border  border-5">
+
+.float-*-left|right (where * is sm, md, lg, xl or xxl).
+
+{property}
+m - Margin
+p - Padding
+
+{sides}
+t - Top
+b - Botton
+s - Start/Left
+e - End/Right
+x- Horizontal
+y - Vertical
+
+mt : Margin Top
+mx: Margin Horizontal
+
+pt: Padding Top
+py: Padding vertical
+
+Size: 0 to 5 and auto
+
+{property}{sides}-{breakpoint}-{size}
+
+CSS Units
+Length is a number followed by a length unit, such as 10px, 2em, etc.
+
+Shadows
+.shadow-none/sm/p/lg
+
+Ratios
+ratio ratio-16x9 border
+
+
+.visible or .invisible
+
+.text-muted,
+.text-primary,
+.text-success,
+.text-info,
+.text-warning,
+.text-danger,
+.text-secondary,
+.text-white,
+.text-dark,
+.text-body
+
+.text-{color}-{opacity%}
+.text-black-50
+
+bg: BackGround
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,210 @@
+JWT Notes 
+10:57 22-06-2022
+
+JSON WEB TOKEN
+--------------
+- Tokenbased authentication.
+- Stateless authentication.
+
+JSON Format:
+{key: val...}
+
+[Header].[Payload].[Signature]
+
+Header: JSP Specific Information
+{ "alg": "HS256", "typ": "JWT" }
+
+
+Payload: Clains(ClientId, ClientName, ProviderName, data, expDate,...)
+{ "id":"clientId" ,"sub": "12345", "name": "Johnny Hill", "admin": false,"issuer":"Sujith" }
+
+
+Signature: Base64Encoder(Header) + Base64Encoder(Payload) <- SecretKey
+HMACSHA256( base64UrlEncode(header) + "." + base64UrlEncode(payload), secret)
+
+Token Format:
+xxxxxx.yyyyyyyy.zzzzzzzzzz
+
+1. Generate Token using JWT Java API
+2. Read and Validate Token using JWT Java API
+
+
+JJWT: Java JWT - Open source
+<dependency> 
+   <artifactId>jjwt</artifactId> 
+   <version>0.9.1</version> 
+</dependency>
+
+GENERATE TOKEN:
+--------------
+eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDEiLCJzdWIiOiJHYW1lIiwiaXNzIjoiIn0.lfjQtADhbuYCwXhJK2h64m4qfv7BS116-z_Nks3APis
+
+package com.suji.jwt_demo2;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class JwtUtil {
+
+	// Generate Token
+	public static String generateToken(String id, String subject, String key) {
+
+		byte[] secretKey = Base64.getEncoder().encode(key.getBytes());
+
+		JwtBuilder builder = Jwts.builder().setId(id).setSubject(subject).setIssuer("Sujith")
+				.setIssuedAt(new Date(System.nanoTime()))
+				.setExpiration(new Date(System.nanoTime() + TimeUnit.MINUTES.toMillis(10)))
+				.signWith(SignatureAlgorithm.HS256, secretKey);
+
+		return builder.compact();
+	}
+
+	// Get Claims
+	public static Claims getClaims(String secretKey, String token) {
+		Claims claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token).getBody();
+
+		return claims;
+	}
+
+	public static void printClaims(Claims claims) {
+
+		System.out.println(claims.getId());
+		System.out.println(claims.getSubject());
+		System.out.println(claims.getIssuer());
+		System.out.println(claims.getIssuedAt());
+		System.out.println(claims.getExpiration());
+	}
+
+	public static String getSubject(String secretKey, String token) {
+		return getClaims(secretKey, token).getSubject();
+	}
+
+	public static boolean isValidToken(String secretKey, String token) {
+		return getClaims(secretKey, token).getExpiration().after(new Date(System.currentTimeMillis()));
+	}
+}
+
+===================================
+
+Springboot and JWT
+------------------
+
+Stage #1: Client REgister proces
+Stage #2: JwtUtil class code
+Stage #3: Jwt Token Generation without Security
+Stage #4: Jwt Token after User Authentication
+Stage #5: Token Verification from 2nd request onwards
+
+
+Stage #1: Client REgister proces
+--------------------------------
+{
+ id, name, un, pwd, roles
+}
+
+client has to send above details as json format that will be converted into User class object finally saved in Database.
+
+Encoding the pwd
+
+
+{
+    "id": 1,
+    "name": "hello",
+    "username": "Sujith@123",
+    "password": "fireandwater",
+    "roles": [
+        "MNG",
+        "TL"
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Stage #2: JwtUtil class code
+Stage #3: Jwt Token Generation without Security
+Stage #4: Jwt Token after User Authentication
+Stage #5: Token Verification from 2nd request onwards
+
+ 
+
+
+============
+package com.suji.jwt_demo2;
+
+import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+        String key = "Sujith@123";
+        byte[] secretKey = Base64.getEncoder().encode(key.getBytes());
+         
+    	
+        JwtBuilder builder = Jwts.builder().setId("101")
+        									.setSubject("Game")
+        									.setIssuer("Sujith")
+        									.setIssuedAt(new Date(System.nanoTime()))
+        									.setExpiration(new Date(System.nanoTime() + TimeUnit.MINUTES.toMillis(10)))
+        									.signWith(SignatureAlgorithm.HS256,secretKey);
+        									
+        						
+        // Generating Token
+        String token = builder.compact();
+        
+        System.out.println(token);
+        
+        //Reading Token required: token + secretKey
+        // eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIxMDEiLCJzdWIiOiJHYW1lIiwiaXNzIjoiIn0.lfjQtADhbuYCwXhJK2h64m4qfv7BS116-z_Nks3APis
+        
+        Claims claims = Jwts.parser().setSigningKey(secretKey)
+        			.parseClaimsJws(token)
+        			.getBody();
+        
+        System.out.println("Reading details form the token...");
+        System.out.println(claims.getId());
+        System.out.println(claims.getSubject());
+        System.out.println(claims.getIssuer());
+        System.out.println(claims.getIssuedAt());
+        System.out.println(claims.getExpiration());
+        
+        System.out.println("\n\n Example 2 \n");
+       
+        
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

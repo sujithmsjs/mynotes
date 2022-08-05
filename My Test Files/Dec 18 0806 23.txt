@@ -1,0 +1,50 @@
+Abrivations and Definations
+
+AWS stands for Amazon Web Services.
+
+AWS stands for Amazon Web Services which uses distributed IT infrastructure to provide different IT resources on demand. It provides different services such as infrastructure as a service (IaaS), platform as a service (PaaS) and packaged software as a service (SaaS).
+
+IAM: Identity Access Management
+IAM enables the organization to create multiple users, each with its own security credentials, controlled and billed to a single aws account. IAM allows the user to do only what they need to do as a part of the user's job.
+
+
+What is a Role?
+A role is a set of permissions that grant access to actions and resources in AWS.
+
+Delegation:
+Delegation is a process of granting the permissions to the user to allow the access to the AWS resources that you control.
+
+
+AWS Account Root User
+When you first create an AWS account, you create an account as a root user identity which is used to sign in to AWS.
+
+
+CLI: Command Line Interface
+
+
+S3: Simple Storage Service.
+S3 provides developers and IT teams with secure, durable, highly scalable object storage. S3 is a safe place to store the files. 
+It is Object-based storage, i.e., you can store the images, word files, pdf files, etc.
+
+
+Bucket
+Files are stored in Bucket. A bucket is like a folder available in S3 that stores the files.
+
+Universal Namespace: the names must be unique globally.
+
+S3 is a universal namespace. Bucket contains a DNS address. Therefore, the bucket must contain a unique name to generate a unique DNS address.
+
+DNS: Domain Name System
+
+
+HTTP 200:
+If you upload a file to S3 bucket, then you will receive an HTTP 200 code means that the uploading of a file is successful.
+
+A Unique Developer Assigned-key:
+
+
+ACL: Access Control List
+
+
+
+

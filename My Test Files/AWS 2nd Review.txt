@@ -1,0 +1,113 @@
+AWS: Amazon Web Services.
+The AWS service is provided by the Amazon that uses DISTRIBUTED IT INFRASTRUCTURE to provide different IT RESOURCES available on demand.
+It provides different services such as
+1. INFRASTRUCTURE as a service (IaaS)
+2. PLATFORM as a service (PaaS)
+3. SOFTWARE as a service (SaaS).
+
+Amazon launched AWS, a cloud computing platform to allow the different organizations to take advantage of reliable IT infrastructure.
+
+
+AWS provides services to customers when required without any PRIOR COMMITMENT or UPFRONT INVESTMENT. Pay-As-You-Go enables the customers to procure services from AWS.
+
+Computing
+Programming models
+Database storage
+Networking
+
+Features of AWS
+The following are the features of AWS:
+
+Flexibility: The flexibility of AWS allows us to choose which programming models, languages, and operating systems are better suited for their project, so we do not have to learn new skills to adopt new technologies.
+
+Cost-effective: AWS provides no upfront investment, long-term commitment, or minimum spend.
+
+Scalable and elastic:
+
+SCALABILITY:
+SCALABILITY in aws has the ability to scale the computing resources up or down when demand increases or decreases respectively.
+
+ELASTICITY:
+Elasticity in aws is defined as the distribution of incoming application traffic across multiple targets such as Amazon EC2 instances, containers, IP addresses, and Lambda functions.
+
+
+Secure: AWS maintains confidentiality, integrity, and availability of your data which is the utmost importance of the aws.
+
+
+Experienced: AWS maintains confidentiality, integrity, and availability of your data which is the utmost importance of the aws.
+
+
+AWS Global Infrastructure
+AWS is a cloud computing platform which is globally available.
+
+The components that make up the AWS infrastructure:
+
+1. AVAILABILITY ZONES
+Data Centre, we can have multiple servers, switches, load balancing, firewalls.
+
+2. REGION
+A region is a geographical area. Each region consists of 2 more availability zones. A region is a collection of data centers which are completely isolated from other regions.
+
+3. EDGE LOCATIONS
+
+Edge locations are the endpoints for AWS used for caching content. Edge locations consist of CloudFront, Amazon's Content Delivery Network (CDN). Edge locations are mainly located in most of the major cities to distribute the content to end users with reduced latency.
+
+
+4. REGIONAL EDGE CACHES
+
+Regional Edge cache lies between CloudFront Origin servers and the edge locations.
+A regional edge cache has a large cache than an individual edge location.
+
+Data is removed from the cache at the edge location while the data is retained at the Regional Edge Caches.
+
+When the user requests the data, then data is no longer available at the edge location. Therefore, the edge location retrieves the cached data from the Regional edge cache instead of the Origin servers that have high latency.
+
+
+
+AWS ACCOUNT IDENTIFIERS
+
+AWS assigns two types of UNIQUE ID to each user's account:
+
+1. AWS ACCOUNT ID
+It is a 12-Digit number which can be used to construct ARNs.
+ARN: Amazon Resource Name.
+
+
+2. CANONICAL USER ID
+
+It is 64-digit hexadecimal encoded a 256-bit number.
+It is used in an Amazon S3 Bucket policy.
+
+IAM: Identity Access Management.
+AWS Identity and Access Management is a web service that enables AWS customers to manage users and user permissions in AWS.
+
+IAM enables the organization to create multiple users, each with its own security credentials, controlled and billed to a single aws account. IAM allows the user to do only what they need to do as a part of the user's job.
+
+FEATURES OF IAM
+
+1. Centralised control of your AWS account: You can control creation, rotation, and cancellation of each user's security credentials. You can also control what data in the aws system users can access and how they can access.
+
+2. Shared Access to your AWS account: Users can share the resources for the collaborative projects.
+
+3. Granular permissions: It is used to set a permission that user can use a particular service but not other services.
+
+4. Identity Federation: An Identity Federation means that we can use Facebook, Active Directory, LinkedIn, etc with IAM. Users can log in to the AWS Console with same username and password as we log in with the Active Directory, Facebook, etc.
+
+5. Multifactor Authentication: An AWS provides multifactor authentication as we need to enter the username, password, and security check code to log in to the AWS Management Console.
+
+6. Permissions based on Organizational groups: Users can be restricted to the AWS access based on their job duties, for example, admin, developer, etc.
+
+7. Networking controls: IAM also ensures that the users can access the AWS resources within the organization's corporate network.
+
+8. Provide temporary access for users/devices and services where necessary: If you are using a mobile app and storing the data in AWS account, you can do this only when you are using temporary access.
+
+9. Integrates with many different aws services: IAM is integrated with many different aws services.
+
+10. Supports PCI DSS Compliance: PCI DSS (Payment Card Industry Data Security Standard) is a compliance framework. If you are taking credit card information, then you need to pay for compliance with the framework.
+
+11. Eventually Consistent: IAM service is eventually consistent as it achieves high availability by replicating the data across multiple servers within the Amazon's data center around the world.
+
+12. Free to use: AWS IAM is a feature of AWS account which is offered at no additional charge. You will be charged only when you access other AWS services by using IAM user.
+
+
+

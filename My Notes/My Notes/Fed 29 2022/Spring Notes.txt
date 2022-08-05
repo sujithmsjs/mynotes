@@ -1,0 +1,273 @@
+https://www.baeldung.com/spring-application-context
+
+Spring Interview Questions:
+
+The Spring IoC container is responsible for managing the objects of an application. It uses dependency injection to achieve inversion of control.
+
+The interfaces BeanFactory and ApplicationContext represent the Spring IoC container.
+
+Here, BeanFactory is the root interface for accessing the Spring container. It provides basic functionalities for managing beans.
+
+
+
+public interface BeanFactory {}
+	
+public interface ListableBeanFactory extends BeanFactory {}
+
+public interface ApplicationContext extends EnvironmentCapable, ListableBeanFactory, HierarchicalBeanFactory,
+		MessageSource, ApplicationEventPublisher, ResourcePatternResolver {}
+
+
+
+
+The primary job of the ApplicationContext is to manage beans.
+
+Spring Bean: a bean is an object that the Spring container instantiates, assembles, and manages.
+
+An application must provide the bean configuration to the ApplicationContext container.
+
+Spring supports different ways of configuring beans.
+
+1. Java-Based Configuration
+2. Annotation-Based Configuration
+3. XML-Based Configuration
+
+
+
+1. Java-Based Configuration
+---------------------------
+- Most preferred way of bean configuration
+- from Spring 3.0 onward.
+- Java configuration typically uses @Bean-annotated methods within a @Configuration class.
+- The @Bean annotation on a method indicates that the method creates a Spring bean.
+- A class annotated with @Configuration indicates that it contains Spring bean configurations.
+
+
+
+@Configuration
+public class AccountConfig {
+
+  @Bean
+  public AccountService accountService() {
+    return new AccountService(accountRepository());
+  }
+
+  @Bean
+  public AccountRepository accountRepository() {
+    return new AccountRepository();
+  }
+}
+
+
+
+
+2. Annotation-Based Configuration
+- from Spring 3.0 onward.
+- Then we use a set of annotations on our Java classes, methods, constructors, or fields to configure beans. Some examples of these annotations are @Component, @Controller, @Service, @Repository, @Autowired, and @Qualifier.
+
+
+
+
+3. XML-Based Configuration
+- This is the traditional way of configuring beans in Spring.
+
+
+
+Types of ApplicationContext
+1. AnnotationConfigApplicationContext
+2. AnnotationConfigWebApplicationContext
+3. XmlWebApplicationContext
+4. FileSystemXMLApplicationContext
+5. ClassPathXmlApplicationContext
+
+
+1. AnnotationConfigApplicationContext
+----------------------------------
+- Spring 3.0
+- It can take classes annotated with @Configuration, @Component, and JSR-330 metadata as input.
+
+ApplicationContext context = new AnnotationConfigApplicationContext(AccountConfig.class);
+
+
+2. AnnotationConfigWebApplicationContext
+----------------------------------------
+- a web-based variant of AnnotationConfigApplicationContext.
+
+- We may use this class when we configure Spring's ContextLoaderListener servlet listener or a Spring MVC DispatcherServlet in a web.xml file.
+
+- From Spring 3.0 onward, we can also configure this application context container programmatically. All we need to do is implement the WebApplicationInitializer interface
+
+public class MyWebApplicationInitializer implements WebApplicationInitializer {}
+
+
+
+
+
+
+
+3. XmlWebApplicationContext
+
+If we use the XML based configuration in a web application, we can use the XmlWebApplicationContext class.
+
+public class MyXmlWebApplicationInitializer implements WebApplicationInitializer {
+
+  public void onStartup(ServletContext container) throws ServletException {
+    XmlWebApplicationContext context = new XmlWebApplicationContext();
+    context.setConfigLocation("/WEB-INF/spring/applicationContext.xml");
+    context.setServletContext(container);
+
+    // Servlet configuration
+  }
+}
+
+
+
+
+4. FileSystemXMLApplicationContext
+
+We use the FileSystemXMLApplicationContext class to load an XML-based Spring configuration file from the file system or from URLs. This class is useful when we need to load the ApplicationContext programmatically.
+
+String path = "C:/myProject/src/main/resources/applicationcontext/account-bean-config.xml";
+
+ApplicationContext context = new FileSystemXmlApplicationContext(path);
+
+
+
+
+5. ClassPathXmlApplicationContext
+
+
+ApplicationContext context = new ClassPathXmlApplicationContext("applicationcontext/account-bean-config.xml");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

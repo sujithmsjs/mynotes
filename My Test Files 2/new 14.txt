@@ -1,0 +1,64 @@
+for over an hour.
+The government is accused of using delaying tactics
+Delaying tactics:
+What could have delayed him?
+
+​plumb something: to try to understand or succeed in understanding something mysterious
+Reliable adjective: that you can rely on
+
+
+Open-source
+Lightweight
+Easy-to-build
+Loosely coupled
+Easy-to-Maintain
+Scalable
+Bean’s definition
+Spring Bean Factory Container
+Reliable
+Developing stand-alone
+Production-ready spring applications
+Configuration meta data
+Application’s infrastructural support
+Application-level business logic
+Deployment environments
+Spring was developed as means to help developers manage the business objects of the application.
+Enterprise-level Java-based applications.
+
+Spring Framework:
+Spring is a powerful open-source, loosely coupled, lightweight, java framework meant for reducing the complexity of developing enterprise-level applications.
+Spring handles all the infrastructure-related aspects which lets the programmer to focus mostly on application development.
+
+Declaration − A variable declaration with a variable name with an object type.
+Instantiation − The 'new' keyword is used to create the object.
+Initialization − The 'new' keyword is followed by a call to a constructor. This call initializes the new object.	
+
+
+@Autowired Annotation
+@Autowired(required = false)
+@Configuration
+@Bean
+
+
+
+1. Constructor based Autowiring 
+2. Property-based Autowiring
+3. Setter based Autowiring
+
+features of Spring Boot?
+1. Spring Boot CLI
+2. Starter Dependencies
+3. Spring Initializer
+4. Auto-Configuration
+5. Spring Actuator
+6. Logging and Security
+
+
+@SpringBootApplication
+@Configuration, @EnableAutoConfiguration and @ComponentScan
+
+Spring Boot dependency management system: without the need of specifying the version for any of that dependencies
+
+server.port=8081
+
+

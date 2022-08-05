@@ -1,0 +1,75 @@
+
+==========================
+Java 10 Features
+==========================
+
+
+
+1. Local Variable Type Inference.
+
+One of the most visible enhancements in JDK 10 is type inference of local variables with initializers.
+
+Note that this feature is available only for local variables with the initializer.
+
+var message = "Hello, Java 10";
+var idToNameMap = new HashMap<Integer, String>();
+
+Another thing to note is that var is not a keyword – this ensures backward compatibility for programs using var say, as a function or variable name. var is a reserved type name, just like int.
+
+Illegal Use of var
+
+var n; //Error
+var emptyList = null // Error
+
+2. Unmodifiable
+
+
+.collect(Collectors.toUnmodifiableList());
+
+3. Optional*.orElseThrow()
+
+
+4. R collect(Supplier<R> supplier,ObjIntConsumer<R> accumulator,BiConsumer<R, R> combiner);
+
+@FunctionalInterface
+public interface Supplier<T> {
+    T get();
+}
+
+@FunctionalInterface
+public interface BiConsumer<T, U> {
+	void accept(T t, U u);
+}
+
+@FunctionalInterface
+public interface ObjIntConsumer<T>{
+	void accept(T t, int value);
+}
+
+====
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

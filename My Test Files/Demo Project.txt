@@ -1,0 +1,76 @@
+@Entity
+@Table(name = "students")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Student{
+	@Id
+	@GeneratedValue(strategy = GeneratedType.Identity)
+	private int id;
+	@Pattern(regex = "[a-a]")
+	private String name;
+
+	@Pattern(regex = "[a-z]{4,10}")
+	private String username;
+	
+	@Pattern(regex = "[a-z]{4,10}")
+	private String password;
+	private double salary;
+	private LocalDate dob;
+}
+
+@Controller
+public class StudentController{
+
+	@RequestMapping(value = "/signup", method = RequestMethod.GET)
+	public Student showSignupForm(@ModelAttribute Student student){
+		return "signup";
+	}
+
+	@RequestMapping(value = "/signup", method = RequestMethod.POST)
+	public Student saveSignupDetails(Student student, BindingResults results){
+		if(results.hasErrors()){
+			return "signup";
+		}
+		return "welcome";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public Student showLoginForm(){
+		return login";
+	}
+
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public Student showLoginForm(){
+		return "welcome";
+	}
+}
+
+public interface StudentRepository extends JspRepository<Student, Integer>{
+}
+
+
+@Service
+public calss StudentService{
+	
+	@Autowired
+	StudentRepository stdRepo;
+
+	public Student saveStudent(Student student){
+		return stdRepo.save(student);
+	}
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,492 @@
+Spring Framework
+Spring is a lightweight framework. It can be thought of as a framework of frameworks because it provides support to various frameworks such as Struts, Hibernate, Tapestry, EJB, JSF, etc. 
+
+The Spring framework comprises several modules such as IOC, AOP, DAO, Context, ORM, WEB MVC etc.
+
+
+
+Inversion Of Control (IOC) and Dependency Injection
+These are the design patterns that are used to remove dependency from the programming code.
+
+In Spring framework, IOC container is responsible to inject the dependency. We provide metadata to the IOC container either by XML file or annotation.
+
+
+IOC: Inversion Of Control 
+-------------------------
+These are the design patterns that are used to remove dependency from the programming code. They make the code easier to test and maintain.
+
+To avoid tight coupling.
+In Spring framework, IOC container is responsible to inject the dependency.
+We provide metadata to the IOC container either by XML file or annotation.
+
+
+and Dependency Injection first.
+
+Advantage of Dependency Injection
+makes the code loosely coupled so easy to maintain
+makes the code easy to test
+
+Advantages of Spring Framework
+1. Predefined Templates
+2. Loose Coupling
+3. Easy to Test
+4. Lightweight
+5. Fast Development
+6. Powerful abstraction
+7. Declarative support.
+
+
+
+Spring Modules:
+The Spring framework comprises of many modules such as core, beans, context, expression language, AOP, Aspects, Instrumentation, JDBC, ORM, OXM, JMS, Transaction, Web, Servlet, Struts etc.
+These modules are grouped into Test, Core Container, AOP, Aspects, Instrumentation, Data Access / Integration, Web (MVC / Remoting) as displayed in the following diagram.
+
+1. Test
+2. Spring Core Container
+3. AOP, Aspects and Instrumentation.
+4. Data Access/Integration
+5. Web
+
+Example:
+
+
+class Car{
+	public void drive(){
+		Sout("Working..");
+	}
+}
+
+//Hard coded.
+Car c = new Car();
+c.drive();
+
+===
+interface Vehicle{
+}
+
+Car implements Vehicle{
+
+}
+
+Bike implements Vehicle{
+
+}
+
+
+ApplicationContext context = 
+new ClassPassXMLcontext();
+
+Vehicle obj = getBean("vehicle");
+
+
+
+IllegalStateException: BeanFactory not initialized
+
+
+BeanDefinitionStoreException
+
+CannotLoadBeanClassException
+
+
+NoSuchBeanDefinitionException: No qualifying bean of type 'com.suji.spring.model.Bike' available
+When you not add bean defination name XML File.
+
+
+Testcase:
+
+Vehicle bean = context.getBean(Bike.class);
+        Vehicle bean2 = context.getBean(Bike.class);
+        Vehicle bean3 = context.getBean(Bike.class);
+         bean.drive();
+         bean2.drive();
+         bean3.drive();
+         System.out.println(bean==bean2);
+         System.out.println(bean==bean3);
+         System.out.println(bean2==bean3);
+		 
+Output:
+Bike Constructor
+2 Wheels Bike Moving
+2 Wheels Bike Moving
+2 Wheels Bike Moving
+true
+true
+true
+
+
+
+Vehicle bean = context.getBean(Car.class);
+        Vehicle bean2 = context.getBean(Bike.class);
+        Vehicle bean3 = context.getBean(Bike.class);
+         bean.drive();
+         bean2.drive();
+         bean3.drive();
+         System.out.println(bean==bean2);
+         System.out.println(bean==bean3);
+         System.out.println(bean2==bean3);
+Output: 
+Car Constructor
+Bike Constructor
+4 Wheels Car Moving
+2 Wheels Bike Moving
+2 Wheels Bike Moving
+false
+false
+true
+
+
+
+ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+         
+       // Vehicle bean = context.getBean(Car.class);
+        Vehicle bean = (Vehicle) context.getBean("car");
+        Vehicle bean2 = (Vehicle) context.getBean("bike");
+        Vehicle bean3 = (Vehicle) context.getBean("car");
+         bean.drive();
+         bean2.drive();
+         bean3.drive();
+         System.out.println(bean==bean2);
+         System.out.println(bean==bean3);
+         System.out.println(bean2==bean3);
+Output:
+Car Constructor
+Bike Constructor
+4 Wheels Car Moving
+2 Wheels Bike Moving
+4 Wheels Car Moving
+false
+true
+false
+
+<context:component-scan base-package=""><context:component-scan>
+
+
+Setter Injection
+================
+<bean id="car" class="com.suji.spring.model.Car">  
+<property name="name" value="Tesla"></property>
+</bean> 
+
+Uses setName(Strig) from car class.
+
+Constructor Injection
+=====================
+
+<bean id="car" class="com.suji.spring.model.Car">  
+<property name="name" value="Tesla"></property>
+
+<constructor-org value="MRF"></<constructor-org>
+</bean>
+
+============
+
+@Configuration
+public class Config{
+	@Bean
+	public Samsung getPhone(){
+		return new Samsung();
+	}
+}
+
+UnsatisfiedDependencyException
+
+
+UnsatisfiedDependencyException: Error creating bean with name 'road': Unsatisfied dependency expressed through field 'vehicle';
+
+NoUniqueBeanDefinitionException: No qualifying bean of type 'com.suji.spring.model.Vehicle' available: expected single matching bean but found 2: bike,car
+
+
+@Primary 2nd priority
+@Qualifier 1st priority
+
+==================================
+Simple bean class
+
+
+
+<beans>
+	<bean id="studentbean" class="com.javatpoint.Student">
+		<property name="name" value="Vimal Jaiswal"/>
+	</bean>
+</beans>
+
+The bean element is used to define the bean for the given class.  The value specified in the property element will be set in the Student class object by the IOC container.
+
+
+ Resource resource=new ClassPathResource("applicationContext.xml");  
+    BeanFactory factory=new XmlBeanFactory(resource);  
+
+The BeanFactory is responsible to return the bean.
+
+IoC Container
+=============
+The IoC container is responsible to instantiate, configure and assemble the objects. The IoC container gets informations from the XML file and works accordingly. The main tasks performed by IoC container are:
+
+1. to instantiate the application class
+2. to configure the object
+3. to assemble the dependencies between the objects
+There are two types of IoC containers. They are:
+
+1. BeanFactory
+2. ApplicationContext
+
+The BeanFactory and the ApplicationContext interfaces acts as the IoC container.
+The ApplicationContext interface is built on top of the BeanFactory interface. 
+It adds some extra functionality than BeanFactory such as 
+1. simple integration with Spring's AOP,
+2. message resource handling (for I18N),
+3. event propagation,
+4. application layer specific context (e.g. WebApplicationContext) for web application.
+
+Using BeanFactory
+=================
+Resource resource=new ClassPathResource("applicationContext.xml");  
+BeanFactory factory=new XmlBeanFactory(resource);
+
+Using ApplicationContext
+========================
+ApplicationContext context =   
+    new ClassPathXmlApplicationContext("applicationContext.xml");  
+	
+	
+Dependency Injection in Spring
+==============================
+ependency Injection (DI) is a design pattern that removes the dependency from the programming code so that it can be easy to manage and test the application. Dependency Injection makes our programming code loosely coupled.
+
+
+
+Problems of Dependency Lookup:
+There are mainly two problems of dependency lookup.
+
+1. TIGHT COUPLING: The dependency lookup approach makes the code tightly coupled. If resource is changed, we need to perform a lot of modification in the code.
+2. NOT EASY FOR TESTING THIS: approach creates a lot of problems while testing the application especially in black box testing.
+
+
+Dependency Injection:
+=====================
+The Dependency Injection is a design pattern that removes the dependency of the programs. In such case we provide the information from the external source such as XML file. It makes our code loosely coupled and easier for testing. In such case we write the code as:
+
+class Employee{  
+	Address address;  
+  
+	Employee(Address address){  
+		this.address=address;  
+	}  
+	public void setAddress(Address address){  
+	this.address=address;  
+	}
+} 
+Address class is provided by external souce such as XML file either by constructor or setter method. 
+
+Two ways to perform Dependency Injection in Spring framework
+
+Spring framework provides two ways to inject dependency
+
+1. By Constructor
+2. By Setter method
+
+
+1. BY CONSTRUCTOR
+Here we are going to inject
+
+Inject primitive:
+----------
+<constructor-arg value="10" type="int"></constructor-arg> 
+
+Inject String values:
+--------------
+<constructor-arg value="10"></constructor-arg>  
+
+
+
+Inject Dependent object
+----------------
+
+<bean id="a1"> 
+...
+</bean>  
+
+<bean id="e">
+	<constructor-arg>
+		<ref bean="a1"/>
+	</constructor-arg>
+</bean>  
+
+Inject collection
+-----------------
+There can be used three elements inside the constructor-arg element.
+
+It can be:
+list
+set
+map
+
+<list>  
+<value>Java is a programming language</value>  
+<value>Java is a Platform</value>  
+<value>Java is an Island of Indonasia</value>  
+</list>  
+
+Injection Non-String Collection:
+--------------------------------
+<bean id="ans1">  
+...
+</bean>
+<bean id="ans2">  
+...
+</bean>  
+
+  
+<bean id="q">
+	<constructor-arg>
+		<list>
+			<ref bean="ans1"/>
+			<ref bean="ans2"/>
+		</list>
+	</constructor-arg>
+</bean>  
+  
+Map Injection:
+--------------
+<constructor-arg>
+	<map>
+		<entry key="" value=""/>
+		<entry key="" value=""/>
+		<entry key="" value=""/>
+	</map>
+</constructor-arg>
+
+Non-String Map Injection:
+-------------------------
+
+<bean id="user1">
+... 
+</bean>  
+<bean id="user2">
+...  
+</bean>  
+   
+<constructor-arg>  
+<map>  
+<entry key-ref="answer1" value-ref="user1"></entry>  
+<entry key-ref="answer2" value-ref="user2"></entry>  
+</map>  
+</constructor-arg>  
+
+Inheriting Bean
+---------------
+<bean id="e1" class="com.javatpoint.Employee">  
+<constructor-arg value="101"></constructor-arg>  
+<constructor-arg  value="Sachin"></constructor-arg>  
+</bean>  
+  
+  
+<bean id="e2" class="com.javatpoint.Employee" parent="e1">  
+<constructor-arg ref="address1"></constructor-arg>  
+</bean>  
+
+
+Dependency Injection by setter method:
+
+String based:
+
+<bean id="obj" class="">
+	<property name="id">
+		<value>...</value>
+	</property>
+</bean>  
+
+Object based:
+<bean id="a1" class="Address">  
+</bean>  
+  
+<bean id="obj" class="Employee">
+	<property name="address" ref="address1"/>
+</bean>  
+
+List/Set/Map:
+
+<property name="answers">
+	<list>
+		<value>...</value>
+		<value>...</value>
+		<value>...</value>
+	</list>
+</property> 
+
+
+<property name="answers">
+	<list>
+		<ref bean="answer1"/>
+		<ref bean="answer2"/>
+	</list>
+</property>  
+
+Map String:
+<property name="answers">
+	<map>
+		<entry key="" value=""/>
+		<entry key="" value=""/>
+	</map>
+</property>
+
+Map Object:
+<bean id="user1">
+</bean>
+<bean id="user2">
+</bean>
+<bean id="q">
+	<property name="answers">
+		<map>
+			<entry key-ref="answer1" value-ref="user1"/>
+			<entry key-ref="answer2" value-ref="user2"/>
+		</map>
+	</property>
+</bean> 
+
+Difference between constructor and setter injection
+There are many key differences between constructor injection and setter injection.
+
+Partial dependency: can be injected using setter injection but it is not possible by constructor. Suppose there are 3 properties in a class, having 3 arg constructor and setters methods. In such case, if you want to pass information for only one property, it is possible by setter method only.
+Overriding: Setter injection overrides the constructor injection. If we use both constructor and setter injection, IOC container will use the setter injection.
+Changes: We can easily change the value by setter injection. It doesn't create a new bean instance always like constructor. So setter injection is flexible than constructor injection.
+
+
+AUTOWIRING IN SPRING:
+=====================
+Autowiring feature of spring framework enables you to inject the object dependency implicitly. It internally uses setter or constructor injection.
+
+Autowiring can't be used to inject primitive and string values. It works with reference only.
+
+Advantage of Autowiring
+It requires the less code because we don't need to write the code to inject the dependency explicitly.
+
+Autowiring Modes:
+1. ByName
+In case of byName autowiring mode, bean id and reference name must be same.
+<bean id="b" class="org.B"></bean>  
+<bean id="a" class="org.A" autowire="byName"></bean>
+
+2. ByType
+In case of byType autowiring mode, bean id and reference name may be different. But there must be only one bean of a type.
+<bean id="b1" class="org.B"></bean>  
+<bean id="a" class="org.A" autowire="byType"></bean>
+
+3. Constructor
+In case of constructor autowiring mode, spring container injects the dependency by highest parameterized constructor.
+
+If you have 3 constructors in a class, zero-arg, one-arg and two-arg then injection will be performed by calling the two-arg constructor.
+
+<bean id="b" class="org.sssit.B"></bean>  
+<bean id="a" class="org.sssit.A" autowire="constructor"></bean> 
+
+Dependency Injection with Factory Method in Spring:
+ 
+ <<Skipped>>
+Spring framework provides facility to inject bean using factory method. To do so, we can use two attributes of bean element.
+
+factory-method: represents the factory method that will be invoked to inject the bean.
+factory-bean: represents the reference of the bean by which factory method will be invoked. It is used if factory method is non-static.
+A method that returns instance of a class is called factory method.
+ <<Skipped>>
+ 

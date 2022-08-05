@@ -1,0 +1,28 @@
+to ace something
+consolidating
+plethora of something
+
+1. Why Platform independent lang?
+Compiler: Code > Byte code
+- runtime environment (JRE) needed.
+
+2. Stack memory - Heap memory
+Stack- Individual program, vars, methods
+Heap- global, objects
+
+Instance variables are those variables that are accessible by all the methods in the class. All the objects of the class will have their copy of the variables for utilization.
+
+
+Local variables are those variables present within a block, function, or constructor and can be accessed only inside them. restricted to the block scope.
+
+Variable might not be initialized: We need to initialize the value before using it.
+
+
+Data encapsulation: Data Encapsulation is an Object-Oriented Programming concept of hiding the data attributes and their behaviours in a single unit.
+- modularity 
+-  ensuring that each object is independent
+- security of the private properties
+
+
+
+
