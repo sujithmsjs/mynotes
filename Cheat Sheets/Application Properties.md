@@ -19,21 +19,27 @@ spring.mvc.format.date=yyyy-MM-dd
 spring.mvc.format.date-time=yyyy-MM-dd HH:mm:ss
 spring.mvc.format.time=HH:mm:ss
 
-# Data Source
+# H2 Data Source
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sujith
 spring.datasource.password=password
 
-# JPA Props
-spring.jpa.show-sql=true
-spring.jpa.properties.hibernate.format_sql=true
-spring.jpa.hibernate.ddl-auto = create
-
 # H2 Database Settings
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.jpa.defer-datasource-initialization=true
 spring.h2.console.enabled=true
+
+# MySQL Data Source
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sujith
+spring.datasource.password=suji@1234
+
+# JPA Props
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+spring.jpa.hibernate.ddl-auto = create
 
 # Error Message
 server.error.include-message=always
