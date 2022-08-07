@@ -1,6 +1,5 @@
-# null
-
-
+# Employee Student Management
+## _H2 DB + Swagger + Lombok_
 ### File Structure
 ```pre
 + emp-mgnt\ 
@@ -638,7 +637,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 }
-
 ```
 
 ---
@@ -648,7 +646,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 #### src\main\java\com\suji\empmgnt\service\impl\StudentServiceImpl.java
 
 ```tudentServiceImpl.java
-
 package com.suji.empmgnt.service.impl;
 
 import java.util.List;
@@ -678,9 +675,7 @@ public class StudentServiceImpl implements StudentService {
 	public List<Student> getAllStudents() {
 		return repository.findAll();
 	}
-
 }
-
 ```
 
 ---
@@ -705,7 +700,6 @@ INSERT INTO students(id, name, email, marks, cgpa) values(6, 'Vinika', 'vinika@g
 ---
 
 ### 17. EmpMgntApplicationTests.java
-
 #### src\test\java\com\suji\empmgnt\EmpMgntApplicationTests.java
 
 ```mpMgntApplicationTests.java
@@ -723,8 +717,41 @@ class EmpMgntApplicationTests {
 	}
 
 }
-
+```
+---
+### Employee JSON 
+```json
+{
+    "id": 1,
+    "name": "Sujith",
+    "dept": "IT",
+    "salary": 50000.0,
+    "gender": "MALE",
+    "dateOfJoin": "2014-03-03",
+    "active": true,
+    "address": {
+        "pinCode": "507123",
+        "street": "Nehru nagar"
+    },
+    "languages": [
+        "Java",
+        "Python",
+        "C++"
+    ]
+}
+```
+---
+### Student JSON
+```json
+{
+        "id": 3,
+    "name": "Vineeth",
+    "email": "vineeth@gmail.com",
+    "marks": 61,
+    "cgpa": 6.9
+}
 ```
 
----
+
+
 
