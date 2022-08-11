@@ -4,18 +4,8 @@
 ### File Structure
 ```pre
 + CrudRepoDemo\ 
-	+ Parent Path Not Found
-		|---  pom.xml
-	|---  pom.xml
-	+ main\resources
-		|---  application.properties
 	+ \src\main\resources
 		|---  application.properties
-	+ main\resources\templates
-		|---  editStd.html
-		|---  home.html
-		|---  newStd.html
-		|---  test.html
 	+ \src\main\resources\templates
 		|---  error-page.html
 	+ \src\main\resources\templates\person
@@ -24,15 +14,9 @@
 	+ \src\main\resources\templates\student
 		|---  signup.html
 		|---  welcome.html
-	+ main\resources\static\styles
-		|---  basicstyles.css
-	+ main\java\com\suji\crud
-		|---  CrudOpsApplication.java
 	+ \src\main\java\com\suji\crudrepo
 		|---  CrudRepoDemoApplication.java
 		|---  MyRunner.java
-	+ test\java\com\suji\crud
-		|---  CrudOpsApplicationTests.java
 	+ \src\test\java\com\suji\crudrepo
 		|---  CrudRepoDemoApplicationTests.java
 	+ \src\main\java\com\suji\crudrepo\model
@@ -45,10 +29,6 @@
 	+ \src\main\java\com\suji\crudrepo\repository
 		|---  PersonRepository.java
 		|---  StudentRepository.java
-	+ main\java\com\suji\crud\ctrl
-		|---  StudentCtrl.java
-	+ main\java\com\suji\crud\entity
-		|---  Student.java
 	+ \src\main\java\com\suji\crudrepo\configuration
 		|---  DateTimeConfig.java
 		|---  WebApplicationConfig.java
@@ -71,74 +51,41 @@
 ### Index
 ```pre
 1. application.properties
-2. application.properties
-3. pom.xml
-4. pom.xml
-5. model\PersonPojo.java
-6. model\StudentPojo.java
-7. service\EmailService.java
-8. service\PersonService.java
-9. service\StudentService.java
-10. repository\PersonRepository.java
-11. repository\StudentRepository.java
-12. src\main\java\com\suji\crud\CrudOpsApplication.java
-13. src\main\java\com\suji\crud\ctrl\StudentCtrl.java
-14. src\main\java\com\suji\crud\entity\Student.java
-15. src\main\java\com\suji\crudrepo\CrudRepoDemoApplication.java
-16. src\main\java\com\suji\crudrepo\MyRunner.java
-17. src\main\java\com\suji\crudrepo\configuration\DateTimeConfig.java
-18. src\main\java\com\suji\crudrepo\configuration\WebApplicationConfig.java
-19. src\main\java\com\suji\crudrepo\configuration\validation\ContactNumberConstraint.java
-20. src\main\java\com\suji\crudrepo\configuration\validation\ContactNumberValidator.java
-21. src\main\java\com\suji\crudrepo\configuration\validation\FieldsValueMatch.java
-22. src\main\java\com\suji\crudrepo\configuration\validation\FieldsValueMatchValidator.java
-23. src\main\java\com\suji\crudrepo\configuration\validation\PersonConstraint.java
-24. src\main\java\com\suji\crudrepo\configuration\validation\PersonValidator.java
-25. src\main\java\com\suji\crudrepo\configuration\validation\UniquePersonUsernameContraint.java
-26. src\main\java\com\suji\crudrepo\configuration\validation\UniquePersonUsernameValidator.java
-27. src\main\java\com\suji\crudrepo\control\GlobalDefaultExceptionHandler.java
-28. src\main\java\com\suji\crudrepo\control\PersonController.java
-29. src\main\java\com\suji\crudrepo\control\StudentController.java
-30. src\main\java\com\suji\crudrepo\util\PrintUtil.java
-31. resources\templates\editStd.html
-32. resources\templates\home.html
-33. resources\templates\newStd.html
-34. resources\templates\test.html
-35. resources\templates\error-page.html
-36. resources\templates\person\signup.html
-37. resources\templates\person\welcome.html
-38. resources\templates\student\signup.html
-39. resources\templates\student\welcome.html
-40. static\styles\basicstyles.css
-41. src\test\java\com\suji\crud\CrudOpsApplicationTests.java
-42. src\test\java\com\suji\crudrepo\CrudRepoDemoApplicationTests.java
+2. model\PersonPojo.java
+3. model\StudentPojo.java
+4. service\EmailService.java
+5. service\PersonService.java
+6. service\StudentService.java
+7. repository\PersonRepository.java
+8. repository\StudentRepository.java
+9. src\main\java\com\suji\crudrepo\CrudRepoDemoApplication.java
+10. src\main\java\com\suji\crudrepo\MyRunner.java
+11. src\main\java\com\suji\crudrepo\configuration\DateTimeConfig.java
+12. src\main\java\com\suji\crudrepo\configuration\WebApplicationConfig.java
+13. src\main\java\com\suji\crudrepo\configuration\validation\ContactNumberConstraint.java
+14. src\main\java\com\suji\crudrepo\configuration\validation\ContactNumberValidator.java
+15. src\main\java\com\suji\crudrepo\configuration\validation\FieldsValueMatch.java
+16. src\main\java\com\suji\crudrepo\configuration\validation\FieldsValueMatchValidator.java
+17. src\main\java\com\suji\crudrepo\configuration\validation\PersonConstraint.java
+18. src\main\java\com\suji\crudrepo\configuration\validation\PersonValidator.java
+19. src\main\java\com\suji\crudrepo\configuration\validation\UniquePersonUsernameContraint.java
+20. src\main\java\com\suji\crudrepo\configuration\validation\UniquePersonUsernameValidator.java
+21. src\main\java\com\suji\crudrepo\control\GlobalDefaultExceptionHandler.java
+22. src\main\java\com\suji\crudrepo\control\PersonController.java
+23. src\main\java\com\suji\crudrepo\control\StudentController.java
+24. src\main\java\com\suji\crudrepo\util\PrintUtil.java
+25. resources\templates\error-page.html
+26. resources\templates\person\signup.html
+27. resources\templates\person\welcome.html
+28. resources\templates\student\signup.html
+29. resources\templates\student\welcome.html
+30. src\test\java\com\suji\crudrepo\CrudRepoDemoApplicationTests.java
 
 ```
 
 ---
 
 ### 1. application.properties
-
-#### application.properties
-
-```properties
-
-spring.jpa.hibernate.ddl-auto=update
-
-spring.jpa.show-sql=true
-
-spring.datasource.username=root
-spring.datasource.password=apple
-spring.datasource.url=jdbc:mysql://localhost:3306/nitro
-spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-
-logging.level.org.springframework.context.config=DEBUG
-
-```
-
----
-
-### 2. application.properties
 
 #### application.properties
 
@@ -198,153 +145,7 @@ spring.mail.properties.mail.smtp.starttls.enable=true
 
 ---
 
-### 3. pom.xml
-
-#### pom.xml
-
-```xml
-
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.9</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.suji</groupId>
-	<artifactId>CrudOps</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>CrudOps</name>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
-</project>
-
-```
-
----
-
-### 4. pom.xml
-
-#### pom.xml
-
-```xml
-
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.9</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.suji</groupId>
-	<artifactId>CrudRepoDemo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>CrudRepoDemo</name>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-validation</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		 <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
-        </dependency>
-		
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
-
-</project>
-
-```
-
----
-
-### 5. PersonPojo.java
+### 2. PersonPojo.java
 
 #### model\PersonPojo.java
 
@@ -424,7 +225,7 @@ public class PersonPojo {
 
 ---
 
-### 6. StudentPojo.java
+### 3. StudentPojo.java
 
 #### model\StudentPojo.java
 
@@ -497,7 +298,7 @@ public class StudentPojo {
 
 ---
 
-### 7. EmailService.java
+### 4. EmailService.java
 
 #### service\EmailService.java
 
@@ -536,7 +337,7 @@ public class EmailService {
 
 ---
 
-### 8. PersonService.java
+### 5. PersonService.java
 
 #### service\PersonService.java
 
@@ -581,7 +382,7 @@ public class PersonService {
 
 ---
 
-### 9. StudentService.java
+### 6. StudentService.java
 
 #### service\StudentService.java
 
@@ -615,7 +416,7 @@ public class StudentService {
 
 ---
 
-### 10. PersonRepository.java
+### 7. PersonRepository.java
 
 #### repository\PersonRepository.java
 
@@ -637,7 +438,7 @@ public interface PersonRepository extends JpaRepository<PersonPojo, Integer> {
 
 ---
 
-### 11. StudentRepository.java
+### 8. StudentRepository.java
 
 #### repository\StudentRepository.java
 
@@ -657,211 +458,7 @@ public interface StudentRepository extends JpaRepository<StudentPojo, Integer> {
 
 ---
 
-### 12. CrudOpsApplication.java
-
-#### src\main\java\com\suji\crud\CrudOpsApplication.java
-
-```java
-
-package com.suji.crud;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import com.suji.crud.entity.Student;
-
-@SpringBootApplication
-public class CrudOpsApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(CrudOpsApplication.class, args);
-		System.out.println("CurdObjs Project...");
-		
-		
-	}
-
-}
-
-```
-
----
-
-### 13. StudentCtrl.java
-
-#### src\main\java\com\suji\crud\ctrl\StudentCtrl.java
-
-```java
-
-package com.suji.crud.ctrl;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import com.suji.crud.entity.Student;
-
-@Controller
-public class StudentCtrl {
-
-	@RequestMapping("/home")
-	public String home(Model model) {
-		
-		List<Student> stds = new ArrayList<>();
-		stds.add(new Student(109, "Sujith", 9.4));
-		stds.add(new Student(343, "Sumanth", 8.4));
-		stds.add(new Student(234, "Anitha", 7.4));
-		stds.add(new Student(267, "Shamala", 4.4));
-		
-		model.addAttribute("stds", stds);
-		
-		return "home";
-	}
-	
-	@RequestMapping("/std/edit/{sno}")
-	public String editStd(@PathVariable("sno") int sno, Model model) {
-		
-		//Retrive data from database
-		Student std = new Student(943,"Johncena", 87.54);
-		std.setSno(sno);
-		
-		//Adding new object to model
-		model.addAttribute("std", std);
-		
-		return "editStd";
-	}
-	
-	@RequestMapping("/atest")
-	@ResponseBody
-	public String checkTest(Model model,Student tudent) {
-		Map<String, Object> map = model.asMap();
-		Set<String> keySet = map.keySet();
-		for (String string : keySet) {
-			System.out.println("Key:"+string+" ; Value: "+model.getAttribute(string));
-			
-		}
-		
-		return "Check console";
-		
-	}
-	
-	
-	@RequestMapping("/std/new")
-	public String newStd(Model model) {
-		
-		//New Student object created.
-		Student std = new Student();
-		
-		//Adding new object to model
-		model.addAttribute("std", std);
-		
-		System.out.println("New empty student object has been created.");
-		
-	return "newStd";
-	}
-	
-	@RequestMapping("/test")
-	public String test() {
-		System.out.println("In Test Controller...");
-		return "test";
-	}
-	
-	
-	
-	
-	@RequestMapping("/std/delete/{sno}")
-	public String delStd(@PathVariable("sno") int sno) {
-		
-		System.out.println("Student with sno:"+sno+" wil be deleted. Redirecting to home.");
-		
-		return "redirect:/home";
-	}
-	
-	@RequestMapping("/std/save")
-	public String saveStd(Student std) {
-		
-		System.out.println("Saving... std:"+std+" Redirecting to home.");
-		
-		return "redirect:/home";
-	}
-	
-	
-	
-	
-	
-}
-
-```
-
----
-
-### 14. Student.java
-
-#### src\main\java\com\suji\crud\entity\Student.java
-
-```java
-
-package com.suji.crud.entity;
-
-public class Student {
-	
-	private int sno;
-	private String name;
-	private double cgpa;
-	
-	public Student() {
-		
-	}
-	
-	public Student(int sno, String name, double cgpa) {
-		super();
-		this.sno = sno;
-		this.name = name;
-		this.cgpa = cgpa;
-	}
-	
-	public int getSno() {
-		return sno;
-	}
-
-	public void setSno(int sno) {
-		this.sno = sno;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public double getCgpa() {
-		return cgpa;
-	}
-
-	public void setCgpa(double cgpa) {
-		this.cgpa = cgpa;
-	}
-
-	public String toString() {
-		return "Student [sno=" + sno + ", name=" + name + ", cgpa=" + cgpa + "]";
-	}
-}
-
-```
-
----
-
-### 15. CrudRepoDemoApplication.java
+### 9. CrudRepoDemoApplication.java
 
 #### src\main\java\com\suji\crudrepo\CrudRepoDemoApplication.java
 
@@ -885,7 +482,7 @@ public class CrudRepoDemoApplication {
 
 ---
 
-### 16. MyRunner.java
+### 10. MyRunner.java
 
 #### src\main\java\com\suji\crudrepo\MyRunner.java
 
@@ -920,7 +517,7 @@ public class MyRunner  implements CommandLineRunner{
 
 ---
 
-### 17. DateTimeConfig.java
+### 11. DateTimeConfig.java
 
 #### src\main\java\com\suji\crudrepo\configuration\DateTimeConfig.java
 
@@ -944,7 +541,7 @@ public class DateTimeConfig extends WebMvcConfigurationSupport {
 
 ---
 
-### 18. WebApplicationConfig.java
+### 12. WebApplicationConfig.java
 
 #### src\main\java\com\suji\crudrepo\configuration\WebApplicationConfig.java
 
@@ -981,7 +578,7 @@ public class WebApplicationConfig implements WebMvcConfigurer {
 
 ---
 
-### 19. ContactNumberConstraint.java
+### 13. ContactNumberConstraint.java
 
 #### src\main\java\com\suji\crudrepo\configuration\validation\ContactNumberConstraint.java
 
@@ -1016,7 +613,7 @@ public @interface ContactNumberConstraint {
 
 ---
 
-### 20. ContactNumberValidator.java
+### 14. ContactNumberValidator.java
 
 #### src\main\java\com\suji\crudrepo\configuration\validation\ContactNumberValidator.java
 
@@ -1045,7 +642,7 @@ public class ContactNumberValidator implements ConstraintValidator<ContactNumber
 
 ---
 
-### 21. FieldsValueMatch.java
+### 15. FieldsValueMatch.java
 
 #### src\main\java\com\suji\crudrepo\configuration\validation\FieldsValueMatch.java
 
@@ -1082,7 +679,7 @@ public @interface FieldsValueMatch {
 
 ---
 
-### 22. FieldsValueMatchValidator.java
+### 16. FieldsValueMatchValidator.java
 
 #### src\main\java\com\suji\crudrepo\configuration\validation\FieldsValueMatchValidator.java
 
@@ -1125,7 +722,7 @@ public class FieldsValueMatchValidator implements ConstraintValidator<FieldsValu
 
 ---
 
-### 23. PersonConstraint.java
+### 17. PersonConstraint.java
 
 #### src\main\java\com\suji\crudrepo\configuration\validation\PersonConstraint.java
 
@@ -1157,7 +754,7 @@ public @interface PersonConstraint {
 
 ---
 
-### 24. PersonValidator.java
+### 18. PersonValidator.java
 
 #### src\main\java\com\suji\crudrepo\configuration\validation\PersonValidator.java
 
@@ -1208,7 +805,7 @@ public class PersonValidator implements ConstraintValidator<PersonConstraint, Pe
 
 ---
 
-### 25. UniquePersonUsernameContraint.java
+### 19. UniquePersonUsernameContraint.java
 
 #### src\main\java\com\suji\crudrepo\configuration\validation\UniquePersonUsernameContraint.java
 
@@ -1243,7 +840,7 @@ public @interface UniquePersonUsernameContraint {
 
 ---
 
-### 26. UniquePersonUsernameValidator.java
+### 20. UniquePersonUsernameValidator.java
 
 #### src\main\java\com\suji\crudrepo\configuration\validation\UniquePersonUsernameValidator.java
 
@@ -1284,7 +881,7 @@ public class UniquePersonUsernameValidator implements ConstraintValidator<Unique
 
 ---
 
-### 27. GlobalDefaultExceptionHandler.java
+### 21. GlobalDefaultExceptionHandler.java
 
 #### src\main\java\com\suji\crudrepo\control\GlobalDefaultExceptionHandler.java
 
@@ -1333,7 +930,7 @@ public class GlobalDefaultExceptionHandler {
 
 ---
 
-### 28. PersonController.java
+### 22. PersonController.java
 
 #### src\main\java\com\suji\crudrepo\control\PersonController.java
 
@@ -1435,7 +1032,7 @@ public class PersonController {
 
 ---
 
-### 29. StudentController.java
+### 23. StudentController.java
 
 #### src\main\java\com\suji\crudrepo\control\StudentController.java
 
@@ -1488,7 +1085,7 @@ public class StudentController {
 
 ---
 
-### 30. PrintUtil.java
+### 24. PrintUtil.java
 
 #### src\main\java\com\suji\crudrepo\util\PrintUtil.java
 
@@ -1517,159 +1114,7 @@ public class PrintUtil {
 
 ---
 
-### 31. editStd.html
-
-#### resources\templates\editStd.html
-
-```html
-
-<!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<title>Update Student</title>
-	<meta charset="UTF-8">
-	<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
-</head>
-
-<body bgcolor="orange">
-	<div>
-		<h1>Update new student</h1>
-		
-		<form th:object="${std}" th:action="@{/std/save}">
-			<label for="fname">Sno:</label><br />
-			<input type="text" th:field="*{sno}"><br />
-
-			<label for="lname">Name:</label><br />
-			<input type="text" th:field="*{name}"><br />
-
-			<label for="lname">CGPA:</label><br />
-			<input type="text" th:field="*{cgpa}"><br />
-			<input type="submit" value="Signup">
-		</form>
-
-	</div>
-</body>
-
-</html>
-```
-
----
-
-### 32. home.html
-
-#### resources\templates\home.html
-
-```html
-
-<!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-<title>Home Page</title>
-<meta charset="UTF-8">
-<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
-</head>
-
-<body>
-	<div>
-
-		<a th:href="@{/std/new}">Create New Student</a>
-
-		<table>
-			<tr>
-				<th>Sno</th>
-				<th>Name</th>
-				<th>CGPA</th>
-				<th>Actions</th>
-			</tr>
-
-			<tr th:each="std : ${stds}">
-				<td th:text="${std.sno}"></td>
-				<td th:text="${std.name}"></td>
-				<td th:text="${std.cgpa}"></td>
-
-				<td><a th:href="@{/std/edit/{sno}(sno=${std.sno})}">Edit</a> <a
-					th:href="@{/std/delete/{sno}(sno=${std.sno})}">Delete</a></td>
-
-			</tr>
-		</table>
-	</div>
-</body>
-
-</html>
-```
-
----
-
-### 33. newStd.html
-
-#### resources\templates\newStd.html
-
-```html
-
-<!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<title>Create New</title>
-	<meta charset="UTF-8">
-	<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
-</head>
-
-<body bgcolor="cyan">
-	<div>
-		<h1>Create new student</h1>
-		<form th:object="${std}" th:action="@{/std/save}">
-
-			<label for="fname">Sno:</label><br />
-			<input type="text" th:field="*{sno}"><br />
-
-			<label for="lname">Name:</label><br />
-			<input type="text" th:field="*{name}"><br />
-
-			<label for="lname">CGPA:</label><br />
-			<input type="text" th:field="*{cgpa}"><br />
-
-			<input type="submit" value="Signup">
-		</form>
-
-	</div>
-</body>
-
-</html>
-```
-
----
-
-### 34. test.html
-
-#### resources\templates\test.html
-
-```html
-
-<!DOCTYPE html>
-
-<html xmlns:th="http://www.thymeleaf.org">
-
-<head>
-	<title>Test Page</title>
-	<meta charset="UTF-8">
-	<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
-</head>
-
-<body>
-	<h1>This is just testing page.</h1>
-</body>
-</html>
-```
-
----
-
-### 35. error-page.html
+### 25. error-page.html
 
 #### resources\templates\error-page.html
 
@@ -1697,7 +1142,7 @@ public class PrintUtil {
 
 ---
 
-### 36. signup.html
+### 26. signup.html
 
 #### resources\templates\person\signup.html
 
@@ -1778,7 +1223,7 @@ public class PrintUtil {
 
 ---
 
-### 37. welcome.html
+### 27. welcome.html
 
 #### resources\templates\person\welcome.html
 
@@ -1816,7 +1261,7 @@ public class PrintUtil {
 
 ---
 
-### 38. signup.html
+### 28. signup.html
 
 #### resources\templates\student\signup.html
 
@@ -1876,7 +1321,7 @@ public class PrintUtil {
 
 ---
 
-### 39. welcome.html
+### 29. welcome.html
 
 #### resources\templates\student\welcome.html
 
@@ -1907,65 +1352,7 @@ public class PrintUtil {
 
 ---
 
-### 40. basicstyles.css
-
-#### static\styles\basicstyles.css
-
-```css
-
-div, form, table {
-	margin: auto;
-	width: 60%;
-	/*  border: 3px solid rgb(0, 255, 64);*/
-	padding: 10px;
-}
-
-form {
-	text-align: center;
-}
-
-a, h1, h2, p {
-	text-align: center;
-	display: block;
-}
-
-table, th, td {
-	margin: 10px;
-	padding: 10px;
-	border: 2px solid black;
-	border-collapse: collapse;
-	margin-left: auto;
-	margin-right: auto;
-}
-```
-
----
-
-### 41. CrudOpsApplicationTests.java
-
-#### src\test\java\com\suji\crud\CrudOpsApplicationTests.java
-
-```java
-
-package com.suji.crud;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class CrudOpsApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
-
-```
-
----
-
-### 42. CrudRepoDemoApplicationTests.java
+### 30. CrudRepoDemoApplicationTests.java
 
 #### src\test\java\com\suji\crudrepo\CrudRepoDemoApplicationTests.java
 

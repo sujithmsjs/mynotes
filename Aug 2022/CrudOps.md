@@ -4,7 +4,6 @@
 ### File Structure
 ```pre
 + CrudOps\ 
-	|---  pom.xml
 	+ \src\main\resources
 		|---  application.properties
 	+ \src\main\resources\templates
@@ -26,16 +25,15 @@
 ### Index
 ```pre
 1. application.properties
-2. pom.xml
-3. src\main\java\com\suji\crud\CrudOpsApplication.java
-4. src\main\java\com\suji\crud\ctrl\StudentCtrl.java
-5. src\main\java\com\suji\crud\entity\Student.java
-6. resources\templates\editStd.html
-7. resources\templates\home.html
-8. resources\templates\newStd.html
-9. resources\templates\test.html
-10. static\styles\basicstyles.css
-11. src\test\java\com\suji\crud\CrudOpsApplicationTests.java
+2. src\main\java\com\suji\crud\CrudOpsApplication.java
+3. src\main\java\com\suji\crud\ctrl\StudentCtrl.java
+4. src\main\java\com\suji\crud\entity\Student.java
+5. resources\templates\editStd.html
+6. resources\templates\home.html
+7. resources\templates\newStd.html
+8. resources\templates\test.html
+9. static\styles\basicstyles.css
+10. src\test\java\com\suji\crud\CrudOpsApplicationTests.java
 
 ```
 
@@ -62,65 +60,7 @@ logging.level.org.springframework.context.config=DEBUG
 
 ---
 
-### 2. pom.xml
-
-#### pom.xml
-
-```xml
-
-<?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.9</version>
-		<relativePath /> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>com.suji</groupId>
-	<artifactId>CrudOps</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>CrudOps</name>
-	<description>Demo project for Spring Boot</description>
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
-
-</project>
-
-```
-
----
-
-### 3. CrudOpsApplication.java
+### 2. CrudOpsApplication.java
 
 #### src\main\java\com\suji\crud\CrudOpsApplication.java
 
@@ -149,7 +89,7 @@ public class CrudOpsApplication {
 
 ---
 
-### 4. StudentCtrl.java
+### 3. StudentCtrl.java
 
 #### src\main\java\com\suji\crud\ctrl\StudentCtrl.java
 
@@ -266,7 +206,7 @@ public class StudentCtrl {
 
 ---
 
-### 5. Student.java
+### 4. Student.java
 
 #### src\main\java\com\suji\crud\entity\Student.java
 
@@ -324,7 +264,7 @@ public class Student {
 
 ---
 
-### 6. editStd.html
+### 5. editStd.html
 
 #### resources\templates\editStd.html
 
@@ -364,7 +304,7 @@ public class Student {
 
 ---
 
-### 7. home.html
+### 6. home.html
 
 #### resources\templates\home.html
 
@@ -411,7 +351,7 @@ public class Student {
 
 ---
 
-### 8. newStd.html
+### 7. newStd.html
 
 #### resources\templates\newStd.html
 
@@ -452,7 +392,7 @@ public class Student {
 
 ---
 
-### 9. test.html
+### 8. test.html
 
 #### resources\templates\test.html
 
@@ -476,7 +416,7 @@ public class Student {
 
 ---
 
-### 10. basicstyles.css
+### 9. basicstyles.css
 
 #### static\styles\basicstyles.css
 
@@ -510,7 +450,7 @@ table, th, td {
 
 ---
 
-### 11. CrudOpsApplicationTests.java
+### 10. CrudOpsApplicationTests.java
 
 #### src\test\java\com\suji\crud\CrudOpsApplicationTests.java
 
