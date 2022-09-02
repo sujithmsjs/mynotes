@@ -1,0 +1,67 @@
+facilitate verb
+facilitated: to make an action or a process possible or easier
+Hibernate facilitates providing the configuration either in an XML file (like hibernate.cfg.xml) or a properties file (like hibernate.properties).
+
+immutable adjective
+that cannot be changed; that will never change
+SYNONYM unchangeable
+a class can be made immutable by markingmutable=false.
+
+
+correspond verb
+ to be the same as or match something
+SYNONYM agree, 
+correspond with something: Your account of events does not correspond with hers.
+correspond to something: The written record of the conversation doesn't correspond to (= is different from) what was actually said.
+Ex:
+we are going to add the corresponding dependency.
+
+
+beforehand adverb
+earlier; before something else happens or is done
+two weeks/three days/a few hours beforehand
+I wish we'd known about it beforehand.
+He warned me beforehand what to expect.
+
+
+
+semantics
+
+
+constraints
+
+
+snippets
+
+
+Hibernate Inheritance Mapping?
+Hibernate’s Inheritance Mapping strategies deal with solving how to hibernate being an ORM tries to map this problem between the inheritance of Java and flat structure of Databases.
+
+There are different inheritance mapping strategies available:
+
+Single Table Strategy
+Table Per Class Strategy
+Mapped Super Class Strategy
+Joined Table Strategy
+
+
+wherein adverb, conjunction
+(formal)
+​in which place, situation or thing; in what way
+an organization wherein each employee is valued and respected
+Wherein lies the difference between conservatism and liberalism?
+
+SQL injection attack is a serious vulnerability in terms of web security wherein an attacker can interfere with the queries made by an application/website to its database thereby allowing the attacker to view sensitive data which are generally irretrievable. 
+
+
+mutable is the default value if we don't include the annotation) and will allow the update to do its job.
+
+forum  'fɔ:rəm
+Noun	
+a public meeting or assembly for open discussion
+I've been having an annoying exception a lot lately, and after some research on Google and this forum I still haven't found an answer that could solve my problem.
+
+
+culprit  'kəlprət
+Noun	
+someone who perpetrates wrongdoing

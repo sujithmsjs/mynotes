@@ -1,0 +1,1271 @@
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData
+[INFO] UserData [uid=1, name=Sujith Manchala, username=sujimax, password=NvrStl]
+[INFO] UserData [uid=2, name=Vineeth Manchala, username=vinMark, password=NvrSt]
+[INFO] UserData [uid=3, name=Sumanth Pitta, username=Sam, password=Fk@Pr]
+[INFO] UserData [uid=5, name=Anusha, username=anux, password=anuxyz]
+[INFO] UserData [uid=6, name=Soundharya, username=sou, password=1234]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData where marks = 0
+[INFO] UserData [uid=1, name=Sujith Manchala, username=sujimax, password=NvrStl]
+[INFO] UserData [uid=5, name=Anusha, username=anux, password=anuxyz]
+[INFO] UserData [uid=6, name=Soundharya, username=sou, password=1234]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from demo1 where username=:un and password=:pw
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from demo1 where username=:un and password=:pw
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData where username=:un and password=:pw
+[INFO] Data Received.UserData [uid=3, name=Sumanth Pitta, username=Sam, password=Fk@Pr]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData where username=:un and password=:pw
+[INFO] Data Received.null
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData where username=:un and password=:pw
+[INFO] Data Received:null
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData
+[ERROR] query did not return a unique result: 5
+[INFO] Data Received:null
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData where username=:un and password=:pw
+[INFO] Data Received: UserData [uid=3, name=Sumanth Pitta, username=Sam, password=Fk@Pr]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData where username=:un and password=:pw
+[INFO] Data Received: null
+[INFO] List size: [UserData [uid=3, name=Sumanth Pitta, username=Sam, password=Fk@Pr]]
+[INFO] Data UserData [uid=3, name=Sumanth Pitta, username=Sam, password=Fk@Pr]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData where username=:un and password=:pw
+[INFO] Data Received: null
+[INFO] List size: 1
+[INFO] Data UserData [uid=3, name=Sumanth Pitta, username=Sam, password=Fk@Pr]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Query used: from UserData where username=:un and password=:pw
+[INFO] Data Received: null
+[INFO] List size: 1
+[INFO] [Data] UserData [uid=3, name=Sumanth Pitta, username=Sam, password=Fk@Pr]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] [Obj] [Ljava.lang.Object;@602f8f94
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] [Obj] [Ljava.lang.Object;@602f8f94
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] 2
+[INFO] 
+[INFO] 8.6
+[INFO] 2022-01-25 23:19:00.3
+[INFO] 
+[INFO] false
+[INFO] 871
+[INFO] 2022-01-25 23:19:00.3
+[INFO] Vineeth Manchala
+[INFO] NvrSt
+[INFO] 0.0
+[INFO] 0
+[INFO] vinMark
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] 1
+[INFO] Sujith Manchala
+[INFO] sujimax
+[INFO] NvrStl
+[INFO] 2
+[INFO] Vineeth Manchala
+[INFO] vinMark
+[INFO] NvrSt
+[INFO] 3
+[INFO] Sumanth Pitta
+[INFO] Sam
+[INFO] Fk@Pr
+[INFO] 5
+[INFO] Anusha
+[INFO] anux
+[INFO] anuxyz
+[INFO] 6
+[INFO] Soundharya
+[INFO] sou
+[INFO] 1234
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[ERROR] line 1:1: unexpected token: slect
+[ERROR] line 1:1: unexpected token: slect
+line 1:1: unexpected token: slect
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:212)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:294)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:189)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at com.suji.dbutil.HQLRunner.toSql(HQLRunner.java:285)
+	at com.suji.dbutil.HQLRunner.runHQL(HQLRunner.java:113)
+	at com.suji.dbutil.HQLRunner.actionPerformed(HQLRunner.java:296)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6626)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[ERROR] line 1:1: unexpected token: slect
+[ERROR] line 1:1: unexpected token: slect
+line 1:1: unexpected token: slect
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:212)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:294)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:189)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at com.suji.dbutil.HQLRunner.toSql(HQLRunner.java:285)
+	at com.suji.dbutil.HQLRunner.runHQL(HQLRunner.java:113)
+	at com.suji.dbutil.HQLRunner.actionPerformed(HQLRunner.java:296)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6626)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[WARN] SQL Error: 1064, SQLState: 42000
+[ERROR] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit 100' at line 1
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[ERROR] line 1:8: unexpected token: *
+[ERROR] line 1:8: unexpected token: *
+line 1:8: unexpected token: *
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.selectClause(HqlBaseParser.java:1380)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.selectFrom(HqlBaseParser.java:1142)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.queryRule(HqlBaseParser.java:825)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.selectStatement(HqlBaseParser.java:336)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:200)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:294)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:189)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:162)
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:636)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:748)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:114)
+	at com.suji.dbutil.HQLRunner.runSQL(HQLRunner.java:127)
+	at com.suji.dbutil.HQLRunner.actionPerformed(HQLRunner.java:259)
+	at java.desktop/javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:1972)
+	at java.desktop/javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2313)
+	at java.desktop/javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:405)
+	at java.desktop/javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:262)
+	at java.desktop/javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:279)
+	at java.desktop/java.awt.Component.processMouseEvent(Component.java:6626)
+	at java.desktop/javax.swing.JComponent.processMouseEvent(JComponent.java:3389)
+	at java.desktop/java.awt.Component.processEvent(Component.java:6391)
+	at java.desktop/java.awt.Container.processEvent(Container.java:2266)
+	at java.desktop/java.awt.Component.dispatchEventImpl(Component.java:5001)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2324)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+	at java.desktop/java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4948)
+	at java.desktop/java.awt.LightweightDispatcher.processMouseEvent(Container.java:4575)
+	at java.desktop/java.awt.LightweightDispatcher.dispatchEvent(Container.java:4516)
+	at java.desktop/java.awt.Container.dispatchEventImpl(Container.java:2310)
+	at java.desktop/java.awt.Window.dispatchEventImpl(Window.java:2780)
+	at java.desktop/java.awt.Component.dispatchEvent(Component.java:4833)
+	at java.desktop/java.awt.EventQueue.dispatchEventImpl(EventQueue.java:773)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:722)
+	at java.desktop/java.awt.EventQueue$4.run(EventQueue.java:716)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:97)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:746)
+	at java.desktop/java.awt.EventQueue$5.run(EventQueue.java:744)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:399)
+	at java.base/java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+	at java.desktop/java.awt.EventQueue.dispatchEvent(EventQueue.java:743)
+	at java.desktop/java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:203)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:124)
+	at java.desktop/java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:113)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:109)
+	at java.desktop/java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+	at java.desktop/java.awt.EventDispatchThread.run(EventDispatchThread.java:90)
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@6cd15072] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3af58f76] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@294f9d50] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Student (class must be instantiated by Interceptor)
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@37348491] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] com.suji.model.Student@34451ed8 Status: 1
+[INFO] com.suji.model.Student@59fc6d05 Status: 2
+[INFO] com.suji.model.Student@1983b48a Status: 3
+[INFO] com.suji.model.Student@47b269c4 Status: 4
+[INFO] com.suji.model.Student@286855ea Status: 5
+[INFO] com.suji.model.Student@fd413fb Status: 6
+[INFO] com.suji.model.Student@6b357eb6 Status: 7
+[INFO] com.suji.model.Student@7730ef88 Status: 8
+[INFO] com.suji.model.Student@e3b0369 Status: 9
+[INFO] com.suji.model.Student@6588b715 Status: 10
+[INFO] com.suji.model.Student@373052b5 Status: 11
+[INFO] com.suji.model.Student@5af5d76f Status: 12
+[INFO] com.suji.model.Student@298b64f7 Status: 13
+[INFO] com.suji.model.Student@4342c13 Status: 14
+[INFO] com.suji.model.Student@7d8cf9ac Status: 15
+[INFO] com.suji.model.Student@2921a36a Status: 16
+[INFO] com.suji.model.Student@5190010f Status: 17
+[INFO] com.suji.model.Student@4998e74b Status: 18
+[INFO] com.suji.model.Student@3663d0ba Status: 19
+[INFO] com.suji.model.Student@2da81754 Status: 20
+[INFO] com.suji.model.Student@6f9e08d4 Status: 21
+[INFO] com.suji.model.Student@6002e944 Status: 22
+[INFO] com.suji.model.Student@f171912 Status: 23
+[INFO] com.suji.model.Student@1e54a6b1 Status: 24
+[INFO] com.suji.model.Student@4e245739 Status: 25
+[INFO] com.suji.model.Student@2f20f7ad Status: 26
+[INFO] com.suji.model.Student@348137e8 Status: 27
+[INFO] com.suji.model.Student@60f77af Status: 28
+[INFO] com.suji.model.Student@3fe512d2 Status: 29
+[INFO] com.suji.model.Student@11381415 Status: 30
+[INFO] com.suji.model.Student@38d80d65 Status: 31
+[INFO] com.suji.model.Student@4293e066 Status: 32
+[INFO] com.suji.model.Student@3946075 Status: 33
+[INFO] com.suji.model.Student@1de4bee0 Status: 34
+[INFO] com.suji.model.Student@262a1fad Status: 35
+[INFO] com.suji.model.Student@e7b265e Status: 36
+[INFO] com.suji.model.Student@4872669f Status: 37
+[INFO] com.suji.model.Student@68ef01a5 Status: 38
+[INFO] com.suji.model.Student@2db6d68d Status: 39
+[INFO] com.suji.model.Student@174721c4 Status: 40
+[INFO] com.suji.model.Student@648c5fb3 Status: 41
+[INFO] com.suji.model.Student@13ed066e Status: 42
+[INFO] com.suji.model.Student@626d2016 Status: 43
+[INFO] com.suji.model.Student@193bb809 Status: 44
+[INFO] com.suji.model.Student@1c240cf2 Status: 45
+[INFO] com.suji.model.Student@64763e49 Status: 46
+[INFO] com.suji.model.Student@2b53840a Status: 47
+[INFO] com.suji.model.Student@64b0d1fa Status: 48
+[INFO] com.suji.model.Student@e9474f Status: 49
+[INFO] com.suji.model.Student@131a7516 Status: 50
+[INFO] com.suji.model.Student@52d3fafd Status: 51
+[INFO] com.suji.model.Student@523a7801 Status: 52
+[INFO] com.suji.model.Student@4e22368c Status: 53
+[INFO] com.suji.model.Student@61cda923 Status: 54
+[INFO] com.suji.model.Student@5382184b Status: 55
+[INFO] com.suji.model.Student@6f25bf88 Status: 56
+[INFO] com.suji.model.Student@202898d7 Status: 57
+[INFO] com.suji.model.Student@37a0ec3c Status: 58
+[INFO] com.suji.model.Student@50b93353 Status: 59
+[INFO] com.suji.model.Student@3249e278 Status: 60
+[INFO] com.suji.model.Student@8f40022 Status: 61
+[INFO] com.suji.model.Student@2ad99cf3 Status: 62
+[INFO] com.suji.model.Student@3ba1308d Status: 63
+[INFO] com.suji.model.Student@4a9a878 Status: 64
+[INFO] com.suji.model.Student@552cede7 Status: 65
+[INFO] com.suji.model.Student@40ed1802 Status: 66
+[INFO] com.suji.model.Student@31e739bf Status: 67
+[INFO] com.suji.model.Student@7f42e06e Status: 68
+[INFO] com.suji.model.Student@316cda31 Status: 69
+[INFO] com.suji.model.Student@310b2b6f Status: 70
+[INFO] com.suji.model.Student@6b2dd3df Status: 71
+[INFO] com.suji.model.Student@5bcec67e Status: 72
+[INFO] com.suji.model.Student@4bb1b96b Status: 73
+[INFO] com.suji.model.Student@3421debd Status: 74
+[INFO] com.suji.model.Student@4a070cf0 Status: 75
+[INFO] com.suji.model.Student@6d6ac396 Status: 76
+[INFO] com.suji.model.Student@6ad1701a Status: 77
+[INFO] com.suji.model.Student@713a35c5 Status: 78
+[INFO] com.suji.model.Student@77b3752b Status: 79
+[INFO] com.suji.model.Student@35bfa1bb Status: 80
+[INFO] com.suji.model.Student@357bc488 Status: 81
+[INFO] com.suji.model.Student@309dcdf3 Status: 82
+[INFO] com.suji.model.Student@445821a6 Status: 83
+[INFO] com.suji.model.Student@ee21292 Status: 84
+[INFO] com.suji.model.Student@611b35d6 Status: 85
+[INFO] com.suji.model.Student@dd3f8aa Status: 86
+[INFO] com.suji.model.Student@52ca2652 Status: 87
+[INFO] com.suji.model.Student@5efeb117 Status: 88
+[INFO] com.suji.model.Student@4d93f75b Status: 89
+[INFO] com.suji.model.Student@f2b90fc Status: 90
+[INFO] com.suji.model.Student@2ed9f6f8 Status: 91
+[INFO] com.suji.model.Student@182e7eda Status: 92
+[INFO] com.suji.model.Student@5921b93c Status: 93
+[INFO] com.suji.model.Student@69f2cb04 Status: 94
+[INFO] com.suji.model.Student@3a7c678b Status: 95
+[INFO] com.suji.model.Student@4f93bf0a Status: 96
+[INFO] com.suji.model.Student@778a1250 Status: 97
+[INFO] com.suji.model.Student@7f3ca64a Status: 98
+[INFO] com.suji.model.Student@3f8dfe74 Status: 99
+[INFO] com.suji.model.Student@27dc627a Status: 100
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Student (class must be instantiated by Interceptor)
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@37348491] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH000182: No default (no-argument) constructor for class: com.suji.model.Employee (class must be instantiated by Interceptor)
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@76e3b45b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] Reached End
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@640cc04b] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[INFO] HHH000412: Hibernate ORM core version 5.6.4.Final
+[INFO] HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+[WARN] HHH10001002: Using Hibernate built-in connection pool (not for production use!)
+[INFO] HHH10001005: using driver [com.mysql.cj.jdbc.Driver] at URL [jdbc:mysql://localhost:3306/demo1]
+[INFO] HHH10001001: Connection properties: {password=****, user=root}
+[INFO] HHH10001003: Autocommit mode: false
+[INFO] HHH000115: Hibernate connection pool size: 20 (min=1)
+[INFO] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+[INFO] HHH10001501: Connection obtained from JdbcConnectionAccess [org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess@3cd26422] for (non-JTA) DDL execution was not in auto-commit mode; the Connection 'local transaction' will be committed and the Connection will be set into auto-commit mode.
+[INFO] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+[WARN] SQL Error: 1064, SQLState: 42000
+[ERROR] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Student limit 100' at line 1
+[WARN] SQL Error: 1064, SQLState: 42000
+[ERROR] You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'from Student limit 100' at line 1

@@ -1,0 +1,39 @@
+Mockito-Spring Cheat sheet
+
+GET: Without Params and Without Request Body
+
+	@Test
+	public void getUsers() throws Exception {
+		// Create a list
+		var userList = new ArrayList<User>();
+		User u = new User(1, "Sujith");
+		userList.add(u);
+		
+		// Mock behavior
+		when(service.getAllUsers()).thenReturn(userList);
+		
+		// Create Mock Response
+		var mockRequest = MockMvcRequestBuilders.get("/api/users");
+		var response = mockMvc.perform(mockRequest).andReturn().getResponse();
+		int status = response.getStatus();
+		
+		// Test Cases
+		String content = response.getContentAsString();
+		String contentType = response.getContentType();
+		System.out.println("Content: "+content);
+		System.out.println("contentType: "+contentType);
+		System.out.println("JsonMapper: "+jsonMapper.writeValueAsString(userList));
+		
+		//assertEquals(jsonMapper.writeValueAsString(userList), userList);
+		assertEquals(200, status);
+	}
+		
+
+
+GET: With Params and With Request Body
+
+GET: With Params and Without Request Body
+
+GET: Without Params and Without Request Body
+
+

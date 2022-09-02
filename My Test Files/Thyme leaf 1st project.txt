@@ -1,0 +1,117 @@
+
+DASHBOARD
+---------------
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Home Page</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div>
+
+		<a th:href="@{/std/new}">Create New Student</a>
+
+		<table>
+			<tr>
+				<th>Sno</th>
+				<th>Name</th>
+				<th>CGPA</th>
+				<th>Actions</th>
+			</tr>
+
+			<tr th:each="std : ${stds}">
+				<td th:text="${std.sno}"></td>
+				<td th:text="${std.name}"></td>
+				<td th:text="${std.cgpa}"></td>
+
+				<td>
+					<a th:href="@{/std/edit/{sno}(sno=${std.sno})}">Edit</a>
+					<a th:href="@{/std/delete/{sno}(sno=${std.sno})}">Delete</a>
+				</td>
+
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+
+---
+
+ADD NEW STUDENT
+---------------------
+
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Create New</title>
+	<meta charset="UTF-8">
+	<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body bgcolor="cyan">
+	<div>
+		<h1>Create new student</h1>
+		<form th:object="${std}" th:action="@{/std/save}">
+
+			<label for="fname">Sno:</label><br />
+			<input type="text" th:field="*{sno}"><br />
+
+			<label for="lname">Name:</label><br />
+			<input type="text" th:field="*{name}"><br />
+
+			<label for="lname">CGPA:</label><br />
+			<input type="text" th:field="*{cgpa}"><br />
+
+			<input type="submit" value="Signup">
+		</form>
+
+	</div>
+</body>
+
+</html>
+
+
+----
+CSS STYLES
+
+div, form, table {
+	margin: auto;
+	width: 60%;
+	/*  border: 3px solid rgb(0, 255, 64);*/
+	padding: 10px;
+}
+
+form {
+	text-align: center;
+}
+
+a, h1, h2, p {
+	text-align: center;
+	display: block;
+}
+
+table, th, td {
+	margin: 10px;
+	padding: 10px;
+	border: 2px solid black;
+	border-collapse: collapse;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+----
+<td><a th:href="@{/student/delete/{sno}(sno=${std.pin})}">Delete</a></td>
+org.springframework.expression.spel.SpelEvaluationException: EL1008E: Property or field 'sno' cannot be found on object of type 'tech.suji.libmgnt.model.Student' - maybe not public or not valid?
+
+if sno field not found in Student object
+
+------
+java.sql.SQL Integrity Constraint Violation Exception: Duplicate entry 'swa3@gmail.com' for key 'students.UK_e2rndfrsx22acpq2ty1caeuyw'
+

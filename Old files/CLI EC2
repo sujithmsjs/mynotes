@@ -1,0 +1,35 @@
+In how many ways can we connect to EC2?
+
+1. Control Access
+Username & Password
+
+Console login link
+
+2. CLI
+
+CLI: Command Line Interface.
+1. Access keys
+2. Secret keys.
+
+S3FullAccess
+
+IAM
+
+How to connect
+Insall CLI
+AWSCLIV2.msi
+
+Open CMD in windows
+> AWS configure
+
+Select Region: ap-south-1
+Output format: text
+
+AWS CLI Command Reference
+
+aws <Service> <cmd> <url>
+aws s3 md s3://bucket-suji
+aws s3 ls
+aws s3 rm
+aws s3 
+

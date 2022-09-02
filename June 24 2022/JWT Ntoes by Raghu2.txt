@@ -1,0 +1,32 @@
+09:53 23-06-2022
+
+Entity-Relationship (ER)
+
+@OneToMany(mappedBy = "book", fetch = FetchType.LAZY,
+            cascade = CascadeType.ALL)
+    private Set<Page> pages;
+
+JWT Builder
+JwtBuilder: signWith - key
+SignatureAlgorithm
+
+
+Claims : 
+JwtBuilder
+Jwts
+
+JwtParser: setSigningKey
+
+JWT
+---
+1. Base64 Encode the SecrectKey
+2. signWith Encoded SecrectKey and Get the Token
+3. Set Signing Key as Encoded SecrectKey
+4. Get the Claims.
+
+
+=============
+
+
+
+

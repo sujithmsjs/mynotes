@@ -1,0 +1,118 @@
+MongoDB
+Hu-Mongo-us
+-----------
+We can MongoDB everywhere.
+
+MongoDB internally uses JavaScript based engine.
+
+Physical level: BSON
+Logically stores: JSON
+
+Document Type DB/NoSQL DB
+No tables 
+No fixed schema
+No joins/join queries
+No Relations
+Data stored in Documents
+Docs have
+ve no schema, performance is more.
+
+Eg: MongoDB, Cassandra, HBase etc.
+
+---
+MongoDB
+Physical DB contains severl Logical DBs.
+Logical DB contains several Collections.
+Each Collections contains several Documents.
+Data saved in the Documents in BSON format.
+
+NoSQL -> Not only SQL.
+---
+
+INSTALATION MongoDB
+Once we install MongoDB, we will get MongoDB Shell and MongoDB Server.
+
+MongoDB Server stores data in MongoDB and is responsible to store data.
+
+Server can be either Local or Remote/Cloud.
+Mongo Atlas: Cloud based MongoDB.
+
+MongoDB Shell
+To manage MongoDB Server, we require MongoDB Shell.
+It is like Client application. 
+To perform CRUD Operations.
+
+---
+mongod: to start/launch server.
+mongo: to start/launch shell.
+Multiple GUIs Support is also there for MongoBS shell:
+- Compass
+- Robo T3
+---
+MongoDB Drivers
+From Applications(Java,Phytho,C# etc) if we want to communicate with DB, some special S/W.
+
+Docs TAP > Drivers(Language APS)
+
+Default Port no: 27017
+
+Enterprise versions and Community versions.
+---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

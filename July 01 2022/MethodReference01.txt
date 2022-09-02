@@ -1,0 +1,69 @@
+package com.suji.streamstest;
+
+interface A{
+	public void print();
+}
+
+
+public class MethodReference01 
+{
+    public static void main( String[] args )
+    {
+    	A a = new A() {
+    		public void print() {
+    			System.out.println("Hello");
+    		}
+    	};
+    	a.print();
+    	
+    	//The target type of this expression must be a functional interface
+    	A a2 = () -> {System.out.println("Hello Lamda");};
+    	a2.print();
+    	/*
+    	A a3 = App::printStatic;
+    	a3.print();
+    	
+    	A a4 = new App()::printInstance;
+    	a4.print();
+    	
+    	A a5 = new App()::printAndReturn;
+    	a5.print();
+    	
+    	A a6 = new App()::printAndReturnString;
+    	a6.print();
+    	
+    	A a7 = new App()::printAndReturnString;
+    	a7.print();
+    	
+    	A a8 = new String()::isBlank;
+    	a8.print();
+    	*/
+    	//A a5 = App::printInstance; Cannot make a static reference to the non-static method printInstance() from the type App
+    }
+    
+    public static void printStatic() {
+    	System.out.println("Hello Static Method reference.");
+    }
+    
+    public void printInstance() {
+    	System.out.println("Hello Instance Method reference.");
+    }
+    
+    public int printAndReturn() {
+    	System.out.println("printAndReturn");
+    	return 1;
+    }
+    
+    public String printAndReturnString() {
+    	System.out.println("printAndReturnString");
+    	return "Demo text";
+    }
+    
+    public String printAndReturnString(String str) {
+    	System.out.println("printAndReturnString "+str);
+    	return "Demo text : "+str;
+    }
+    
+    
+    
+}

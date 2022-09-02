@@ -1,0 +1,23 @@
+<!-- Will produce 'http://localhost:8080/gtvg/order/details?orderId=3' (plus rewriting) -->
+<a href="details.html" 
+   th:href="@{http://localhost:8080/gtvg/order/details(orderId=${o.id})}">view</a>
+
+<!-- Will produce '/gtvg/order/details?orderId=3' (plus rewriting) -->
+<a href="details.html" th:href="@{/order/details(orderId=${o.id})}">view</a>
+
+<!-- Will produce '/gtvg/order/3/details' (plus rewriting) -->
+<a href="details.html" th:href="@{/order/{orderId}/details(orderId=${o.id})}">view</a>
+
+
+<div
+		th:each="book : ${bookList}" 
+		th:styleappend="'background-color:'+${colorUtil.getRandomColorRBG}"
+		th:unless="${book.isbn}%2==0"
+		>
+		<h1 th:text="${book.title}"></h1>
+		<h3 th:text="${colorUtil}"></h3>
+		<a href="details.html" th:href="@{/show/{isbn}(isbn=${book.isbn})/{title}(title=${book.title})}">view</a>
+		<a href="details.html" th:href="@{/show/{isbn}(isbn=${book.isbn})}">view2</a>
+		<a href="details.html" th:href="@{/show/{title}(title=${book.title})}">view3</a>
+		<a href="details.html" th:href="@{/show/{isbn}/{title}/{color}(title=${book.title},isbn=${book.isbn},color=${book.color}) }">view</a>
+	</div>

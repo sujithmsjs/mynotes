@@ -1,0 +1,66 @@
+package com.suji.streamstest;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
+
+import com.suji.streamstest.model.Emp;
+
+public class ReduceDemo2
+{
+    public static void main( String[] args )
+    {
+    	List<Emp> list = Emp.findAll();
+    	
+    	Emp identity = new Emp(0,new BigDecimal("1000"));
+    	
+    	BinaryOperator<Emp> accumulator = (e1, e2) ->
+    	{
+    		System.out.println("Accumulator: "+e1+": "+e2);
+    		return new Emp(0, e1.getSalary().add(e2.getSalary()));
+    	};
+    	
+    	BiFunction<Emp,BigDecimal,Emp> biAccumulator = (e1, sal) ->{
+    		System.out.println("BiAccumulator: "+e1+": "+sal);
+    		return new Emp(0, e1.getSalary().add(sal));
+    	};
+    	
+    	BinaryOperator<Emp> combiner = (e1, e2) ->{
+    		System.out.println("Combiner: "+e1+": "+e2);
+    		return new Emp(0, e1.getSalary().add(e2.getSalary()));
+    	};
+    	
+    	System.out.println(list.get(1));
+    	System.out.println(biAccumulator.apply(list.get(1), new BigDecimal("1000")));
+    	
+    	Emp emp = list.stream().reduce(identity, accumulator, combiner);
+    	System.out.println(emp.getSalary());
+    	
+    	
+    	/*
+    	
+    	// Accumulator
+    	Optional<Emp> reduce = list.stream().reduce(accumulator);
+    	
+    	System.out.println(reduce.get().getSalary());
+    	
+    	// Identity, Accumulator
+    	Emp emp = list.stream().reduce(identity ,accumulator);
+    	System.out.println(emp.getSalary());
+    	
+    	// Identity, Accumulator, Combiner
+    	//Emp emp2 = list.stream().peek(System.out :: println).reduce(identity, biAccumulator, combiner);
+    	
+    	//System.out.println(biAccumulator.apply(list.get(1), list.get(2)));
+    	
+    	// <U> U reduce(U identity,BiFunction<U, ? super T, U> accumulator,BinaryOperator<U> combiner);
+    	*/
+    }
+    
+    class Averager{
+    	int count;
+    	int salary;
+    }
+}

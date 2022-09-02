@@ -1,0 +1,184 @@
+homogeneous: of the same kind; alike.
+heterogeneous: varying.
+
+https://www.slideshare.net/SurendarMeesala/java-collections-notes-73810555
+
+Map
+- Map is not child interface of Collection.
+- A group of objects as key value pairs.
+
+- Map is a collection of entry objects.
+- Each Key and Value pair called as Entry.
+-- Duplicate Keys not allowed.
+-- Duplicate Values allowed.
+
+public interface Map<K,V> {
+
+	interface Entry<K,V> {
+		K getKey()
+		V getValue()
+		V setValue(V)
+		boolean equals(Object)
+	}
+	
+	Set<K> keySet();
+	Collection<V> values();
+	Set<Map.Entry<K, V>> entrySet();
+	
+	V put(K,V)
+	V get(keyObject)
+	V replace(K,V)
+	
+	boolean isEmpty()
+	int size()
+}
+
+
+public class MapDemo {
+    public static void main(String[] args) {
+        Map<Integer,Integer> map = new HashMap<>();
+        map.put(1, 200);
+        map.put(2, 300);
+        map.put(3, 3434);
+        map.put(4, 2034340);
+        System.out.println(map);
+        int n = map.get(4);
+        System.out.println(n);
+        
+        Set<Entry<Integer,Integer>> set =  map.entrySet();
+        for (Entry<Integer, Integer> entry : set) {
+            System.out.println(entry.getKey()+" - "+entry.getValue());
+        }
+    }
+}
+
+HashMap
+- 1.2v
+- Underlaying DS Hash Table
+- Insertion order is not preserved.
+- Insertion order based on hash code of keys.
+- No Duplicate keys
+- Values can  be duplicate.
+- Heterogeneous objects are allowed for both key and value.
+- Null is allowed for key only once.
+- Null allowed for values multiple times.
+- Best for Search operation.
+
+How to get Synchronized version of HashMap.
+MashMap m = new hashMap();
+Map map = Collections.synchronizedMap(m);
+
+
+Hashtable:
+class Hashtable<K,V>
+extends Dictionary<K,V>
+implements Map<K,V>
+- No duplicates.
+- No null Keys and Values.
+- Legacy class 1.0v
+- Synchronized.
+- No new methods.
+- Best for search.
+
+Dictionary:
+class java.util.Dictionary<K,V>:
+	Enumeration<V> elements()
+	V get(Object)
+	boolean isEmpty()
+	Enumeration<K> keys()
+	V put(K,V)
+	V remove(Object)
+	int size()
+	
+
+LinkedHashMap:
+- Underlaying DS is LinkedList and Hashtable.
+- Insertion order is preserved.
+- 1.4v
+
+Note:
+In general, we can use LinkedHashSet and LinkedHashMap to develop cache based applications where duplicates are not allowed and insertion order preserved.
+
+
+== vs equals:
+== Reference Comparison
+equals Content Comparison
+
+
+Indentity Hash Map(C)
+- Same as HashMap
+- Uses == for indentity duplicates.
+
+WeakHashMap(C):
+In the case of HashMap even though objects doesn't have any reference it is not eligible for gc if it is associated with HashMap i.e, HashMap dominated garbage collector.
+
+In the case of WeakHashMap if object doesn't contain any reference it is eligible for gc even though objectassociated with WeakHashMap i.e. garbage collection dominates WeakHashMap.
+
+SortedMap interface
+- Child interface of Map.
+- Key-Value pairs(Entries) were in sorting order.
+Methods:
+
+Comparator comparator()
+Return Comparator object that describes underlying sorting technique like ascending, descending etc. If we are using default natural soring order, then we will get null.
+
+NavigableMap(I):
+- Child interface of SortedMap.
+- 
+
+TreeMap(C):
+- TreeMap implements NavigableMap(I)
+- Underlaying DS is Red-Black tree.
+- Sorting based on order of keys.
+- Duplicate keys are not allowedm, but values can be duplicate.
+- If we are depending on default natural sorting order, then keys should be homogeneous and comparable otherwise we will get RE as ClassCastEx.
+- If we are defining our own sorting by Comparator, then keys need not to homogenous and comparable. We can take heterogeneous non-comparable objects also.
+
+Properties
+class java.util.Properties:
+	String getProperty(String)
+	String getProperty(String,String)
+	void list(PrintStream)
+	void list(PrintWriter)
+	void load(Reader)
+	void load(InputStream)
+	void loadFromXML(InputStream)
+	Enumeration<?> propertyNames()
+	void save(OutputStream,String)
+	Object setProperty(String,String)
+	void store(Writer,String)
+	void store(OutputStream,String)
+	void storeToXML(OutputStream,String)
+	void storeToXML(OutputStream,String,String)
+	String> stringPropertyNames()
+
+public void write() {
+
+    Properties p = new Properties();
+    p.setProperty("db", "MySql");
+    p.setProperty("port", "3360");
+    p.setProperty("name", "sujiDB");
+    String fileName = "suji.properties";
+    File file = new File(fileName);
+    try {
+        p.store(new FileWriter(fileName), "Just Checking");
+    } catch (IOException ex) {
+        System.out.println("File Not Found");
+    }
+    System.out.println(file.getPath());	
+}
+
+public void read() {
+
+    Properties p = new Properties();
+    String fileName = "suji.properties";
+    File file = new File(fileName);
+    try {
+        p.load(new FileReader(file));
+        System.out.println(p.getProperty("db"));
+        System.out.println(p.getProperty("port"));
+    } catch (IOException ex) {
+        System.out.println("File Not Found");
+    }
+}
+

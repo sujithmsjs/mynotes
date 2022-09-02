@@ -1,0 +1,41 @@
+@Test
+	public void agentsdashboardticketsCountTest() throws Exception {
+		// Preparing Request Body
+		TicketCountDto ticketCountDto = new TicketCountDto();
+		ObjectWriter writer = objectMapper.writer().withDefaultPrettyPrinter();
+		String requestBody = writer.writeValueAsString(ticketCountDto);
+		
+		// Request Header - Athentication
+		String jwtToken="Bearer 63769786-acfd-4adc-bfab-222d6d23d573";
+		
+		when((String) claims.get("username")).thenReturn("demo@onpassive.com");
+		
+		EmployeeModel empModel = null;
+	
+		//Claims mock2 = Mockito.mock(Claims.class);
+		
+		
+		// Mocking Behaver
+		when(jwtTokenUtil.getClaimsFromJwtToken(jwtToken)).thenReturn(claims);
+		
+		Claims claimsFromJwtToken = jwtTokenUtil.getClaimsFromJwtToken(jwtToken);
+		System.out.println("claimsFromJwtToken: "+claimsFromJwtToken);
+		
+
+		
+		System.out.println("Claims: " + claims.get("username"));
+		when(ticketDashBoardServiceImpl.agentsdashboardCasecount(ticketCountDto)).thenReturn(new Response());
+		when(employeeService.findByMailId("demo@onpassive.com")).thenReturn(Optional.ofNullable(empModel));
+		
+		//Optional<EmployeeModel> agent = employeeService.findByMailId(emailid);
+		
+		// Create Mock Response
+		var mockRequest = MockMvcRequestBuilders.post("/api/agentsdashboardticketscount").content(requestBody)
+				.contentType(MediaType.APPLICATION_JSON)
+				.header("Authorization", jwtToken);
+
+		
+		var response = mockMvc.perform(mockRequest).andReturn().getResponse();
+
+		assertEquals(200, response.getStatus());
+	}

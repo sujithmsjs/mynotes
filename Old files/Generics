@@ -1,0 +1,517 @@
+GENERICS IN JAVA
+
+Advantage of Java Generics
+There are mainly 3 advantages of generics. They are as follows:
+
+1) Type-safety: We can hold only a single type of objects in generics. It doesn?t allow to store other objects.
+2) Type casting is not required: There is no need to typecast the object.
+3) Compile-Time Checking: It is checked at compile time so problem will not occur at runtime. The good programming strategy says it is far better to handle the problem at compile time than runtime.
+
+
+public class Box<T> {
+
+    // T stands for "Type"
+	private T t;
+
+    public void set(T t) {
+		this.t = t; 
+	}
+	
+    public T get() {
+		return t;
+	}
+}
+
+Type Parameter Naming Conventions
+By convention, type parameter names are single, uppercase letters.
+
+E - Element (used extensively by the Java Collections Framework)
+K - Key
+N - Number
+T - Type
+V - Value
+S,U,V etc. - 2nd, 3rd, 4th types
+
+
+Invoking and Instantiating a Generic Type
+
+Box<Integer> integerBox;
+
+You can think of a generic type invocation as being similar to an ordinary method invocation, but instead of passing an argument to a method, you are passing a type argument — Integer in this case — to the Box class itself.
+
+Type Parameter
+Box<T>
+
+Type Argument
+Box<Integer>
+
+The Diamond:
+to invoke the constructor of a generic class with an empty set of type arguments (<>)
+
+
+Multiple Type Parameters
+
+public interface Pair<K, V> {
+    public K getKey();
+    public V getValue();
+}
+
+public class OrderedPair<K, V> implements Pair<K, V> {
+	
+    private K key;
+    private V value;
+	
+    public OrderedPair(K key, V value) {
+		this.key = key;
+		this.value = value;
+    }
+
+		public K getKey()	{ return key; }
+		public V getValue() { return value; }
+}
+
+INSTANTIATION:
+Pair<String, Integer> p1 = new OrderedPair<String, Integer>("Even", 8);
+Pair<String, String>  p2 = new OrderedPair<String, String>("hello", "world");
+
+
+Parameterized Types
+OrderedPair<String, Box<Integer>> p = new OrderedPair<>("primes", new Box<Integer>(...));
+
+
+Raw Types
+
+A raw type is the name of a generic class or interface without any type arguments.
+
+str - String Object
+int - Integer Object
+
+CASE STUDY:
+
+Box b = new Box(6);
+//Raw Type, No type security
+
+Box b = new Box<Integer>(n);
+//Raw Type Found
+
+Box<Integer> b = new Box(str);
+//java.lang.ClassCastException
+ 
+Box b = new Box<Integer>(str);
+// java.lang.RuntimeException: Uncompilable source code
+
+Box<Integer> b = new Box<Integer>(int);
+//Redundent type argument
+
+Box<Integer> b = new Box<>(n);
+// Properway with dimond
+
+Box<String> stringBox = new Box<>();
+Box rawBox = stringBox;               // OK
+But if you assign a raw type to a parameterized type, you get a warning:
+
+Box rawBox = new Box();           // rawBox is a raw type of Box<T>
+Box<Integer> intBox = rawBox;     // warning: unchecked conversion
+You also get a warning if you use a raw type to invoke generic methods defined in the corresponding generic type:
+
+Box<String> stringBox = new Box<>();
+Box rawBox = stringBox;
+rawBox.set(8);  // warning: unchecked invocation to set(T)
+
+
+GENERIC METHODS
+public <N> void multiply(N n){
+}
+
+public class Util {
+    public static <K, V> boolean compare(Pair<K, V> p1, Pair<K, V> p2) {
+        return p1.getKey().equals(p2.getKey()) &&
+               p1.getValue().equals(p2.getValue());
+    }
+}
+
+public class Pair<K, V> {
+
+    private K key;
+    private V value;
+
+    public Pair(K key, V value) {
+        this.key = key;
+        this.value = value;
+    }
+
+    public void setKey(K key) { this.key = key; }
+    public void setValue(V value) { this.value = value; }
+    public K getKey()   { return key; }
+    public V getValue() { return value; }
+}
+
+
+Invoking this method would be:
+Pair<Integer, String> p1 = new Pair<>(1, "apple");
+Pair<Integer, String> p2 = new Pair<>(2, "pear");
+
+boolean same = Util.<Integer, String>compare(p1, p2);
+or
+boolean same = Util.compare(p1, p2);
+
+BOUNDED TYPE PARAMETERS
+
+public class Box<T> {
+
+	// Generic type parameter must before return type.
+	public <U extends Number> void inspect(U u){
+		//Possible to access Number methods using u.
+	
+        System.out.println("T: " + t.getClass().getName());
+        System.out.println("U: " + u.getClass().getName());
+		System.out.println("U value"+u.doubleValue());
+	}
+	
+	public static void main(String[] args) {
+        Box<Integer> integerBox = new Box<Integer>();
+        integerBox.set(new Integer(10));
+        integerBox.inspect("some text"); // error: this is still String!
+		//java.lang.RuntimeException
+	}
+}
+
+
+
+
+<U extends Number>
+
+Method only allows subclass methods.
+AtomicInteger, AtomicLong, BigDecimal, BigInteger, Byte, Double, Float, Integer, Long, Short
+
+
+
+
+
+Integer	intObj = 6;
+Number	numObj = n;
+
+b.inspect(intObj); // Valid
+b.inspect(numObj); // Valid
+
+
+MULTIPLE BOUNDS
+
+<T extends B1 & B2 & B3>
+
+Class A {}
+interface B {}
+interface C {}
+
+class D <T extends A & B & C> {} // Valid
+class D <T extends B & A & C> {} // Invalid compile-time error
+
+Note: If one of the bounds is a class, it must be specified first.
+
+
+INTERFACES WITH GENERICS
+
+interface A<N,V>{
+    void setName(N n);
+    N getName();
+}
+
+class Demo<N extends Number, V> implements A<N,V>{
+    public void setName(N n) {}
+    public N getName() {}
+}
+
+Note:
+A<String,Integer> a1 = demo; // Invalid
+A<Integer,String> a2 = demo; // Valid
+
+Demo<Integer,String> demo; 	// Valid
+Demo<String,String> demo; 	// Invalid
+
+demo = new Demo<>(1,"Suji");	//Valid
+demo = new Demo()<>(1,"Suji");	//Error!!!
+
+
+
+
+//Valid
+A<Integer, String> a = new A<Integer, String>() {
+
+		Integer n;
+		public void setName(Integer n) { this.n = n; }
+		public Integer getName() { return n;} 
+			
+	};
+
+++++++++++++++
+
+class A{
+    public static <T extends Number> Number compare(T[] t){
+        double d = Double.MIN_VALUE;
+        for (int i = 0; i < t.length; i++) {
+            if(t[i].doubleValue() > t[i].doubleValue()){
+                d = t[i].doubleValue();
+            }
+        }
+        return d;
+    }
+}
+
+++++++++++++
+Generic Methods and Bounded Type Parameters:
+
+public static <T> int countGreaterThan(T[] anArray, T elem) {
+    int count = 0;
+    for (T e : anArray)
+        if (e > elem)  // compiler error
+            ++count;
+    return count;
+}
+
+public interface Comparable<T> {
+    public int compareTo(T o);
+}
+
+public static <T extends Comparable<T>> int countGreaterThan(T[] anArray, T elem) {
+    int count = 0;
+    for (T e : anArray)
+        if (e.compareTo(elem) > 0)
+            ++count;
+    return count;
+}
+
+
++++++++++++
+
+Generics, Inheritance, and Subtypes
+
+
+
+In object-oriented terminology, this is called an "is a" relationship.
+
+public void someMethod(Number n) {}
+someMethod(new Integer(10));   // OK
+someMethod(new Double(10.1));   // OK
+
+Box<Number> box = new Box<Number>();
+box.add(new Integer(10));   // OK
+box.add(new Double(10.1));  // OK
+
+Now consider the following method:
+
+void boxTest(Box<Number> n){
+	System.out.println(n);
+}
+Box<Number> numBox = new Box<>(); //Valid
+Box<Integer> intBox = new Box<>();//Valid
+A.boxTest(numBox); //Valid
+A.boxTest(intBox);//Invalid
+
+
+Box<Integer> IS NOT A Box<Number>
+Box<Integer> IS A Object
+Box<Number> IS A Object
+
+
++++++++++
+Generic Classes and Subtyping
+
+class A<T>{  
+}
+
+class B extends A<T>{ //Error! Can't find symbol
+}
+
+or
+
+class B<T> extends A{ //Warning: Raw Type
+}
+
+or
+
+class B<T> extends A<T>{ //Valid
+}
+
+Below is valid:
+class A<T>{}
+class B<T> extends A<T>{}
+class C<T> extends B<T>{}
+
+C<T> is-a B<T>
+C<T> is-a A<T>
+B<T> is-a A<T>
+
+Example:
+
+interface I<T> {void set(T t);}
+interface J<T> {T get();}
+interface K<T> {void show();}
+
+class A<T> implements I<T>, J<T> {...}
+class B<T> extends A<T> implements K {...}
+class C<T> extends B<T> {...}
+
+Test:
+C<String> c = new C<>();
+c.set("Sujith");
+c.show();
+
+CASE STUDY 1:
+
+interface I<T> {void set(T t)}
+
+class A<T> implements I{ //Warning: Raws Types
+    @Override
+    public void set(Object t) {}
+}
+
+class A<K,V> implements I{}  //Warning: RawTypes
+class A<T> implements I<>{} //Error! Illigal start
+class A<K,V> implements I<K>{} //Valid
+class B<K,V> implements I<V>{} // Valid
+class A<T> implements I<E>{} //Error!
+class C<K,V> extends A{} // Warning: RawTypes
+class D<K,V> extends A<K>{} // Error! Invalid
+class E<K,V> extends A<V,V>{} //Valid
+class F<K,V> extends A<V,K>{} //Valid
+class G<K,V> extends A<T,U>{} //Error! Invalid
+
+
+
+interface H{}
+interface I<T> extends H{} // Valid
+interface J<T> extends I<T>{} //Valid
+interface K<K,V> extends I<K>{} //Valid
+interface L<T,U,V> extends I<T>{} //Valid
+interface M<T,U,V> extends I<T,U>{} //Invalid 
+class A<T> implements I<T>{}
+class B<K,V> implements I<K>{}
+class C<K,V> implements I<V>{}
+
+METHODS:
+public static <T> void show(T t){} // Valid
+public static <T,U,V> void show(){} // Valid
+public static <T,U,V> void show(T t, U u, V v){} // Valid
+
+
+TYPE INFERENCE:
+
+Type inference is a Java compiler's ability to look at each method invocation and corresponding declaration to determine the type argument (or arguments) that make the invocation applicable. The inference algorithm determines the types of the arguments and, if available, the type that the result is being assigned, or returned. Finally, the inference algorithm tries to find the most specific type that works with all of the arguments.
+
+
+TYPE WITNESS as follows
+if you omit the type witness,a Java compiler automatically infers (from the method's arguments)
+
+class A<T> {
+    public static <T> T m1(T t1, T t2) {
+        return t2;
+    }
+}
+
+Integer int1 = A.<Integer>m1(54, 56); // Valid
+String str1 = A.m1("", ""); // Valid
+Object obj1 = A.m1(6, "Hellow"); // Valid
+String str2 = A.<String>m1(6, "Hellow"); // Invalid
+String str3 = A.m1("Sujith", "Hellow"); // Valid
+
+++++++
+
+
+Type Inference and Instantiation of Generic Classes
+
+Example:
+
+class HashMap<K,V> implements Map<K,V> {}
+
+interface Map<K,V> {
+	interface Entry<K,V> {}
+}
+
+
+
+1. Map<String,Integer> map1 = new HashMap<String,Integer>(); //Redundent Type Argument.
+2. Map<String,Integer> map2 = new HashMap<>(); 
+3. Map<String,Integer> map3 = new HashMap(); // unchecked conversion warning
+ 
+ 
+ 
+Type Safty:
+
+Ex 1:
+
+class A<T>{
+	private T t;
+	A(T t){this.t = t;} // Valid
+}
+A<String> a4 = new A<>("Sujith"); // Valid
+A<String> a4 = new A<>(100); // Invalid
+
+
+Ex 2:
+
+class A{
+	private T t;
+	<T> A(T t){this.t = t;} //Invalid
+}
+
+Ex 3:
+
+class A<T>{
+   private T t;
+   A(T t){ this.t = t; } //Invalid
+   T get(){return t;}
+}
+A<String> a1 = new A<>(4); // Invalid 
+A<Integer> a2 = new A<>(4); // Valid
+Integer in = a2.get(); // Valid
+String st = a2.get(); // Invalid
+
+Note:
+<T> A(T t) and A(T t) not equals.
+
+<T> A(T t) here T belongs to Method.
+A(T t) belongs to class.
+
+__________________
+
+class MyClass<X> {
+  <T> MyClass(T t) {
+    // ...
+  }
+}
+
+new MyClass<Integer>("")
+
+MyClass<Integer> myObject = new MyClass<>("");
+The compiler infers the type Integer for the formal type parameter, X, of the generic class MyClass<X>. It infers the type String for the formal type parameter, T, of the constructor of this generic class.
+
+Note: It is important to note that the inference algorithm uses only invocation arguments, target types, and possibly an obvious expected return type to infer types. The inference algorithm does not use results from later in the program.
+
+TARGET TYPES
+static <T> List<T> emptyList();
+
+class A<T>{
+    static <T> List<T> emptyList(){
+       return new ArrayList<>();
+    }
+}
+
+List<Integer> list =  A.emptyList(); // Valid
+List<Integer> list2 =  A.<Integer>emptyList(); //Valid
+List<String> list3 =  A.<Integer>emptyList(); // Invalid
+List<String> strList;
+strList = A.emptyList();
+strList.add("");
+
+Example:
+static <T> List<T> emptyList();
+List<String> listOne = Collections.emptyList();
+List<String> listOne = Collections.<String>emptyList();
+
+
+void processStringList(List<String> stringList) {
+    // process stringList
+}
+
+processStringList(Collections.emptyList());
+processStringList(Collections.<String>emptyList());

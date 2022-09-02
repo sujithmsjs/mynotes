@@ -1,0 +1,49 @@
+What is IAM?
+Identity Access Management
+* Manage users.
+* Level of access to the AWS console.
+* Permissions and roles.
+* Security credentials
+* Without IAM, you also don't have control about the tasks that the users can do.
+* IAM enables the organization to create multiple users, each with its own security credentials, controlled and billed to a single aws account. IAM allows the user to do only what they need to do as a part of the user's job.
+
+Features of IAM:
+1. Centralised control of your AWS account.
+2. Shared Access to your AWS account
+3. Granular permissions.
+4. Identity Federation
+5. Multifactor Authentication
+6. Permissions based on Organizational groups.
+7. Networking controls
+8. Free to use
+9. Eventually Consistent
+
+IAM Identities
+IAM identities are created to provide authentication for people and processes in your aws account.
+
+IAM identities are categorized as given below:
+
+IAM Identities
+1.	IAM Users
+2.	IAM Groups
+3.	IAM Roles
+
+AWS Account Root User
+______________________
+When you first create an AWS account, you create an account as a root user identity which is used to sign in to AWS.
+
+Root User Credentials: ou can sign to the AWS Management Console by entering your email address and password. The combination of email address and password is known as root user credentials.
+
+When you sign in to AWS account as a root user, you have unrestricted access to all the resources in AWS account.
+
+The Root user can also access the billing information as well as can change the password also.
+
+
+
+
+
+
+
+
+
+

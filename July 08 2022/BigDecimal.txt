@@ -1,0 +1,26 @@
+BigDecimal
+==========
+
+class MathContext:
+Immutable objects which encapsulate the context settings which describe certain rules for numerical operators, such as those implemented by the BigDecimal class.
+
+Settings:
+1. Precision
+2. Rounding Mode
+
+Constructor:
+MathContext(int setPrecision, RoundingMode setRoundingMode)
+
+Parameters of Constructor:
+
+Enum RoundingMode: Specifies a rounding behavior for numerical operations capable of discarding precision.
+
+
+HALF_EVEN
+Rounding mode to round towards the "nearest neighbor" unless both neighbors are equidistant, in which case, round towards the even neighbor.
+
+HALF_UP
+Rounding mode to round towards "nearest neighbor" unless both neighbors are equidistant, in which case round up.
+
+
+

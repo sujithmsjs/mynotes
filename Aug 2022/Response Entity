@@ -1,0 +1,20 @@
+Response always has 
+1. Response Headers
+2. Response Body
+3. Response Status
+4. Media Type
+
+We can send all these to Client using Response Entity.
+
+# Eg:-
+```java
+// import org.springframework.http.ResponseEntity;
+@GetMapping("/sample")
+public ResponseEntity<Employee> saveEmployee(){
+		
+Employee emp = new Employee();
+var responseEntity  = new ResponseEntity<Employee>(emp, HttpStatus.CREATED);
+
+return responseEntity;
+}
+```

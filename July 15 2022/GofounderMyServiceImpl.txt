@@ -1,0 +1,841 @@
+package com.onpassive.ocrm.mysql.gof.service.impl;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.TimeZone;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.onpassive.ocrm.dto.PaginationResponseDto;
+import com.onpassive.ocrm.gof.dto.GofRefundHelperDto;
+import com.onpassive.ocrm.gof.dto.GofounderHelperDto;
+import com.onpassive.ocrm.gof.dto.GofounderListDto;
+import com.onpassive.ocrm.gof.repository.CountryRepository;
+import com.onpassive.ocrm.mysql.gof.model.GoFounderRefundMyPayment;
+import com.onpassive.ocrm.mysql.gof.model.GoFoundersmysql;
+import com.onpassive.ocrm.mysql.gof.model.RefundSearchDto;
+import com.onpassive.ocrm.mysql.gof.model.RefundTabDto;
+import com.onpassive.ocrm.mysql.gof.repo.CountrymysqlRepository;
+import com.onpassive.ocrm.mysql.gof.repo.GoFounderRefundPaymentMyRepository;
+import com.onpassive.ocrm.mysql.gof.repo.GofMysqlRepo;
+import com.onpassive.ocrm.mysql.gof.repo.GofRefundTypeRepo;
+import com.onpassive.ocrm.mysql.gof.service.GofounderMyService;
+import com.onpassive.ocrm.security.AESutility;
+
+@Service
+public class GofounderMyServiceImpl implements GofounderMyService {
+	String methodName = "";
+	static final String CLASS_NAME = "GofounderMyServiceImpl";
+	Logger logger = LoggerFactory.getLogger(GofounderMyServiceImpl.class);
+	@Autowired
+	CountryRepository countryRepository;
+	@Autowired
+	GofMysqlRepo gofoundeRepository;
+
+	@Autowired
+	GoFounderRefundPaymentMyRepository goFounderRefundPaymentRepository;
+	@Autowired
+	GofRefundTypeRepo gofRefundTypeRepo;
+	@Autowired
+	CountrymysqlRepository countrymysqlRepository;
+	private Object useridd;
+
+	@Override
+	public PaginationResponseDto getAllGofunderDetails(GofounderHelperDto gofounderHelperDto) {
+		
+		methodName = "getAllGofunderDetails";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+		
+		PaginationResponseDto paginationResponseDto = null;
+		
+		int goList = 0;
+		int limitStart = 0;
+		List<Map<?, ?>> gofonders = new ArrayList<>();
+		// Editing...
+		 Optional<GofounderHelperDto> optFounder = Optional.ofNullable(gofounderHelperDto);		
+		if (gofounderHelperDto.getPageNumber() != 0 && gofounderHelperDto.getPageSize() != 0) {
+			limitStart = (gofounderHelperDto.getPageNumber() - 1) * gofounderHelperDto.getPageSize();
+		}
+		Integer limitStart = optFounder.filter( dto -> dto.getPageNumber()!=0 && dto.getPageSize()!=0)
+					.map(dto -> (dto.getPageNumber() -1) * dto.getPageSize())
+					.orElse(0);
+		
+		
+		
+		
+		// Editing Done...
+		if (gofounderHelperDto.getStatus() != null && gofounderHelperDto.getCountry() != 0) {
+			if (!gofounderHelperDto.isExcel()) {
+				gofonders = gofoundeRepository.getGoFoundersbystatusAndCountry(gofounderHelperDto.getStatus(),
+						gofounderHelperDto.getCountry(), limitStart, gofounderHelperDto.getPageSize());
+				goList = gofoundeRepository.getGoFoundersbystatusAndCountrycount(gofounderHelperDto.getStatus(),
+						gofounderHelperDto.getCountry());
+
+			} else {
+				gofonders = gofoundeRepository.getGoFoundersbystatusAndCountry(gofounderHelperDto.getStatus(),
+						gofounderHelperDto.getCountry());
+				goList = gofonders.size();
+			}
+
+		}
+
+		if (gofounderHelperDto.getStatus() != null && gofounderHelperDto.getCountry() == 0) {
+
+			if (!gofounderHelperDto.isExcel()) {
+				gofonders = gofoundeRepository.getGoFoundersbystatus(gofounderHelperDto.getStatus(), limitStart,
+						gofounderHelperDto.getPageSize());
+				goList = gofoundeRepository.getGoFoundersbystatuscount(gofounderHelperDto.getStatus());
+			} else {
+				gofonders = gofoundeRepository.getGoFoundersbystatus(gofounderHelperDto.getStatus());
+				goList = gofonders.size();
+
+			}
+		}
+		if (gofounderHelperDto.getCountry() != 0 && gofounderHelperDto.getStatus() == null) {
+
+			if (!gofounderHelperDto.isExcel()) {
+				gofonders = gofoundeRepository.getGoFoundersbyCountry(gofounderHelperDto.getCountry(), limitStart,
+						gofounderHelperDto.getPageSize());
+				goList = gofoundeRepository.getGoFoundersbyCountrycount(gofounderHelperDto.getCountry());
+			} else {
+				gofonders = gofoundeRepository.getGoFoundersbyCountry(gofounderHelperDto.getCountry());
+				goList = gofonders.size();
+			}
+		}
+
+		if (gofounderHelperDto.getCountry() == 0 && gofounderHelperDto.getStatus() == null) {
+
+			if (!gofounderHelperDto.isExcel()) {
+				gofonders = gofoundeRepository.getlimit(limitStart, gofounderHelperDto.getPageSize());
+				goList = gofoundeRepository.getGoFoundersbyUserregdate();
+//				goList = (int) gofoundeRepository.count();
+			} else {
+				gofonders = gofoundeRepository.findByAll();
+//				goList = (int) gofoundeRepository.count();
+				goList = gofoundeRepository.findByCount();
+			}
+		}
+
+		if (gofonders != null && !gofonders.isEmpty()) {
+			int dataSize = goList;
+			double totalpages = (double) dataSize / gofounderHelperDto.getPageSize();
+			int totalrows = 1;
+			if (totalpages > 1) {
+				int roundNumber = (int) Math.round(totalpages);
+				if (roundNumber < totalpages) {
+					totalrows = (int) (totalpages + 1);
+				} else {
+					totalrows = roundNumber;
+				}
+			}
+
+			List<GofounderListDto> gofonderdto = data(gofonders);
+
+			gofonderdto.forEach(u -> {
+				u.setEmail(AESutility.encrypt(u.getEmail()));
+				u.setPhoneNumber(AESutility.encrypt(u.getPhoneNumber()));
+				u.setSponserPhone(AESutility.encrypt(u.getSponserPhone()));
+				u.setSponserEmail(AESutility.encrypt(u.getSponserEmail()));
+				u.setGfId(AESutility.encrypt(String.valueOf(u.getUserId())));
+	u.setUserId(AESutility.encrypt(String.valueOf(u.getUserId())));
+			});
+
+			paginationResponseDto = new PaginationResponseDto();
+			paginationResponseDto.setList(gofonderdto);
+			paginationResponseDto.setTotalRows(dataSize);
+			paginationResponseDto.setNumberOfPages(totalrows);
+			paginationResponseDto.setPage(gofounderHelperDto.getPageNumber());
+			logger.info(CLASS_NAME, methodName, " ::   ended");
+			return paginationResponseDto;
+		} else
+
+			return null;
+	}
+
+	@Override
+	public PaginationResponseDto getByMailId(String mailId, int number, int size) {
+		methodName = "getByMailId";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+
+		PaginationResponseDto paginationResponseDto = null;
+		int limitStart = 0;
+		limitStart = (number - 1) * size;
+		List<Map<?, ?>> gofonders = new ArrayList<>();
+
+		String decryptedUserId = AESutility.decrypt(mailId);
+		try {
+			gofonders = gofoundeRepository.findByUserIDs(Integer.parseInt(decryptedUserId));
+		} catch (NumberFormatException e) {
+			gofonders = gofoundeRepository.getGoFoundersbymailId(decryptedUserId, limitStart, size);
+		}
+		long goList = gofonders.size();
+		if (gofonders != null && !gofonders.isEmpty()) {
+			int dataSize = (int) goList;
+			double totalpages = (double) dataSize / size;
+			int totalrows = 1;
+			if (totalpages > 1) {
+				int roundNumber = (int) Math.round(totalpages);
+				if (roundNumber < totalpages) {
+					totalrows = (int) (totalpages + 1);
+				} else {
+					totalrows = roundNumber;
+				}
+			}
+			List<GofounderListDto> gofonderdto = data(gofonders);
+
+			paginationResponseDto = new PaginationResponseDto();
+			paginationResponseDto.setList(gofonderdto);
+			paginationResponseDto.setTotalRows(dataSize);
+			paginationResponseDto.setNumberOfPages(totalrows);
+			paginationResponseDto.setPage(number);
+			logger.info(CLASS_NAME, methodName, " ::   ended");
+			return paginationResponseDto;
+		} else
+
+			return null;
+	}
+
+	public List<GofounderListDto> data(List<Map<?, ?>> gofonders) {
+
+		methodName = "data";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+
+		List<GofounderListDto> gofonderdto = new ArrayList<>();
+
+		String sponserPhone = "";
+		String paymentStatus = "";
+		String sponsername = "";
+		String sponserEmail = "";
+		for (Map<?, ?> fouder : gofonders) {
+
+			Integer useridd = null;
+			String firstName = null;
+			String lastName = null;
+			String email = null;
+			String country = null;
+			String phoneNumber = null;
+			String payment_method = null;
+			String status = null;
+			Date createdDate = null;
+			Date payment_date = null;
+			Date suspend_date = null;
+			Date terminate_date = null;
+			String emailVerification = null;
+			Date userNdaDate = null;
+			MultipartFile files = null;
+			String paymentDate = null;
+			String CreatedDate = null;
+
+			String suspendDate = null;
+
+			String digital_sign = null;
+			String terminateDate = null;
+
+			String UserNdaDate = null;
+			String sponserLastname = null;
+			int sponserUserId = (int) fouder.get("sponserUserId");
+//			if(sponserUserId!=0) {
+//				GoFoundersmysql sponcer = gofoundeRepository.findById(sponserUserId);
+//			
+//			
+//			if (sponcer != null) {
+//				sponserPhone = sponcer.getPhoneNumber();
+//				sponsername = sponcer.getFirstName() ;
+//				sponserLastname= sponcer.getLastName();
+//				sponserEmail = sponcer.getEmail();
+//			}
+//			}
+			if (fouder.get("paymentStatus") != null)
+				paymentStatus = (String) fouder.get("paymentStatus");
+
+			SimpleDateFormat Newformatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
+			TimeZone timeZone2 = TimeZone.getTimeZone("IST");
+			Newformatter.setTimeZone(timeZone2);
+
+			/*
+			 * gofonderdto.add(new GofounderListDto(null, fouder.get("user_id") ,
+			 * fouder.get("firstName") , fouder.get("lastName"), fouder.get("email"),
+			 * countrymysqlRepository.countryName( (int) fouder.get("country_id")),
+			 * fouder.get("phoneNumber"), sponsername, sponserEmail, sponserPhone,
+			 * fouder.get("payment_method"), paymentStatus, Newformatter.format(
+			 * fouder.get("createdDate")), "", fouder.get("status")));
+			 */
+
+			if (fouder.get("user_id") != null)
+				useridd = (int) fouder.get("user_id");
+
+			if (fouder.get("first_name") != null)
+				firstName = (String) fouder.get("first_name");
+			if (fouder.get("last_name") != null)
+				lastName = (String) fouder.get("last_name");
+			if (fouder.get("email") != null)
+				email = (String) fouder.get("email");
+			if (fouder.get("country") != null)
+				country = (String) fouder.get("country");
+			if (fouder.get("phoneNumber") != null)
+				phoneNumber = (String) fouder.get("phoneNumber");
+			if (fouder.get("payment_method") != null)
+				payment_method = (String) fouder.get("payment_method");
+			if (fouder.get("createdDate") != null) {
+				createdDate = (Date) fouder.get("createdDate");
+				if (createdDate != null)
+					CreatedDate = Newformatter.format(createdDate);
+			}
+			if (fouder.get("status") != null)
+				status = (String) fouder.get("status");
+			if (fouder.get("sponserUserId") != null)
+				sponserUserId = (int) fouder.get("sponserUserId");
+			sponserPhone = (String) fouder.get("sponserPhoneNumber");
+			sponsername = (String) fouder.get("sponsorname");
+			sponserLastname = (String) fouder.get("sponsor_Name");
+			sponserEmail = (String) fouder.get("sponser_email");
+			if (fouder.get("payment_date") != null) {
+
+				payment_date = (Date) fouder.get("payment_date");
+				if (payment_date != null)
+					paymentDate = Newformatter.format(payment_date);
+			}
+			if (fouder.get("paymentStatus") != null)
+				paymentStatus = (String) fouder.get("paymentStatus");
+			// if(fouder.get("sponser_email")!=null)
+//				sponser_email = (String) fouder.get("sponser_email");
+//			if(fouder.get("sponsorname")!=null)
+//				sponsorfirstname = (String) fouder.get("sponsorname");
+//			if(fouder.get("sponsor_Name")!=null)
+//				sponsorlastname = (String) fouder.get("sponsor_Name");
+//				if(fouder.get("sponserPhoneNumber")!=null)
+//					sponserPhoneNumber = (String) fouder.get("sponserPhoneNumber");
+			// ||! fouder.get("terminate_date").equals("")
+			if (fouder.get("suspend_date") != null) {
+				suspend_date = (Date) fouder.get("suspend_date");
+				if (suspend_date != null)
+					suspendDate = Newformatter.format(suspend_date);
+			}
+
+			if (fouder.get("terminate_date") != null)
+				terminate_date = (Date) fouder.get("terminate_date");
+			if (terminate_date != null)
+				terminateDate = Newformatter.format(terminate_date);
+			if (fouder.get("emailVerification") != null)
+				emailVerification = (String) fouder.get("emailVerification");
+			if (fouder.get("userNdaDate") != null)
+				userNdaDate = (Date) fouder.get("userNdaDate");
+			if (userNdaDate != null)
+				UserNdaDate = Newformatter.format(userNdaDate);
+
+			if (fouder.get("digital_sign") != null)
+				// digital_sign = (byte[]) fouder.get("digital_sign");
+				digital_sign = (String) fouder.get("digital_sign");
+
+			gofonderdto.add(new GofounderListDto(String.valueOf(useridd), firstName, lastName, email, country,
+					(String) fouder.get("phoneNumber"), sponsername, sponserEmail, sponserPhone, payment_method,
+					paymentStatus, CreatedDate, paymentDate, status, sponserUserId, suspendDate, terminateDate,
+					UserNdaDate, emailVerification, sponserLastname, digital_sign, null));
+
+			/*
+			 * gofonderdto.add(new GofounderListDto(null, (int)fouder.get("user_id"),
+			 * (String) fouder.get("firstName"), (String) fouder.get("lastName"),
+			 * (String)fouder.get("email"), countrymysqlRepository.countryName((int)
+			 * fouder.get("country_id")), (String) fouder.get("phoneNumber"), sponsername,
+			 * sponserEmail, sponserPhone, (String)fouder.get("payment_method"),
+			 * paymentStatus, Newformatter.format( fouder.get("createdDate")), "",
+			 * (String)fouder.get("status")));
+			 */
+			logger.info(CLASS_NAME, methodName, " ::   ended");
+		}
+
+		return gofonderdto;
+
+	}
+
+	@Override
+	public GofounderListDto getByGofunderId(String id) {
+		methodName = "getByGofunderId";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+		GofounderListDto dto = null;
+		List<Map<?, ?>> goFounder = new ArrayList<>();
+		// decrypting the userId
+//		String decryptedUserId=AESutility.decrypt(AESutility.encrypt(id),secret);
+		String decryptedUserId = AESutility.decrypt(id);
+//		id=decryptedUserId;
+		goFounder = gofoundeRepository.findByUser(Integer.parseInt(decryptedUserId));
+		for (Map<?, ?> fouder : goFounder) {
+
+			Integer useridd = null;
+			String firstName = null;
+			String lastName = null;
+			String email = null;
+			String country = null;
+			String phoneNumber = null;
+			String payment_method = null;
+			String status = null;
+			Date createdDate = null;
+			Date payment_date = null;
+			Date suspend_date = null;
+			Date terminate_date = null;
+			String emailVerification = null;
+			Date userNdaDate = null;
+			MultipartFile files = null;
+			String paymentDate = null;
+			String CreatedDate = null;
+
+			String suspendDate = null;
+
+			String digital_sign = null;
+			String terminateDate = null;
+
+			String UserNdaDate = null;
+			String sponserPhone = null;
+			String sponsername = null;
+			String sponserEmail = null;
+			String paymentStatus = null;
+			String sponserLastname = null;
+			int sponserUserId = (int) fouder.get("sponserUserId");
+			if (sponserUserId != 0) {
+				GoFoundersmysql sponcer = gofoundeRepository.findById(sponserUserId);
+
+				if (sponcer != null) {
+					sponserPhone = sponcer.getPhoneNumber();
+					sponsername = sponcer.getFirstName();
+					sponserLastname = sponcer.getLastName();
+					sponserEmail = sponcer.getEmail();
+				}
+			}
+			if (fouder.get("paymentStatus") != null)
+				paymentStatus = (String) fouder.get("paymentStatus");
+
+			SimpleDateFormat Newformatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
+			TimeZone timeZone2 = TimeZone.getTimeZone("IST");
+			Newformatter.setTimeZone(timeZone2);
+
+			/*
+			 * gofonderdto.add(new GofounderListDto(null, fouder.get("user_id") ,
+			 * fouder.get("firstName") , fouder.get("lastName"), fouder.get("email"),
+			 * countrymysqlRepository.countryName( (int) fouder.get("country_id")),
+			 * fouder.get("phoneNumber"), sponsername, sponserEmail, sponserPhone,
+			 * fouder.get("payment_method"), paymentStatus, Newformatter.format(
+			 * fouder.get("createdDate")), "", fouder.get("status")));
+			 */
+
+			if (fouder.get("user_id") != null)
+				useridd = (int) fouder.get("user_id");
+
+			if (fouder.get("first_name") != null)
+				firstName = (String) fouder.get("first_name");
+			if (fouder.get("last_name") != null)
+				lastName = (String) fouder.get("last_name");
+			if (fouder.get("email") != null)
+				email = (String) fouder.get("email");
+			if (fouder.get("country") != null)
+				country = (String) fouder.get("country");
+			if (fouder.get("phoneNumber") != null)
+				phoneNumber = (String) fouder.get("phoneNumber");
+			if (fouder.get("payment_method") != null)
+				payment_method = (String) fouder.get("payment_method");
+			if (fouder.get("createdDate") != null) {
+				createdDate = (Date) fouder.get("createdDate");
+				if (createdDate != null)
+					CreatedDate = Newformatter.format(createdDate);
+			}
+			if (fouder.get("status") != null)
+				status = (String) fouder.get("status");
+			if (fouder.get("sponserUserId") != null)
+				sponserUserId = (int) fouder.get("sponserUserId");
+			if (fouder.get("payment_date") != null) {
+
+				payment_date = (Date) fouder.get("payment_date");
+				if (payment_date != null)
+					paymentDate = Newformatter.format(payment_date);
+			}
+			if (fouder.get("paymentStatus") != null)
+				paymentStatus = (String) fouder.get("paymentStatus");
+			// if(fouder.get("sponser_email")!=null)
+//					sponser_email = (String) fouder.get("sponser_email");
+//				if(fouder.get("sponsorname")!=null)
+//					sponsorfirstname = (String) fouder.get("sponsorname");
+//				if(fouder.get("sponsor_Name")!=null)
+//					sponsorlastname = (String) fouder.get("sponsor_Name");
+//					if(fouder.get("sponserPhoneNumber")!=null)
+//						sponserPhoneNumber = (String) fouder.get("sponserPhoneNumber");
+			// ||! fouder.get("terminate_date").equals("")
+			if (fouder.get("suspend_date") != null) {
+				suspend_date = (Date) fouder.get("suspend_date");
+				if (suspend_date != null)
+					suspendDate = Newformatter.format(suspend_date);
+			}
+
+			if (fouder.get("terminate_date") != null)
+				terminate_date = (Date) fouder.get("terminate_date");
+			if (terminate_date != null)
+				terminateDate = Newformatter.format(terminate_date);
+			if (fouder.get("emailVerification") != null)
+				emailVerification = (String) fouder.get("emailVerification");
+			if (fouder.get("userNdaDate") != null)
+				userNdaDate = (Date) fouder.get("userNdaDate");
+			if (userNdaDate != null)
+				UserNdaDate = Newformatter.format(userNdaDate);
+
+			if (fouder.get("digital_sign") != null)
+				// digital_sign = (byte[]) fouder.get("digital_sign");
+				digital_sign = (String) fouder.get("digital_sign");
+
+			if (payment_method != null) {
+
+//					String type = gofRefundTypeRepo.findById(payment.getPaymentType());
+				dto = new GofounderListDto(String.valueOf(useridd), firstName, lastName, AESutility.encrypt(email), country,
+						AESutility.encrypt((String) fouder.get("phoneNumber")), sponsername,
+						AESutility.encrypt(sponserEmail), AESutility.encrypt(sponserPhone),
+						payment_method, paymentStatus, CreatedDate, paymentDate, status, sponserUserId, suspendDate,
+						terminateDate, UserNdaDate, emailVerification, sponserLastname, digital_sign,
+						AESutility.encrypt(String.valueOf(useridd)));
+			} else {
+				dto = new GofounderListDto(String.valueOf(useridd), firstName, lastName, AESutility.encrypt(email), country,
+						AESutility.encrypt((String) fouder.get("phoneNumber")), sponsername,
+						AESutility.encrypt(sponserEmail), AESutility.encrypt(sponserPhone),
+						payment_method, paymentStatus, CreatedDate, paymentDate, status, sponserUserId, suspendDate,
+						terminateDate, UserNdaDate, emailVerification, sponserLastname, digital_sign,
+						AESutility.encrypt(String.valueOf(useridd)));
+
+				logger.info(CLASS_NAME, methodName, " ::   ended");
+			}
+		}
+
+//		GoFoundersmysql goFounder = gofoundeRepository.findById(id);
+//		String countryModel = countrymysqlRepository.countryName(goFounder.getCountry_id());
+//		
+//		int sponserUserId = goFounder.getSponserUserId();
+//		GoFoundersmysql sponcer = gofoundeRepository.findById(sponserUserId);
+//		GofounderListDto dto = null;
+//		String ndaDate = "";
+//
+//		GoFounderRefundMyPayment payment = goFounderRefundPaymentRepository.findByUserid(id);
+//		if (goFounder.getUserNdaDate() != null) {
+//			ndaDate = goFounder.getUserNdaDate().toString();
+//		}
+
+//		if (payment != null) {
+//
+//			String type = gofRefundTypeRepo.findById(payment.getPaymentType());
+//			dto = new GofounderListDto(null, goFounder.getUserId(), goFounder.getFirstName(), goFounder.getLastName(),
+//					goFounder.getEmail(), countryModel, goFounder.getPhoneNumber(), sponcer.getUserName(),
+//					sponcer.getEmail(), sponcer.getPhoneNumber(), type, goFounder.getPaymentStatus(),
+//					goFounder.getUserRegDate().toString(), ndaDate, payment.getRefund_date().toString(),
+//					goFounder.getEmailVerification(), goFounder.getStatus());
+//		} else {
+//			dto = new GofounderListDto(null, goFounder.getUserId(), goFounder.getFirstName(), goFounder.getLastName(),
+//					goFounder.getEmail(), countryModel, goFounder.getPhoneNumber(), sponcer.getUserName(),
+//					sponcer.getEmail(), sponcer.getPhoneNumber(), null, goFounder.getPaymentStatus(),
+//					goFounder.getUserRegDate().toString(), ndaDate, null, goFounder.getEmailVerification(),
+//					goFounder.getStatus());
+//		
+//			logger.info(CLASS_NAME, methodName, " ::   ended");
+//		}
+		return dto;
+	}
+
+	@Override
+	public GoFoundersmysql goUpdated(GoFoundersmysql goFounders) {
+		methodName = "goUpdated";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+		GoFoundersmysql goupdate = null;
+		goupdate = gofoundeRepository.save(goupdate);
+		goupdate.setUpdatedDate(new Date());
+		logger.info(CLASS_NAME, methodName, " ::   ended");
+		return goupdate;
+	}
+
+	@Override
+	
+	public GofounderListDto goUpdatedFlag(GofounderHelperDto gofounderHelperDto) throws Exception {
+		methodName = "goUpdatedFlag";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+		GofounderListDto dto = null;
+	String id = AESutility.decrypt(gofounderHelperDto.getEmail());
+int val=Integer.valueOf(id);
+		GoFoundersmysql goFounders = gofoundeRepository.findById(val);
+		if (goFounders.getPaymentStatus().equals("confirmed") || goFounders.getPaymentStatus().equals("refund")) {
+			if ("confirmed".equals(gofounderHelperDto.getStatus())) {
+				goFounders.setPaymentStatus("refund");
+			}
+			if ("refund".equals(gofounderHelperDto.getStatus())) {
+				goFounders.setPaymentStatus("confirmed");
+			}
+			goFounders = gofoundeRepository.save(goFounders);
+			dto= getByGofunderId(gofounderHelperDto.getEmail());
+		}
+
+		else {
+			throw new Exception("You don't have the access ,Please contact admin.");
+		}
+
+		logger.info(CLASS_NAME, methodName, " ::   ended");
+
+		return dto;
+	}
+//	@Override
+//	public GoFoundersmysql goUpdatedFlag(int id) {
+//		methodName = "goUpdatedFlag";
+//		logger.info(CLASS_NAME, methodName, " ::   started");
+//		GoFoundersmysql goupdate = new GoFoundersmysql();
+//		GoFoundersmysql goFounders = gofoundeRepository.findById(id);
+//		goFounders.getUserId();
+//		goFounders.setPaymentStatus("refund");
+//		goupdate.setUserId(goFounders.getUserId());
+//		goupdate.setPaymentStatus(goFounders.getPaymentStatus());
+//		System.out.println("userid::"+goFounders.getIpAddress()+"::"+goupdate.getUserId()+goFounders.getPaymentStatus());
+//		goupdate = gofoundeRepository.save(goupdate);
+//		logger.info(CLASS_NAME, methodName, " ::   ended");
+//
+//		return goupdate;
+//	}
+
+	public static <T> List<T> getPage(List<T> sourceList, int page, int pageSize) {
+
+		if (pageSize <= 0 || page <= 0) {
+			throw new IllegalArgumentException("invalid page size: " + pageSize);
+		}
+
+		int fromIndex = (page - 1) * pageSize;
+		if (sourceList == null || sourceList.size() <= fromIndex) {
+			return Collections.emptyList();
+		}
+
+		return sourceList.subList(fromIndex, Math.min(fromIndex + pageSize, sourceList.size()));
+	}
+
+	@Override
+	public GoFounderRefundMyPayment saveRefundPayment(GoFounderRefundMyPayment gofounderfefundpayment) {
+		methodName = "saveRefundPayment";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+		GoFounderRefundMyPayment goFounderRefundPaymentresult = goFounderRefundPaymentRepository
+				.save(gofounderfefundpayment);
+		logger.info(CLASS_NAME, methodName, " ::   ended");
+		return goFounderRefundPaymentresult;
+	}
+
+	@Override
+	public GoFounderRefundMyPayment updateRefundPayment(int id, String status, MultipartFile file) throws IOException {
+		methodName = "updateRefundPayment";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+		GoFounderRefundMyPayment goFounderRefundPaymentresult = goFounderRefundPaymentRepository.findById(id);
+		goFounderRefundPaymentresult.setPaymentStatus(status);
+		goFounderRefundPaymentresult.setRefundId(id);
+		GoFounderRefundMyPayment goFounderRefundPaymentresult2 = goFounderRefundPaymentRepository
+				.save(goFounderRefundPaymentresult);
+		logger.info(CLASS_NAME, methodName, " ::   ended");
+		return goFounderRefundPaymentresult2;
+
+	}
+
+	@Override
+	public PaginationResponseDto getAllRefundDetails(GofRefundHelperDto gofRefundHelperDto) {
+		methodName = "getAllRefundDetails";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+		PaginationResponseDto paginationResponseDto = new PaginationResponseDto();
+		int pageStart = 1;
+		int pageSize = 10;
+		try {
+			if (gofRefundHelperDto.getPageNumber() != null && gofRefundHelperDto.getPageNumber() > 0)
+				pageStart = gofRefundHelperDto.getPageNumber();
+
+			if (gofRefundHelperDto.getPageSize() != null && gofRefundHelperDto.getPageSize() > 0)
+				pageSize = gofRefundHelperDto.getPageSize();
+			List<GoFounderRefundMyPayment> findAll;
+			if (gofRefundHelperDto.getPaymentStatus() != null) {
+				if (gofRefundHelperDto.getPaymentStatus().equalsIgnoreCase("Pending")) {
+					findAll = goFounderRefundPaymentRepository.findByPendingStatus();
+				} else {
+					findAll = goFounderRefundPaymentRepository.findByStatus(gofRefundHelperDto.getPaymentStatus());
+				}
+			} else {
+				findAll = goFounderRefundPaymentRepository.findAll();
+				findAll.sort(Comparator.comparing(GoFounderRefundMyPayment::getUserid).reversed());
+			}
+			int dataSize = findAll.size();
+			if (!gofRefundHelperDto.isExcel()) {
+				findAll = getPage(findAll, pageStart, pageSize);
+			}
+			List<RefundTabDto> dto = new ArrayList<>();
+			for (GoFounderRefundMyPayment goFounderRefundMyPayment : findAll) {
+				GoFoundersmysql gofu = gofoundeRepository.findByUserID(goFounderRefundMyPayment.getUserid());
+				GoFoundersmysql sponu = gofoundeRepository.findByUserID(gofu.getSponserUserId());
+				String type = gofRefundTypeRepo.findById(goFounderRefundMyPayment.getPaymentType());
+				String payment_Status = null;
+				if (goFounderRefundMyPayment.getPaymentStatus() == null
+						|| goFounderRefundMyPayment.getPaymentStatus().isEmpty())
+					payment_Status = "Pending";
+				else
+					payment_Status = goFounderRefundMyPayment.getPaymentStatus();
+
+				dto.add(new RefundTabDto(Integer.toString(goFounderRefundMyPayment.getRefundId()),
+						goFounderRefundMyPayment.getUserid(), gofu.getFirstName(), gofu.getLastName(),
+						AESutility.encrypt(gofu.getEmail()), type, payment_Status,
+						goFounderRefundMyPayment.getRefund_date().toString(), gofu.getStatus(), sponu.getFirstName(),
+						AESutility.encrypt(sponu.getPhoneNumber()),
+						AESutility.encrypt(sponu.getEmail()), goFounderRefundMyPayment.getNotes(),
+						AESutility.encrypt(String.valueOf(goFounderRefundMyPayment.getUserid()))));
+			}
+
+			logger.info(CLASS_NAME, methodName, " ::   ended");
+
+			double totalpages = (double) dataSize / pageSize;
+			int totalrows = 1;
+			if (totalpages > 1) {
+				int roundNumber = (int) Math.round(totalpages);
+				if (roundNumber < totalpages) {
+					totalrows = (int) (totalpages + 1);
+				} else {
+					totalrows = roundNumber;
+				}
+			}
+			paginationResponseDto.setList(dto);
+			paginationResponseDto.setTotalRows(dataSize);
+			paginationResponseDto.setPage(pageStart);
+			paginationResponseDto.setNumberOfPages(totalrows);
+		} catch (Exception e) {
+			logger.error(CLASS_NAME + " :: Exception occured getAllRefundDetails::" + e.getMessage());
+		}
+		return paginationResponseDto;
+	}
+
+	@Override
+	public PaginationResponseDto getOFounderRefundSearch(String mailId, int number, int size) {
+		methodName = "getByMailId";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+
+		PaginationResponseDto paginationResponseDto = null;
+		int limitStart = 0;
+		limitStart = (number - 1) * size;
+		List<Map<?, ?>> gofonders = new ArrayList<>();
+		try {
+			mailId = AESutility.decrypt(mailId);
+			gofonders = goFounderRefundPaymentRepository.findByUseremailorUserId(mailId);
+		} catch (Exception e) {
+			e.getMessage();
+		}
+
+		long goList = gofonders.size();
+		if (gofonders != null && !gofonders.isEmpty()) {
+			int dataSize = (int) goList;
+			double totalpages = (double) dataSize / size;
+			int totalrows = 1;
+			if (totalpages > 1) {
+				int roundNumber = (int) Math.round(totalpages);
+				if (roundNumber < totalpages) {
+					totalrows = (int) (totalpages + 1);
+				} else {
+					totalrows = roundNumber;
+				}
+			}
+			List<RefundSearchDto> gofonderdto = refundData(gofonders);
+
+			gofonderdto.forEach(u -> {
+				u.setEmail(AESutility.encrypt(u.getEmail()));
+				u.setGfId(AESutility.encrypt(String.valueOf(u.getUserid())));
+			});
+			paginationResponseDto = new PaginationResponseDto();
+			paginationResponseDto.setList(gofonderdto);
+			paginationResponseDto.setTotalRows(dataSize);
+			paginationResponseDto.setNumberOfPages(totalrows);
+			paginationResponseDto.setPage(number);
+			logger.info(CLASS_NAME, methodName, " ::   ended");
+			return paginationResponseDto;
+		} else
+
+			return null;
+	}
+
+	public List<RefundSearchDto> refundData(List<Map<?, ?>> ofonders) {
+
+		methodName = "refundData";
+		logger.info(CLASS_NAME, methodName, " ::   started");
+
+		List<RefundSearchDto> ofonderdto = new ArrayList<>();
+
+		String paymentStatus = "";
+
+		String sponserEmail = "";
+		for (Map<?, ?> fouder : ofonders) {
+
+			Integer useridd = null;
+			Integer refundId = null;
+			String firstName = null;
+			String lastName = null;
+			String email = null;
+			String sponserfirstname = null;
+
+			String payment_method = null;
+			String status = null;
+			Date createdDate = null;
+
+			String CreatedDate = null;
+
+			String notes = null;
+
+			String sponserLastname = null;
+
+			if (fouder.get("paymentStatus") == null && paymentStatus.isEmpty())
+				paymentStatus = "Pending";
+
+			else {
+				paymentStatus = (String) fouder.get("paymentStatus");
+			}
+			SimpleDateFormat Newformatter = new SimpleDateFormat("MMM-dd-yyyy HH:mm:ss");
+			TimeZone timeZone2 = TimeZone.getTimeZone("IST");
+			Newformatter.setTimeZone(timeZone2);
+
+			if (fouder.get("refund_id") != null)
+				refundId = (int) fouder.get("refund_id");
+			if (fouder.get("user_id") != null)
+				useridd = (int) fouder.get("user_id");
+
+			if (fouder.get("f_name") != null)
+				firstName = (String) fouder.get("f_name");
+			if (fouder.get("l_name") != null)
+				lastName = (String) fouder.get("l_name");
+			if (fouder.get("email") != null)
+				email = (String) fouder.get("email");
+
+			if (fouder.get("payment_method") != null)
+				payment_method = (String) fouder.get("payment_method");
+			if (fouder.get("date") != null) {
+				createdDate = (Date) fouder.get("date");
+				if (createdDate != null)
+					CreatedDate = Newformatter.format(createdDate);
+			}
+			if (fouder.get("status") != null)
+				status = (String) fouder.get("status");
+			if (fouder.get("notes") != null)
+				notes = (String) fouder.get("notes");
+
+			if (fouder.get("sponserUserId") != null)
+				if (fouder.get("spon_name") != null)
+					sponserfirstname = (String) fouder.get("spon_name");
+			sponserLastname = (String) fouder.get("slast_name");
+			sponserEmail = (String) fouder.get("spon_email");
+
+			ofonderdto.add(new RefundSearchDto(Integer.toString(refundId), useridd, firstName, email, payment_method,
+					paymentStatus, CreatedDate, sponserfirstname + sponserLastname, lastName, sponserEmail, notes,
+					status));
+
+			logger.info(CLASS_NAME, methodName, " ::   ended");
+		}
+
+		return ofonderdto;
+
+	}
+
+}

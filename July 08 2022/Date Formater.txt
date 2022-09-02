@@ -1,0 +1,15 @@
+===
+
+public String showAddedSince(@PathVariable("since") @DateTimeFormat(pattern = "yyyy-MM-dd") Date since) {
+        return "admin-companies-added-since";
+    }
+
+===
+
+@DateTimeFormat(pattern = "dd/MM/yyyy") // This is for bind Date with @ModelAttribute
+    @Temporal(TemporalType.DATE)
+    @Column(name = "inc_date")
+    private Date incidentDate;
+
+
+===

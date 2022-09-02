@@ -1,0 +1,203 @@
+
+
+
+
+
++-+-+-+-+-+-+-+-+-+-+-+-+-
+Joining multiple entities
++-+-+-+-+-+-+-+-+-+-+-+-+-
+
+1. Inner joins
+2. Left Outer Joins
+3. Additional Join Conditions
+4. Path expressions or implicit joins
+
+
+
+
+1. Inner joins:
+1.1 Related Entities
+1.2 Unrelated Entities
+
+1.1 Related Entities
+Eg:-
+Author{
+	List<Book> books;
+}
+
+Book{
+	
+}
+
+Query:-
+SELECT a, b FROM Author a JOIN a.books b
+
+Ex:-
+@Query("SELECT e.ename, d.dname FROM Employee e JOIN e.dept d")
+List<?> findEmployeesWithDept();
+
+
+1.2 Unrelated Entities
+
+SELECT b, p FROM Book b, Publisher p WHERE b.fk_publisher = p.id
+
+
+
+
+2. Left Outer Joins:
+
+SELECT a, b FROM Author a LEFT JOIN a.books b
+
+
+3. Additional Join Conditions:
+
+SELECT a, p FROM Author a JOIN a.publications p ON p.publishingDate > ?1
+
+4. Path expressions or implicit joins:
+
+SELECT b FROM Book b WHERE b.publisher.name LIKE ‘%es%
+
+
++-+-+-+-+-+-+-+-+-+-+-+-+--+-+-
+Polymorphism and Downcasting
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+1. Polymorphism: When you choose an inheritance strategy that supports polymorphic queries, your query selects all instances of the specified class and its subclasses.
+
+
+Publication{}
+Book extends Publication{}
+BlogPost extends Publication{}
+
+Eg:-
+SELECT p FROM Publication p
+
+Eg:-
+	
+SELECT b FROM BlogPost b
+
+2. Downcasting
+
+	
+SELECT a, p FROM Author a JOIN treat (a.publications AS Book) p
+
+
++-+-+-+-+-+-+-+-+-+-+-+-
+WHERE CLAUSE:
++-+-+-+-+-+-+-+-+-+-+-+-
+Operators for single-valued expressions:
+
+Equal: author.id = 10
+Not equal: author.id <> 10
+Greater than: author.id > 10
+Greater or equal then: author.id => 10
+Smaller than: author.id < 10
+Smaller or equal then: author.id <= 10
+Between: author.id BETWEEN 5 and 10
+Like: author.firstName LIKE ‘%and%’
+Is null: author.firstName IS NULL
+Is not null: author.firstName IS NULL
+In: author.firstName IN (‘John’, ‘Jane’)
+
+Operators for collection expressions:
+
+Size: size(author.books) > 2
+Member of: :myBook member of author.books
+Is empty: author.books IS EMPTY
+
+Eg:
+SELECT a FROM Author a
+WHERE 	a.firstName like ‘%and%’
+	and a.id >= 20
+	and size(author.books) >= 5
+
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+Projection – The SELECT clause
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+1. Entities
+2. Scalar values
+3. Constructor references
+4. Distinct Query Results
+
+1. Entities:
+	Select a from Author a;
+	Select a from Author a where size(a.books) > 1;
+
+2. Scalar values:
+	SELECT a.firstName, a.lastName FROM Author a
+
+3. Constructor references
+Need to provide fully qualified class name.
+		
+SELECT new org.thoughts.on.java.model.AuthorValue(a.id, a.firstName, a.lastName) FROM Author a
+
+4. Distinct Query Results
+	SELECT DISTINCT a.lastName FROM Author a
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+PREDEFINED FUNCTIONS
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-
+
+- upper(str)
+- lower(str)
+- current_date()
+- current_time()
+- current_timestamp()
+- substring(str, offset, length)
+- trim(str)
+- length(str)
+- locate(String search, String s, int offset)
+- abs(Numeric n)
+- sqrt(Numeric n)
+- mod(Numeric dividend, Numeric divisor): returns the remainder of a division
+- treat(x as Type): downcasts x to the given Type
+- size(Collection c)
+- abs(Numeric n)
+- index(orderedCollection): returns the index of the given value in an ordered Collection
+
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-
+Grouping – The GROUP BY and HAVING clause
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-
+
+- count(var)
+- sum(var)
+- max(var)
+- min(var)
+- avg(var)
+
+
+
+	SELECT a.lastName, COUNT(a) FROM Author a GROUP BY a.lastName
+Ex:
+@Query("SELECT e.job, count(job) from Employee e GROUP BY e.job")
+List<?> groupByLastName();
+
+List<?> list = repo.groupByLastName();
+list.forEach(obj -> {
+	Object[] arr = (Object[]) obj;
+	System.out.println(Arrays.toString(arr));
+});
+
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-
+Ordering – The ORDER BY clause
++-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+--+-+-+-+-+-+-
+
+SELECT a FROM Author a ORDER BY a.lastName ASC, a.firstName DESC
+
+	
+SELECT a FROM Author a
+	WHERE (SELECT count(b) FROM Book b WHERE a MEMBER OF b.authors ) > 1
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,138 @@
+Object(C)Object(C)
+
+Constructors:
+No Constructors
+
+Methods:
+boolean equals(Object)
+final native Class getClass()
+native int hashCode()
+final native void notify()
+final native void notifyAll()
+String toString()
+final void wait()
+final native void wait(long)
+final void wait(long,int)
+
++---++---++---++---++---++---+
+
+AbstractCollection(AC)AbstractCollection(AC) >> Object(C)
+AbstractCollection(AC) --> Collection(I)
+
+Constructors:
+protected AbstractCollection()
+
+
+Methods:
+It has no own methods.
+
++---++---++---++---++---++---+
+
+AbstractSet(AC)AbstractSet(AC) >> AbstractCollection(AC) >> Object(C)
+AbstractSet(AC) --> Set(I)
+
+Constructors:
+protected AbstractSet()
+
+
+Methods:
+It has no own methods.
+
++---++---++---++---++---++---+
+Iterable(RI)
+
+Methods:
+void forEach(Consumer<? super T>)
+Iterator iterator()
+Spliterator spliterator()
+
++---++---++---++---++---++---+
+
+Collection(I) ==> Iterable(RI)
+
+Methods:
+boolean add(E)
+boolean addAll(Collection<? extends E>)
+void clear()
+boolean contains(Object)
+boolean containsAll(Collection<?>)
+boolean equals(Object)
+int hashCode()
+boolean isEmpty()
+Stream parallelStream()
+boolean remove(Object)
+boolean removeAll(Collection<?>)
+boolean removeIf(Predicate<? super E>)
+boolean retainAll(Collection<?>)
+int size()
+Stream stream()
+Object[] toArray()
+Object[] toArray(IntFunction<T[]>)
+Object[] toArray(T[])
+
++---++---++---++---++---++---+
+
+Set(I) ==> Collection(I) ==> Iterable(RI)
+
+Methods:
+static Set copyOf(Collection<? extends E>)
+static Set of()
+static Set of(E)
+static Set of(E,E)
+static Set of(E,E,E)
+static Set of(E,E,E,E)
+static Set of(E,E,E,E,E)
+static Set of(E,E,E,E,E,E)
+static Set of(E,E,E,E,E,E,E)
+static Set of(E,E,E,E,E,E,E,E)
+static Set of(E,E,E,E,E,E,E,E,E)
+static Set of(E,E,E,E,E,E,E,E,E,E)
+static transient Set of(E[])
+
++---++---++---++---++---++---+
+
+SortedSet(I) ==> Set(I) ==> Collection(I) ==> Iterable(RI)
+
+Methods:
+Comparator comparator()
+Object first()
+SortedSet headSet(E)
+Object last()
+SortedSet subSet(E,E)
+SortedSet tailSet(E)
+
++---++---++---++---++---++---+
+
+NavigableSet(I) ==> SortedSet(I) ==> Set(I) ==> Collection(I) ==> Iterable(RI)
+
+Methods:
+Object ceiling(E)
+Iterator descendingIterator()
+NavigableSet descendingSet()
+Object floor(E)
+NavigableSet headSet(E,boolean)
+Object higher(E)
+Object lower(E)
+Object pollFirst()
+Object pollLast()
+NavigableSet subSet(E,boolean,E,boolean)
+NavigableSet tailSet(E,boolean)
+
++---++---++---++---++---++---+
+
+TreeSet(C)TreeSet(C) >> AbstractSet(AC) >> AbstractCollection(AC) >> Object(C)
+TreeSet(C) --> NavigableSet(I),Cloneable(RI),Serializable(RI)
+
+Constructors:
+public TreeSet(SortedSet<E>)
+public TreeSet(Collection<? extends E>)
+public TreeSet(Comparator<? super E>)
+public TreeSet()
+TreeSet(Object>)
+
+
+Methods:
+Object clone()
+
++---++---++---++---++---++---+
+

@@ -1,0 +1,22 @@
+package com.suji.streamstest;
+
+import java.util.List;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class PassingBehaviours 
+{
+    public static void main( String[] args )
+    {
+    	List<String> list = Stream.iterate("String", s -> s.concat("s")).limit(10).collect(Collectors.toList());
+    	print(list, s -> s.length() > 8);
+    	print(list, s -> s.length() < 8);
+    	
+    }
+    
+    public static <T> void  print(List<T> list, Predicate<T> predicate) {
+    	list.stream().filter(predicate).forEach(System.out :: println);
+    }
+    
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Get your 2022 Bible Promise card.</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+
+
+<link rel="shortcut icon" type="image/x-icon" href="icon.png" />
+
+
+
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Audiowide">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js">
+	$(function() {
+		$('#datetimepicker1').datetimepicker();
+	});
+</script>
+
+<style type="text/css">
+@media screen and (min-width: 500px) {
+	a {
+		display: none
+	}
+}
+
+h1{
+	font-size: 35px;
+}
+
+</style>
+
+</head>
+<body class="bg-primary">
+
+	<div class="container-fluid p-5 bg-primary text-white text-center">
+		<h1>Get your 2022 Promise Card</h1>
+		
+	</div>
+	<div class="container-fluid p-5 bg-primary text-white text-center">
+	<h5>How to get?</h5>
+		<p class="p-1"> Enter your <b>Name</b> and your <b>Date Of Birth</b> then press <b>"Show
+				2022 promise"</b>.
+		</p>
+		<p class="p-1">Note: Your birth year is not mandatory. It will
+			uniquely process an amazing promise for you. Your data will go
+			through several algorithms to give you card.</p>
+	</div>
+		
+	
+
+
+
+	<div class="container p-5  bg-primary text-white text-center">
+		<form action="ShowPromise" method="get">
+
+			<div class="mb-3">
+				<label for="name">Enter your name</label> <input type="text"
+					class="form-control" id="name" pattern="[a-zA-W ]{5,}" placeholder="Username" name="name"
+					required>
+			</div>
+
+			<div class="mb-3">
+				<label for="dob">Your Date of birth</label> <input type="date"
+					class="form-control" id="dob" name="dob" required>
+			</div>
+			<button type="submit" class="btn btn-warning">Show 2022
+				Promise</button>
+		</form>
+	</div>
+
+	<div class="container-fluid p-5 bg-primary text-white text-center">
+		<a
+			href="whatsapp://send?text=Hey there, Check your 2022 Promise Card here. Click the link and find out within half minitue. http://ec2-3-110-177-121.ap-south-1.compute.amazonaws.com:2022/BiblePromise/ "
+			data-action="share/whatsapp/share" target="_blank"
+			class="btn btn-success btn-sm" role="button" aria-disabled="true">Share
+			with others</a>
+
+		<div class="row">
+		
+			<h5 class=".text-center">Check and Share the link.</h5>
+			<h6><b> Please Note : </b> Every promise in bible is for you. It is just to help you to focus on a single promise. Make sure you need to follow Jesus in order to make promise come true.</h6>	
+		</div>
+	</div>
+</body>
+</html>

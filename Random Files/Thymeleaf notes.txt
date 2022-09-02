@@ -1,0 +1,123 @@
+@ModelAttribute can be used either as a method parameter or at the method level.
+
+At the Method Level: method is to add one or more model attributes.
+That is, @ModelAttribute methods are invoked before the controller methods annotated with @RequestMapping are invoked.
+
+@ModelAttribute
+public void addAttributes(Model model) {
+    model.addAttribute("msg", "Welcome to the Netherlands!");
+}
+
+
+As a Method Argument: the argument should be retrieved from the model.
+
+@RequestMapping(value = "/addEmployee", method = RequestMethod.POST)
+public String submit(@ModelAttribute("employee") Employee employee) {
+    // Code that uses the employee object
+
+    return "employeeView";
+}
+
+ViewResolver' available: expected single matching bean but found 5: 1. beanNameViewResolver
+2. mvcViewResolver
+3. defaultViewResolver
+4. viewResolver
+5. thymeleafViewResolver
+
+
+org.thymeleaf.exceptions.TemplateProcessingException
+org.thymeleaf.exceptions.TemplateInputException
+(type=Method Not Allowed, status=405).
+
+
+Java Bean Validation API
+----------------------------
+Bean validation works by:
+
+Adding constraints to fields, properties (aka field accessor methods), or container elements of a class.
+Passing an instance of the class to a Validator instance that tests if any constraint has been violated.
+
+If validation fails an exception is thrown, and one or more error messages are returned in the response along with a 400 Bad Request status.
+
+Spring Boot has Bean Validation support out-of-the-box.
+
+ select the Spring Web Starter, Spring Data JPA, and H2 Database dependencies
+
+The Spring Data JPA dependency will add JPA and Hibernate ORM capabilities to the project. 
+
+The Spring Web Starter dependency includes the Bean Validation library (hibernate-validator-6.0.17.Final.jar and validation-api-2.0.1.Final.jar). (Hibernate Validator is the certified implementation of the Bean Validation 2.0 API.) Alternatively, you can include the library without Spring MVC by adding the Spring Validation Starter dependency to your POM file.Spring Validation Starter
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
+</dependency>
+
+@Entity
+public class User {
+	
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+     
+    @NotEmpty(message = "First name is required")
+    private String firstName;
+}
+
+https://docs.jboss.org/hibernate/beanvalidation/spec/2.0/api/
+
+public interface UserRepository extends CrudRepository<User, Long> {
+ 
+}
+
+@RestController
+@RequestMapping("users")
+public class UserController {
+ 
+    private final UserRepository userRepository;
+ 
+    public UserController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+     
+    @PostMapping
+     public ResponseEntity<String> addUser(@RequestBody @Valid User user) {
+        userRepository.save(user);
+        return ResponseEntity.ok("User data is valid");
+    }
+}
+
+The User method parameter is marked with the @RequestBody annotation, indicating that the input data is to be retrieved from the body of the request and deserialized into a User object.
+
+The method returns a ResponseEntity, which represents an HTTP response (status code, headers, and body). We are using the ResponseEntity builder to set the status code to ‘OK 200″ and to set the response body with the string “User data is valid”.
+
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+@ExceptionHandler(MethodArgumentNotValidException.class)
+public Map<String, String> handleMethodArgumentNotValid(MethodArgumentNotValidException ex) {
+    Map<String, String> errors = new HashMap<>();
+ 
+    ex.getBindingResult().getFieldErrors().forEach(error -> 
+        errors.put(error.getField(), error.getDefaultMessage()));
+     
+    return errors;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

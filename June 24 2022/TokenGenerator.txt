@@ -1,0 +1,92 @@
+package com.suji.jwt_demo2;
+
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Base64;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
+
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtBuilder;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+
+public class TokenGenerator {
+
+	private final String SECRET_KEY;
+	private static final long EXP_TIME_IN_MINS = 2;
+
+	public TokenGenerator(String secret) {
+		SECRET_KEY = secret;
+	}
+
+	// Generating Token
+	public String generateToken(String username) {
+
+		// Issure Date: NOW
+		LocalDateTime now = LocalDateTime.now();
+
+		// Expire Date:
+		LocalDateTime withMinute = LocalDateTime.now().plusMinutes(EXP_TIME_IN_MINS);
+
+		JwtBuilder builder = Jwts.builder()
+				// .setId("101")
+				.setSubject(username)
+				// .setIssuer("Sujith")
+				.setIssuedAt(toDate(now)).setExpiration(toDate(withMinute))
+				.signWith(SignatureAlgorithm.HS256, Base64.getEncoder().encode(SECRET_KEY.getBytes()));
+
+		return builder.compact();
+	}
+
+	public long getCountDownSecounds(String token) {
+		Claims claims = getClaims(token);
+
+		LocalDateTime now = LocalDateTime.now();
+		LocalDateTime expireAt = LocalDateTime.ofInstant(claims.getExpiration().toInstant(), ZoneId.systemDefault());
+
+		Duration between = Duration.between(now, expireAt);
+
+		return between.toSeconds();
+	}
+
+	// Get Claims
+	public Claims getClaims(String token) {
+		byte[] encode = Base64.getEncoder().encode(SECRET_KEY.getBytes());
+
+		return Jwts.parser().setSigningKey(encode).parseClaimsJws(token).getBody();
+	}
+
+	public String getUsername(String token) {
+		return getClaims(token).getSubject();
+	}
+
+	// Print Claims
+	public void printClaims(String token) {
+		Claims claims = getClaims(token);
+
+		System.out.println("Reading Claims for token: " + token);
+		System.out.println(claims.getId());
+		System.out.println(claims.getSubject());
+		System.out.println(claims.getIssuer());
+		System.out.println(claims.getIssuedAt());
+		System.out.println(claims.getExpiration());
+
+	}
+
+	public boolean isTimeExpired(String token) {
+		return getCountDownSecounds(token) < 0;
+	}
+
+	public boolean validateToken(String username, String token) {
+		return getClaims(token).getSubject().equals(username) && !isTimeExpired(token);
+	}
+
+	////////////////////////////////////////////////////////////
+
+	private Date toDate(LocalDateTime dateTime) {
+		return Date.from(dateTime.atZone(ZoneId.systemDefault()).toInstant());
+	}
+
+}

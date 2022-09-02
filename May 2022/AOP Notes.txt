@@ -1,0 +1,6 @@
+AOP is a programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns. It does this by adding additional behavior to existing code without modifying the code itself.
+
+
+A Pointcut is a predicate that helps match an Advice to be applied by an Aspect at a particular JoinPoint.
+
+invalidAbolsuteTypeName

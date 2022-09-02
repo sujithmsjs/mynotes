@@ -1,0 +1,76 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+	<display-name>Archetype Created Web Application</display-name>
+
+	<context-param>
+		<param-name>myname</param-name>
+		<param-value>Suji</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>hey</param-name>
+		<param-value>WhassUp</param-value>
+	</context-param>
+
+	<servlet>
+		<servlet-name>Signup</servlet-name>
+		<display-name>Signup</display-name>
+		<description></description>
+		<servlet-class>com.suji.demo1.Signup</servlet-class>
+		<init-param>
+			<param-name>db</param-name>
+			<param-value>MySql</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ip</param-name>
+			<param-value>Localhost</param-value>
+		</init-param>
+	</servlet>
+	<servlet>
+		<servlet-name>Login</servlet-name>
+		<display-name>Login</display-name>
+		<description></description>
+		<servlet-class>com.suji.demo1.Login</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Test</servlet-name>
+		<display-name>Test</display-name>
+		<description></description>
+		<servlet-class>com.suji.demo1.Test</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SendRDDemo</servlet-name>
+		<display-name>SendRDDemo</display-name>
+		<description></description>
+		<servlet-class>com.suji.demo1.SendRDDemo</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CookieDemo</servlet-name>
+		<display-name>CookieDemo</display-name>
+		<description></description>
+		<servlet-class>com.suji.cookie.CookieDemo</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Signup</servlet-name>
+		<url-pattern>/Signup</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Test</servlet-name>
+		<url-pattern>/Test</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SendRDDemo</servlet-name>
+		<url-pattern>/oxford</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CookieDemo</servlet-name>
+		<url-pattern>/CookieLogin</url-pattern>
+	</servlet-mapping>
+</web-app>

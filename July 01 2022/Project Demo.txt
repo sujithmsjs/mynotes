@@ -1,0 +1,76 @@
+PLAN:
+
+GET: /index ->	view:"index" -> showIndex();
+GET: /register -> view "register" -> showRegister();
+POST:/register -> saveData and redirect to index. -> saveStudent(Student std)
+GET: /delete{id} -> delete and redirect to index. -> deleteStudent(int id);
+GET: /update{id} -> view "update" -> showUpdateStudent(Student std)
+PUT: /update{id} -> updateStudent(); redirect:/index;
+
+Employee{
+	id, name, dob, sal, doj
+}
+
+index.html
+----------
+<a th:href="@{/register}"> Add New </a>
+
+<tr th:each=" std : ${studentList}">
+	<td th:text =" ${std.name} "></td>
+	<td>
+		<a th:href="@{/edit/{id}(id=${std.id})}"> Edit </a>
+		<a th:href="@{/delete/{id}(id=${std.id})}"> Delete </a>
+	</td>
+</tr>
+
+register.html
+-------------
+// FORM BACKING OBJECT
+<form th:object="${student}" th:method="POST" th:action="@{/login}">
+	<input type="text" th:field="*{name}" />
+</form>
+
+@GetMapping("/index")
+public void view
+
+-------
+
+Thymeleaf is a server-side Java template engine.
+
+
+
+<input type="radio" name="inlineRadioOptions" value="Male" th:field="*{gender}">
+
+<input type="radio" name="inlineRadioOptions" value="Female" th:field="*{gender}">
+
+DropDown Box:
+
+<select th:field="*{course}">
+
+      <option th:each="course : ${courses}" th:value="${course}"  th:text="${course}"/>
+
+</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

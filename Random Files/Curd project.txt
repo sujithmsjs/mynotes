@@ -1,0 +1,26 @@
+@RequestMapping("/home")
+@RequestMapping("/std/edit/{sno}")
+@RequestMapping("/std/new")
+@RequestMapping("/std/delete/{sno}")
+@RequestMapping("/std/save")
+
+
+@RequestMapping("/home")
+public String home(Model model) {
+	List<Student> stds = // Retrives data
+	model.addAttribute("stds", stds); //Add data into Model
+	return "home"; // Calling home view
+}
+
+@RequestMapping("/std/edit/{sno}")
+public String editStd(@PathVariable("sno") int sno, Model model) {
+	
+	//Get the student details by sno
+	Student std = getStudentBySNO(); 
+
+	//Adding std data to Model
+	model.addAttribute("std", std);
+		
+	//Calling edit view
+	return "editStd";
+}

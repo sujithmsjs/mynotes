@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body th:styleappend=" 'background-color:' + ${bg} ">
+	<h1 th:text="${title}"></h1>
+	<h1 th:text="${isbn}"></h1>
+	<a href="/book/getcolor">Back</a>
+</body>
+
+</html>

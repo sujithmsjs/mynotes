@@ -1,0 +1,335 @@
+AuthenticationFilter : 
+
+UsernamePasswordAuthenticationToken
+
+interface AuthenicationManager {
+	Authentication authenticate​(Authentication authentication) throws AuthenticationException;
+}
+
+authenticate​ method: Attempts to authenticate the passed Authentication object, returning a fully populated Authentication object (including granted authorities) if successful. 
+
+AuthenticationException - if authentication fails.
+1. DisabledException
+2. LockedException
+3. BadCredentialsException
+
+
+Class ProviderManager implements AuthenicationManager {
+}
+
+Note:
+Important point to note here is that the Authentication Manager takes an Authentication object as input and after successful authentication again returns an object of type Authentication.
+
+Iterates an Authentication request through a list of AuthenticationProviders.
+---
+
+public interface AuthenticationEntryPoint{
+
+void commence​(
+	javax.servlet.http.HttpServletRequest request, 		javax.servlet.http.HttpServletResponse response, 		AuthenticationException authException);
+
+}
+---
+# Authentication Provider
+Interface AuthenticationProvider{
+	Authentication authenticate​(Authentication authentication) throws AuthenticationException;
+}
+
+authenticate​ method: Performs authentication with the same contract as AuthenticationManager.authenticate(Authentication).
+
+
+It has various implementations like CasAuthenticationProvider,DaoAuthenticationProvider. Depending on the implementation an appropriate AuthenicationProvider implementation is used. It is in the AuthenticationProvider Implementation authenticate method where all the actual authentication takes place.
+
+---
+#  DaoAuthenticationProvider
+*An AuthenticationProvider implementation that retrieves user details from a UserDetailsService.*
+
+Using the UserDetails service the AuthenticationProvider fetches the User Object corresponding to the username. It fetches this User Object from either a database, internal memory or other sources. This User object credentials are then compared with the incoming Authentication Object credentials. If Authentication is successful then the Principal Authentication Object is returned in response.
+---
+### UserDetailsService
+The UserDetailsService is an interface having a single method named loadUserByUsername.
+
+1. CachingUserDetailsService
+2. InMemoryUserDetailsManager
+3. JdbcDaoImpl
+4. JdbcUserDetailsManager
+5. LdapUserDetailsManager
+6. LdapUserDetailsService
+
+It is responsible for fetching the User Object with username and password against which the incoming User Object will be compared.
+---
+SecurityContextHolder: If authentication is successful, the resulting Authentication object will be placed into the SecurityContextHolder.
+
+Authentication Filters:
+1. BasicAuthenticationFilter
+2. UsernamePasswordAuthenticationFilter
+
+
+GenericFilterBean
+<- OncePerRequestFilter
+<- BasicAuthenticationFilter
+
+Note: Encodes Username and Password using Base64-encoder.
+
+Processes a HTTP request's BASIC authorization headers, putting the result into the SecurityContextHolder.
+
+In summary, this filter is responsible for processing any request that has a HTTP request header of Authorization with an authentication scheme of Basic and a Base64-encoded username:password token. For example, to authenticate user "Aladdin" with password "open sesame" the following header would be presented:
+
+ Authorization: Basic QWxhZGRpbjpvcGVuIHNlc2FtZQ==
+
+GenericFilterBean
+<- AbstractAuthenticationProcessingFilter
+<- UsernamePasswordAuthenticationFilter
+
+Login forms must present two parameters to this filter: a username and password.
+---
+As soon as we add the spring security dependency to the project the basic authentication gets activated by default. If we now start the application, Basic Security is enabled by default by Spring security due to the spring auto configurations.
+
+
+---
+# Cross-Site Request Forgery (CSRF) :
+Starting from Spring Security 4.x, the CSRF protection is enabled by default.
+
+
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+    http.csrf().disable();
+}
+
+The _csrf attribute contains the following information:
+1. token – the CSRF token value
+2. parameterName – name of the HTML form parameter, which must include the token value
+3. headerName – name of the HTTP header, which must include the token value
+
+<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+---
+
+# Stateless Spring API
+If our stateless API uses token-based authentication, such as JWT, we don't need CSRF protection.
+
+However, if our stateless API uses a session cookie authentication, we need to enable CSRF protection.
+
+---
+
+In Spring Security 5.7.0-M2 we deprecated the WebSecurityConfigurerAdapter, as we encourage users to move towards a component-based security configuration.
+
+lambda DSL?
+
+
+### SecurityFilterChain
+	
+UserDetailsService
+	UserDetailsManager
+		InMemoryUserDetailsManager
+		JdbcUserDetailsManager
+		LdapUserDetailsManager
+
+
+
+---
+
+Security:
+--------
+
+DaoAuthenticationProvider autowires UserDetailsService inorder to provide Authentication.
+
+
+protected final UserDetails retrieveUser(String username, 	UsernamePasswordAuthenticationToken authentication)
+			throws AuthenticationException {
+			
+	UserDetails loadedUser = this.getUserDetailsService().loadUserByUsername(username);
+
+}
+
+
+
+public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+
+user = retrieveUser(username, (UsernamePasswordAuthenticationToken) authentication);
+
+
+}
+
+
+public abstract class 	AbstractUserDetailsAuthenticationProvider
+		implements AuthenticationProvider,... {
+
+	
+	@Override
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+		...
+	}
+}
+
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+
+https://www.javainuse.com/webseries/spring-security-jwt/chap3
+
+public interface AuthenticationManager {
+	Authentication authenticate(Authentication authentication) throws AuthenticationException;
+}
+---
+public interface AuthenticationProvider {
+	Authentication authenticate(Authentication authentication) throws AuthenticationException;
+}
+
+
+
+public class DaoAuthenticationProvider extends AbstractUserDetailsAuthenticationProvider {
+	
+	private UserDetailsService userDetailsService;
+
+
+	@Override
+	UserDetails retrieveUser(String username, UsernamePasswordAuthenticationToken authentication)
+			throws AuthenticationException {
+			UserDetails loadedUser = this.getUserDetailsService().loadUserByUsername(username);
+			return loadedUser;	
+	}
+}
+---
+
+
+public abstract class AbstractUserDetailsAuthenticationProvider {
+	@Override
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+	
+		user = retrieveUser(username, (UsernamePasswordAuthenticationToken) authentication);
+		
+		//...
+		
+		return createSuccessAuthentication;
+	}
+}
+
+---
+public class ProviderManager implements AuthenticationManager{
+
+	@Override
+	public Authentication authenticate(Authentication authentication) throws AuthenticationException {
+	
+	private List<AuthenticationProvider> providers;
+	
+	public ProviderManager(List<AuthenticationProvider> providers) {
+		this.providers = providers;
+	}
+	
+
+	@Override
+	public Authentication authenticate(Authentication authentication){
+		for (AuthenticationProvider provider : getProviders()) {
+			result = provider.authenticate(authentication);
+		}
+	}	
+}
+---
+
+---
+### Authentication inferface
+
+Represents the token for an authentication request or for an authenticated principal once the request has been processed by the AuthenticationManager.authenticate(Authentication) method.
+
+Once the request has been authenticated, the Authentication will usually be stored in a thread-local SecurityContext managed by the SecurityContextHolder by the authentication mechanism which is being used. 
+
+public abstract class OncePerRequestFilter extends GenericFilterBean {
+	
+}
+
+### AuthenticationFilter
+
+class AuthenticationFilter extends OncePerRequestFilter{
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

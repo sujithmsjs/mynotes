@@ -1,0 +1,118 @@
+
+
+public interface WebUrlConstants {
+	String GET_CEO_PRODUCT_DATA = "/proddatta";
+}
+
+
+
+
+
+ProductController
+-------------------
+utility file:
+WebUrlConstants.GET_CEO_PRODDATTA = "/proddatta";
+
+public class ProductController {
+
+
+
+}
+
+ProductModel: Java POJO
+
+
+ProductsService: Interface
+
+@Service
+public class ProductsServiceImpl implements ProductsService {
+	@Autowired
+	
+	private ProductsRepository productrepository;	
+
+//...
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@Autowired
+private ProductsService productsService;
+
+@Autowired
+private CeoServiceImpl ceoserviceimpl;
+
+@GetMapping(value = WebUrlConstants.GET_CEO_PRODDATTA)
+	
+public Map<String, Object> getProductsData(){
+//TODO
+}
+	
+
+class CeoServiceImpl implements CeoService{
+
+
+}
+
+List<ProductModel> productModels = productsService.findAll();
+	
+ProductModel: Container class
+
+
+-public interface ProductsService {
+	ProductModel findById(String prodid);
+	List<ProductModel> findAll();
+	List<PriorityModel> findAllPriority();
+	ProductModel findProductByproductId(int productid);
+	List<ProductModel> findAllProductdata();
+}
+
+
+
+@Repository
+public interface ProductsRepository extends MongoRepository<ProductModel,String> {
+
+	@Query("{'subproduct' : ?0}")
+	List<ProductModel> findProducts(SubProduct subproduct);
+	
+	@Query("{'product_id' : ?0}")
+	ProductModel findProductByproductId(int product_id);
+
+	@Query("{'product_name' : ?0}")
+	ProductModel findProductByProductName(String productname);
+	
+	@Query("{'_id' : ?0}")
+	ProductModel findByIdData(String _id);
+}
+
+
+===========
+
+created by
+create date
+isDeleted
+mail
+update by
+updated date.
+===
+api/proddatta
+api/products/all

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+
+	<h1 th:text="${book.title}"></h1>
+	<h1 th:text=" (true and false) ? 'Hehe' : 'Huhu' "></h1>
+	<h1 th:text="${msg}"></h1>
+	<h1 th:text=" 'Hey there, this is general text' "></h1>
+	<h1 th:if=!false th:text="'Hello bangaram'">if false</h1>
+	<h1 th:if=true>if true</h1>
+	<h1 th:unless=false>unless false</h1>
+	<h1 th:unless=true>unless true</h1>
+
+
+	<div th:switch="${book.type}">
+		<p th:case="'edu'">This is Education book</p>
+		<p th:case="'help'">This is selfhelp book</p>
+		<p th:case="'comic'">This is Comit</p>
+	</div>
+
+	<div th:object="${book}">
+		<p th:text="*{isbn}"></p>
+		<p th:text="*{title}"></p>
+		<p th:text="*{author}"></p>
+		<p th:text="*{type}"></p>
+	</div>
+
+	<div th:object="${book}">
+		<p th:field="*{isbn}"></p>
+		<p th:field="*{title}"></p>
+		<p th:field="*{author}"></p>
+		<p th:field="*{type}"></p>
+	</div>
+	
+	
+	<form th:object="${book}">
+		<input type="text" th:field="*{isbn}" />
+		<input type="text" th:field="*{title}" />
+		<input type="text" th:field="*{author}" />
+		<input type="text" th:field="*{type}" />
+	</form>
+
+
+	<!--
+<h1 th:if="${false}?" >view</h1>
+<h1 th:text="#{props.msg}"></h1>
+	<form th:action="@{/student/saveStd}" th:object="${student}" method="POST">
+		
+		<input type="text" th:field="*{sno}"  placeholder="Sno" />
+		<p th:if="${#fields.hasErrors('sno')}" th:errors="*{sno}">Incorrect date</p>
+		<br />
+
+		<input type="text" th:field="*{name}" placeholder="Full Name" />
+		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect date</p>
+		<br />
+		<input type="text" th:field="*{cgpa}" placeholder="CGPA" />
+		<p th:if="${#fields.hasErrors('cgpa')}" th:errors="*{cgpa}">Incorrect date</p>
+		<br />
+		<input type="submit" />
+	</form>
+
+
+	<div th:if="${isSaved}" th:object="${std}">
+		<h1>Data Saved.</h1>
+		<p>Sno: <span th:text="*{sno}"></span>.</p>
+		<p>Name: <span th:text="*{name}"></span>.</p>
+		<p>CGPA: <span th:text="*{cgpa}"></span>.</p>
+	</div>
+
+-->
+
+</body>
+
+</html>

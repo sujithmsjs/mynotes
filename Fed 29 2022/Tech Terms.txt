@@ -1,0 +1,52 @@
+Softwares:
+
+GRADLE:
+Gradle is a build automation tool for multi-language software development.
+
+Repository: github.com/gradle/gradle
+Written in: Java, Groovy, Kotlin
+License: Apache License 2.0
+Developer(s): Hans Dockter
+
+
+
+It controls the development process in the tasks of compilation and packaging to testing, deployment, and publishing.
+Supported languages include Java (as well as Kotlin, Groovy, Scala), C/C++, and JavaScript.
+
+Gradle builds on the concepts of Apache Ant and Apache Maven, and introduces a Groovy- & Kotlin-based domain-specific language contrasted with the XML-based project configuration used by Maven.
+
+Gradle uses a directed acyclic graph(DAG) to determine the order in which tasks can be run, through providing dependency management. Gradle runs on the JVM.
+
+Directed acyclic graph: In mathematics, particularly graph theory, and computer science, a directed acyclic graph (DAG or dag /ˈdæɡ/ (audio speaker iconlisten)) is a directed graph with no directed cycles. That is, it consists of vertices and edges (also called arcs), with each edge directed from one vertex to another, such that following those directions will never form a closed loop. 
+
+
+
+versatility 
+relentlessly 
+
+MAVEN (may-one):
+Maven is a build automation tool used primarily for Java projects. Maven can also be used to build and manage projects written in C#, Ruby, Scala, and other languages. The Maven project is hosted by the Apache Software Foundation, where it was formerly part of the Jakarta Project.
+
+Repository: gitbox.apache.org/repos/asf/maven.git
+Stable release: 3.8.4 / 14 November 2021; 2 months ago
+Initial release: 13 July 2004; 17 years ago
+Written in: Java
+
+
+Apache Ant (Another Neat Tool) 
+Ant uses XML to describe build code and by default it's XML file name is build.xml.
+
+Hibernate ORM (or simply Hibernate) is an object–relational mapping tool for the Java programming language.
+It provides a framework for mapping an object-oriented domain model to a relational database. 
+Hibernate handles object–relational impedance mismatch problems by replacing direct, persistent database accesses with high-level object handling functions.
+
+Hibernate is free software that is distributed under the GNU Lesser General Public License 2.1. 
+
+The mapping of Java classes to database tables is implemented by the configuration of an XML file or by using Java Annotations.
+
+database schema: Blueprint
+Plain Old Java Objects (POJOs). 
+(HQL)Hibernate Query Language
+Lesser General Public License (LGPL) 
+ Free Software Foundation (FSF)
+ GNU: GNU's Not UNIX

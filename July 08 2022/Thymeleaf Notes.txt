@@ -1,0 +1,75 @@
+Thymeleaf Notes
+================
+<div th:replace="fragments/header :: header">
+ <div th:replace="fragments/footer :: footer">&copy; 2016 The Static Templates</div>
+
+template name::fragment selector(fragment name or Markup Selector)
+Ex:
+fragments/header :: header
+this :: header
+:: header
+
+Defining a Fragment:
+====================
+
+th:fragment="header" - th:fragment attributes
+This way we can define multiple fragments in one template file.	
+
+Ex:-
+<div th:fragment="footer">
+	&copy; 2016 Footer
+</div>
+
+The templates can still be natural templates and can be viewed in a browser without a running server.
+
+
+
+Including with Markup Selectors:
+<div th:insert="https://www.thymeleaf.org :: section.description" >...</div>
+
+
+
+
+
+Using expressions:
+------------------
+In templatename :: selector, both templatename and selector can be fully-featured expressions.
+
+
+<div th:replace="fragments/footer :: ${#authentication.principal.isAdmin()} ? 'footer-admin' : 'footer'">
+  &copy; 2016 The Static Templates
+</div>
+
+ <!-- /*  Multiple fragments may be defined in one file */-->
+    <div th:fragment="footer">
+      &copy; 2016 Footer
+    </div>
+    <div th:fragment="footer-admin">
+      &copy; 2016 Admin Footer
+    </div>
+
+
+
+
+
+Parameterized inclusion:
+------------------------
+
+th:fragment="alert (type, message)"
+
+Calling a FRAGMENT:
+
+<div th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})">...</div>
+
+Callee of a FRAGMENT:
+<div class="alert alert-dismissable" th:fragment="alert (type, message)" th:assert="${!#strings.isEmpty(type) and !#strings.isEmpty(message)}" th:classappend="'alert-' + ${type}">      
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <span th:text="${message}">Test</span>
+    </div>
+
+
+
+
+
+
+

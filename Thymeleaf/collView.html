@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+	<h1 th:text=" 'coll.toString ' + ${coll.toString}"></h1>
+	<h1 th:text="'coll: ' + ${coll}"></h1>
+
+	<div th:styleappend="'background-color:' + ColorUtil.randomColorRBG" th:each="book : ${coll}">
+		<h1 th:text="${book.title}"></h1>
+		<h3 th:text="${book.isbn}"></h3>
+		<h3 th:text="${book.author}"></h3>
+		<h3 th:text="${book.type}"></h3>
+	</div>
+	 
+
+
+</body>
+
+</html>

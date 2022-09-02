@@ -1,0 +1,62 @@
+package com.suji.streamstest;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+import java.util.function.IntFunction;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+enum Course{
+	JAVA, C, PHYTHON, RUBY, DOT_NET;
+}
+
+
+public class RandomGenerators2 {
+	public static void main(String[] args) {
+		Random r = new Random();
+		
+		boolean anyMatch = r.ints(10, 0, 10).anyMatch(i -> i == 9);
+		System.out.println(anyMatch);
+		
+		LocalDate date = LocalDate.now();
+		LocalDate days = date.minusYears(18).minusDays(r.nextInt( 365 * 12));
+		System.out.println(days);
+		
+		StringBuilder collect = r.ints(10, 'A', 'Z'+1).collect(StringBuilder::new,StringBuilder::appendCodePoint, StringBuilder::append);
+		System.out.println(collect);
+		
+		
+		
+		
+		IntFunction<String> course = i -> List.of("Java","C","Oracle","Python","Ruby").get(i);
+		 
+		
+		System.out.println(Math.pow(2, 4)-1);
+		
+		
+		
+		
+		String randomInt = Integer.toBinaryString(r.nextInt(15)+1);
+		
+		//Stream<String> stream = IntStream.range(0, list.size()).mapToObj( i -> (randomInt.charAt(i) == '1')? list.get(i) : null);
+		//stream.forEach(System.out :: println);
+		
+		
+		
+		System.out.println("Random cources: ");
+		
+		List<String> list = List.of("Java","C","Oracle","Python","Ruby");
+		
+		IntStream.range(0, list.size()).mapToObj( i -> r.nextBoolean() ? list.get(i) : null).filter(s -> s!=null)
+		.forEach(System.out :: println);
+		
+		
+
+		
+		
+		
+		
+	}
+}

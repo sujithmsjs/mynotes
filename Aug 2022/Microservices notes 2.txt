@@ -1,0 +1,269 @@
+Microservices
+-------------
+https://www.javatpoint.com/microservices-components-and-standardizing-port-and-url
+
+https://medium.com/microservices-architecture/what-are-the-challenges-in-microservices-architecture-2ee9149cfc4e
+
+# Spring Cloud Config Server
+
+Spring Cloud Config Server provides the HTTP resource-based API for external configuration in the distributed system. We can enable the Spring Cloud Config Server by using the annotation @EnableConfigServer.
+
+
+# Eureka Server
+
+Eureka Server is an application that holds the information about all client-service applications. Every Micro service will register into the Eureka server and Eureka server knows all the client applications running on each port and IP address. Eureka Server is also known as Discovery Server.
+
+```yml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+```
+
+The default application name (that is, the service ID), virtual host, and non-secure port (taken from the Environment) are ${spring.application.name}, ${spring.application.name} and ${server.port}, respectively.
+
+To disable the Eureka Discovery Client, you can set eureka.client.enabled to false. Eureka Discovery Client will also be disabled when spring.cloud.discovery.enabled is set to false.
+```
+# Discovery Server
+eureka.client.enabled=false
+```
+
+
+- Distributed Configuration
+
+# Netflix Eureka Naming Server
+Netflix Eureka Server is a discovery server. It provides the REST interface to the outside for communicating with it. A microservice after coming up, register itself as a discovery client. The Eureka server also has another software module called Eureka Client. Eureka client interacts with the Eureka server for service discovery. The Eureka client also balances the client requests.
+---
+Application	Port
+Spring Cloud Config Server	8888
+Netflix Eureka Naming Server	8761
+Netflix Zuul API gateway Server	8765
+---
+# Feign
+
+Feign is a declarative web service client. It makes writing web service clients easier. To use Feign create an interface and annotate it. It has pluggable annotation support including Feign annotations and JAX-RS annotations. Feign also supports pluggable encoders and decoders. Spring Cloud adds support for Spring MVC annotations and for using the same HttpMessageConverters used by default in Spring Web. Spring Cloud integrates Eureka, Spring Cloud CircuitBreaker, as well as Spring Cloud LoadBalancer to provide a load-balanced http client when using Feign.
+---
+#Actuator 
+https://springframework.guru/actuator-in-spring-boot/#:~:text=Spring%20Boot%20Actuator%20is%20a,metrics%20from%20production%2Dready%20applications.
+
+Spring Boot Actuator is a sub-project of the Spring Boot Framework. It uses HTTP endpoints to expose operational information about any running application.
+
+The main benefit of using this library is that we get health and monitoring metrics from production-ready applications. Moreover, the gathering of metrics, understanding traffic, or knowing the state of the database, becomes tremendously easy with Actuator.
+
+Spring Boot’s built-in actuator endpoints allow developers and ops teams to monitor and interact with their applications (over HTTP or JMX). 
+
+http://localhost:8080/actuator
+
+management.endpoints.web.exposure.include=*.
+http://localhost:8080/actuator/metrics/{MetricName} 
+http://localhost:8080/actuator/metrics/system.cpu.usage
+---
+# Config Client
+
+Description:
+
+No spring.config.import property has been defined
+
+Action:
+
+Add a spring.config.import=configserver: property to your configuration.
+	If configuration is not required add spring.config.import=optional:configserver: instead.
+	To disable this check, set spring.cloud.config.enabled=false or 
+	spring.cloud.config.import-check.enabled=false.
+
+spring.cloud.config.enabled=false
+
+# Eureka Client
+
+RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/'}
+
+# 
+
+# Config Server
+spring.cloud.config.enabled=false
+spring.config.import=optional:configserver:http://localhost:8888
+# spring.config.import=configserver:http://localhost:8888
+
+
+# Discovery Server
+eureka.client.enabled=false
+
+LOGS:
+DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+DiscoveryClient    : The response status is 200
+EurekaServiceRegistry        : Registering application STUDENT-MANAGEMENT with eureka with status UP
+EurekaAutoServiceRegistration : Updating port to 8081
+
+
+# Eureka Server
+-----------------
+
+2.3 High Availability, Zones and Regions
+The Eureka server does not have a back end store, but the service instances in the registry all have to send heartbeats to keep their registrations up to date (so this can be done in memory). Clients also have an in-memory cache of Eureka registrations (so they do not have to go to the registry for every request to a service).
+
+By default, every Eureka server is also a Eureka client and requires (at least one) service URL to locate a peer. If you do not provide it, the service runs and works, but it fills your logs with a lot of noise about not being able to register with the peer.
+
+Key Points
+- Clients has to send Hearbeat to Server
+- Eureka server itself is a client.
+- Server has cache memory of registrations.
+- Client has an in-memory cache of Eureka registration.
+- The combination of the two caches (client and server) and the heartbeats make a standalone Eureka server fairly resilient to failure, as long as there is some sort of monitor or elastic runtime (such as Cloud Foundry) keeping it alive.
+
+
+### Standalone Mode
+You might prefer to switch off the client side behavior so that it does not keep trying and failing to reach its peers
+```yaml
+server:
+  port: 8761
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+```
+Note:
+Notice that the serviceUrl is pointing to the same host as the local instance.
+
+### Peer Awareness
+Eureka can be made even more resilient and available by running multiple instances and asking them to register with each other. 
+
+You can add multiple peers to a system, and, as long as they are all connected to each other by at least one edge, they synchronize the registrations amongst themselves. If the peers are physically separated (inside a data center or between multiple data centers), then the system can, in principle, survive “split-brain” type failures. You can add multiple peers to a system, and as long as they are all directly connected to each other, they will synchronize the registrations amongst themselves.
+
+
+### IP Address(HOST_NAME)
+
+If the hostname cannot be determined by Java, then the IP address is sent to Eureka. Only explict way of setting the hostname is by setting eureka.instance.hostname property. You can set your hostname at the run-time by using an environment variable — for example, eureka.instance.hostname=${HOST_NAME}.
+
+What is JAXB?
+
+### Service Discovery
+
+Service Discovery is one of the key tenets of a microservice-based architecture. Trying to hand-configure each client or some form of convention can be difficult to do and can be brittle. Eureka is the Netflix Service Discovery Server and Client. The server can be configured and deployed to be highly available, with each server replicating state about the registered services to the others.
+
+
+### Registering with Eureka
+
+When a client registers with Eureka, it provides meta-data about itself — such as host, port, health indicator URL, home page, and other details. Eureka receives heartbeat messages from each instance belonging to a service. If the heartbeat fails over a configurable timetable, the instance is normally removed from the registry.
+
+
+```yaml
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+```
+
+defaultZone:
+In the preceding example, "defaultZone" is a magic string fallback value that provides the service URL for any client that does not express a preference (in other words, it is a useful default).
+
+Server will take below values taken from the Environment.
+Service ID: application name <- ${spring.application.name}
+Virtual host: IP Address 
+Non-Secure Port: ${server.port}
+
+
+eureka.instance:
+Having spring-cloud-starter-netflix-eureka-client on the classpath makes the app into both a Eureka “instance” (that is, it registers itself) and a “client” (it can query the registry to locate other services).
+
+Disable the Eureka Discovery Client:
+eureka.client.enabled=false
+
+
+### Status Page and Health Indicator
+The status page and health indicators for a Eureka instance default to /info and /health respectively, which are the default locations of useful endpoints in a Spring Boot Actuator application.
+
+```yml
+eureka:
+  instance:
+    statusPageUrlPath: ${server.servletPath}/info
+    healthCheckUrlPath: ${server.servletPath}/health
+```
+
+
+### Eureka’s Health Checks
+
+```
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+```
+
+### Why Is It so Slow to Register a Service?
+Being an instance also involves a periodic heartbeat to the registry (through the client’s serviceUrl) with a default duration of 30 seconds. A service is not available for discovery by clients until the instance, the server, and the client all have the same metadata in their local cache (so it could take 3 heartbeats). You can change the period by setting eureka.instance.leaseRenewalIntervalInSeconds. Setting it to a value of less than 30 speeds up the process of getting clients connected to other services. In production, it is probably better to stick with the default, because of internal computations in the server that make assumptions about the lease renewal period.
+
+eureka.instance.leaseRenewalIntervalInSeconds=10
+
+# Ribbon
+
+Is Ribbon a load balancer?
+Ribbon is a client-side load balancer that gives you a lot of control over the behavior of HTTP and TCP clients. Feign already uses Ribbon, so, if you use @FeignClient , this section also applies. A central concept in Ribbon is that of the named client.
+
+Is Netflix ribbon deprecated?
+Spring Cloud Netflix Ribbon has been deprecated and is not included in the 2020.0. 0 release train. Spring Cloud LoadBalancer is the suggested alternative.
+
+# Hystrix 
+Netflix has created a library called Hystrix that implements the circuit breaker pattern.
+
+Spring Cloud Hystrix project is deprecated. So new applications should not use this project. Resilience4j is a new option for Spring developers to implement the circuit breaker pattern. Resilience4j comes with other features like Rate Limiter, Retry and Bulkhead along with Circuit Breaker pattern.
+
+
+
+# Netflix Zuul
+Zuul is a JVM-based router and server-side load balancer from Netflix. It provides a single entry to our system, which allows a browser, mobile app, or other user interface to consume services from multiple hosts without managing cross-origin resource sharing (CORS) and authentication for each one. 
+
+Netflix uses Zuul for the following:
+
+Authentication
+Insights
+Stress Testing
+Canary Testing
+Dynamic Routing
+Service Migration
+Load Shedding
+Security
+Static Response handling
+Active/Active traffic management
+
+
+# Spring Cloud Gateway
+
+Just like Zuul , Spring Cloud Gateway provides means for routing requests to different services. Spring Cloud Gateway aims to provide a simple, yet effective way to route to APIs and provide cross cutting concerns to them such as: security, monitoring/metrics, and resiliency.
+
+Clients make requests to Spring Cloud Gateway. If the Gateway Handler Mapping determines that a request matches a route, it is sent to the Gateway Web Handler. This handler runs the request through a filter chain that is specific to the request. The reason the filters are divided by the dotted line is that filters can run logic both before and after the proxy request is sent. All “pre” filter logic is executed. Then the proxy request is made. After the proxy request is made, the “post” filter logic is run.
+
+Gateway is built on Spring Framework 5, Project Reactor and Spring Boot 2 using non-blocking APIs. Websockets are supported and it’s a much better developer experience since it’s tightly integrated with Spring.
+
+
+
+# OpenFeign
+
+Feign is a declarative web service client. It makes writing web service clients easier. To use Feign create an interface and annotate it. Spring Cloud integrates Eureka, Spring Cloud CircuitBreaker, as well as Spring Cloud LoadBalancer to provide a load-balanced http client when using Feign.
+
+### Arbitrary client name
+In the @FeignClient annotation the String value ("stores" above) is an arbitrary client name, which is used to create a Spring Cloud LoadBalancer client.
+
+The load-balancer client above will want to discover the physical addresses for the "stores" service. If your application is a Eureka client then it will resolve the service in the Eureka service registry.
+
+@EnableFeignClients(basePackages = "com.example.clients")
+@EnableFeignClients(clients = InventoryServiceFeignClient.class)
+
+
+# Overriding Feign Defaults
+
+A central concept in Spring Cloud’s Feign support is that of the named client. Each feign client is part of an ensemble of components that work together to contact a remote server on demand, and the ensemble has a name that you give it as an application developer using the @FeignClient annotation.
+
+
+```java
+// Placeholders are supported in the name and url attributes.
+  	
+@FeignClient(name = "${feign.name}", url = "${feign.url}")
+public interface StoreClient {
+    //..
+}
+```

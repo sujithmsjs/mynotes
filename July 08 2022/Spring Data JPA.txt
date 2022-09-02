@@ -1,0 +1,10 @@
+JpaTemplate:
+------------
+Spring Expression Language (SPEL)
+
+Eg:-
+ 
+ExpressionParser parser = new SpelExpressionParser();  
+Expression exp = parser.parseExpression("'Welcome SPEL'.concat('!')");  
+String message = (String) exp.getValue(); 
+

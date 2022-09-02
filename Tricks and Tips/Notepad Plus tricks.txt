@@ -1,0 +1,29 @@
+
+
+1. Quick summary
+View > Summary
+
+2. Set File to Read Only
+Right click > Read only
+
+3. Show Hidded Characters.
+Show all characters.
+
+4. Wrap Long line.
+View > Word Wrap
+
+5. Remove Empty lines
+Edit > Line Ops > Remove Empty Lines
+
+6. Temporary Hide lines.
+Select Text > Right Click > Hide Lines.
+
+7. Duel view
+Right click > Duel view.
+
+
+8. Change Cases
+Ctrl + Shift + U
+Ctrl + U
+Alt + U
+Edit > Convert cases.

@@ -1,0 +1,87 @@
+allergens: Ingredients
+assimilated
+
+JPA supports simple, cleaner, and assimilated object-relational mapping.
+
+
+persistence layer
+
+https://www.baeldung.com/jpa-mapping-single-entity-to-multiple-tables
+@SecondaryTable(name = "allergens", pkJoinColumns = @PrimaryKeyJoinColumn(name = "meal_id"))
+@PrimaryKeyJoinColumn(name = "meal_id")
+@Column(name = "sesame_seeds", table = "allergens")
+
+
+@Transactional
+
+Banner:
+
+Setting Banner to the Spring project:
+https://springhow.com/spring-boot-banner-generator/
+
+resource/banner.txt
+
+```
+${AnsiColor.BLUE} 
+
+```
+SpringBootServletInitializer?
+Docket?
+ApiKey?
+SecurityContext?
+
+
+
+
+
+
+MongoDB
+-------
+@Query("{'product_name' : ?0}")
+ProductModel findProductByProductName(String productname);
+
+
+Keywords:
+Gradle is a build automation system
+	
+	
+Exception Handling
+
+There are three options: per exception, per controller or globally.
+
+1. Using HTTP Status Codes
+
+	@ResponseStatus(value=HttpStatus.NOT_FOUND, reason="No such Order")  // 404
+	public class OrderNotFoundException extends RuntimeException {
+		// ...
+	}
+
+2. 
+
+HttpServletRequest, HttpServletResponse, HttpSession and/or Principle
+
+
+3. ExceptionHandlerExceptionResolver
+
+
+MONGO DB
+--------
+
+Relationships in MongoDB represent how various documents are logically related to each other. Relationships can be modeled via Embedded and Referenced approaches
+ 
+1. Modeling Embedded Relationships
+2. Referenced approaches
+
+
+> var result = db.users.findOne({"name":"Tom Benzamin"},{"address_ids":1})
+> var addresses = db.address.find({"_id":{"$in":result["address_ids"]}})
+
+1. Referenced Relationships
+2. Manual References 
+
+Using DBRefs
+There are three fields in DBRefs −
+
+$ref − This field specifies the collection of the referenced document
+$id − This field specifies the _id field of the referenced document
+$db − This is an optional field and contains the name of the database in which the referenced document lies

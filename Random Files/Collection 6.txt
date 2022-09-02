@@ -1,0 +1,64 @@
+
+
+Query query = session.createQuery("from UserData where uid=:uid");
+query.setParameter("uid", 1);
+UserData data = (UserData) query.uniqueResult();
+
+setParameter("foo", foo, Hibernate.INTEGER);
+
+ Object	uniqueResult()
+  List	list()
+  ScrollableResults	scroll()
+   ScrollableResults	scroll(ScrollMode scrollMode)
+   
+    Type[]	getReturnTypes()
+	String[]	getReturnAliases()
+	String	getQueryString()
+	String[]	getNamedParameters()
+	String[]	getNamedParameters()
+	
+	
+QuerySyntaxException
+
+
+Query<UserData> query = session.createQuery("from UserData");
+List<UserData> list = query.list();
+for (UserData data : list) {
+	System.out.println(data);
+}
+	
+	
+Query<UserData> query = session.createQuery("from UserData where username=:username and password=:password");
+query.setParameter("username", "sujimax");
+query.setParameter("password", "NvrStl");
+List<UserData> list = query.list();
+
+System.out.println("\n\nResults:");
+for (UserData data : list) {
+	System.out.println(data);
+}
+
+WORKS WITH BOTH UNIQUE AND MULTIPLE DATA.
+Query<UserData> query = session.createQuery("from UserData where username=:username and password=:password");
+		query.setParameter("username", "sujimax");
+		query.setParameter("password", "NvrStl");
+		List<UserData> list = query.list();
+		
+		System.out.println("\n\nResults:");
+		for (UserData data : list) {
+			System.out.println(data);
+		}
+		
+Query<UserData> query = session.createQuery("from UserData where username=:username and password=:password");
+		query.setParameter("username", "sujimax");
+		query.setParameter("password", "NvrStl");
+		UserData data = query.uniqueResult();
+		System.out.println(data);
+		
+		
+NonUniqueResultException:
+org.hibernate.NonUniqueResultException: query did not return a unique result: 5
+Query<UserData> query = session.createQuery("from UserData");
+UserData data = query.uniqueResult();
+System.out.println(data);
+

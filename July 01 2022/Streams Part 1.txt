@@ -1,0 +1,212 @@
+Streams:
+
+Predicate<? super T>
+
+List<? extends Number> list: Allows any subclass of the Number and Number itself.
+
+List<? super Integer> list: Allows super class of Integer.
+
+
+
+
+Stream<T> iterate(T seed, Predicate<? super T> hasNext, UnaryOperator<T> next)
+
+IntBinaryOperator{
+	int applyAsInt(int left, int right);
+}
+
+---
+
+<U> U reduce(U identity, BiFunction<U, ? super T, U> accumulator, BinaryOperator<U> combiner);
+
+Accumulator: a section of a computer that is used for storing the results of what has been calculated
+
+
+interface BiFunction<T, U, R> {
+	R apply(T t, U u);
+}
+
+interface BinaryOperator<T> extends BiFunction<T,T,T> {
+	T apply(T t, T u);
+}
+
+Program #01
+
+		Random r = new Random();
+
+		Supplier<Emp> sup = () -> new Emp(r.nextInt(20000) + 5000, r.nextInt(5) + 1); //
+
+		List<Emp> list = Stream.iterate(sup.get(), s -> sup.get()).limit(10).collect(Collectors.toList());
+		// list.forEach(System.out :: println);
+
+		LinkedList<Emp> collect = list.stream().collect(Collectors.toCollection(LinkedList::new));
+		Stack<Emp> stack = list.stream().collect(Collectors.toCollection(Stack::new));
+		ArrayList<Emp> list2 = list.stream().collect(Collectors.toCollection(ArrayList::new));
+
+		Map<Integer, Integer> map = list.stream().collect(Collectors.toMap(Emp::getSalary, Emp::getDeptno));
+		System.out.println(map);
+
+		// Map<Integer, Integer> map2 =
+		// list.stream().collect(Collectors.toMap(Emp::getDeptno, Emp::getSalary));
+		// System.out.println(map);
+
+		Long long1 = list.stream().collect(Collectors.counting());
+
+		Double average = list.stream().collect(Collectors.averagingDouble(Emp::getSalary));
+		Double summation = list.stream().collect(Collectors.summingDouble(Emp::getSalary));
+		collect.add(sup.get());
+		collect.forEach(System.out::println);
+		System.out.println("Total elements: " + long1);
+		System.out.println("Total Emps salary: " + summation);
+		System.out.println("Average Emp salary: " + average);
+
+
+Program #02
+
+	list.stream().sorted((p,q) -> p.getSalary() - q.getSalary()).forEach(System.out::println);
+
+		Optional<Emp> max = list.stream().collect(Collectors.maxBy( (p,q) -> p.getSalary() - q.getSalary()));
+		
+		System.out.println("Maximun salaried employee: "+max);
+
+Program #03
+groupingBy(CLASSIFIER, DOWN STREAM)
+
+EX: 
+Collectors.groupingBy(Emp::getDeptno, Collectors.toSet())
+Collectors.(groupingBy(String::length, toSet())
+
+
+groupingBy(Function<? super T, ? extends K> classifier, Collector<? super T, A, D> downstream)
+
+
+Program #04
+Classificaiton will be done by classifier.
+
+groupingBy(classifier, mapFactory , downstream)
+groupingBy(Function, Supplier, Collector)
+
+Ex: 
+Collectors.groupingBy(Emp::getDeptno, HashMap :: new, Collectors.toSet())
+
+
+HashMap<Integer,Set<Emp>> map = list.stream().collect(Collectors.groupingBy(Emp::getDeptno,HashMap :: new, Collectors.toSet()));
+		
+		map.forEach((a,b) -> System.out.println(a +" : "+b));
+
+HashMap<Integer,Set<Emp>> map = list.stream().collect(Collectors.groupingBy(Emp::getDeptno,HashMap :: new, Collectors.toSet()));
+		
+		map.forEach((a,b) -> System.out.println(a +" : "+b));
+
+		System.out.println("Maximun salaried employee: " + map.size());
+
+
+Program #05
+partitioningBy( predicate, downstream)
+
+collect(partitioningBy(s -> s.length() > 2))
+
+Map<Boolean, List<Emp>> map = list.stream().collect(Collectors.partitioningBy(e -> e.getSalary() > 15000 ,Collectors.toList()));
+		map.forEach((k,v) -> System.out.println(k+" : "+v));
+
+Program #06
+
+Supplier<ImmutableSet.Builder<T>> supplier()
+BiConsumer<ImmutableSet.Builder<T>, T> accumulator()
+BinaryOperator<ImmutableSet.Builder<T>> combiner()
+Function<ImmutableSet.Builder<T>, ImmutableSet<T>> finisher()
+Set<Characteristics> characteristics()
+
+Program #07
+
+collect(supplier, accumulator, combiner)
+
+Supplier,BiConsumer,BiConsumer;
+
+
+
+R result = supplier.get();
+     for (T element : this stream)
+         accumulator.accept(result, element);
+     return result;
+
+
+Program #07
+Collectors.toCollection(collectionFactory)
+
+
+-------------
+Map groupingBy(Function classifier)
+
+interface Function<T, R> {
+	R apply(T t);
+}
+
+Ex:
+groupingBy(emp -> emp.getAge() >= 25 ? "Younder"  : "Elder" )
+
+
+---
+Optional<T> reduce(BinaryOperator<T> accumulator);
+
+interface BinaryOperator<T> extends BiFunction<T,T,T> {
+ T apply(T t, T u);
+}
+
+reduce( (e1, e2) -> e1.getSal() + e2.getSal());
+
+
+------------
+
+<U> U reduce(U identity,BiFunction<U, ? super T, U> accumulator,BinaryOperator<U> combiner);
+
+
+interface BiFunction<T, U, R> {
+	R apply(T t, U u);
+}
+
+
+interface BinaryOperator<T> extends BiFunction<T,T,T> {
+	T apply(T t1, T t2);
+}
+	
+
+
+U result = identity;
+for (T element : this stream)
+    result = accumulator.apply(result, element)
+return result;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

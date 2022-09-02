@@ -1,0 +1,117 @@
+Spring Boot’s Default Exception Handling Mechanism
+
+application.yml
+-----------------
+server:
+  error:
+  include-message: always
+  include-binding-errors: always
+  include-stacktrace: on_trace_param/never
+  include-exception: false
+  
+  whitelabel:
+	enabled: ture
+	
+================
+Before Spring 3
+-	HandlerExceptionResolver 
+- 	@ExceptionHandler
+
+Spring 3.2
+-	@ControllerAdvice annotation
+Spring 5
+-	ResponseStatusException 
+
+
+
+@ControllerAdvice
+A unified exception handling throughout a whole application.
+
+1. Controller-Level
+===================
+@ExceptionHandler: works with in the controller.
+The @ExceptionHandler annotated method is only active for that particular Controller.
+
+2. HandlerExceptionResolver
+===========================
+This will resolve any exception thrown by the application. It will also allow us to implement a uniform exception handling mechanism in our REST API.
+
+ExceptionHandlerExceptionResolver v3.1
+DefaultHandlerExceptionResolver v3.o
+
+
+3. ResponseStatusExceptionResolver:
+
+Its main responsibility is to use the @ResponseStatus annotation available on custom exceptions and to map these exceptions to HTTP status codes.
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class MyResourceNotFoundException extends RuntimeException {
+	//...
+}
+
+4. Custom HandlerExceptionResolver
+==================================
+
+@Component
+public class RestResponseStatusExceptionResolver extends AbstractHandlerExceptionResolver {
+	@Override
+ 	protected ModelAndView doResolveException(
+		HttpServletRequest request, 
+		HttpServletResponse response, 
+      		Object handler, 
+      		Exception ex) {		
+	
+	}
+	//...
+}
+
+ControllerAdvice
+==================
+
+Spring 3.2 brings support for a global @ExceptionHandler with the @ControllerAdvice annotation.
+
+The@ControllerAdvice annotation allows us to consolidate our multiple, scattered @ExceptionHandlers from before into a single, global error handling component.
+
+
+@ControllerAdvice
+public class RestResponseEntityExceptionHandler 
+  extends ResponseEntityExceptionHandler {
+
+    @ExceptionHandler(value 
+      = { IllegalArgumentException.class, IllegalStateException.class })
+    protected ResponseEntity<Object> handleConflict(...){
+
+	//...
+	}
+}
+
+
+ResponseStatusException
+=======================
+ try{
+      //...
+	}
+    catch (MyResourceNotFoundException exc) {
+         throw new ResponseStatusException(
+           HttpStatus.NOT_FOUND, "Foo Not Found", exc);
+    }
+
+
+For example, we can implement a @ControllerAdvice globally but also ResponseStatusExceptions locally.
+
+
+
+
+Handle the Access Denied in Spring Security
+=============================================
+ let's see how to handle Access Denied exception thrown by method-level security annotations – @PreAuthorize, @PostAuthorize, and @Secure.
+
+
+DefaultErrorAttributes
+======================
+
+
+
+
+
+

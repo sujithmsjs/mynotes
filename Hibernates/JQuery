@@ -1,0 +1,62 @@
+$(document).ready(
+	function(){
+		$("button").click(
+			function(){
+				$("h2").hide();
+			}
+		);
+	}
+);
+
+
+$(document).ready(
+	function(){
+		$("p").click(
+			function(){
+				$(this).hide();
+			}
+		)
+	}
+)
+
+Mouse Events	Keyboard Events	Form Events	Document/Window Events
+click	keypress	submit	load
+dblclick	keydown	change	resize
+mouseenter	keyup	focus	scroll
+mouseleave	 	blur	unload
+
+
+$("p").click(function(){
+  // action goes here!!
+});
+
+
+$(document).ready(function(){
+  $("#hide").click(function(){
+    $("p").hide(500);
+  });
+  $("#show").click(function(){
+    $("p").show(500);
+  });
+});
+
+$(document).ready(function(){
+  $("button").click(function(){
+    $("p").toggle(100);
+  });
+});
+
+
+
+
+$(selector).load(URL,data,callback);
+
+The required URL parameter specifies the URL you wish to load.
+
+The optional data parameter specifies a set of querystring key/value pairs to send along with the request.
+
+The optional callback parameter is the name of a function to be executed after the load() method is completed.
+
+
+$.get(URL,callback);
+$.get()

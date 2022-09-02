@@ -1,0 +1,38 @@
+JSON stands for JavaScript Object Notation
+
+AJAX = Asynchronous JavaScript And XML.
+AJAX is a misleading name. AJAX applications might use XML to transport data, but it is equally common to transport data as plain text or JSON text.
+
+The keystone of AJAX is the XMLHttpRequest object.
+
+1. Create an XMLHttpRequest object
+variable = new XMLHttpRequest();
+
+2. Define a callback function
+xhttp.onload = function() {
+  // What to do when the response is ready
+}
+
+
+
+3. Open the XMLHttpRequest object
+xhttp.open("GET", "ajax_info.txt");
+
+4. Send a Request to a server
+xhttp.send();
+
+<script>
+
+function loadDoc() {
+
+  const xhttp = new XMLHttpRequest();
+  
+  xhttp.onload = function() {
+  
+    document.getElementById("demo").innerHTML = this.responseText;
+    
+  }
+  xhttp.open("GET", "ajax_info.txt");
+  xhttp.send();
+}
+</script>

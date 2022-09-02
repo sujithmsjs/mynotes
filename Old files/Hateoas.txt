@@ -1,0 +1,24 @@
+	
+
+Instead, Spring HATEOAS offers three abstractions for creating the URI –
+
+1. RepresentationModel
+2. Link
+3. WebMvcLinkBuilder.
+
+@Test
+	public void getAllStudents() throws Exception {
+		
+		List<Student> list = new ArrayList<>();
+		when(studentRepository.findAll()).thenReturn(list);
+		assertNotNull(studentRepository.findAll());
+		
+		MockHttpServletRequestBuilder getReq = MockMvcRequestBuilders.get("/api/test");
+		
+		MvcResult result = mockMvc.perform(getReq).andReturn();
+		MockHttpServletResponse response = result.getResponse();
+		int status = response.getStatus();
+		assertEquals(200, status);
+		
+	//		assertEquals(200, 200);
+	}

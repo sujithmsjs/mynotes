@@ -1,0 +1,38 @@
+@PostMapping("/save")
+	public String save(@Valid Student std, BindingResult br, Model model) {
+
+		if (br.hasErrors()) {
+			System.out.println("/save:  hasErrors() ");
+		}
+		if (br.hasFieldErrors()) {
+			System.out.println("/save:  hasFieldErrors() ");
+			List<FieldError> fieldErrors = br.getFieldErrors();
+			for (FieldError fieldError : fieldErrors) {
+				System.out.println(fieldError.getField());
+				System.out.println(fieldError.getDefaultMessage());
+			}
+		}
+		if (br.hasFieldErrors("name")) {
+			System.out.println("/save: hasFieldErrors(\"name\") ");
+
+		}
+
+		System.out.println("/save: " + std + "; ");
+
+		model.addAttribute(br);
+		model.addAttribute("std", std);
+		
+		System.out.println("----");
+		Map<String, Object> map = model.asMap();
+		Set<Entry<String, Object>> set = map.entrySet();
+		System.out.println("total objects"+set.size());
+		System.out.println(map.keySet());
+		for (Entry<String, Object> entry : set) {
+			System.out.println("Key : " + entry.getKey() + "\nValue :" + entry.getValue());
+			System.out.println();
+		}
+		System.out.println("----");
+		
+
+		return "redirect:/student/next";
+	}

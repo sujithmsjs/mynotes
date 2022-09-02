@@ -1,0 +1,288 @@
+
+#2 Cheetsheet 2
+
+CommandLineRunner
+-----------------
+
+@Component
+public class MyRunner  implements CommandLineRunner{
+	
+	private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
+
+	@Override
+	public void run(String... args) throws Exception {
+	
+		logger.debug("Email Sent Successfully.");
+		logger.info("This is just some info");
+		logger.debug("This is just some info");
+	}
+}
+
+Date and Time Config
+--------------------
+public class DateTimeConfig extends WebMvcConfigurationSupport {
+
+	@Override
+	public FormattingConversionService mvcConversionService() {
+		
+		return super.mvcConversionService();
+	}
+
+}
+
+
+View pages configurer
+---------------------
+
+@Configuration
+public class WebApplicationConfig implements WebMvcConfigurer {
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/notFound").setViewName("forward:/error-page.html");
+	}
+
+	@Bean
+	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> containerCustomizer() {
+		
+		return container -> {
+			container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/notFound"));
+		};
+	}
+
+}
+
+
+
+Controller
+------------
+GET:	/welcome "welcome"
+GET:	/signup "signup"
+POST:	/signup
+
+
+
+@PostMapping("/save-person")
+public String saveFormData(@Valid PersonPojo person, BindingResult results) {
+
+	if (results.hasErrors()) {
+		return "person/signup";
+	}
+	
+	PersonPojo savedPerson = personService.savePerson(person);
+
+	return "/person/welcome";
+}
+
+
+
+Student Entity
+--------------
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "students")
+public class Student{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	private int id;
+	
+	@NotNull(message = "LastName can not be null!!")
+	@NotEmpty(message = "LastName can not be empty!!")
+	private String name;
+	
+	@NotNull(message = "Choose the subject count you are going to study!")
+	@Min(value = 4, message = "Student should enroll to minimum 4 subjects!!")
+	@Max(value = 8, message = "Student can enroll to maximum 8 subjects!!")
+	private int subjectCount;
+	
+	@NotNull
+	@Min(1)
+	@Max(12)
+	private int grade;
+	
+	@NotNull
+	@Size(max = 10, min = 10, message = "Mobile number should be of 10 digits")
+	@Pattern(regexp = "[7-9][0-9]{9}", message = "Mobile number is invalid!!")
+	private String mobileNo;
+	
+	@NotNull(message = "Please enter birth date")
+	@Past(message = "Birth date should be less than current date!!")
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+	private LocalDate birthDate;
+}
+
+Person Entity
+-------------
+
+@Data
+@Entity
+@Table(name = "persons")
+@PersonConstraint
+public class Person{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Size(min = 4, max=16)
+	@Column(name = "name", nullable = false)
+	private String name;
+	
+	
+	@Column(name = "uname", nullable = false)
+	@Size(min = 4, max=10)
+	private String username;
+	
+	@Size(min = 4, max=16)
+	@Column(name = "pw", nullable = false)
+	private String password;
+	
+	@Transient
+	private String verifyPassword;
+	
+	@Column(name = "sex")
+	private char gender;
+	
+	@Column(name = "height")
+	private double height;
+	@Column(name = "ncc")
+	private boolean hasNCC;
+
+	@Past
+	@Column(name = "date_of_birth")
+	private LocalDate dob;
+	@Column(name = "registered_on")
+	@CreationTimestamp
+	private LocalDateTime registered;
+	@Column(name = "last_update")
+	@LastModifiedDate
+	private LocalDateTime lastUpdate;
+}
+-------------------
+
+
+
+public interface PersonRepository extends JpaRepository<PersonPojo, Integer> {
+	boolean existsByUsername(String value);
+}
+
+
+----------------
+
+@ControllerAdvice
+public class GlobalDefaultExceptionHandler {
+
+	@ExceptionHandler(value = Exception.class)
+	public ModelAndView defaultErrorHandler(HttpServletRequest req, Exception e) throws Exception {
+		if (AnnotationUtils.findAnnotation(e.getClass(), ResponseStatus.class) != null) {
+			throw e;
+		}
+
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("personPojo", new PersonPojo());
+		mav.setViewName("/person/signup");
+		return mav;
+	}
+
+	@ResponseStatus(HttpStatus.NOT_FOUND) // 404
+	public ModelAndView handleConflict() {
+		System.out.println("404: Error!");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("personPojo", new PersonPojo());
+		mav.setViewName("");
+		return mav;
+	}
+}
+
+----------------------------
+package com.suji.crudrepo.configuration;
+
+
+
+public class DateTimeConfig extends WebMvcConfigurationSupport {
+
+	@Override
+	public FormattingConversionService mvcConversionService() {
+		
+		return super.mvcConversionService();
+	}
+
+}
+
+-------------
+
+@Configuration
+public class WebApplicationConfig implements WebMvcConfigurer {
+
+	@Override
+	public void addViewControllers(ViewControllerRegistry registry) {
+		registry.addViewController("/notFound").setViewName("forward:/error-page.html");
+	}
+
+	@Bean
+	public WebServerFactoryCustomizer<ConfigurableServletWebServerFactory> containerCustomizer() {
+		
+		return container -> {
+			container.addErrorPages(new ErrorPage(HttpStatus.NOT_FOUND, "/notFound"));
+		};
+	}
+
+}
+
+-------------
+
+	<form th:action="@{/person/save-person}" th:object="${personPojo}" method="POST">
+		
+		<label for="fname">Name:</label><br />
+		<input type="text" th:field="*{name}" name="name">
+		<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+		
+		<label for="uname">Username:</label><br>
+		<input type="text" th:field="*{username}" name="username">
+		<p th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+
+	</form>
+	
+	
+---------------
+
+
+<div align="center" th:object="${personPojo}" class="col-md-12">
+	
+		<h2>id: <span th:text="*{id}"></span></h2>
+		<h2>name: <span th:text="*{name}"></span></h2>
+		<h2>username: <span th:text="*{username}"></span></h2>
+		<h2>password: <span th:text="*{password}"></span></h2>
+		<h2>gender: <span th:text="*{gender}"></span></h2>
+		<h2>dob: <span th:text="*{dob}"></span></h2>
+		<h2>height: <span th:text="*{height}"></span></h2>
+		<h2>hasNCC: <span th:text="*{hasNCC}"></span></h2>
+		<h2>registered: <span th:text="*{registered}"></span></h2>
+		<h2>lastUpdate: <span th:text="*{lastUpdate}"></span></h2>
+		
+</div>
+
+-----------------
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Registration page</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+
+
+---
+
+
+// Student(String name, int sno, double cgpa)
+@RequestMapping(value = "/std/{name}/{sno}/{cgpa}", method = RequestMethod.GET)
+public String demo(Student std, Model model) {
+	model.addAttribute("abc", std);
+	return "show";
+}
+
+---

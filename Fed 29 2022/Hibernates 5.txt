@@ -1,0 +1,133 @@
+<property name="hibernateProperties">
+    <props>
+        <prop key="jdbc.fetch_size">20</prop>
+        <prop key="jdbc.batch_size">25</prop>
+        <prop key="cglib.use_reflection_optimizer">true</prop>
+        <prop key="hibernate.show_sql">true</prop>
+        <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+        <prop key="connection.autoReconnect">true</prop>
+        <prop key="connection.autoReconnectForPools">true</prop>
+        <prop key="connection.is-connection-validation-required">true</prop>
+    </props>
+</property>
+
+<property name="transactionAttributes">
+    <props>
+        <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+        <prop key="find*">PROPAGATION_REQUIRED,readOnly</prop>
+        <prop key="execute*">PROPAGATION_REQUIRED</prop>
+        <prop key="add*">PROPAGATION_REQUIRED</prop>
+        <prop key="create*">PROPAGATION_REQUIRED</prop>
+        <prop key="update*">PROPAGATION_REQUIRED</prop>
+        <prop key="delete*">PROPAGATION_REQUIRED</prop>
+    </props>
+</property>
+
+
+Hibernate Inheritance Mapping
+
+
+@Inheritance(strategy = InheritanceType.JOINED)
+For each subtable, root class primary key will be added.
+
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+A single table will be created for whole hearche.
+
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
+
+Table Per Concrete class
+Table Per Subclass
+
+ORPHAN REMOVAL:
+orphanRemoval has nothing to do with ON DELETE CASCADE.
+
+orphanRemoval is an entirely ORM-specific thing. It marks "child" entity to be removed when it's no longer referenced from the "parent" entity, e.g. when you remove the child entity from the corresponding collection of the parent entity.
+
+ON DELETE CASCADE is a database-specific thing, it deletes the "child" row in the database when the "parent" row is deleted.
+
+
+
+Hibernate 5.2 and later versions require at least Java 1.8 and JDBC 4.2.
+As a JPA provider, Hibernate implements the Java Persistence API specifications.
+
+
+SessionFactory (org.hibernate.SessionFactory)
+A thread-safe (and immutable) representation of the mapping of the application domain model to a database.
+Acts as a factory for org.hibernate.Session instances.
+
+
+import javax.persistence.EntityManagerFactory;
+public interface EntityManagerFactory {
+}
+
+import org.hibernate.SessionFactory;
+public interface SessionFactory extends EntityManagerFactory{
+}
+
+
+Session (org.hibernate.Session)
+A single-threaded, short-lived object conceptually modeling a "Unit of Work"
+Behind the scenes, the Hibernate Session wraps a JDBC java.sql.Connection and acts as a factory for org.hibernate.Transaction instances.
+
+A single-threaded, short-lived object used by the application to demarcate individual physical transaction boundaries.
+
+
+
+
+2. Domain Model
+The term domain model comes from the realm of data modeling.
+
+
+Mapping types
+
+
+Simple table and domain model
+
+@Entity(name = "Contact")
+public static class Contact {
+    @Id
+    private Integer id;
+    private Name name;
+}
+
+The persistent attributes of the Contact class are value types.
+
+
+@Embeddable
+public class Name {
+    private String first;
+    private String middle;
+    private String last;
+}
+
+2.1. Mapping types
+2.1.1. Value types
+Basic types
+Embeddable types
+Collection types
+
+
+
+
+@Entity
+@Table(name = "stds")
+public class Student {
+	@Id
+	private int id;
+	private String name;
+	private LocalDate dob;
+	private LocalTime time;
+	private LocalDateTime timedata;
+}
+mysql> desc stds;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| id       | int          | NO   | PRI | NULL    |       |
+| dob      | date         | YES  |     | NULL    |       |
+| name     | varchar(255) | YES  |     | NULL    |       |
+| time     | time         | YES  |     | NULL    |       |
+| timedata | datetime(6)  | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)

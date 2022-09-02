@@ -1,0 +1,362 @@
+
+
+
+
+
+
+api/logout
+
+/api/login:
+deviceType
+osName
+osVersion
+browserName
+browerVersion
+
+
+
+
+
+
+AgentsDto:
+
+
+
+
+Request:
+mailId: "hdReN3a5xmnCVyBjBCES3UU8m8npX0jfQm7SdwmpmOk="
+password: "eFjfhcegDMvddKU/VvYqJg=="
+
+Response:
+{
+    "message": "Email and Password  verified successfully",
+    "object": {
+        "userregistration": null,
+        "name": "sandeep thota",
+        "role": "DZm7Akwsn/VULiMI+3AuuA==",
+        "email": "hdReN3a5xmnCVyBjBCES3UU8m8npX0jfQm7SdwmpmOk=",
+        "empId": "+rJjmqoj1qNtvrsn6ydkGw==",
+        "moduleName": [],
+        "jwt": "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbk1vbmdvSWQiOiI2MjkwYjM5NDU3NzdlMWNmMWEwNWM1MDQiLCJtYWNJZCI6ImFVV3E4MVRCIiwiZXhwIjoxNjU3Mjc2ODU4LCJpYXQiOjE2NTcyNzUwNTgsInVzZXJuYW1lIjoic2FuZGVlcC50aG90YUBvbnBhc3NpdmUuY29tIn0.yBMpX8Znsh_jBCw800Lawtq822HpRAzXVfZsveyxAQBdLrmp2cAX7xR3pPfVVLQlyXFjH2XoV5D-oiYOHBIe6w",
+        "refreshToken": "305066ec-ac6d-4a44-85d3-46d035c29d70",
+        "expTime": 1657276858730,
+        "localDateTime": "2022-07-08 10:10:58",
+        "milliSeconds": 1657275058730,
+        "mongoid": "6290b3945777e1cf1a05c504",
+        "rolesandModule": null
+    },
+    "data": null,
+    "statusCode": 200,
+    "empData": null,
+    "flag": true
+}
+
+
+
+
+
+Request URL: https://oleaddevapi.onpassive.com/api/TotalTicketsDashboardapi
+
+Request:
+
+categeory: null
+empId: "+rJjmqoj1qNtvrsn6ydkGw=="
+end: "2022-07-08"
+from: "2022-07-08"
+id: "6290b3945777e1cf1a05c504"
+productName: null
+role: "Manager"
+
+
+
+api/agentsdashboardticketscount
+
+
+
+
+
+
+
+
+
+
+
+
+
+**************
+#1
+@Configuration
+@EnableWebMvc
+public class WebConfigs implements WebMvcConfigurer {
+
+	@Override
+	public void addCorsMappings(CorsRegistry registry) {
+		registry.addMapping("/api/**");
+	}
+
+}
+**************
+#2
+	@Lob
+	@Field(name = "attachment_image")
+	private byte[] attachmentImage;
+	
+**************
+#3
+
+@Document(collection = "gof_go_users")
+public class AgentShifts{
+	@Id
+	private String id;
+	
+	@Field("agent_id")
+	@DBRef
+	private EmployeeModel agent;
+
+	@NotBlank
+	@Field("password")
+	private String password;
+
+}
+***************
+#4
+Explain Field Annotation!
+
+@Field("isexternal")
+private Boolean isExternal;
+
+@Field(name = "user_id")
+private int userId;
+
+@LastModifiedDate
+@Field(value = "updated_date")
+private Date updatedDate;
+
+@CreatedDate
+@Field(value = "created_date")
+private Date createdDate;
+
+*************************
+#3
+
+All Date objects should replace with LocalDate.
+*******************
+
+
+#3
+
+@ResponseStatus(value= HttpStatus.NOT_FOUND)
+public class EmailNotFoundException extends RuntimeException{}
+
+
+
+public class ExceptionResponseMessage {
+
+	private Date timeStamp;
+	private HttpStatus status;
+	private String message;
+	private String path;
+	private List<String> details;
+}
+
+*****************
+
+WebRequest webrequest;
+webrequest.getDescription(false);
+
+
+Why we use @EnableWebMvc annotation?
+
+@CrossOrigin
+
+
+@Repository
+public interface GoFounderRefundPaymentMyRepository
+		extends JpaRepository<GoFounderRefundMyPayment, Integer>, JpaSpecificationExecutor<GoFounderRefundMyPayment> {}
+
+******************
+
+AOP:-
+
+main(){
+	getValues("dfsdf");
+	
+}
+
+
+User{
+int getValue(String str){
+	
+
+}
+
+
+@Cacheable(value="findAll")
+
+#
+
+What is a container object?
+
+***************
+package com.onpassive.ocrm;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.ApiKey;
+import springfox.documentation.service.AuthorizationScope;
+import springfox.documentation.service.Contact;
+import springfox.documentation.service.SecurityReference;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+@SuppressWarnings("deprecation")
+@Configuration
+@EnableSwagger2
+@Profile({"!prod"})
+public class Swagger2Config extends WebMvcConfigurerAdapter {
+	
+	
+
+	public static final String AUTHORIZATION_HEADER = "Authorization";
+
+	private ApiInfo apiInfo() {
+		return new ApiInfo("ODesk API", "APIs of Odesk application.", "1.0", "Terms of service",
+				new Contact("", "", ""), "License of API", "API license URL", Collections.emptyList());
+	}
+
+	@Bean
+	public Docket api() {
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo())
+				.securityContexts(Arrays.asList(securityContext())).securitySchemes(Arrays.asList(apiKey())).select()
+				.apis(RequestHandlerSelectors.basePackage("com.onpassive.ocrm")).paths(PathSelectors.any())
+				.build();
+	}
+
+	private ApiKey apiKey() {
+		return new ApiKey("JWT", AUTHORIZATION_HEADER, "header");
+	}
+
+	private SecurityContext securityContext() {
+		return SecurityContext.builder().securityReferences(defaultAuth()).build();
+	}
+
+	List<SecurityReference> defaultAuth() {
+		AuthorizationScope authorizationScope = new AuthorizationScope("com.onpassive.ocrm.controller.*", "accessEverything");
+		AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+		authorizationScopes[0] = authorizationScope;
+		return Arrays.asList(new SecurityReference("JWT", authorizationScopes));
+	}
+
+
+	@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+
+		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
+	}
+}
+*******************
+
+
+JSONParser parser = new JSONParser();
+JSONObject empname = null;
+
+
+*******************
+
+@CrossOrigin(origins = "http://localhost:4200")
+
+*******************
+
+public ResponseEntity<?> login(@RequestBody AgentsDto userLoginRegistration, @RequestHeader("deviceType") String deviceType){
+				
+}
+
+*******************
+
+
+@GetMapping(value = WebUrlConstants.GET_MAIL_ID)
+	public ResponseEntity<Response> getMailId(@PathVariable(required = true) String maildId) throws Exception {
+
+*******************
+
+package org.springframework.http.MediaType
+MediaType.TEXT_HTML_VALUE
+TEXT_PLAIN
+
+ consumes = MediaType.APPLICATION_JSON_VALUE
+ 
+HttpEntity:
+
+public ResponseEntity<?> savedetails(HttpEntity<Map> requestEntity) {
+
+	HttpHeaders headers = requestEntity.getHeaders();
+	List<String> list = headers.get("");
+}
+
+class HttpHeaders implements MultiValueMap<String, String>{
+}
+
+org.springframework.util
+interface MultiValueMap<K, V> extends Map<K, List<V>>{}
+
+
+*******************
+
+WebRequest
+
+*******************
+*******************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

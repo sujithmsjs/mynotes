@@ -1,0 +1,42 @@
+SPRING WITH MONGODB
+-------------------
+Spring Boot creates quick production-ready applications. MongoDB and Spring Boot interact using the MongoTemplate class and MongoRepository interface.
+
+
+
+MongoTemplate — MongoTemplate implements a set of ready-to-use APIs. A good choice for operations like update, aggregations, and others, MongoTemplate offers finer control over custom queries.
+
+MongoRepository — MongoRepository is used for basic queries that involve all or many fields of the document. Examples include data creation, viewing documents, and more.
+
+
+
+Spring Boot is built on top of the Spring framework mainly for REST APIs. Spring Boot requires very few configurations. It has four layers:
+
+Presentation layer — The view part of the MVC framework that handles the front-end.
+Business layer — The controller where all the business logic and validations are done.
+Persistence layer — This layer translates the business objects to database objects.
+Database layer — The actual CRUD (Create, Read, Update, Delete) operations happen here.
+
+Data is stored as BSON objects in MongoDB making data retrieval easy.
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+    ...
+
+    </dependencies>
+
+
+We also activate the Mongo Repositories using @EnableMongoRepositories.
+
+MappingException: No id property found on class class com.suji.empmgnt.model.Address
+
+@DBRef: Object must have an @Id in the Entity.
+

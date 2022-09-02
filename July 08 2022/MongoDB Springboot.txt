@@ -1,0 +1,10 @@
+
+
+
+public interface MongoRepository<T,ID> extends PagingAndSortingRepository<T,ID>, QueryByExampleExecutor<T>{}
+
+T: Domain type that repository manages (Generally the Entity/Model class name)
+ID: Type of the id of the entity that repository manages (Generally the wrapper class of your @Id that is created inside the Entity/Model class)
+
+Ex:-
+public interface BookRepo extends MongoRepository<Book, Integer> {}

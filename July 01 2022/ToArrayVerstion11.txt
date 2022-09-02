@@ -1,0 +1,42 @@
+package com.suji.streamstest;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
+import java.util.function.IntFunction;
+
+public class ToArrayVerstion11 {
+	public static void main(String[] args) {
+
+		Collection<String> immutableCollections = List.of("java", "Python", "Grove");
+
+		Collection<String> list = new ArrayList<>(immutableCollections);
+		
+		// String[] array = (String[]) list.toArray(); ClassCastException
+
+		String[] array2 = list.toArray(new String[0]); 
+
+		IntFunction<String[]> intF = i -> new String[i]; //String[]::new; 
+
+		/*
+		 NOTE:
+		 T[] toArray(IntFunction<T[]> generator)
+		 
+		 Ex:
+		 Below mentioned two statements are equal.
+		 
+		 toArray( i -> new String[i]);
+		 toArray(String[]::new);
+		 
+		 */
+		
+		String[] strings = intF.apply(7);
+
+		list.toArray(intF); // Java v11
+		
+		list.removeIf( str -> str.charAt(0) == 'j'); // Java v1.8
+
+		System.out.println(list);
+	}
+}

@@ -1,0 +1,203 @@
+MySQL is a widely used relational database management system (RDBMS).
+
+MySQL is free and open-source.
+
+MySQL is ideal for both small and large applications.
+
+What is MySQL?
+MySQL is a relational database management system
+MySQL is open-source
+MySQL is free
+MySQL is ideal for both small and large applications
+MySQL is very fast, reliable, scalable, and easy to use
+MySQL is cross-platform
+MySQL is compliant with the ANSI SQL standard
+MySQL was first released in 1995
+MySQL is developed, distributed, and supported by Oracle Corporation
+MySQL is named after co-founder Monty Widenius's daughter: My
+
+
+Who Uses MySQL?
+Huge websites like Facebook, Twitter, Airbnb, Booking.com, Uber, GitHub, YouTube, etc.
+Content Management Systems like WordPress, Drupal, Joomla!, Contao, etc.
+
+Show Data On Your Web Site
+To build a web site that shows data from a database, you will need:
+
+An RDBMS database program (like MySQL)
+A server-side scripting language, like PHP
+To use SQL to get the data you want
+To use HTML / CSS to style the page
+
+
+What is RDBMS?
+RDBMS stands for Relational Database Management System.
+
+RDBMS is a program used to maintain a relational database.
+
+RDBMS is the basis for all modern database systems such as MySQL, Microsoft SQL Server, Oracle, and Microsoft Access.
+
+RDBMS uses SQL queries to access the data in the database.
+
+
+What is a Database Table?
+A table is a collection of related data entries, and it consists of columns and rows.
+A column holds specific information about every record in the table.
+
+What is Record?
+A record (or row) is each individual entry that exists in a table.
+
+What is a Relational Database?
+A relational database defines database relationships in the form of tables. The tables are related to each other - based on data common to each.
+
+
+What is SQL?
+SQL is the standard language for dealing with Relational Databases.
+
+SQL is used to insert, search, update, and delete database records.
+
+
+
+What is SQL?
+SQL is the standard language for dealing with Relational Databases.
+
+SQL is used to insert, search, update, and delete database records.
+
+Some of The Most Important SQL Commands
+SELECT - extracts data from a database
+UPDATE - updates data in a database
+DELETE - deletes data from a database
+INSERT INTO - inserts new data into a database
+CREATE DATABASE - creates a new database
+ALTER DATABASE - modifies a database
+CREATE TABLE - creates a new table
+ALTER TABLE - modifies a table
+DROP TABLE - deletes a table
+CREATE INDEX - creates an index (search key)
+DROP INDEX - deletes an index
+
+
+What is ResultSet?
+The SELECT statement is used to select data from a database.
+The data returned is stored in a result table, called the result-set.
+
+SELECT * FROM emp;
+SELECT empno, ename FROM emp;
+
+DISTINCT Statement
+The SELECT DISTINCT statement is used to return only distinct (different) values.
+
+Inside a table, a column often contains many duplicate values; and sometimes you only want to list the different (distinct) values.
+
+SELECT DISTINCT deptno FROM emp;
+
+SELECT COUNT(DISTINCT n2,n3) from num;
+
+Note: It will give you unique rows in selected ResultSet.
+
+
+select * from emp where sal < 1250;
+Not included 1250 sal.
+
+select * from emp where sal <= 1250;
+Included 1250 sal.
+
+select * from emp where sal >= 1250;
+select * from emp where sal > 1250;
+
+select ename from emp where sal = 1250;
+'WARD'
+'MARTIN'
+
+select ename from emp where sal <> 1250;
+
+SELECT SAL FROM emp WHERE SAL BETWEEN 1300 AND 1600 ORDER BY SAL;
+
+
+Below both queries gives same results.
+SELECT SAL FROM emp WHERE SAL BETWEEN 1250 AND 1600 ORDER BY SAL;
+SELECT SAL FROM emp WHERE SAL>= 1250 AND SAL<=1600;
+
+Enames starts with 'S':
+SELECT * FROM EMP WHERE ENAME LIKE 's%'
+
+
+MySQL Comments
+++++++++++++++
+
+mysql> SELECT 1+1;     # This comment continues to the end of line
+mysql> SELECT 1+1;     -- This comment continues to the end of line
+mysql> SELECT 1 /* this is an in-line comment */ + 1;
+mysql> SELECT 1+
+/*
+this is a
+multiple-line comment
+*/
+1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+A very large number of web developers around the world

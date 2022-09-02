@@ -1,0 +1,11 @@
+ "case_id" : "GO_0X7NN5700"
+ 
+ Multiple CASE_HISTORY doucments with single CASE_ID? Why?
+ 
+ 
+ if (x.getAssigneeRef() != null && !x.getAssigneeRef().equals(Constants.NULL_VALUE)) {
+ if (x.getAssignedToRef() != null && !x.getAssignedToRef().equals(Constants.NULL_VALUE)) {
+ 
+ USER VS GO FOUNDER?
+ 
+ 

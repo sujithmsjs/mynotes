@@ -1,0 +1,169 @@
+
+https://javatechonline.com/how-to-implement-security-in-spring-boot-using-userdetailsservice/
+
+UserDetailsService(I)
++ UserDetails loadUserByUsername(String username);
+-> used by the DaoAuthenticationProvider.
+
+MyUserDetailsService implements UserDetailsService{
+	// TODO Implement loadUserByUsername method.
+}
+
+
+UserDetails(I)
+
+class MyUserPrincipal implements UserDetails {
+	private User user;
+
+    	public MyUserPrincipal(User user) {
+        	this.user = user;
+    	}
+
+	// TODO Implement interface method
+}
+
+
+the AuthenticationFilter delegates the authentication request to the AuthenticationManager which uses AuthenticationProvider to process authentication.
+
+The AuthenticationProvider uses UserDetailsService that implements the user management responsibility.
+
+
+UserDetails Predefined Interface
+------------
++ getAuthorities
++ getPassword
++ getUsername
++ isAccountNonExpired
++ isAccountNonLocked
++ isCredentialsNonExpired
++ isEnabled
+
+
+
+
+class User implements UserDetails, CredentialsContainer {
+	String password;
+	String username;
+	Set<GrantedAuthority> authorities;
+	boolean accountNonExpired;
+	boolean accountNonLocked;
+	boolean credentialsNonExpired;
+	boolean enabled;
+	// ...
+}
+
+#1. User reg form
+#2. User Service Impl class Ex: UserServiceImpl.java
+#3. userdefined User object into predefined Spring's user object.
+
+PDI: Predefined Interface
+#1. MyUserServiceImpl extends UserDetailsService(PDI)
+#2. Override below method.
+ 	UserDetails loadUserByUsername(String username)
+#3. Get User(User Defined) from the Repo.
+
+Optional<User> opt = userRepo.findUserByEmail(email);
+
+#4. Convert your User Object into Spring’s predefined User
+
+public User(String username, String password, Collection<? extends GrantedAuthority> authorities)
+
+
+#5. Return Spring defined User object which is an implementation of UserDetails(method’s return type).
+
+https://www.codejava.net/frameworks/spring-boot/spring-thymeleaf-form-multi-checkboxes-mapping-with-collection-example
+
+============
+
+AuthenticationManagerBuilder uses UserDetailsService(I) and PasswordEncoder(I).
+
+auth.userDetailsService(uds).passwordEncoder(encoder);
+
+UserDetailsService need to be implemented below method.
+	UserDetails loadUserByUsername(String username)
+
+class User(C) implements UserDetails(I){}
+Note: You need not to implement UserDetails interface. Just Create Spring's User object and return.
+
+// Valid
+UserDetails ud = new User(username,password,roles);
+
+
+================
+JWT
+
+*** Entity: User(id, name, uname, pwd, roles:List)
+
+***DB Tables***
+users(id(PK), name, uname, pwd)
+roles(id, role(FK), uid)
+
+
+
+Controller:
+# POST /users : Save User Data
+  Returns: Success message.
+
+
+# UserService contains on method: int save(User user)
+
+# JJWT Dependency need to be added.
+
+# prepare @Component JWTUtil class
+
+> Secret key can be access from application.properties.
+@Value("${app.secret}")
+
+1. String generateToken(String subject);
+2. Claims getClaims(String token);
+3. Date getExpDate(Token);
+4. String getUsername(); // Subject
+5. boolean isTokenExp();
+6. boolean validateToken(String token, String username){
+	token not exprired & token_username == username;
+	}
+
+a. Generate Token using Subject
+b. Validate Token with Username, tokenSubject and Exp date.
+
+# Project
+=-=-=-=-=-
+Save user data using post request and generate token to the user and send token as a resonse.
+
+JwtRequest: uname, pwed
+JwtResponse: token, msg
+
+
+
+
+=================
+principal: username
+credentials: password
+
+===
+OncePerRequestFilter
+1. Read and Validate token from Authorization Header
+
+
+2. Security Context object
+	has-a Authentication data
+
+=========
+
+username + encode(secretKey) = token
+encode(secretkey)+token = username
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

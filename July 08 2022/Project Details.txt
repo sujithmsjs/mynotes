@@ -1,0 +1,118 @@
+#1
+
+@Document(collection = "gof_go_users")
+public class AgentShifts
+@Id
+private String id;
+
+@Field("agent_id")
+@DBRef
+private EmployeeModel agent;
+}
+
+#2
+
+@Field(name = "user_id")
+private int userId;
+
+#3
+
+@ResponseStatus(value= HttpStatus.NOT_FOUND)
+public class EmailNotFoundException extends RuntimeException{}
+
+
+
+public class ExceptionResponseMessage {
+
+	private Date timeStamp;
+	private HttpStatus status;
+	private String message;
+	private String path;
+	private List<String> details;
+}
+
+WebRequest webrequest;
+webrequest.getDescription(false);
+
+
+Why we use @EnableWebMvc annotation?
+
+@CrossOrigin
+
+
+@Repository
+public interface GoFounderRefundPaymentMyRepository
+		extends JpaRepository<GoFounderRefundMyPayment, Integer>, JpaSpecificationExecutor<GoFounderRefundMyPayment> {}
+
+
+AOP:-
+
+main(){
+	getValues("dfsdf");
+	
+}
+
+
+User{
+int getValue(String str){
+	
+
+}
+
+
+@Cacheable(value="findAll")
+
+#
+
+What is a container object?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

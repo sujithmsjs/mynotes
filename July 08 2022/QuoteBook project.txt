@@ -1,0 +1,32 @@
+QuoteBook project
+=================
+
+User can login into QuoteBook.
+
+User{id, name, dob, created, last edit, Quotes}
+Quote{id, Tags, quote, created}
+Tage{id,quote}
+
+User controller
+----------------
+GET:/signup
+POST:/signup
+GET:/login
+POST:/login
+GET:/signout-confirm
+GET:/signout
+
+Quote controller
+----------------
+GET:/add-quote
+POST:/add-quote
+
+GET:/all
+
+
+
+
+
+
+
+

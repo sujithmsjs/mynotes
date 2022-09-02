@@ -1,0 +1,3 @@
+https://www.thymeleaf.org/
+https://projectlombok.org/
+https://spring.io

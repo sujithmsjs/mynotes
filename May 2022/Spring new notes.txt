@@ -1,0 +1,116 @@
+MAY 17 SPRING NOTES
+
+SPRING FRAMEWORK:
+Spring is a powerful open-source, loosely coupled, lightweight, java framework meant for reducing the complexity of developing enterprise-level applications.
+This framework is also called the “framework of frameworks” as spring provides support to various other important frameworks like JSF, Hibernate, Structs, EJB, etc.
+
+
+IOC (INVERSION OF CONTROL):
+Spring container forms the core of the Spring Framework.
+The Spring container uses Dependency Injection (DI) for managing the application components by creating objects, wiring them together along with configuring and managing their overall life cycles.
+
+USING @AUTOWIRED
+-----------------
+We can use autowiring on properties, setters, and constructors.
+
+On properties
+	@Autowired
+	private FooFormatter fooFormatter;
+
+On Constructors:
+	public class FooService {
+		private FooFormatter fooFormatter;
+		@Autowired
+		public FooService(FooFormatter fooFormatter) {
+			this.fooFormatter = fooFormatter;
+		}
+	}
+	
+On Setters:
+	public class FooService {
+		private FooFormatter fooFormatter;
+		@Autowired
+		public void setFooFormatter(FooFormatter fooFormatter) {
+			this.fooFormatter = fooFormatter;
+		}
+	}
+	
+	@Autowired
+	public void setEngine( Engine engine) {
+		this.engine = engine;
+	}
+	
+Optional Dependencies:
+@Autowired(required = false)
+
+
+BeanInstantiationException: Failed to instantiate; No default constructor found?
+
+NO NEED TO WRITE AUTOWIRED
+	@Component
+	public class Car {
+		private Engine engine;
+		private Bumper bumper;
+		public Car(Engine engine, Bumper bumper) {
+			super();
+			this.engine = engine;
+			this.bumper = bumper;
+		}
+		@Override
+		public String toString() {
+			return "Car [engine=" + engine + ", bumper=" + bumper + "]";
+		}
+	}
+
+AUTOWIRING BY @QUALIFIER
+NoUniqueBeanDefinitionException
+
+public class FooService {
+    @Autowired
+    @Qualifier("fooFormatter")
+    private Formatter formatter;
+}
+
+	@Component
+	public class Car {
+		@Autowired
+		@Qualifier(value = "strightEngine")
+		private Engine engine;
+		@Autowired
+		private Bumper bumper;
+	}
+	
+	
+BEANCREATIONEXCEPTION: Error creating bean with name 'dataSource' defined in class path resource.
+
+
+SELECT
+Student student = dao.findById(3).orElse(null);
+---
+Optional<Student> std = dao.findById(2);
+Student student = std.orElse(new Student());
+		
+SELECT ALL
+List<Student> all = dao.findAll();
+List<Student> all = dao.findAll(Sort.by("name"));
+
+
+UPDATE
+Student student = dao.findById(3).orElse(null);
+student.setName("Anusha");
+
+dao.save(student);
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

@@ -1,0 +1,28 @@
+package com.suji.streamstest;
+
+import java.util.function.IntPredicate;
+import java.util.stream.IntStream;
+
+public class PrintPrimeUsingStreams {
+	public static void main(String[] args) {
+		
+		/*
+		Function<Integer, Boolean> isPrime = i -> {
+			
+			boolean match = IntStream.iterate(2, v -> v < i,  v -> v+1 ).allMatch( n -> i%n !=0);
+			boolean noneMatch = IntStream.iterate(2, v -> v < i,  v -> v+1 ).noneMatch(n -> i%n !=0);
+			
+			
+			return noneMatch;
+		};
+		*/
+		
+		IntPredicate isPrime = i -> IntStream.iterate(2, n -> n < i, n -> n+1).allMatch( n -> i%n != 0);
+			
+		System.out.println(isPrime.test(18));
+		
+		IntStream.iterate(1 , i -> i < 100, i ->  i+1).filter(isPrime).forEach(System.out :: println);;
+		
+		
+	}
+}

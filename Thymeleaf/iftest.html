@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<h1>Hello, <span th:text="${name}"></span></h1>
+	
+	<!-- Object Print isbn, title, author, type, release -->
+	<h1><span th:text="${book}"></span></h1>
+	<h1><span th:text="${book.isbn}"></span></h1>
+	<h1><span th:text="${book.title}"></span></h1>
+	<h1><span th:text="${book.author}"></span></h1>
+	<h1><span th:text="${book.type}"></span></h1>
+	
+	<!-- Collection Print -->
+	<div th:each=" text : ${coll} ">
+		<h3 th:text="${text}"></h3>
+	</div>
+	
+	<!-- String Array Print -->
+	<div th:each=" text : ${arr} ">
+		<h3 th:text="${text}"></h3>
+	</div>
+	
+	
+	
+	
+	<h1 th:if="${msg}=='hey'">Hellow world</h1>
+	<h1 th:if="${msg}=='hellow'">Hellow Galexy</h1>
+	<h1 th:text="${msg}=='hey'">Hellow world</h1>
+	<h1 th:text="${msg}=='hey123'">Hellow world</h1>
+	
+	<h1 th:if="${isGirl}">It is girl</h1>
+	<h1 th:if="${num}==2">Num = 1</h1>
+	<h1 th:if="${num}==1">Num = 2</h1>
+	
+	<h1 th:if="${obj}==null">Object is null</h1>
+	
+	
+	<h1 th:if=true th:text="'if ture, Some text'"></h1>
+	<h1 th:if=false th:text="'if false, Some text'"></h1>
+	<h1 th:if=true >Hellow</h1>
+	<h1 th:if=false >Hey hey</h1>
+	
+</body>
+
+</html>

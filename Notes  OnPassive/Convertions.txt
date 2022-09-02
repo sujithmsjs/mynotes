@@ -1,0 +1,44 @@
+import java.util.stream.*;
+import java.util.Arrays;
+
+public class Main
+{
+	public static void main(String[] args) {
+		
+		
+		   
+		 // Convert  List<Person> to Stream<Person>
+		 // Convert  Stream<Person> to List<Person>
+		   
+		 // Convert  List<Person> to Person[]
+		 // Convert  Person[] to List<Person>
+		   
+		 // Convert  Person[] to Stream<Person>
+		 // Convert  Stream<Person> to Person[]
+		
+		 // Convert Stream<Person> to int[] of ages;
+	     // Convert Stream<Person> to Stream<String> of names;
+	    
+	    // Convert int[] of ages, Stream<String> of names to Stream<Person>;
+	}
+}
+
+class Person{
+    
+    private int age;
+    
+    public Person(int age){
+        this.age = age;
+    }
+    
+    public void setAge(int age){
+        this.age = age;
+    }
+    
+    public int getAge(){
+        return age;
+    }
+    
+}
+
+

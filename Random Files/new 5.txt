@@ -1,0 +1,16 @@
+4.2 Variables
+
+EXPRESSION BASIC OBJECTS
+When evaluating OGNL expressions on the context variables, some objects are made available to expressions for higher flexibility. These objects will be referenced (per OGNL standard) starting with the symbol:#
+
+#ctx: the context object.
+#vars: the context variables.
+#locale: the context locale.
+#request: (only in Web Contexts) the object.HttpServletRequest
+#response: (only in Web Contexts) the object.HttpServletResponse
+#session: (only in Web Contexts) the object.HttpSession
+#servletContext: (only in Web Contexts) the object.ServletContext
+
+Eg:-
+
+Established locale country: <span th:text="${#locale.country}">US</span>.

@@ -1,0 +1,44 @@
+assigneeName
+date
+assignedToReferenceName
+origin
+category
+ticketId/caseId
+productName
+subject= ticketId+productName
+
+goFounderUsername
+goFounderUserId
+goFounderUserEmail
+goFounderUserProfilePicture
+goFounderUserRegion
+
+customerName
+customerId
+customerEmailID
+
+transactionId
+transferReason
+reportingTo1 : assignedToReferenceName+firstNameLastName
+
+priority
+status
+transer
+caseId
+caseHistoryId
+caseNotes: userComments
+caseNotes: assigneeComments
+caseNotes: l3comment
+
+reportingTo: customerId
+reportingTo: updatedBy
+
+
+---
+
+
+
+
+
+
+

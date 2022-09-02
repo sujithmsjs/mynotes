@@ -1,0 +1,14 @@
+
+IAM USERS:
+
+An IAM User is an entity created in AWS that provides a way to interact with AWS resources.
+
+The credentials created for IAM User are what exactly uniquely identify themselves to AWS.
+
+Creating an IAM User (AWS Management Console)
+
+
+IAM ROLE:
+A role is a set of permissions that grant access to actions and resources in AWS. These permissions are attached to the role, not to an IAM User or a group.
+
+A role is not uniquely associated with a single person; it can be used by anyone who needs it.

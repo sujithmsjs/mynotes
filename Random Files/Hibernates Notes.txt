@@ -1,0 +1,379 @@
+
+show_sql="true"
+
+
+create - every time it create new table.
+update - just update the data.
+
+Annotations:
+------------
+@Entity(name="alien_table")
+Create table not with class name but with the given name.
+
+	3 Layer
+	1. Class Name
+	2. Entity Name
+	3. Table Name
+
+@Table(name="alien_table")
+Table name is devired from Entity name.
+
+@Column(name="alien_name")
+To change the column name.
+
+@Transient
+Column will be ingored.
+
+HOW TO FECTCH DATA
+------------------
+
+Student std = session.get(Student.class,<Primary-Key>)
+
+
+Embeddable Objects
+------------------
+@Entity
+class Student{
+	@Id
+	int rollno;
+	Name name;
+	...
+	...
+}
+
+@Embeddable
+Name{
+	String fName;
+	String mName;
+	String lName;
+	...
+	...
+}
+
+session.save(std);
+
+Mapping Relations Theory
+========================
+
+@OneToOne
+---------
+@Entity
+class Student{
+	@Id
+	int stdId;
+	Name name;
+	
+	@OneToOne
+	Laptop laptop;
+	
+	...
+	... 
+}
+
+@Entity
+class Laptop{
+	@Id
+	int lapId;
+	Model name;
+	...
+	...
+}
+
+session.save(std); 
+
+
+
+@OneToMany: 
+-----------
+One Student can have multiple Laptops.
+
+@Entity
+class Student{
+	@Id
+	int stdId;
+	Name name;
+	
+	@OneToMany
+	List<Laptop> list;
+	...
+	...
+}
+
+@Entity
+class Laptop{
+	@Id
+	int lapId;
+	Model name;
+	...
+	...
+}
+
+@OneToOne:
+----------
+One student contains only one Laptop.
+
+@Entity
+class Student{
+	@Id
+	int stdId;
+	Name name;
+	
+	@OneToMany(MappedBy="Laptop")
+	int lapId;
+	...
+	...
+}
+
+@Entity
+class Laptop{
+	@Id
+	int lapId;
+	Model name;
+	
+	@ManyToOne
+	int stdId;
+	...
+	...
+}
+
+Student_Laptop{
+	int stdId;
+	int lapId;
+}
+
+@ManyToMany
+-----------
+
+@Entity
+class Student{
+	@Id
+	int stdId;
+	Name name;
+	@OneToMany(MappedBy="Laptop")
+	List<Laptop> list;
+	...
+	...
+}
+
+@Entity
+class Laptop{
+	@Id
+	int lapId;
+	Model name;
+	
+	@ManyToMany
+	List<Student> list;
+	...
+	...
+}
+
+Student_Laptop{
+	int stdId;
+	int lapId;
+}
+
+MappedBy="Laptop": Prevents creating duplicate table and suggested use existed table.
+
+Conprehention
+=============
+Case 1:
+-------
+Student{
+	@Id
+	rollno;
+	
+	@OneToOne
+	Laptop laptop;
+}
+Laptop{
+	@Id
+	lapId;
+}
+
+
+create table Laptop (
+	lapId integer not null,
+	company varchar(255),
+	processor varchar(255),
+	primary key (lapId)
+) engine=InnoDB
+
+Case 2:
+-------
+Student{
+	@Id
+	rollno;
+	
+	@OneToMany
+	List<Laptop> list;
+}
+Laptop{
+	@Id
+	lapId;
+}
+
+Case 3:
+-------
+Student{
+	@Id
+	rollno;
+	
+	@OneToMany
+	List<Laptop> list;
+}
+
+Laptop{
+	@Id
+	lapId;
+	
+	@ManyToOne
+	Student std;
+}
+
+Case 4:
+-------
+Student{
+	@Id
+	rollno;
+	
+	@OneToMany(mappedby="student")
+	List<Laptop> list;
+}
+
+Laptop{
+	@Id
+	lapId;
+	
+	@ManyToOne
+	Student std;
+}
+
+Case 5:
+-------
+
+Student{
+	@Id
+	rollno;
+	
+	@ManyToMany(mappedby="laptop")
+	List<Laptop> list;
+}
+
+Laptop{
+	@Id
+	lapId;
+	
+	@ManyToMany
+	List<Student> stds;
+}
+
+Pratice
+--------
+
+ConstraintViolationException
+
+MappingException
+
+
+
+AnnotationException: check out in hibernate.cfg.xml whether that class has been mapped or not.
+
+
+Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry '101' for key 'laptop.PRIMARY'
+
+
+
+Embeddable TEST
+===============
+@Entity
+public class Student {
+	
+	@Id
+	private int rollno;
+	private String name;
+	private String school;
+	private Laptop laptop;
+	
+}
+
+@Embeddable
+public class Laptop {
+	private int lapId;
+	private	String company;
+	private	String processor;
+}
+
+Library
+--------
+Student-Books
+
+
+MappingException
+
+
+
+1. ONE STUDENT CAN HAVE ANY ONE OF THE LAPTOPS.
+
+@Entity
+public class Laptop {
+	
+	@Id
+	private int lapId;
+	private	String company;
+	private	String processor;
+	...
+	...
+}
+
+@Entity
+public class Student {
+	
+	@Id
+	private int rollno;
+	private String name;
+	private String school;
+	@OneToOne
+	private Laptop laptop;
+	...
+	...
+}
+
+session.save(lap);
+session.save(std);
+
+1. ONE STUDENT CAN HAVE ANY ONE OF THE AVAILABLE(NOT ALLOCATED) LAPTOPS.
+
+@Entity
+public class Student {
+	
+	@Id
+	private int rollno;
+	private String name;
+	private String school;
+	@OneToOne
+	private Laptop laptop;
+}
+
+@Entity
+public class Laptop {
+	
+	@Id
+	private int lapId;
+	private	String company;
+	private	String processor;
+	@OneToOne
+	private Student student;
+}
+
+Retriving Data:
+
+trn.begin();      
+  Student std = session.get(Student.class, 10);
+  Laptop lap = std.getLaptop();
+  System.out.println(std);
+  System.out.println(lap);
+trn.commit();
+
+
+
+HHH000327: Error performing load command : org.hibernate.InstantiationException: No default constructor for entity

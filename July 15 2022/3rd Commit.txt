@@ -1,0 +1,76 @@
+3rd Commit
+----------
+
+#1
+
+GofoundersListController{
+	@PostMapping(value = "/getAllGofunderusers")
+	
+}
+
+@Service
+class GofounderMyServiceImpl implements GofounderMyService{
+	@Override
+	public PaginationResponseDto getAllGofunderDetails(GofounderHelperDto gofounderHelperDto) {}
+}
+
+GofounderMyService{
+	PaginationResponseDto getAllGofunderDetails(GofounderHelperDto gofounderHelperDto);
+}
+
+Changes:
+- In GofoundersListController
+	From:
+		@Autowired
+		GofounderMyServiceImpl gofounderMyServiceImpl;
+	To
+		@Autowired
+		GofounderMyService gofounderMyService;
+- AESutility
+	- Reading secret key value from properties.
+	- 2 new methods added encrypt(String), decrypt(String)
+
+
+#2
+
+
+class GofoundersListController {
+	@PostMapping(value = "/GofoundergetById")
+	public ResponseEntity<Response> getGoFounderById(@RequestBody GofounderHelperDto gofounderHelperDto) {
+		//...
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

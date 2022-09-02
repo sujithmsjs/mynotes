@@ -1,0 +1,48 @@
+dependencies
+spring-boot-starter-actuator
+spring-boot-starter-config
+spring-boot-starter-web
+spring-boot-starter-test
+---
+spring.application.name=limits-service
+
+limits-service.minimum=9
+limits-service.maximum=999
+
+---
+@Component
+@ConfigurationProperties("limits-service")
+public class Configuration {
+	min, max;
+}
+---
+class Limits{
+	min,max;
+}
+---
+@Autowired
+private Configuration con;
+
+@GetMapping("/limits") >> returns new Limits(con.getMin(), con.getMax())
+---
+
+limits-service.properties
+
+limits-service.minimum=8
+limits-service.maximum=888
+---
+
+limits-service-qa.properties
+limits-service.minimum=2
+limits-service.maximum=222
+
+----
+
+/spring-cloud-config-server/src/main/resources/application.properties
+
+
+spring.application.name=spring-cloud-config-server
+server.port=8888
+spring.cloud.config.server.git.uri=file:///in28Minutes/git/spring-micro-services/03.microservices/git-localconfig-repo
+
+---

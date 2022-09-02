@@ -1,0 +1,189 @@
+Hibernate Demo
+--------------
+Date: Jan 21, 2022;
+Time: 22:20;   
+
+Version
+-------
+
+MySQL version:	8.0.23
+java version:	1.8.0_271
+Eclipse IDE Version:	2021-12 (4.22.0)
+mysql-connector version: 	8.0.16
+hibernate-core version: 	5.4.10.Final
+
+New Maven Project
+-----------------
+Group Id	: org.apache.maven.archetypes
+Artifact Id	: maven-archetype-quickstart
+Version		: 1.1
+
+
+Hibernate Cofiguration File
+---------------------------
+DB Dialect		: org.hibernate.dialect.MySQL8Dialect
+Driver Class	: com.mysql.cj.jdbc.Driver
+Connection URL	: jdbc:mysql://localhost:3306/hib
+Username	: root
+Password	: apple
+
+
+
+HibTest
+   |
+   |---scr
+   |    |
+   |    |---main
+   |    |    |
+   |    |    |---java
+   |    |    |    |    
+   |    |    |    |--- com/suji/Student.java    
+   |    |    |    |--- con/suji/App.java
+   |    |    |    |--- hibernate.cfg.xml
+   |              |    
+   |---pom.xml         
+   |
+
+
+com/suji/Student.java 
+---------------------
+package com.suji;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
+public class Student {
+	
+	@Id
+	private int rollno;
+	private String name;
+	private String school;
+	
+	public int getRollno() {
+		return rollno;
+	}
+	public void setRollno(int rollno) {
+		this.rollno = rollno;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	
+	@Override
+	public String toString() {
+		return "Student [rollno=" + rollno + ", name=" + name + ", school=" + school + "]";
+	}
+}
+
+
+con/suji/App.java
+-----------------
+package com.suji;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class App 
+{
+    public static void main( String[] args )
+    {
+        Student std = new Student();
+        std.setRollno(51);
+        std.setName("Sujith");
+        std.setSchool("Singareni highschool");
+
+        Configuration config = new Configuration().configure();
+
+        SessionFactory sf = config.buildSessionFactory();
+
+        Session session = sf.openSession();
+        
+        Transaction trn = session.getTransaction();
+        
+        trn.begin();
+        
+        session.save(std);
+        
+        trn.commit();
+        
+        session.close();
+        sf.close();
+        
+    }
+}
+
+
+hibernate.cfg.xml
+-----------------
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+		
+<hibernate-configuration>
+    <session-factory>
+    	<!-- Connection properties -->
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.password">apple</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hib</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</property>
+        
+        <property name="show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
+        
+        <!-- Class Mappings -->
+        <mapping class="com.suji.Student"></mapping>
+        
+    </session-factory>
+</hibernate-configuration>
+
+
+
+pom.xml   
+-------
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.suji</groupId>
+	<artifactId>HibTest</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>HibTest</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+	
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>8.0.16</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>5.4.10.Final</version>
+		</dependency>
+
+	</dependencies>
+</project>

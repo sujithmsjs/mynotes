@@ -1,0 +1,46 @@
+MongoDB Installation
+-----------------
+
+Website > Community Server
+Verson
+
+https://www.mongodb.com/
+
+MongoDB Community Server
+Complete version -> Instal MongoDB as a service. > Run service as netword service user.
+
+MongoDB\Server\4.4\bin
+mongod -version(Server)
+mongo -version(Shell)
+
+path: MongoDB\Server\4.4\bin
+
+Launch:
+mongod(To launch Server)
+NonExistentPath: Data directory D:\\data\\db\\ not found. Create the missing directory or specify another path using(1) the --dbpath command line option, or (2) by adding the 'storage.dbPath' option in the configuration file.
+
+mongod --dbpath "c:\data\db"
+mongo(To launch Shell)
+
+> db.version()
+> db.help()
+> db.stats() // Statistics
+db is predefined object
+> show dbs
+admin,config,local
+> use admin
+> show collections
+system.version
+> use local
+> show collections
+startup_log
+>
+
+
+
+
+
+
+
+
+

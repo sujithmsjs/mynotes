@@ -1,0 +1,60 @@
+Spring Data JPA
+---------------
+		// Find Average Salary
+		System.out.println("Salary more than 2500:");
+		repository.findAll().stream().filter(e -> e.getSal().compareTo(new BigDecimal("2500")) > 0 && e.getEname().startsWith("S"))
+				.forEach(e -> System.out.println(e));
+
+
+
+
+
+
+
+
+List<T> findAll();
+List<S> findAll(Example<S> example);
+List<T> findAll(Sort sort);
+
+
+List<T> findAllById(Iterable<ID> ids);
+<S extends T> List<S> saveAll(Iterable<S> entities);
+
+List<S> findAll(Example<S> example, Sort sort);
+
+Central repository marker interface.
+@Indexed
+public interface Repository<T, ID> {
+}
+
+CrudRepository<T, ID>
+---------------------
+long count()
+
+S		save(S entity)
+void	delete(T entity)
+
+save	All
+delete	All
+find 	All
+
+
+delete 	All By Id
+find	All By Id
+
+delete 	By Id
+exists 	By Id
+
+find 	By Id
+find	By	Age	Less/Greater Than
+find	By	Age	Less/Greater Than	Equal
+find	By	Firstname	Like
+find	By	Firstname	Starting/Ending With
+find	By	Age	Order	By	Lastname	Desc
+
+findDistinctByLastnameAndFirstname
+	
+find	By	Lastname	And	Firstname
+
+@Query("from Employee where sal > 2500")
+@Query("from Employee where sal > 2500 and ename not like 'F%'")

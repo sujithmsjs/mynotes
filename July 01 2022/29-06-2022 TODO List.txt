@@ -1,0 +1,308 @@
+TODO LIST
+09:58 29-06-2022
+
+1. Spring Quries
+1.1 JPQL
+
+2. Flat maps
+3. Paraller processing
+
+1. Spring Quries
++-+-+-+-+-+-+-+-+
+
+======================
+Sorting:
+======================
+
+@Query(value = "SELECT u FROM User u")
+List<User> findAllUsers(Sort sort);
+
+Note: When we use JPQL for a query definition, then Spring Data can handle sorting without any problem.
+
+
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
+import org.springframework.data.domain.Sort.Order;
+
+Sort.by("price").descending()
+Sort.by("price").descending().and(Sort.by("name")
+
+repo.findAll(Sort.by(Direction.DESC, "ename"))
+
+repo.findAll(Sort.by(Direction.ASC, "ename"))
+
+repo.findAll(Sort.by(Direction.DESC, "comm").and(Sort.by(Direction.ASC, "ename")))
+
+repo.findAll(Sort.by(Order.desc("comm"), Order.asc("ename")))
+
+repo.findAll(Sort.by(new Order(Direction.DESC,"comm",NullHandling.NULLS_LAST), Order.asc("ename")))
+
+
+
+
+Note: If field contains NULL values, they will come at last in ASC ordering.
+Sort class : static Sort by(Order... orders)
+
+enum NullHandling {
+NULLS_FIRST, NULLS_LAST, NATIVE
+}
+
+class Order{
+	boolean ascending;
+	boolean ignoreCase;
+	String propertyName;
+	NullPrecedence nullPrecedence;
+
+	static Order asc(String propertyName)
+	static Order desc(String propertyName)
+
+	Order(@Nullable Direction direction, String property, NullHandling nullHandlingHint);
+
+}
+public enum Direction {
+	ASC, DESC;
+}
+
+
+
+
+
+@Query("SELECT u FROM User u WHERE u.status = 1")
+Collection<User> findAllActiveUsers();
+
+@Query(value = "SELECT u FROM User u")
+List<User> findAllUsers(Sort sort);
+
+@Query("SELECT u FROM User u WHERE u.status = 1")
+Collection<User> findAllActiveUsers();
+
+
+
+userRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+
+userRepository.findAll(Sort.by("LENGTH(name)"));
+
+======================
+Pagination
+======================
+
+@Query(value = "SELECT u FROM User u ORDER BY id")
+Page<User> findAllUsersWithPagination(Pageable pageable);
+
+Note: We can pass a PageRequest parameter to get a page of data.
+
+By having it extend PagingAndSortingRepository, we get findAll(Pageable pageable) and findAll(Sort sort) methods for paging and sorting.
+
+PageRequest.of(page, size);
+Note: First page always start with 0;
+Ex:-
+repo.findAll(Pageable.ofSize(3))
+
+
+class PageRequest implements Pageable {
+	static PageRequest of(int page, int size)
+	static PageRequest of(int page, int size, Sort sort)
+}
+
+
+
+PageRequest pageRequest = PageRequest.of(0, 5);
+
+Page<T> findAll(Pageable pageable);
+Ex:-
+findAll(pageRequest);
+
+Interface Heirchi
+interface Page<T> extends Slice<T>
+
+interface Slice<T> extends Streamable<T>
+
+interface Streamable<T> extends Iterable<T>, Supplier<Stream<T>>
+
+interface Supplier<T>
+
+
+Program #01
+PageRequest request = PageRequest.of(2, 5);
+System.out.println("All DATA:");
+repo.findAll().forEach(System.out :: println);
+System.out.println("PAGE DATA:");
+Page<Employee> page = repo.findAll(request);
+	
+		
+		List<Employee> content = page.getContent();
+		int number = page.getNumber();
+		int numberOfElements = page.getNumberOfElements();
+		Pageable pageable = page.getPageable();
+		long size = page.getSize();
+		Sort sort = page.getSort();
+		long totalElements = page.getTotalElements();
+		int totalPages = page.getTotalPages();
+		
+		System.out.println("Content : "+content);
+		System.out.println("Slice number : "+number);
+		System.out.println("Number Of Elements in Slice : "+numberOfElements);
+		System.out.println("Size : "+size);
+		System.out.println("Sort : "+sort);
+		System.out.println("Total Elements : "+totalElements);
+		System.out.println("Total Pages : "+totalPages);
+
+
+#Program #02
+Pagination with Sort
+Ex:- 
+repo.findAll(PageRequest.of(1, 5, Sort.by(Order.asc("ename")))).forEach(System.out :: println);
+Pageable sortedByName = PageRequest.of(0, 3, Sort.by("name"));
+
+Pageable sortedByPriceDesc = PageRequest.of(0, 3, Sort.by("price").descending());
+
+Pageable sortedByPriceDescNameAsc = PageRequest.of(0, 5, Sort.by("price").descending().and(Sort.by("name")));		
+
+
+======================
+Query Methods
+======================
+
+Program #01
+
+
+
+Entity 		findBy<Property>(Property name);
+
+List<Entity> 	findBy<Property>(Property name);
+
+boolean 	existsBy<Property>Property value);
+
+Optional<Entity> getBy<Property>(Property name);
+
+Entity		getBy<Property>(Property name);
+
+List<Entity> findByActive<True/False>();
+
+List<Entity> findBy<Property><After/Before>(ZonedDateTime birthDate);
+
+List<Entity> findBy<Property>Equals(String name);
+
+List<Entity> findBy<Property>< Is / IsNot > <Null / Ignore> (String name);
+
+List<Entity> findAllByOrderBy<Property><Desc / Asc / Ignore >();
+
+List<Entity> findBy<Property><Starting/Ending>With(String prefix);
+
+List<Entity> findBy<Property>Containing(String infix);
+
+List<Entity> findBy<Property><Like / NotLike>(String likePattern);
+
+List<Entity> findBy<Property><Less/Greater>Than<Equal/Ignore>(BigDecimal sal);
+
+List<Entity> findBy<Property>Between(BigDecimal bigDecimal, BigDecimal bigDecimal2);
+
+List<Entity> findBy<Property>In(List<Integer> collect);
+
+Optional<Student> findFirstBy<Property>(PropertyType type);
+
+List<Student> findFirst<Number>ByOrderBy<Property><Asc/Desc/Ignore>();
+
+Student findFirstByOrderByName();
+
+Ex:-
+List<Entity> findBySalLessThanOrderBySalAsc(BigDecimal bigDecimal);
+List<Entity> findBySalLessThanAndCommNotNull(BigDecimal bigDecimal);
+List<Entity> findBySalLessThanAndCommNotNullOrderByComm(BigDecimal bigDecimal);
+List<Entity> findByNameOrBirthDate(String name, ZonedDateTime birthDate);
+List<Entity> findByNameOrBirthDateAndActive(String name, ZonedDateTime birthDate, Boolean active);
+
+
+======================
+Queries
+======================
+@Query("SELECT e.ename FROM Employee e where e.id = :id") 
+String findEnameById(@Param("id") int id);
+
+Note: Spring JPA automatically recognise id attribute in the table. Actual table need not to contain ID column and Entity need not to have id named property.
+
+This will return NULL if element not found.
+
+We can use Optional instead.
+
+@Query("SELECT e.ename FROM Employee e where e.id = :id") 
+Optional<String> findEnameById( int id);
+
+Note: if @Param("id") and 'parameter name'  is same, you can avoid @Param annotation.
+
+Note: It will return NonUniqueResultException if query did not return a unique result.
+
+To avoid NonUniqueResultException use 
+
+Optional<Employee> findFirstByMgr(int mgr);
+Note: Might throw NonUniqueResultException 
+
+@Query("SELECT e.ename FROM Employee e where e.mgr = :mgr")
+List<String> findFirstByMgr(int mgr);
+
+@Query("SELECT t.title FROM Todo t where t.id = :id") 
+String findTitleById(@Param("id") Long id);
+     
+@Query("SELECT t.title FROM Todo t where t.id = :id") 
+Optional<String> findTitleById(@Param("id") Long id);
+ 
+Todo findById(Long id);
+     
+Optional<Todo> findById(Long id);
+
+List<Todo> findByTitle(String title);
+     
+Stream<Todo> findByTitle(String title);
+
+=====================
+named parameters
+=====================
+Ex:-
+@Query("SELECT t FROM Todo t where t.title = :title AND t.description = :description")
+    public Optional<Todo> findByTitleAndDescription(@Param("title") String title, 
+                                                    @Param("description") String description);
+
+================================
+position based parameter binding
+================================
+
+@Query("SELECT t FROM Todo t where t.title = ?1 AND t.description = ?2")
+public Optional<Todo> findByTitleAndDescription(String title, String description);
+     
+======================================
+Return Multiple Entities In JPA Query
+======================================
+
+
+https://www.javatpoint.com/jpa-tutorial
+
+
+
+===============================================
+===============================================
+===============================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

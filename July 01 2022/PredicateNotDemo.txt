@@ -1,0 +1,17 @@
+package com.suji.streamstest;
+
+import java.util.function.Predicate;
+
+public class PredicateNotDemo 
+{
+    public static void main( String[] args )
+    {
+    	String str = "demo";
+    	Predicate<String> predicate = Predicate.not(String::isBlank); // Takes T and returns boolean
+    	Predicate<String> predicate2 = Predicate.not(s -> s.isBlank()); // Takes T and returns boolean
+    	// String::isBlank = s -> s.isBlank(); String instance with the reference method.
+    	boolean test = predicate.test(str);
+    	System.out.println(test);
+    	
+    }
+}

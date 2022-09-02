@@ -1,0 +1,160 @@
+What are microservices?
+
+Microservices are a modern approach to software whereby application code is delivered in small, manageable pieces, independent of others.
+
+Why build microservices?
+
+Their small scale and relative isolation can lead to many additional benefits, such as easier maintenance, improved productivity, greater fault tolerance, better business alignment, and more.
+
+# 10 Challenges and Solutions for Microservices — Tips and Tricks
+
+1. Data Consistency
+2. Security: Custom solutions can also be developed for API security using JWT token, Spring Security, and Netflix OSS Zuul2.
+3. Services Commnunication: 
+There are the different way to communicate microservices –
+a. Point to point using API Gateway
+b. Messaging event driven platform using Kafka and RabbitMQ
+c. Service Mesh
+
+4. Service Discovery: This will be addressed by open source Istio Service Mesh, API Gateway, Netflix Eureka APIs.
+
+5. Data Staleness:  The database should be always updated to give recent data. The API will fetch data from the recent and updated database.
+
+6. Distributed logging, Cyclic Dependencies of Services and Debugging
+It’s difficult to identify issues between microservices when services are dependent on each other and they have a cyclic dependency. Correlation ID can be passed by the client in the header to REST APIs to track all the relevant logs across all the pods/Docker containers on all clusters.
+
+Tracing can be done by the latest Open tracing project or Uber’s open source Jaeger. It will trace all microservices communication and show request/response, errors on its dashboard.
+
+7. Testing
+8. Monitoring and Performance
+9. DevOps Support
+10. Fault Tolerance:
+Istio Service Mesh or Spring Hystrix can be used to break the circuit if there is no response from the dependent microservices for the given SLA/ETA and provide a mechanism to re-try and graceful shutdown services without any data loss.
+
+
+# Config Server
+
+To externalize properties or resource files out of server
+http://localhost:8888/limit-service/dev
+http://localhost:8888/limit-service/qa
+http://localhost:8888/limit-service/prod
+
+# Zuul API Gateway:
+
+Zuul Server is an API Gateway application. It handles all the requests and performs the dynamic routing of microservice applications. It works as a front door for all the requests. It is also known as Edge Server.
+
+1. Authentication and Security
+2. Insights and Monitoring
+3. Dynamic Routing
+4. Stress Testing
+5. Load Shedding
+6. Static Response Handling
+7. Multi-region Resiliency
+
+Step 1:
+@EnableZuulProxy  
+
+Step 2:
+spring.application.name=netflix-zuul-api-gateway-server  
+server.port=8765  
+eureka.client.service-url.default-zone=http://localhost:8765/eureka  
+Step 3:
+@Componenet
+ZuulLoggingFilter -> ZuulFilter
+
+ZuulFilter Types
+1. Pre
+2. Route
+3. Post
+4. Error
+
+# Distributed Tracing
+
+Distributed tracing is a technique to monitor and profile the applications, especially those built using microservice architecture. It is important because there are a variety of components that are involved in the microservices.
+
+# Spring Cloud Sleuth
+
+Spring Cloud Sleuth assigns a unique Id to each request that we have made. We can trace all the requests based on unique Ids across all the components.
+
+Spring Cloud Sleuth is a Spring Cloud library that provides the ability to track the progress of subsequent microservices by adding trace and span Ids on the appropriate HTTP request headers. The Sleuth library is based on the MDC (Mapped Diagnostic Context) concept, where we can easily extract values, put to context, and display them in the log
+
+### One Request Chain = Request + Response.
+
+### Spring Cloud Sleuth token components
+1. Application Name
+2. Trace Id
+3. Span Id
+4. Zipkin Export Flag
+
+# Zipkin
+
+Zipkin is an open-source, Java-based distributed tracing system. It has a management console that provides a mechanism for sending, receiving, storing, and visualizing traces details of the subsequent services.
+
+With the help of the Zipkin server, we can put all the logs of all the components in the MQ (RabbitMQ). We send the logs to the Zipkin server where the logs consolidate.
+
+
+# Sleuth and Zipkin
+
+Sleuth adds a unique Id to all the requests. It is used to generate and attach the trace Id, span Id to the logs so that tools (Zipkin) can use these ids.
+
+# Feign
+
+Feign is a declarative web service client. To use Feign create an interface and annotate it.
+
+Dependency:
+spring-cloud-starter-openfeign
+
+```java
+@SpringBootApplication
+@EnableFeignClients
+public class Application {
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
+}
+```
+
+### StoreClient.java
+```java
+@FeignClient("stores")
+public interface StoreClient {
+    @RequestMapping(method = RequestMethod.GET, value = "/stores")
+    List<Store> getStores();
+
+    @RequestMapping(method = RequestMethod.POST, value = "/stores/{storeId}", consumes = "application/json")
+    Store update(@PathVariable("storeId") Long storeId, Store store);
+}
+```
+
+@EnableFeignClients: we enable component scanning for interfaces that declare they are Feign clients.
+
+Then we declare a Feign client using the @FeignClient annotation:
+
+TransportException: Cannot execute request on any known server
+RedirectingEurekaHttpClient  : Request execution error.
+
+In the @FeignClient annotation the String value ("stores" above) is an arbitrary client name, which is used to create a Ribbon load balancer (see below for details of Ribbon support).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

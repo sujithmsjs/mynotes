@@ -1,0 +1,111 @@
+	public static void main(String[] args) throws Exception {
+		Session session = HibernateUtil.openSession();
+		Transaction transaction = session.getTransaction();
+		transaction.begin();
+		Random ran = new Random();
+		
+		for (int i = 1; i <= 100; i++) {
+			Student std = new Student("Name "+i, ran.nextInt(101));
+		 	int n = (int) session.save(std);
+		 	log.info(std+" Status: "+n);
+		}
+		
+		transaction.commit();
+		
+		log.info("Reached End");
+	}
+	
+	javax.persistence.PersistenceException: org.hibernate.InstantiationException: No default constructor for entity:  : com.suji.model.Student
+	
+	
+	*****************
+	
+	Query<Student> query = session.createQuery("from Student");
+			query.setFirstResult(0);
+			query.setMaxResults(10);
+			
+			List<Student> list = query.list();
+			for (Student std : list) {
+				System.out.println(std);
+			}
+====================
+
+int page = 8, max = 10;
+			query.setFirstResult(max*page);
+			query.setMaxResults(max);
+			
+====================
+
+Query<Student> query = session.createQuery("from Student where marks between 35 and 60");
+	
+			query.setFirstResult(0);
+			query.setMaxResults(10);
+			
+			List<Student> list = query.list();
+			for (Student std : list) {
+				System.out.println(std);
+			}
+
+===================
+
+
+public static void main(String[] args) throws Exception {
+		SessionFactory factory = HibernateUtil.getSessionFactory();
+		Session session = factory.openSession();
+		Transaction transaction = session.getTransaction();
+		transaction.begin();
+
+		Query<Student> query = session.createQuery("from Student where marks between 35 and 60");
+		
+		query.setFirstResult(0);
+		query.setMaxResults(10);
+		
+		List<Student> list = query.list();
+		Student student = list.get(0);
+		
+		BeanInfo testBeanInfo = Introspector.getBeanInfo(student.getClass());
+		Object invoke = testBeanInfo.getPropertyDescriptors()[2].getReadMethod().invoke(student);
+		PropertyDescriptor[] pdr = testBeanInfo.getPropertyDescriptors();
+		System.out.println("Property Desc len: "+pdr.length);
+		String name = pdr[0].getName();
+		Method readMethod = pdr[0].getReadMethod();
+		Object obj = readMethod.invoke(student);
+		
+		System.out.println("PropertyDescriptor:");
+		
+		for (int i = 0; i < pdr.length; i++) {
+			System.out.println(">> "+i);
+			System.out.println(pdr[i].getName());
+			System.out.println(pdr[i].getReadMethod().invoke(student));
+		}
+		
+		
+		transaction.commit();
+		log.info("Reached End");
+	}
+===========================================
+
+public static void print(final List list) {
+		Object obj = list.get(0);
+		try {
+
+			BeanInfo testBeanInfo = Introspector.getBeanInfo(obj.getClass());
+			PropertyDescriptor[] pdr = testBeanInfo.getPropertyDescriptors();
+			int len = pdr.length;
+			System.out.println("Totoal columns found: " + len);
+
+			for (int i = 1; i < pdr.length; i++) {
+				System.out.print(pdr[i].getName() + "\t");
+			}
+
+			System.out.println();
+			for (Object object : list) {
+				for (int i = 1; i < pdr.length; i++) {
+					System.out.print(pdr[i].getReadMethod().invoke(object) + "\t");
+				}
+				System.out.println();
+			}
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}

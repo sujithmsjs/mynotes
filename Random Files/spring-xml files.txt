@@ -1,0 +1,67 @@
+web.xml
+--------------------------------------------------
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+ 
+<web-app>
+
+	<display-name>Archetype Created Web Application</display-name>
+	
+	<servlet>
+		<servlet-name>spring</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>spring</servlet-name>
+		<url-pattern>/</url-pattern>
+	</servlet-mapping>
+	
+</web-app>
+
+
+spring-servlet.xml
+--------------------------------------------------
+
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc" xsi:schemaLocation="  
+        http://www.springframework.org/schema/beans  
+        http://www.springframework.org/schema/beans/spring-beans.xsd  
+        http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context.xsd  
+        http://www.springframework.org/schema/mvc  
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<!-- Provide support for component scanning -->
+	
+	<context:component-scan base-package="com.suji.ctrl"/>
+	
+	<!--Provide support for conversion, formatting and validation -->
+	<mvc:annotation-driven/>
+	<!-- Define Spring MVC view resolver -->
+	
+	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix" value="/WEB-INF/jsp/"></property> <property name="prefix" 
+		value="/webapp/jsp/"></property> <property name="suffix" value=".jsp"></property> 
+		</bean> -->
+		
+	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/thymeleaf"/>
+		<property name="prefix" value="/webapp/jsp/"/>
+		<property name="suffix" value=".html"/>
+	</bean>
+</beans>  
+
+
+
+web.xml -> / -> DispatcherServlet (Search for spring-servlet.xml file) -> Scan Controllers -> Send request to appropriate control.
+
+response -> DispatcherServlet (Search for viewResolver) -> Send Response.
+
+
+return new Class[] {TelsukoConfig.class};
+
+retrun new String[] {"/"};
+
+ViewResolver

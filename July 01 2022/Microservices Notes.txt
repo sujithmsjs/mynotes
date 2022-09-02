@@ -1,0 +1,31 @@
+Monolithic Architecture
+Microservice Architecture
+
+
+Bounded Context
+Dynamic Scale up and Scale Down
+Monitoring
+Fault Tolerance
+Cyclic dependencies
+DevOps Culture
+
+Spring Cloud Config Server	8888
+Netflix Eureka Naming Server	8761
+Netflix Zuul API gateway Server	8765
+Zipkin distributed Tracing Server	9411
+
+LimitServer
+-----------
+spring.application.name=limits-service
+limits-service.minimum=99  
+limits-service.maximum=9999  
+
+@ConfigurationProperties("limits-service")  
+public class Configuration   
+{  
+	private int maximum;  
+	private int minimum;
+}
+
+
+

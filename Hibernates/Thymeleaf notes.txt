@@ -1,0 +1,154 @@
+Thymeleaf is a modern server-side Java template engine for both web and standalone environments, capable of processing HTML, XML, JavaScript, CSS and even plain text.
+
+The main goal of Thymeleaf is to provide an elegant and highly-maintainable way of creating templates. To achieve this, it builds on the concept of Natural Templates to inject its logic into template files in a way that doesn’t affect the template from being used as a design prototype. This improves communication of design and bridges the gap between design and development teams.
+
+Thymeleaf has also been designed from the beginning with Web Standards in mind – especially HTML5 – allowing you to create fully validating templates if that is a need for you.
+
+Template Mode:
+HTML markup template
+XML markup template
+TEXT  textual template
+JAVASCRIPT  textual template
+CSS  textual template
+RAW no-op template
+
+
+
+The Standard Dialect:
+Thymeleaf is an extremely extensible template engine (in fact it could be called a template engine framework) that allows you to define and customize the way your templates will be processed to a fine level of detail.
+
+Template Engine:
+The most important objects in a Thymeleaf application: the TemplateEngine instance (implementation of the ITemplateEngine interface).
+
+templateEngine = new TemplateEngine();
+templateEngine.setTemplateResolver(templateResolver);
+
+The Template Resolver:
+templateResolver.setTemplateMode(TemplateMode.HTML);
+
+Contexts:
+---------
+${x} will return a variable x stored into the Thymeleaf context or as a request attribute.
+${param.x} will return a request parameter called x (which might be multivalued).
+${session.x} will return a session attribute called x.
+${application.x} will return a servlet context attribute called x.
+
+
+${user.name} = user.getName()
+
+
+Standard Expression Syntax
+--------------------------
+
+Simple expressions:
+-------------------
+Variable Expressions: ${...}
+Selection Variable Expressions: *{...}
+Message Expressions: #{...}
+Link URL Expressions: @{...}
+Fragment Expressions: ~{...}
+
+Literals:
+---------
+Text literals: 'one text', 'Another one!',…
+Number literals: 0, 34, 3.0, 12.3,…
+Boolean literals: true, false
+Null literal: null
+Literal tokens: one, sometext, main,…
+
+Text operations:
+String concatenation: +
+Literal substitutions: |The name is ${name}|
+Arithmetic operations:
+Binary operators: +, -, *, /, %
+Minus sign (unary operator): -
+Boolean operations:
+Binary operators: and, or
+Boolean negation (unary operator): !, not
+Comparisons and equality:
+Comparators: >, <, >=, <= (gt, lt, ge, le)
+Equality operators: ==, != (eq, ne)
+Conditional operators:
+If-then: (if) ? (then)
+If-then-else: (if) ? (then) : (else)
+Default: (value) ?: (defaultvalue)
+Special tokens:
+No-Operation: _
+
+
+
+<span th:text="${today}"> = ctx.getVariable("today");
+
+<p th:utext="#{home.welcome(${session.user.name})}">
+((User) ctx.getVariable("session").get("user")).getName();
+
+
+OGNL expressions
+----------------
+#ctx: the context object.
+#vars: the context variables.
+#locale: the context locale.
+#request: (only in Web Contexts) the HttpServletRequest object.
+#response: (only in Web Contexts) the HttpServletResponse object.
+#session: (only in Web Contexts) the HttpSession object.
+#servletContext: (only in Web Contexts) the ServletContext object.
+
+
+Expressions on selections (asterisk syntax):
+
+<div th:object="${session.user}">
+<p>Name: <span th:text="*{firstName}">Sebastian</span>.</p>
+<p>Surname: <span th:text="*{lastName}">Pepper</span>.</p>
+<p>Nationality: <span th:text="*{nationality}">Saturn</span>.</p>
+</div>
+
+exactly equivalent to
+<div>
+<p>Name: <span th:text="${session.user.firstName}">Sebastian</span>.</p>
+<p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+<p>Nationality: <span th:text="${session.user.nationality}">Saturn</span>.</p>
+</div>
+
+
+
+th:object="${session.user} *{firstName}=${session.user.firstName}
+
+
+
+*{session.user.name} = ${session.user.firstName}
+
+
+URLs
+There are different types of URLs:
+
+1. Absolute URLs: http://www.thymeleaf.org
+2. Relative URLs, which can be:
+2.1	Page-relative: user/login.html
+2.2 Context-relative: /itemdetails?id=3 (context name in server will be added automatically)
+2.3 Server-relative: ~/billing/processInvoice (allows calling URLs in another context (= application) in the same server.
+2.4 Protocol-relative URLs: //code.jquery.com/jquery-2.0.3.min.js
+
+
+
+
+a href="details.html" th:href="@{order/details(orderId=${o.id})}">view</a>
+
+
+<a href="details.html" th:href="@{/order/details(orderId=${o.id})}">view</a>
+
+<!-- Will produce '/gtvg/order/3/details' (plus rewriting) -->
+<a href="details.html" th:href="@{/order/{orderId}/details(orderId=${o.id})}">view</a>
+
+Home page:
+----------
+<p>Please select an option</p>
+<ol>
+  <li><a href="product/list.html" th:href="@{/product/list}">Product List</a></li>
+  <li><a href="order/list.html" th:href="@{/order/list}">Order List</a></li>
+  <li><a href="subscribe.html" th:href="@{/subscribe}">Subscribe to our Newsletter</a></li>
+  <li><a href="userprofile.html" th:href="@{/userprofile}">See User Profile</a></li>
+</ol>
+
+
+<a th:href="@{${url}(orderId=${o.id})}">view</a>
+<a th:href="@{'/details/'+${user.login}(orderId=${o.id})}">view</a>

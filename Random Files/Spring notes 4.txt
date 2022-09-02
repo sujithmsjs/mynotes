@@ -1,0 +1,210 @@
+
+
+the Invocation Order
+
+In order to create a filter, we simply need to implement the Filter interface.
+
+@Component  <-for Spring to recognize a filter
+@Order(1) <- to have the filters fire in the right order
+public class TransactionFilter implements Filter {}
+
+
+RestTemplate is a class
+it has exchange() method.
+ You can 
+use the exchange() method to consume the web services for all HTTP methods.
+
+
+spring.datasource.url=jdbc:mysql://localhost:3306/jack_rutorial
+spring.datasource.username=root
+spring.datasource.password=root
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+spring.mvc.view.prefix=/WEB-INF/jsp/
+spring.mvc.view.suffix=.jsp
+
+server.port=8080
+server.servlet.context-path=/
+
+
+Cross-Origin Resource Sharing (CORS) is a security concept that allows restricting the 
+resources implemented in web browsers. It prevents the JavaScript code producing or 
+consuming the requests against different origin.
+@CrossOrigin(origins = "http://localhost:8080")
+
+@Bean
+public WebMvcConfigurer corsConfigurer() {
+ return new WebMvcConfigurerAdapter() {
+ @Override
+ public void addCorsMappings(CorsRegistry registry) {
+ 
+registry.addMapping("/products").allowedOrigins("http://localhost:8080");
+ }
+ };
+}
+
+
+– Internationalization
+Internationalization is a process that makes your application adaptable to different 
+languages and regions without engineering changes on the source code. 
+
+@Bean
+public LocaleResolver localeResolver() {
+ SessionLocaleResolver sessionLocaleResolver = new SessionLocaleResolver();
+ sessionLocaleResolver.setDefaultLocale(Locale.US);
+ return sessionLocaleResolver;}
+
+
+Messages Sources
+Spring Boot application by default takes the message sources from src/main/resources
+folder under the classpath. The default locale message file name should be 
+message.properties and files for each locale should name as 
+messages_XX.properties. The “XX” represents the locale code.
+
+
+Spring Boot – Scheduling
+The @EnableScheduling annotation is used to enable the scheduler for your application. 
+This annotation should be added into the main Spring Boot application class file.
+
+Java Cron Expression
+@Scheduled(cron = "0 * 9 * * ?")
+public void cronJobSch() throws Exception {
+}
+
+
+HTTPS
+Self-Signed Certificate
+You need
+1. SSL certificate
+2. Enable HTTPS and 443 port
+
+Java Run Time environment comes bundled with 
+certificate management utility key tool. 
+
+
+This code will generate a PKCS12 keystore file named as keystore.p12 and the certificate 
+alias name is tomcat.
+
+server.port: 443
+server.ssl.key-store: keystore.p12
+server.ssl.key-store-password: springboot
+server.ssl.keyStoreType: PKCS12
+server.ssl.keyAlias: tomcat
+
+
+Eureka Serer
+----------------
+Eureka Server is an application that holds the information about all client-service 
+applications. Every Micro service will register into the Eureka server and Eureka server 
+knows all the client applications running on each port and IP address. Eureka Server is 
+also known as Discovery Server.
+
+Eureka Server comes with the bundle of Spring Cloud. For this, we need to develop the 
+Eureka server and run it on the default port 8761.
+
+
+Zuul Proxy Server and Routing
+>spring-cloud-starter-zuul<
+Zuul Server is a gateway application that handles all the requests and does the dynamic 
+routing of microservice applications. The Zuul Server is also known as Edge Server.
+
+Actuator
+Spring Boot Actuator provides secured endpoints for monitoring and managing your Spring 
+Boot application. By default, all actuator endpoints are secured. In this chapter, you will 
+learn in detail about how to enable Spring Boot actuator to your application.
+
+/metrics
+/env
+/beans
+/health
+/info
+/trace
+
+Swagger2
+
+Swagger2 is an open source project used to generate the REST API documents for RESTful 
+web services. It provides a user interface to access our RESTful web services via the web 
+browser.
+To enable the Swagger2 in Spring Boot application, you need to add the following
+dependencies in our build configurations file.
+
+<artifactId>springfox-swagger2</artifactId>
+
+1. @EnableSwagger2 annotation in your main Spring Boot application.
+
+2. Create Docket Bean to configure Swagger2 for your Spring Boot application.
+
+Docker image
+
+Sending Mail
+By using Spring Boot RESTful web service, you can send an email with Gmail Transport 
+Layer Security.
+
+spring-boot-starter-mail
+
+Properties props = new Properties();
+props.put("mail.smtp.auth", "true");
+props.put("mail.smtp.starttls.enable", "true");
+props.put("mail.smtp.host", "smtp.gmail.com");
+props.put("mail.smtp.port", "587");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

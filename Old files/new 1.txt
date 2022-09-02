@@ -1,0 +1,52 @@
+
+TASKS:
+
+/api/gethistoryforTicket/ DONE
+		public void getTicketHistoryByCaseIdTest() throws Exception {
+
+		// Preparing Return Type
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("id", "DemoId");
+		ResponseEntity<HashMap<String, Object>> res = new ResponseEntity<HashMap<String, Object>>(map,
+				HttpStatus.ACCEPTED);
+
+		// Mock Behavior
+		when(ticketAssignService.getTicketHistoryByCaseId("1")).thenReturn(res);
+
+		// Create Mock Response
+		var mockRequest = MockMvcRequestBuilders.get("/api/gethistoryforTicket/1");
+		var response = mockMvc.perform(mockRequest).andReturn().getResponse();
+
+		// Asserting
+		assertEquals(200, response.getStatus());
+	}
+
+
+
+/api/proddatta : GET_CEO_PRODUCT_DATA
+// api/proddatta
+	public  void getAllProducts() throws Exception {
+		ResponseEntity<Map<String, Object>> rt;
+		
+		// Preparing Return type
+		List<ProductModel> productsList = new ArrayList<ProductModel>();
+		
+		//Mocking Behavior
+		when(productService.getAllProducts()).thenReturn(productsList);
+		
+		// Create Mock Response
+		var mockRequest = MockMvcRequestBuilders.get("/api/proddatta");
+		var response = mockMvc.perform(mockRequest).andReturn().getResponse();
+		
+		// Asserting
+		assertEquals(200, response.getStatus());
+
+	}
+
+
+
+/api/getAllGofunderusers/ : GET_UPDATED_GOFOUNDER_URL
+/api/GofoundergetByMailId/
+/api/GofoundergetById
+
+

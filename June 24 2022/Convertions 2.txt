@@ -1,0 +1,130 @@
+import java.util.stream.*;
+import java.util.Arrays;
+import java.util.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+		
+		List<Person> list = Person.findAll();
+		 System.out.println(list);
+		 
+		 // Convert  List<Person> to Stream<Person>
+		 Stream<Person> strm = list.stream();
+		 strm.forEach(System.out :: print);
+		 
+		 
+		 // Convert  Stream<Person> to List<Person>
+		 List<Person> list2 = list.stream().filter( p -> p.getAge() > 20).collect(Collectors.toList());
+		 System.out.println("\nList 2: "+list2);
+		 
+		   
+		 // Convert  List<Person> to Person[]
+		  Person[] persons = list2.toArray(Person[] :: new);
+		 // Person[] persons = list2.toArray(i -> list2.get );
+		 
+		 System.out.println("\nPersons Arrays : "+Arrays.toString( persons ));
+		 /*
+		    <A> A[] toArray(IntFunction<A[]> generator)
+		    Ex:-
+		    list2.toArray(Person[] :: new);
+		    list2.toArray(i -> Person[i]);
+		    
+		    
+		    Interface IntFunction<R>{
+		        R	apply(int value)
+		    }
+		 */
+		 
+		 
+		 // Convert  Person[] to Stream<Person>
+		 Stream<Person> strm2 = Arrays.stream(persons);
+		
+		 // Convert  Person[] to List<Person>
+		 List<Person> list3 = strm2.collect(Collectors.toList());
+		   
+		 // Convert  Stream<Person> to Person[]
+	 	Person[] persons2 = Arrays.stream(persons).toArray(Person[] :: new);
+		System.out.println("\nPersons Arrays 2 : "+Arrays.toString( persons2 ));
+		
+		 // Convert Stream<Person> to int[] of ages;
+		 int[] ages = list.stream().filter(p -> p.getAge() <= 20).mapToInt(  per -> per.getAge() ).toArray();
+        System.out.println("\nExtracted person ages : "+Arrays.toString( ages ));
+		
+		 
+	     // Convert Stream<Person> to Stream<String> of names;
+	    Stream<Person> names = list.stream().filter(p -> p.getAge() <= 20)
+	        .map( p -> new Person(p.getAge() + 20, p.getName() ) );
+	    
+        System.out.println("\nExtracted blew age person : "+Arrays.toString( names.toArray(Person[] :: new) ));
+	    
+	    List<String> namesList = list.stream().map(Person :: getName).collect(Collectors.toList());
+	    
+	    System.out.println("\nExtracted people names");
+	    namesList.forEach(System.out :: println);
+	    
+	    
+	    List<String> namesListFilter = list.stream().filter(p -> p.getAge() <= 20).map( p -> p.getName() ).collect(Collectors.toList());
+	    System.out.println("\nExtracted below 20 age people names");
+	    namesListFilter.forEach(System.out :: println);
+	    
+	   /*
+	   Note: <R> Stream<R>	map(Function<? super T,? extends R> mapper)
+	   Ex:
+	   map(Person :: getName)
+	   map( p -> p.getName() )
+	   
+	   
+	   
+	   */
+	    
+	    // Convert int[] of ages, Stream<String> of names to Stream<Person>;
+	    
+	}
+}
+
+class Person{
+    
+    private String name;
+    private int age;
+    
+    public Person(int age, String name){
+        this.name = name;
+        this.age = age;
+        System.out.println("Constructor callded;");
+    }
+    
+    public void setAge(int age){
+        this.age = age;
+    }
+    
+    public int getAge(){
+        return age;
+    }
+    
+    public void setName(String name){
+        this.name = name;
+    }
+    
+    public String getName(){
+        return name;
+    }
+    
+    public static List<Person> findAll(){
+        List<Person> list = new ArrayList<>();
+        list.add( new Person(20, "Per1") );
+        list.add( new Person(18, "Per2") );
+        list.add( new Person(10, "Per3") );
+        list.add( new Person(28, "Per4") );
+        list.add( new Person(23, "Per5") );
+        return list;
+    }
+    
+    @Override
+    public String toString(){
+        return "["+name+" : "+age+"]";
+    }
+    
+}
+
+

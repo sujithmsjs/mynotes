@@ -1,0 +1,11 @@
+================
+Criteria Queries
+================
+Spring Data JPA provides many ways to deal with entities, including query methods and custom JPQL queries.
+
+But sometimes, we need a more programmatic approach, such as Criteria API or QueryDSL.
+
+Keywords:
+
+Monolithic app
+

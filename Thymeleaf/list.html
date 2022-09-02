@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body>
+
+<h1>Student/list working...</h1>
+
+
+	<!-- Print Studnets with rollno, name, marks, cgpa, isPassed, gender -->
+	<div  th:each="studnet : ${students}" th:if="${studnet.gender} == 'female'" th:object="${studnet}" >
+	<!-- 
+		<h1>Rollno:<span th:text="        	${studnet.rollno} +100	"></span></h1>
+		<h1>Name: <span th:text="	${studnet.name}	"></span></h1>
+		<h1>Marks: <span th:text="${studnet.marks}"></span></h1>
+	 -->
+	 	<h1>Rollno:<span th:text=" *{rollno} + 100	"></span></h1>
+		<h1>Name: <span th:text=" *{name}	"></span></h1>
+		<h1>Marks: <span th:text=" *{marks}"></span></h1>
+	
+		<h1>CGPA: <span th:text="${studnet.cgpa}"></span></h1>
+		<h1>IsPassed?: <span th:text="${studnet.isPassed}"></span></h1>
+		<h1>Gender: <span th:text="${studnet.gender}"></span></h1>
+		
+		<a th:href="@{/student/update/{rollno}( rollno = ${studnet.rollno} )}">Edit</a>
+		<a th:href="@{student/delete/{rollno}( rollno = ${studnet.rollno} )}">Delete</a>
+		<a th:href="@{'/student/delete/' + 'sexy'}">Sexy</a>
+		<a th:href="@{ '/student/delete/' + ${studnet.name}  }">Do something</a>
+	</div>
+
+
+
+
+<!--  
+	<div th:object="${book}">
+		<h1 th:text="*{title}"></h1>
+		<h3 th:text="*{isbn}"></h3>
+		<h3 th:text="*{author}"></h3>
+		<h3 th:text="*{type}"></h3>
+	</div>
+
+	<h1 th:text="${booksList.toString}"></h1>
+
+
+	<div th:each="book : ${booksList}">
+		<h1 th:text="${book.title}"></h1>
+		<h3 th:text="${book.isbn}"></h3>
+		<h3 th:text="${book.author}"></h3>
+		<h3 th:text="${book.type}"></h3>
+	</div>
+	
+-->
+
+</body>
+
+</html>

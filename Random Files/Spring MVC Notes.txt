@@ -1,0 +1,94 @@
+Feb 3rd Spring MVC
+------------------
+
+Used for...
+- Web apps
+- Restful Webservices.
+
+MVC: Model, View, Controller.
+
+
+Template engines
+- JSP
+Spring MVC
+https://www.baeldung.com/spring-mvc-tutorial
+As the name suggests, it's a module of the Spring framework dealing with the Model-View-Controller, or MVC pattern. It combines all the advantages of the MVC pattern with the convenience of Spring.
+
+Spring implements MVC with the front controller pattern using its DispatcherServlet.
+
+
+
+
+Spring MVC Using Java Configuration
+To enable Spring MVC support through a Java configuration class, all we have to do is add the @EnableWebMvc annotation:
+
+
+@EnableWebMvc
+@Configuration
+public class WebConfig {
+	...
+}
+
+This will set up the basic support we need for an MVC project, such as
+1. registering controllers and mappings,
+2. type converters,
+3. validation support,
+4. message converters
+5. exception handling.
+
+Step 1:
+If we want to customize this configuration, we need to implement the WebMvcConfigurer interface:
+
+WebMvcConfigurer contains all the default methods.
+
+
+@EnableWebMvc
+@Configuration
+public class WebConfig implements WebMvcConfigurer {
+
+   @Override
+   public void addViewControllers(ViewControllerRegistry registry) {
+      registry.addViewController("/").setViewName("index");
+   }
+
+   @Bean
+   public ViewResolver viewResolver() {
+      InternalResourceViewResolver bean = new InternalResourceViewResolver();
+
+      bean.setViewClass(JstlView.class);
+      bean.setPrefix("/WEB-INF/view/");
+      bean.setSuffix(".jsp");
+
+      return bean;
+   }
+}
+
+XML Based:
+<bean id="viewResolver"
+	class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/WEB-INF/thymeleaf"></property>
+	<property name="prefix" value="/webapp/jsp/"></property>
+	<property name="suffix" value=".html"></property>
+</bean>
+
+
+
+
+
+- Thymeleaf
+
+Integrating Thymeleaf With Spring
+Firstly let us see the configurations required to integrate with Spring. The thymeleaf-spring library is required for the integration.
+
+<dependency>
+    <groupId>org.thymeleaf</groupId>
+    <artifactId>thymeleaf</artifactId>
+    <version>3.0.11.RELEASE</version>
+</dependency>
+<dependency>
+    <groupId>org.thymeleaf</groupId>
+    <artifactId>thymeleaf-spring5</artifactId>
+    <version>3.0.11.RELEASE</version>
+</dependency>
+
+<h1> ${requestScope.std.id}</h1> 

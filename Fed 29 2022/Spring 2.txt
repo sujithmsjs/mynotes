@@ -1,0 +1,76 @@
+Spring with ORM Frameworks
+
+Spring provides API to easily integrate Spring with ORM frameworks such as Hibernate, JPA(Java Persistence API), JDO(Java Data Objects), Oracle Toplink and iBATIS.
+
+
+Hibernate and Spring Integration
+
+We can simply integrate hibernate application with spring application.
+
+In hibernate framework, we provide all the database information hibernate.cfg.xml file.
+
+But if we are going to integrate the hibernate application with spring, we don't need to create the hibernate.cfg.xml file. We can provide all the information in the applicationContext.xml file.
+
+Advantage of Spring framework with hibernate:
+The Spring framework provides HibernateTemplate class, so you don't need to follow so many steps like create Configuration, BuildSessionFactory, Session, beginning and committing transaction etc.
+
+Methods of HibernateTemplate class
+
+void	delete(Object entity)
+void	deleteAll(Collection<?> entities)
+<T> T	get(Class<T> entityClass, Serializable id)
+Object	get(String entityName, Serializable id)
+int	getMaxResults()
+<T> T	load(Class<T> entityClass, Serializable id)
+Object	load(String entityName, Serializable id)
+<T> T	merge(T entity)
+void	persist(Object entity)
+Serializable	save(Object entity)
+void	saveOrUpdate(Object entity)
+void	setMaxResults(int maxResults)
+void	update(Object entity)
+<T> List<T>	loadAll(Class<T> entityClass)
+
+
+<Object>Dao.java
+---------
+It is a java class that uses the HibernateTemplate class method to persist the object of Employee class.
+
+applicationContext.xml
+In this file, we are providing all the informations of the database in the BasicDataSource object. This object is used in the LocalSessionFactoryBean class object, containing some other informations such as mappingResources and hibernateProperties. The object of LocalSessionFactoryBean class is used in the HibernateTemplate class. Let's see the code of applicationContext.xml file.
+
+LocalSessionFactoryBean: FactoryBean that creates a Hibernate SessionFactory. This is the usual way to set up a shared Hibernate SessionFactory in a Spring application context; the SessionFactory can then be passed to data access objects via dependency injection.
+
+
+
+class BasicDataSource{
+	String driverClassName;
+	String url;
+	String username;
+	String password;
+}
+
+LocalSessionFactoryBean{
+	BasicDataSource dataSource;
+	List mappingResources;
+	Properties hibernateProperties;
+}
+
+HibernateTemplate{
+	LocalSessionFactoryBean sessionFactory;
+}
+
+EmployeePOJO{
+	HibernateTemplate template;
+}
+
+
+
+
+<property name="hibernateProperties">
+	<props>
+		<prop key="hibernate.dialect">org.hibernate.dialect.Oracle9Dialect</prop>
+		<prop key="hibernate.hbm2ddl.auto">update</prop>
+		<prop key="hibernate.show_sql">true</prop>
+	</props>
+</property>

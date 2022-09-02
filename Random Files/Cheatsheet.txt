@@ -1,0 +1,30 @@
+private static final Logger logger = LoggerFactory.getLogger(MyRunner.class);
+
+
+TemplateInputException: If you don't provide @Requestbody annotation.
+
+Ambiguous handler methods mapped
+
+IllegalStateException: Ambiguous mapping: When two controllers have same @RequestMapping
+org.springframework.beans.factory.BeanCreationException:
+
+
+MissingPathVariableException
+
+
+InvalidDefinitionException: No serializer found for class.
+HttpMessageConversionException
+
+com.fasterxml.jackson.databind.ObjectWriter.writeValue(ObjectWriter.java:1006)
+
+com.fasterxml.jackson.databind.exc.InvalidDefinitionException: No serializer found for class org.hibernate.proxy.pojo.bytebuddy.ByteBuddyInterceptor and no properties discovered to create BeanSerializer (to avoid exception, disable SerializationFeature.FAIL_ON_EMPTY_BEANS) (through reference chain: com.suji.restful.model.Person$HibernateProxy$OSNCT6EH["hibernateLazyInitializer"])
+
+Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Unrecognized token 'Kitty': was expecting (JSON String, Number, Array, Object or token 'null', 'true' or 'false');
+
+EmptyResultDataAccessException: No class com.suji.restful.model.Cat entity with id 15 exists!
+
+
+java.sql.SQLIntegrityConstraintViolationException: Column 'pwd' cannot be null
+java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'Zipporah.M' for key 'stds.UK_4gx0eisnxylujqmsrj9mh6s85'
+
+

@@ -1,0 +1,36 @@
+package com.suji.streamstest;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+import java.util.function.BiFunction;
+import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
+
+import com.suji.streamstest.model.Emp;
+
+public class ReduceDemo 
+{
+    public static void main( String[] args )
+    {
+    	List<Emp> list = Emp.findAll();
+    	
+    	BinaryOperator<Emp> bo = (e1, e2) -> new Emp(0, e1.getSalary().add(e2.getSalary() )	);
+    	
+    	Optional<Emp> reduce = list.stream().reduce(bo);
+    	Optional<Emp> collect = list.stream().collect(Collectors.reducing(bo));
+    	
+    	System.out.println(reduce.get());
+    	System.out.println(collect.get().getSalary().divide(new BigDecimal(list.size())));
+    	
+    	
+    	
+    	
+    }
+    
+    
+    class Averager extends Emp{
+    	int count;
+    	int salary;
+    }
+}

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+
+<style>
+	.edu{
+		background-color: green;
+	}
+	.help{
+		background-color: red;
+	}
+</style>
+
+</head>
+
+<body>
+	
+		<div th:each="book : ${coll}" th:classappend="${book.release}==1? 'edu':'help'">
+		
+			<h1 th:text="${book.title}"></h1>
+			<h2 th:text="${book.isbn}"></h2>
+			<h2 th:text="${book.author}"></h2>
+			<h2 th:text="${book.type}"></h2>
+			
+			<h2 th:if="${book.release}==0" th:text="'Book type: '+${book.release}" ></h2>
+			
+			<h2  class="th:text=${book.release}==1?edu:help"></h2>
+			
+			<h2 class="" th:attrappend="class=${book.title}" ></h2>
+			
+			<h2 class="row" th:classappend="${book.release}==1? 'edu':'help'"></h2>
+			
+			<h2 th:classappend="${book.release}==1? 'edu':'help'"></h2>
+			<h2 th:styleappend="${book.release}==1? 'edu':'help'"></h2>
+			
+		</div>
+	
+
+
+</body>
+
+</html>

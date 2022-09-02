@@ -1,0 +1,36 @@
+ApplicationContext context = new AnnotationConfigApplicationContext(App2Config.class);
+int count = context.getBeanDefinitionCount();
+String[] names = context.getBeanDefinitionNames();
+System.out.println(Arrays.asList(names));
+
+
+
+@Configuration
+@ComponentScan(basePackages = "com.suji.spring.app2")
+public class App2Config {
+
+}
+
+===
+@Configuration
+public class BeanConfig {
+	
+	public Vehicle getVehicle() {
+		return getCar();
+	}
+
+	@Bean
+	public Car getCar() {
+		return new Car("Tesla");
+	}
+	
+	@Bean
+	public Tyre getTyre() {
+		return new Tyre();
+	}
+	
+	@Bean
+	public Bike getBike() {
+		return new Bike();
+	}
+}

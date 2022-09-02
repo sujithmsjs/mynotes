@@ -1,0 +1,5 @@
+morg.mongodb.driver.connection            : Opened connection [connectionId{localValue:3, serverValue:3}] to localhost:27017
+
+
+ConverterNotFoundException:
+No converter found capable of converting from type [org.bson.types.ObjectId] to type [int]

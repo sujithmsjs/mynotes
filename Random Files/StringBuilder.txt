@@ -1,0 +1,44 @@
+Apache Commons Lang
+<dependency>
+  <groupId>org.apache.commons</groupId>
+  <artifactId>commons-lang3</artifactId>
+  <version>3.12.0</version>
+</dependency>
+
+StringBuilder sb = new StringBuilder("Sujith");
+0 : S
+1 : u
+2 : j
+3 : i
+4 : t
+5 : h
+6 :  
+7 : M
+8 : a
+9 : n
+10 : c
+11 : h
+12 : a
+13 : l
+14 : a
+
+sb.length() // 15
+
+sb.delete(from , before)
+- deletedChars = before - from
+
+sb.delete(-1, 0); // StringIndexOutOfBoundsException
+sb.delete(0, 15); // Deletes all the Characters.
+sb.delete(0, 14); // a
+sb.delete(7, 10); // Sujith chala
+sb.delete(0, 1); //Deletes first char.
+sb.delete(sb.length()-1, sb.length()); //Deletes last char
+
+indexOf
+	String search = "Man";
+    int n = sb.indexOf(search); // 7
+    int n2 = sb.indexOf(search,n); // 7
+    int n3 = sb.indexOf(search, n + search.length()); // -1
+    int n4 = sb.indexOf("cha", n + search.length()); // 10
+		
+	

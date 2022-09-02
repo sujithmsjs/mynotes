@@ -1,0 +1,59 @@
+Case 1:
+
+@RequestMapping("/signup")
+public String getSignupForm(Student student, Model model) {
+	return "student/signup";
+}
+
+Note: Model object "student" will be created and also added to model.
+
+Case 2:
+
+@RequestMapping("/save-student")
+public String saveStudentForm(@Valid Student student, BindingResult results, Model model) {
+	
+	if(results.hasErrors()) {
+		return "signup"; // Note: "signup" is a Templete/View.
+	}
+	
+	return "welcome";  // Note: "signup" is a Templete/View.
+}
+
+Case 3: 
+
+<form action="#" th:action="@{/student/save-student}" th:object="${student}" method="post">
+<input type="text" class="form-control" id="name" th:field="*{name}">
+<p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">
+
+
+Case 4: Unique Username
+
+@Documented
+@Constraint(validatedBy = UniqueUsernameValidator.class)
+@Target({ ElementType.METHOD, ElementType.FIELD })
+@Retention(RetentionPolicy.RUNTIME)
+public @interface UniquePersonUsernameContraint {
+
+	String message() default "Username already Exists";
+
+	Class<?>[] groups() default {};
+
+	Class<? extends Payload>[] payload() default {};
+}
+
+public class UniquePersonUsernameValidator implements ConstraintValidator<UniquePersonUsernameContraint, String> {
+
+	@Autowired
+	private PersonRepository service;
+	
+	@Override
+	public boolean isValid(String contactField, ConstraintValidatorContext cxt) {
+	
+		logger.info(contactField);
+		boolean isExists = service.existsByUsername(contactField);
+		
+		System.out.println("Username at validation: "+contactField+"; isExists: "+isExists);
+	 	return isExists;
+	}
+
+}

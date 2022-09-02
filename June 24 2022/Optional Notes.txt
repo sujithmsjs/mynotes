@@ -1,0 +1,31 @@
+import java.util.Optional;
+
+public class Main
+{
+	public static void main(String[] args) {
+            		
+   // A a = new A();
+    A a = null;
+	Optional<A> opt = Optional.ofNullable(a);
+	
+	System.out.println(opt.isEmpty());
+	// System.out.println(opt.get()); -> NoSuchElementException
+	System.out.println( "OrElse: " + opt.orElse(new A())   );
+	
+	
+	System.out.println("OrElseGet: "+ opt.orElseGet( () -> new A() ));
+	
+	if(opt.isPresent()){
+	    System.out.println(opt.get());
+	}
+    
+    //return repository.findById(id).orElseThrow(() -> new EmployeeNotFoundException(id));
+	
+	System.out.println("End...");
+	    	
+	}
+}
+
+class A{
+    private int value;
+}

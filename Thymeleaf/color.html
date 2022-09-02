@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body>
+	<div>
+		<h1 th:text=" ${cat.getThatBlackCat}==null"></h1>
+		<h1 th:text=" ${cat.thatBlackCat}==null"></h1>
+		<h1 th:text=" 'That black cat: ' + ${cat.thatBlackCat}==null"></h1>
+		<h1
+			th:text=" ${cat.getThatBlackCat}!=null?'Hey cat found':'Sorry, Cat not found.'"></h1>
+		<h1 th:text="  ${cat.getThatBlackCat()} "></h1>
+
+		<h1 th:text="${colorUtil} "></h1>
+		<h1 th:text="${colorUtil.getRandomColorRBG}"></h1>
+	</div>
+
+	<div th:each="book : ${bookList}"
+		th:with="color=${colorUtil.getRandomColorRBG}"
+		th:styleappend="'background-color:'+ ${color}"
+		th:unless="${book.isbn}%2==0">
+
+		<h1 th:text="${book.title}"></h1>
+		<h3 th:text="${colorUtil}"></h3>
+		
+		<a th:href="@{   '/book/show/' + ${book.isbn} + '/' + ${book.title} +'/'+ ${color}  }">Goto 1</a>
+		
+		
+		<a th:href="@{/book/show/{isbn}/{title}/(a=${book.isbn},b=${book.title},c=${color}}">Goto 2</a>
+		
+		
+		<a th:href="@{/book/show/{a}/{b}/{c}(a=${book.isbn},b=${book.title},c=${color}}">Goto 3</a>
+
+
+		<a th:href="@{/book/show/{a}(a=${book.isbn}/{b}(b=${book.title})/{c}(c=${color})}">Goto 4</a>
+
+		<a th:href="@{/show/{a}/{b}/{c}(a='th:text=${book.isbn}',b='${book.title}',c='Sky')}">Goto 5</a>
+
+		<a th:href="@{show/{a}/{b}/{c}(a='water',b='Fire',c='Sky')}">Goto 6</a>
+
+		<a th:href="@{/std/edit/{sno}(sno=${book.isbn})}">Goto 7</a>
+		<a th:href="@{/std/delete/{sno}(sno=${book.title})}">Goto 8</a>
+	
+
+	</div>
+
+
+</body>
+
+</html>

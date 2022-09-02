@@ -1,0 +1,75 @@
+@SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
+
+
+The recipient, subject, date, and time (the header).
+
+Email relies on a set of protocols to arrive at the correct destination.
+
+ From the typical email user's standpoint, it seems simple.
+
+Once the domain name system (DNS) was developed, email addresses took the format loginname@host.domain.
+
+intended recipient
+
+Email servers (SMTP and MTA)
+Simple Mail Transfer Protocol (SMTP) 
+The SMTP)  an email delivery protocol used to send mail over the internet.
+
+A Mail Transfer Agent (MTA) is a server program that uses SMTP to deliver emails.
+
+There are two types of MTA
+1. A client-based MTA
+2. A web-based MTA
+
+Failure to adhere to them will hurt your ability to deliver mail reliably.
+
+SMTP relies on the TCP port 25.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

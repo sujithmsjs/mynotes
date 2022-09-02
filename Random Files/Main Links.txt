@@ -1,0 +1,9 @@
+Spring Boot Bean Validation Example
+https://examples.javacodegeeks.com/spring-boot-bean-validation-example/
+
+Constraints
+https://docs.jboss.org/hibernate/beanvalidation/spec/2.0/api/
+
+Spring Thymeleaf Error Handling.
+https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html#validation-and-error-messages
+

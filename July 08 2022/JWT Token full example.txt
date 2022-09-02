@@ -1,0 +1,248 @@
+
+Things to remember:
+
+You need to provide Authentication explicitly.
+SecurityContextHolder.getContext().setAuthentication(...);
+
+
+
+
+Expose REST POST API with mapping /authenticate using which User will get a valid JSON Web Token.
+
+
+
+
+class UsernamePasswordAuthenticationToken:
+
+Constructors:
+- Object principal, Object credentials
+- Object principal, Object credentials,Collection<GrantedAuthority> authorities
+
+Method:
+- void setDetails(Object details);
+
+
+AuthenticationEntryPoint:
+
+It is an interface implemented by ExceptionTranslationFilter, basically a filter which is the first point of entry for Spring Security. It is the entry point to check if a user is authenticated and logs the person in or throws exception (unauthorized). Usually the class can be used like that in simple applications but when using Spring security in REST, JWT etc one will have to extend it to provide better Spring Security filter chain management.
+
+
+
+
+
+
+
+#1
+
+HelloWorldController
+@GetMapping({""})
+
+
+#2
+
+Generating JWT: /authenticate
+Validating JWT: /hello
+
+
+#3
+
+
+JwtTokenUtil
+
+io.jsonwebtoken.Jwts
+
+- String	getUsernameFromToken(String token)
+- Date		getExpirationDateFromToken(String token)
+- Claims	getAllClaimsFromToken(String token)
+- Boolean	isTokenExpired(String token)
+- String	generateToken(UserDetails userDetails)
+- String 	doGenerateToken(Map<String, Object> claims, String subject)
+- Boolean	validateToken(String token, UserDetails userDetails)
+
+
+#4
+org.springframework.security.core.userdetails.UserDetailsService;
+
+class JwtUserDetailsService implements UserDetailsService{
+
+	@Override
+	public UserDetails loadUserByUsername(String username)
+			throws UsernameNotFoundException {
+
+		return org.springframework.security.core.userdetails.User;
+
+	}
+}
+
+#5
+
+JwtRequest {username, password}
+JwtResponse {username, jwtToken}
+
+#6
+
+class JwtAuthenticatonController:
+
+@PostMapping("/authenticate")
+
+input: @RequestBody JwtRequest authenticationRequest
+
+//Get username and passwords from the request.
+
+String username = authenticationRequest.getUsername();
+String password = authenticationRequest.getPassowrd();
+
+// Generate UsernamePasswordAuthenticationToken using username, password.
+
+UsernamePasswordAuthenticationToken unpwdAuthtoken = 
+new UsernamePasswordAuthenticationToken(username, password)
+
+// Authenticate using Authentication Manager
+
+authenticationManager.authenticate(unpwdAuthtoken);
+It throws BadCredentialsException, DisabledException;
+
+// If Authentication successful, then...
+
+// Get user detials form the loadUserByUsername method.
+
+UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+
+// Generate Token
+
+final String token = jwtTokenUtil.generateToken(userDetails);
+
+Return : Token
+
+
+#7
+
+
+JwtRequestFilter:
+
+The JwtRequestFilter extends the Spring Web Filter OncePerRequestFilter class. For any incoming request this Filter class gets executed. It checks if the request has a valid JWT token. If it has a valid JWT Token then it sets the Authentication in the context, to specify that the current user is authenticated.
+
+
+#8
+
+
+class JwtRequestFilter extends OncePerRequestFilter :
+
+
+
+Input: HttpServletRequest,Response, FilterChain
+
+// Firstly, all you need is Header information with the attribute "Authorization". Extract request header value Authorization.
+
+String requestTokenHeader = request.getHeader("Authorization");
+
+// Now you have Token. You can extract username from that token.
+
+String username = jwtTokenUtil.getUsernameFromToken(jwtToken);
+
+above lile throws: IllegalArgumentException, ExpiredJwtException.
+
+
+#9
+
+Now you have (token)
+
+Validate it: How?
+
+Two conditions needed:
+1. username should not be null.
+2. SecurityContextHolder.getContext().getAuthentication() should be null.
+
+Two Objects needed for Authenticaton
+1. jwtToken
+2. Spring's UserDetails.
+
+// Get UserDetails object using loadUserByUsername method.
+
+// Now validate:
+
+jwtTokenUtil.validateToken(jwtToken, userDetails)
+
+
+#10
+
+// Create Explict Authentication
+
+UsernamePasswordAuthenticationToken unPwdAuth;
+unPwdAuth = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+
+
+unPwdAuth.setDetails(?); // What details?
+WebAuthenticationDetails needed to generate Authentication.
+
+How to get Authentication Details?
+
+Build Authentication Details using Request.
+
+WebAuthenticationDetails buildDetails = new WebAuthenticationDetailsSource().buildDetails(request);
+
+// How set WebAuthenticationDetails to UsernamePasswordAuthenticationToken .
+
+unPwdAuth.setDetails(buildDetails);
+
+
+
+=======================
+JWT LOG
+=======================
+
+Wrong username and password.
+
+--> OncePerRequestFilter
+--> Received token: Basic Og==
+--> Token is null;
+Can't retrive Username!
+Authentication : null
+OncePerRequestFilter: Do Filter
+Welcome to : /authenticate
+JwtRequest: JwtRequest(username=javainuseg, password=password)
+org.springframework.security.authentication.BadCredentialsException: Bad credentials
+--> AuthenticationEntryPoint: org.springframework.security.authentication.BadCredentialsException: Bad credentials
+
+
+===========================
+
+with valid token:
+
+--> OncePerRequestFilter
+--> Received token: token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE2NTcwNDI2NDgsImlhdCI6MTY1NzAyNDY0OH0.tjXMGMAOj2z0tNXSIjK-uLlSSzooCN9Ky4G3RCUCpAg
+--> Refined JWT Token: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYXZhaW51c2UiLCJleHAiOjE2NTcwNDI2NDgsImlhdCI6MTY1NzAyNDY0OH0.tjXMGMAOj2z0tNXSIjK-uLlSSzooCN9Ky4G3RCUCpAg
+Getting username from the token...
+Your're username is :javainuse
+Authentication : null
+--> Validation started.
+--> Validation jwt :true
+--> Hurry!!! Your're authenticated...org.springframework.security.authentication.UsernamePasswordAuthenticationToken@31b789c0: Principal: org.springframework.security.core.userdetails.User@ce48c560: Username: javainuse; Password: [PROTECTED]; Enabled: true; AccountNonExpired: true; credentialsNonExpired: true; AccountNonLocked: true; Not granted any authorities; Credentials: [PROTECTED]; Authenticated: true; Details: org.springframework.security.web.authentication.WebAuthenticationDetails@b364: RemoteIpAddress: 0:0:0:0:0:0:0:1; SessionId: null; Not granted any authorities
+OncePerRequestFilter: Do Filter
+
+
+
+==========================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,32 @@
+Eclips Shortcuts
+^ - Ctrl
+$ - Shift
+@ - Alt
+< - backspace
+
+^D
+^Del
+^$Del
+^<
+^$y
+^$x
+@Down
+@Up
+$Enter
+^$Enter
+^$O: Organize imports
+^$M: Import
+^$F
+^I
+^/
+^7
+^$/
+^$\
+@$S
+
+^$R: Refactoring names
+
+
+Ctrl + Shift + T: Type
+Ctrl + Shift + R: Resource
+Ctrl + o: Outline

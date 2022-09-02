@@ -1,0 +1,35 @@
+@Query(value = "{'status': 'Open'}", count = true)
+public Integer openTicketCount();
+
+@Query("{'teamleader_id.$id' : ?0}")
+List<EmployeeModel> findByManagerId(ObjectId agentModel);
+
+@Query(value = "
+{
+	$and:[
+			{
+				'role.$id': {$ne : ?0}
+			} ,
+			{
+				'id':  {$ne : ?1}
+			}
+		]
+}")
+List<EmployeeModel> findAgents(ObjectId role, ObjectId role1);
+
+
+@Query(value = "
+{
+	$and:[
+			{
+				'product_name': ?0
+			} ,
+			{
+				'sub_category' : ?1
+			}
+		]
+}")
+CasesCount findproductsbyName(String product_name,String sub_category);
+
+@Query(value = "{'status': 'Open'}", count = true)
+public Integer openTicketCount();

@@ -1,0 +1,21 @@
+total objects4
+[student, org.springframework.validation.BindingResult.student, beanPropertyBindingResult, std]
+
+Key : student
+Value :Student(sno=142, name=Fantastic Club, cgpa=7.8)
+
+Key : org.springframework.validation.BindingResult.student
+Value :org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Field error in object 'student' on field 'name': rejected value [Fantastic Club]; codes [Pattern.student.name,Pattern.name,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [student.name,name]; arguments []; default message [name],[Ljavax.validation.constraints.Pattern$Flag;@f81186a,[a-z]+]; default message [Hey, Pattern correct ga entry chey bhe]
+
+Key : beanPropertyBindingResult
+Value :org.springframework.validation.BeanPropertyBindingResult: 1 errors
+Field error in object 'student' on field 'name': rejected value [Fantastic Club]; codes [Pattern.student.name,Pattern.name,Pattern.java.lang.String,Pattern]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [student.name,name]; arguments []; default message [name],[Ljavax.validation.constraints.Pattern$Flag;@f81186a,[a-z]+]; default message [Hey, Pattern correct ga entry chey bhe]
+
+Key : std
+Value :Student(sno=142, name=Fantastic Club, cgpa=7.8)
+
+
+<p th:text="${#fields.hasErrors('name')}" >Incorrect date</p>
+		<p th:text="${#fields.hasErrors('sno')}" >Incorrect date</p>
+		<p th:text="${#fields}" >Incorrect date</p>

@@ -1,0 +1,90 @@
+# Spring Security
+
+*In simple terms, authentication is the process of verifying who a user is, while authorization is the process of verifying what they have access to.*
+
+Comparing these processes to a real-world example, when you go through security in an airport, you show your ID to authenticate your identity. Then, when you arrive at the gate, you present your boarding pass to the flight attendant, so they can authorize you to board your flight and allow access to the plane.
+
+# Bearer Authentication
+Bearer authentication (also called token authentication) is an HTTP authentication scheme that involves security tokens called bearer tokens.
+
+https://swagger.io/docs/specification/authentication/bearer-authentication/
+
+Similarly to Basic authentication, Bearer authentication should only be used over HTTPS (SSL).
+
+
+OpenAPI uses the term security scheme for authentication and authorization schemes.
+
+
+1. Name: Name of the Security scheme
+1. Type : http
+2. Scheme : basic/bearer
+3. In : coockie, header
+
+"components": {
+"securitySchemes": {
+"jwtapi": {
+"type": "http",
+"in": "header",
+"scheme": "bearer",
+"bearerFormat": "JWT"
+}
+}
+}
+
+The new type: http is an umbrella type for all HTTP security schemes, including Basic, Bearer and other, and the scheme keyword indicates the scheme type.
+
+http – for Basic, Bearer and other HTTP authentications schemes
+
+Ex:-
+@SecurityScheme(name = "jwtapi", scheme = "basic", type = SecuritySchemeType.HTTP, in = SecuritySchemeIn.HEADER)
+
+
+Ex:-
+@SecurityRequirement(name = "jwtapi")
+
+Whenever we required Security we have to annotate that Controller with this annotation.
+
+
+If you don't map Swagger url:
+Access to localhost was deniedYou don't have the user rights to view this page.
+HTTP ERROR 403
+
+
+ERROR: Failed to load remote configuration.
+Why?
+
+http://localhost:8080/v3/api-docs
+
+http://localhost:8080/swagger-ui/index.html
+
+
+https://www.techgeeknext.com/spring-boot/spring-boot-swagger3-security-example
+
+
+@Configuration
+ @EnableWebSecurity
+ public class HttpBasicSecurityConfig {
+
+ 	@Bean
+ 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+ 		http.authorizeRequests().antMatchers("/**").hasRole("USER").and().httpBasic();
+		
+ 		return http.build();
+ 	}
+
+ 	@Bean
+ 	public UserDetailsService userDetailsService() {
+ 		
+		UserDetails user = User.withDefaultPasswordEncoder()
+ 			.username("user")
+ 			.password("password")
+ 			.roles("USER")
+ 			.build();
+			
+ 		return new InMemoryUserDetailsManager(user);
+ 	}
+ }
+
+
+"authorization": "Basic c3VqaXRoOjEyMzQ="
+

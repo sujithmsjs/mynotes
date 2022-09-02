@@ -1,0 +1,14 @@
+Spring Cache Abstraction mechanism
+
+Caching:  is a mechanism aimed at enhancing the performance of any kind of application.
+
+Contexts are in charge of configuring, instantiating, and assembling Beans by reading configuration files and employing annotations.
+
+ConcurrentHashMap:
+A hash table supporting full concurrency of retrievals and high expected concurrency for updates.
+
+@EnableCaching:
+To enable the Spring Boot caching feature, you need to add the @EnableCaching annotation to any of your classes annotated with @Configuration or to the boot application class annotated with @SpringBootApplication.
+
+@Cacheable:
+Each time a method marked with this @Cacheable is called, the caching behavior will be applied. In particular, Spring Boot will check whether the method has been already invoked for the given arguments. This involves looking for a key, which is generated using the method parameters by default. If no value is found in the cache related to the method for the computed key, the target method will be executed normally. Otherwise, the cached value will be returned immediately.

@@ -1,0 +1,113 @@
+=================
+Java 11 Features
+=================
+
+#1
+
+
+A few new methods to the String class
+isBlank, lines, strip, stripLeading, stripTrailing, and repeat.
+
+
+
+#2
+
+File Methods
+
+We can use the new readString and writeString static methods from the Files class.
+
+
+#3
+
+Collection to an Array:
+
+
+T[] toArray(IntFunction<T[]> generator)
+
+public interface IntFunction<R> {
+    R apply(int value);
+}
+
+
+The java.util.Collection interface contains a new default toArray method which takes an IntFunction argument.
+
+Ex:
+List sampleList = Arrays.asList("Java", "Kotlin");
+String[] sampleArray = sampleList.toArray(String[]::new);
+
+NOTE:
+		 T[] toArray(IntFunction<T[]> generator)
+		 
+		 Ex:
+		 Below mentioned two statements are equal.
+		 
+		 toArray( i -> new String[i]);
+		 toArray(String[]::new);
+
+
+
+
+#4
+
+The not static method in Predicate Interface
+
+Ex:
+List withoutBlanks = sampleList.stream()
+  .filter(Predicate.not(String::isBlank))
+  .collect(Collectors.toList());
+
+
+#5
+
+Local-Variable Syntax for Lambda
+Support for using the local variable syntax (var keyword) in lambda parameters was added in Java 11.
+
+We can make use of this feature to apply modifiers to our local variables, like defining a type annotation:
+
+Ex:
+String resultString = sampleList.stream()
+  .map((@Nonnull var x) -> x.toUpperCase())
+  .collect(Collectors.joining(", "));
+
+
+
+#6
+String Intern method:
+
+
+
+
+
+
+#7
+
+In Java 10, Local Variable Type Inference was introduced. Thus we could infer the type of the variable from the RHS –
+
+var list = new ArrayList<String>();
+
+
+
+#8 Nested Based Access Control
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

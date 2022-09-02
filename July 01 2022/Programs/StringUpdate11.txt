@@ -1,0 +1,26 @@
+package com.suji.streamstest;
+
+import java.util.function.UnaryOperator;
+import java.util.stream.IntStream;
+
+public class StringUpdate11 
+{
+    public static void main( String[] args )
+    {
+    	String str = "\n\n\tDemo";
+    	System.out.println(str.isBlank()); // Java v11
+    	System.out.println(str.isEmpty()); // Java v1.6
+    	IntStream stream = str.chars(); // Java v1.9
+    	stream.forEach(System.out :: println);
+    	str.lines(); 
+    	boolean b = str.isBlank(); //Adjusts the indentation of each line of this string
+    	
+    	System.out.println(b);
+    	
+    	String s = "Demo";
+    	String repeat = s.repeat(10);
+    	System.out.println(repeat);
+    	
+    }
+    
+}

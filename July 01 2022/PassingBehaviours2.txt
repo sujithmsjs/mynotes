@@ -1,0 +1,20 @@
+package com.suji.streamstest;
+
+import com.suji.streamstest.model.Employee;
+
+public class PassingBehaviours2 
+{
+    public static void main( String[] args )
+    {
+    	Employee e = new Employee(1, "Tony", 57, "Male", "Sales", 2021, 10_000);
+    	
+    	String name = e.get(Employee::getName);
+    	Integer age = e.get(Employee::getAge);
+    	Integer age2 = e.get(emp -> emp.getAge());
+    	
+    	
+    	System.out.println(name);
+    	System.out.println(age);
+    	System.out.println(age2);
+    }
+}

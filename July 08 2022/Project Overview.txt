@@ -1,0 +1,45 @@
+BCrypt Password Encoder
+
+WebSecurityConfigurerAdapter:
+
+Configure:
+	AuthenticationManagerBuilder:
+		auth.userDetailsService(uds).passwordEncoder(encoder);
+	HttpSecurity:
+		
+
+@Service
+public class UserServiceImpl implements UserService, UserDetailsService
+
+
+org.springframework.security.core.userdetails:
+
+public interface UserDetailsService {
+	// Return string User object here!
+	UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
+}
+
+public class User implements UserDetails, CredentialsContainer {
+
+	private String password;
+	private final String username;
+	private final Set<GrantedAuthority> authorities;
+	private final boolean accountNonExpired;
+	private final boolean accountNonLocked;
+	private final boolean credentialsNonExpired;
+	private final boolean enabled;
+}
+
+public User(
+	1. String username,
+	2. String password,
+	3. Collection<? extends GrantedAuthority> authorities) {
+
+		this(username, password, true, true, true, true, authorities);
+	
+	}
+
+public final class SimpleGrantedAuthority implements GrantedAuthority {
+	public SimpleGrantedAuthority(String role) {//...}
+}
+

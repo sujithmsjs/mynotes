@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Home Page</title>
+<meta charset="UTF-8">
+<link th:href="@{/styles/basicstyles.css}" rel="stylesheet" />
+</head>
+
+<body bgcolor=red>
+
+	<h1 th:text="${book}"></h1>
+	<a th:href="@{/show/{a}/{b}/{c}(a=${book.isbn})(b=${book.title})(c=${book.type})}">Goto</a>
+	<a th:href="@{/show/{id}(id=${book.isbn})/{id}(id=${book.isbn})/{id}(id=${book.isbn})}">Goto</a>
+	<a th:href="@{   '/show/' + ${book.isbn} + '/' + ${book.title} +'/'+ ${book.type}  }">Goto</a>
+</body>
+
+</html>

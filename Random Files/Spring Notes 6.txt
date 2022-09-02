@@ -1,0 +1,115 @@
+ConfigurableApplicationContext(I)
+ConfigurableApplicationContext(I) >> ApplicationContext(I), Lifecycle(I), Closeable(I)
+ApplicationContext(I) >> EnvironmentCapable(I), ListableBeanFactory(I), HierarchicalBeanFactory(I), MessageSource(I), ApplicationEventPublisher(I), ResourcePatternResolver(I)
+ListableBeanFactory(I) >> BeanFactory(I), 
+HierarchicalBeanFactory(I) >> BeanFactory(I), 
+ResourcePatternResolver(I) >> ResourceLoader(I), 
+Closeable(I) >> AutoCloseable(I)
+----
+@ResponseBody
+@ResponseStatus(HttpStatus.BAD_REQUEST)
+@ExceptionHandler(Exception ...)
+public Map<String, String> get(BindException ex) {
+
+	Map<String, String> errors = new HashMap<>();
+	BindingResult bindingResult = ex.getBindingResult();
+	List<FieldError> fieldErrors = bindingResult.getFieldErrors();
+	
+	for (FieldError fieldError : fieldErrors) {
+		String key = fieldError.getField();
+		String value = fieldError.getDefaultMessage();
+		errors.put(key, value);
+	}
+	
+	return errors;
+}
+
+
+
+Neither BindingResult nor plain target object for bean name 'std' available as request attribute?
+{
+    "timestamp": "2022-02-14T16:21:15.375+00:00",
+    "status": 500,
+    "error": "Internal Server Error",
+    "path": "/final"
+}
+
+
+TemplateEngine
+ThymeleafView
+DispatcherServlet
+FrameworkServlet
+View(I)
+ViewResolver(I)
+
+
+
+
+
+
+
+
+
+
+
+FieldError(C) > ObjectError(C) > DefaultMessageSourceResolvable(C) > Object(C)
+DefaultMessageSourceResolvable(C) --> MessageSourceResolvable(I), Serializable(I)
+
+MethodArgumentNotValidException(C) > BindException(C) > Exception(C) > Throwable(C) > Object(C)
+BindException(C) --> BindingResult(I)
+BindingResult(I) >> Errors(I)
+
+Throwable(C) --> Serializable(I)
+
+SQLIntegrityConstraintViolationException(C) > SQLNonTransientException(C) > SQLException(C) > Exception(C) > Throwable(C) > Object(C)
+SQLException(C) --> Iterable(I)
+Throwable(C) --> Serializable(I)
+
+-------------
+
+------------
+ConfigurableApplicationContext(I) >> ApplicationContext(I) >> ListableBeanFactory(I) >> BeanFactory(I)
+------------
+ThymeleafViewResolver(C) > AbstractCachingViewResolver(AC) > WebApplicationObjectSupport(AC) > ApplicationObjectSupport(AC) > Object(C)
+ThymeleafViewResolver(C) --> Ordered(I), 
+AbstractCachingViewResolver(AC) --> ViewResolver(I), 
+WebApplicationObjectSupport(AC) --> ServletContextAware(I), 
+ServletContextAware(I) >> Aware(I), 
+ApplicationObjectSupport(AC) --> ApplicationContextAware(I), 
+ApplicationContextAware(I) >> Aware(I), 
+---------
+
+
+View(I)
+___________
+ViewResolver(I)
+___________
+InternalResourceViewResolver(C) > UrlBasedViewResolver(C) > AbstractCachingViewResolver(AC) > WebApplicationObjectSupport(AC) > ApplicationObjectSupport(AC) > Object(C)
+
+UrlBasedViewResolver(C) --> Ordered(I), 
+AbstractCachingViewResolver(AC) --> ViewResolver(I), 
+WebApplicationObjectSupport(AC) --> ServletContextAware(I), 
+ServletContextAware(I) >> Aware(I), 
+ApplicationObjectSupport(AC) --> ApplicationContextAware(I), 
+ApplicationContextAware(I) >> Aware(I), 
+
+___________
+ObjectError(C) > DefaultMessageSourceResolvable(C) > Object(C)
+
+DefaultMessageSourceResolvable(C) --> MessageSourceResolvable(I), Serializable(I), 
+
+___________
+ConfigurableApplicationContext(I)
+ConfigurableApplicationContext(I) >> ApplicationContext(I), Lifecycle(I), Closeable(I), 
+ApplicationContext(I) >> EnvironmentCapable(I), ListableBeanFactory(I), HierarchicalBeanFactory(I), MessageSource(I), ApplicationEventPublisher(I), ResourcePatternResolver(I), 
+ListableBeanFactory(I) >> BeanFactory(I), 
+HierarchicalBeanFactory(I) >> BeanFactory(I), 
+ResourcePatternResolver(I) >> ResourceLoader(I), 
+Closeable(I) >> AutoCloseable(I), 
+___________
+SpringApplication(C) > Object(C)
+
+
+___________
+
+

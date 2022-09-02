@@ -1,0 +1,233 @@
+Method reference operator:
+
+stream.forEach(s -> System.out.println(s));
+stream.forEach( System.out::println);
+
+str.forEach(new Demo()::showSomething);
+Note: showSomething just accept single String as an argument.
+
+str.forEach(Demo::new);
+Note:
+The constructor will be called for each and every element.
+
+Notice that the interface Comparator is a functional interface.
+
+Arrays.sort(rosterAsArray,
+    (Person a, Person b) -> {
+        return a.getBirthday().compareTo(b.getBirthday());
+    }
+);
+
+--------
+Person::compareByAge
+is semantically the same as the lambda expression
+(a, b) -> Person.compareByAge(a, b)
+----------
+
+System.out::println
+s -> System.out.println(s)
+
+---------
+
+str.filter(Demo::isLong)
+str.filter(s -> Demo.isLong(s))
+
+-------------
+
+import java.util.stream.*;
+
+public class Main
+{
+	public static void main(String[] args) {
+		
+		Stream<String> str = Stream.of("A","B","Cdfdf","D","E","F");
+        		
+		//str.forEach(s -> System.out.println(s));
+		
+	    //str.forEach(Demo::show);
+	    
+	    str.filter(s -> Demo.isLong()).forEach(System.out::println);
+	    
+	    
+	}
+}
+
+class Demo{
+    
+    public Demo(){
+        System.out.println("Demo Default Constructor");
+    }
+    
+    public Demo(String text){
+        System.out.println("Demo String Constructor: " + text);
+    }
+
+    public void showSomething(String text){
+        System.out.println("::"+text);
+    }
+    public static void show(String text){
+        System.out.println("static "+text);
+    }
+
+    public static boolean isLong(){
+        return true;
+    }
+    
+}
+
+-----------
+
+error: incompatible types: invalid constructor reference
+Example:
+
+Stream<String> str = Stream.of("A","B","Cdfdf","D","E","F");
+str.filter(s -> Demo.isLong()).forEach(Demo::new);
+
+Note: Demo should have "String" argument Constructor.
+
+----------
+Stream<String> str = Stream.of("A","B","Cdfdf","D","E","F");
+str.filter(s -> Demo.isLong()).forEach(Demo::show);
+
+Note:
+Demo class should have "static show(String)" method. Otherwise error: incompatible types: invalid method reference will be raised.
+
+----------
+Error: Unexpected instance method.
+
+Stream<String> str = Stream.of("A","B","Cdfdf","D","E","F");
+str.filter(s -> Demo.isLong()).forEach(Demo::showSomething);
+
+Note:
+Use Instance variable to reference instance method.
+str.filter(s -> Demo.isLong()).forEach(new Demo()::showSomething);
+
+
+----------
+
+
+import java.util.stream.*;
+import java.util.Arrays;
+
+public class Main
+{
+	public static void main(String[] args) {
+		
+		// Int Steam
+		IntStream is = IntStream.rangeClosed(1,20);
+	 	
+	 	// Int Array
+	 	int[] a = is.toArray();
+		System.out.println(Arrays.toString(a));
+		
+		Stream<Integer> strm = Arrays.stream(a).boxed();
+		
+		// Integer Wrapper array.
+		Integer[] wrapper = strm.toArray(Integer[] :: new);
+		System.out.println(Arrays.toString(wrapper));
+		
+		Arrays.stream(wrapper).mapToInt( i -> i*i).forEach(System.out::println);
+		
+		// Integer Squares Arrays
+		Integer[] sqrs = Arrays.stream(wrapper).map( i -> i*i).toArray(Integer[] :: new);
+		System.out.println("Squares : "+Arrays.toString(sqrs));
+		
+		// Stream<Integer> to IntStream
+		IntStream strm2 = Arrays.stream(wrapper).mapToInt(Integer :: intValue);
+		
+		// IntStream to int[]
+		int[] a2 = strm2.toArray();
+		System.out.println("Primitives: "+Arrays.toString(a2));
+		// int	intValue() in Integer class
+		
+		System.out.println("---");
+		Arrays.stream(wrapper).mapToInt(I -> I.intValue()).forEach(System.out::println);
+		
+		System.out.println("---");
+		
+		
+		
+		/*
+		.mapToInt(Integer :: intValue)
+		.mapToInt( i -> Integer.intValue() )
+		
+		IntStream	mapToInt(ToIntFunction<? super T> mapper)
+	
+	    impl: mapToInt( I -> I.intValue() )
+	    ???
+	    
+		
+		Interface ToIntFunction<T>{
+		    int	applyAsInt(T value);
+		}
+		
+		*/
+		
+		//strm.forEach(System.out::println);
+	    
+	    // Arrays.stream(a).mapToInt(a -> a*2).forEach(System.out::println);
+	}
+}
+
+
+----
+int[] primitiveInts = {1, 2, 3};
+
+
+Integer[] wrappedInts = Arrays.stream(primitiveInts)
+                              .boxed()
+                              .toArray(Integer[]::new);
+
+
+int[] unwrappedInts = Arrays.stream(wrappedInts)
+                             .mapToInt(Integer::intValue)
+                             .toArray();
+
+
+assertArrayEquals(primitiveInts, unwrappedInts);
+
+double[] primitiveDoubles = {1.1d, 2.2d, 3.3d};
+Double[] wrappedDoubles = Arrays.stream(primitiveDoubles)
+                                .boxed()
+                                .toArray(Double[]::new);
+double[] unwrappedDoubles = Arrays.stream(wrappedDoubles)
+                                  .mapToDouble(Double::doubleValue)
+                                  .toArray();
+
+assertArrayEquals(primitiveDoubles, unwrappedDoubles, 0.0001d);
+
+--------------
+Person[] men = people.stream()
+	.filter(p -> p.getGender() == MALE)
+        .toArray(Person[]::new);
+-------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

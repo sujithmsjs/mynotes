@@ -1,0 +1,26 @@
+
+
+interface Iterable<T>{
+	Iterator<T> iterator();
+	void forEach(Consumer<? super T> action);
+	Spliterator<T> spliterator();
+}
+
+interface Collection<E> extends Iterable<E>{
+
+}
+
+interface List<E> extends Collection<E>{
+}
+
+class ArrayList<E> extends AbstractList<E>
+        implements List<E>, RandomAccess, Cloneable, java.io.Serializable{
+}
+
+_____________
+
+class HashMap<K,V> implements Map<K,V> ...{}
+
+interface Map<K,V> {
+	interface Entry<K,V> {}
+}

@@ -1,0 +1,134 @@
+
+
+INPUT:
+<div>
+	<h1 th:text=" ${cat.getThatBlackCat}==null"/>
+	<h1 th:text=" ${cat.getThatBlackCat}!=null?'Hey cat found':'Sorry, Cat not found.'"/>
+	<h1 th:text="  ${cat.getThatBlackCat()} "/>
+	<h1 th:text="${colorUtil} "/>
+	<h1 th:text="${colorUtil.getRandomColorRBG}"/>
+</div>
+
+OUTPUT:
+<div>
+	<h1>false</h1>
+	<h1>Hey cat found</h1>
+	<h1>A pure black cat has been sent</h1>
+	<h1>com.suji.thyme.util.ColorUtil@592d40ec</h1>
+	<h1>rgb(255,245,0)</h1>
+</div>
+
+++---++---++---++---++---++---++
+
+INPUT:
+<div th:each="book : ${bookList}" th:with="color=${colorUtil.getRandomColorRBG}" th:styleappend="'background-color:'+ ${color}" th:unless="${book.isbn}%2==0">
+	<h1 th:text="${book.title}"/>
+	<h3 th:text="${colorUtil}"/>
+	<a th:href="@{   '/book/show/' + ${book.isbn} + '/' + ${book.title} +'/'+ ${color}  }">Goto</a>
+</div>
+
+OUTPUT:
+<div style="background-color:rgb(0,163,255)">
+	<h1>Book 7</h1>
+	<h3>com.suji.thyme.util.ColorUtil@592d40ec</h3>
+	<a href="/book/show/7/Book 7/rgb(0,163,255)">Goto</a>
+</div>
+
+++---++---++---++---++---++---++
+
+INPUT:
+<body th:styleappend=" 'background-color:' + ${bg} ">
+	<h1 th:text="${title}"></h1>
+	<h1 th:text="${isbn}"></h1>
+	<a href="/book/getcolor">Back</a>
+</body>
+
+OUTPUT:
+<body style="background-color:rgb(255,0,61)">
+	<h1>Book 3</h1>
+	<h1>3</h1>
+	<a href="/book/getcolor">Back</a>
+</body>
+
+++---++---++---++---++---++---++
+
+CODE:
+@GetMapping("/bg")
+public String bgStyle(Model model) {
+	model.addAttribute("bg", ColorUtil.getRandomColorRBG());
+	return "/bgColor";
+}
+
+THYME:
+<body th:styleappend=" 'background-color:' + ${bg} ">
+
+HTML:
+<body style="background-color:rgb(0,255,224)">
+
+++---++---++---++---++---++---++
+THYME:
+
+<h1 th:text="5+6"/> = <h1>11</h1>
+<h1 th:text="12341+22234"/> = <h1>34575</h1>
+<h1 th:text="5*6"/> = <h1 >30</h1>
+<h1 th:text="1/50"/> = <h1 >0.02</h1>
+<h1 th:text="10%6"/> = <h1 >4</h1>
+<h1 th:text="10%2"/> = <h1 >0</h1>
+<h1 th:text="10%2==2-2"/> = <h1 >true</h1>
+<h1 th:text="10%6==8-4"/> = <h1 >true</h1>
+<h1 th:text="10%2"/> = <h1 >0</h1>
+<h1 th:text="10%3"/> = <h1 >1</h1>
+<h1 th:text="10/2"/> = <h1 >5</h1>
+<h1 th:text="2%10"/> = <h1 >2</h1>
+<h1 th:text="5%10"/> = <h1 >5</h1>
+<h1 th:text="10/5"/> = <h1 >2</h1>
+<h1 th:text="100%5==0"/> = <h1 >true</h1>
+<h1 th:text="'Hey therer'+'How are you Man!'"/>
+= <h1 >Hey thererHow are you Man!</h1>
+
+++---++---++---++---++---++---++
+model.addAttribute("msg","hey");
+model.addAttribute("num",1);
+model.addAttribute("isGril",true);
+model.addAttribute("obj",null);
+
+THYME:
+<h1 th:if="${msg}=='hey'">Hellow world</h1>
+<h1 th:text="${msg}=='hey'">Hellow world</h1>
+<h1 th:text="${msg}=='hey123'">Hellow world</h1>
+<h1 th:if="${isGirl}">It is girl</h1>
+<h1 th:if="${num}==2">Num = 1</h1>
+<h1 th:if="${num}==1">Num = 2</h1>
+<h1 th:if="${obj}==null">Object is null</h1>
+<h1 th:if=true th:text="'if ture, Some text'"></h1>
+<h1 th:if=false th:text="'if false, Some text'"></h1>
+<h1 th:if=true >Hellow</h1>
+<h1 th:if=false >Hey hey</h1>
+
+HTML:
+<h1>Hellow world</h1>
+<h1>true</h1>
+<h1>false</h1>
+<h1>Num = 2</h1>
+<h1>Object is null</h1>
+<h1>if ture, Some text</h1>
+<h1 >Hellow</h1>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,252 @@
+NoSQL
+https://www.mongodb.com/scale/nosql-vs-relational-databases#:~:text=Relational%20databases%20are%20table%2Dbased,today%20is%20much%20more%20complex.
+
+the traditional SQL-based relational database was less equipped to handle rapidly expanding data volumes and the growing complexities of data structures.
+
+In the last decade, the non-relational, NoSQL databases became more popular for offering a more flexible, scalable, cost-efficient, alternative to the traditional SQL-based relational databases.
+ 
+In the last decade, the non-relational, NoSQL databases became more popular for offering a more flexible, scalable, cost-efficient, alternative to the traditional SQL-based relational databases.
+  
+Relational databases are table-based. NoSQL databases can be document based, graph databases, key-value pairs, or wide-column stores.
+  
+  NoSQL databases are designed to handle the more complex, unstructured data, (such as texts, social media posts, photos, videos, email) which increasingly make up much of the data that exists today.
+  
+MongoDB:
+HuMONGOus: extremely large : huge a humongous building humongous amounts of money.
+
+MongoDB is the most popular and treading database.
+
+Vendor: MongoDB corp
+https://www.mongodb.com/
+Atlas→Multi-cloud database platform
+
+Where we can use?
+* Everywhere!
+1. Desktop Apps
+2. Mobile Apps
+3. Web Applications
+
+
+FULL STATCK DEVELOPER:
+STACK --->: To develop WEB APPS
+The technologies which can be used to develop web apps r called a stack.
+
+STACKS:
+1. MEAN STACK DEVELOPER
+------------------------
+M - MongoDB
+E - Express
+A - Angular
+N - Node JS
+
+2. MERN STACK  DEVELOPER
+------------------------
+M - MongoDB
+E - Express
+R - React JS
+N - Node JS
+
+1. Front End
+(Angular, React JS)
+2. Back End
+(Express JS)
+3. Server side runtime environment
+(Node JS)
+4. Database
+(MongoDB)
+
+Note: 2 & 3 Back End
+
+1. NOTE
+BY USING MEAN AND MERN STACKS WE CAN BUILD JAVASCRIPT BASED WEB APPLICATIONS.
+
+2. NOTE:
+MONGODB IS ALSO BASED ON JAVASCRIPT.
+
+MangoDB internally uses Mozilla's Spider Monkey JavaScript Engine.
+
+3. What is the type of MongoDB database?
+NoSQL Database/Document Database
+
+Relational Database vs Document Database
+----------------------------------------
+There are 2 most common types of DBs.
+1. RDB RELATIONAL_DS/SQL
+- Tables has fixed schema(Structure)
+- Tables has Relationships
+- has Joins
+Ex: Oracle, MySQL, DB2 etc
+
+2. DDB DOCUMENT_DB/NOSQL
+Data will be stored in different documents. Each document is independent of others.
+
+Collection as a Table
+Each Document is like a ROW/Record.
+DATA stroed inside Document.
+
+MangoDB logically can contain several Databases.
+
+Database{
+	Collection-1 {
+		Docs{}
+		Docs{}
+		Docs{}
+		...
+	}
+	Collection-2{
+		Docs{ }
+		Docs{}
+		Docs{}
+		...
+	}
+	...
+	Collection-N{
+		Docs{}
+		Docs{}
+		Docs{}
+		...
+	}
+}
+Data will be stored in documents.
+Eash Document is independent of others.
+Not have fixed schema.
+Eg: MongoDB
+
+
+MONGO-DB STRUCURE:
+--------------------
+MongoDB Physical DB contains several logical DBs.
+It logical DB can have multiple Databases.
+Each DB contains multiple Collections(Table in RDB).
+Each Collection contains multiple Documents(Rows in RDB table).
+
+Ex:
+Database: Shopping cart database
+	Collections:
+		Customer,
+		Products,
+		Orders
+		
+How data represented in MongoDB?		
+Customer Collection: Contains several documents
+document 1:
+	{
+		'Name' : 'Sujith',
+		'Age' : 23,
+		'Salary':10000
+	}
+document 2:
+	{
+		'Name' : 'Maximus',
+	}
+document 3:
+	{
+		"name": "Bunny",
+		"Age": 30
+		"Address":
+			{
+				"City": "Hyderabad"
+			}
+		"hobbies":
+			[
+				{"name" : "Cricket"},
+				{"name" : "Swimming"},
+				{"name" : "Football"}
+			]
+	}
+
+Data Represent in MongoDB
+In JSON (BSON) Format.
+BSON: Binary JSON
+
+------------
+- Fetching is Speed
+- Performance
+- JSON Data representation
+
+Key Characteristics of MongoDB Database?
+1. Complete data is available in single place. Hence, retrieval of data is extreamly fast and not need Join operations.
+2. Documents are independent of each other and no scheme. Hence, we can store unstructured data like videos, audio file etc.
+3. CRUD operations on documents are strinless.
+4. Retrieval data is in the form of JSON which can be understandable by any programming language without any conversation(Interoperability).
+5. Huge amout of data can be stored. Scalablity is more.
+6. Installation and setup is very easy.
+
+Note: Performance and flexible are biggest assets of MongoDB.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

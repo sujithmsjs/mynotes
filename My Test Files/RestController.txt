@@ -1,0 +1,126 @@
+
+https://mkyong.com/spring-boot/spring-rest-validation-example/
+
+@RestController(v4.o) = It's a convenient annotation that combines @Controller and @ResponseBody.
+
+@ResponseBody: This annotation enables automatic serialization of the return object into the HttpResponse.
+
+
+
+// Save
+@PostMapping("/books")
+@ResponseStatus(HttpStatus.CREATED)
+Book newBook(@RequestBody Book newBook) {
+   return repository.save(newBook);
+}
+
+ // Find
+    @GetMapping("/books/{id}")
+    Book findOne(@PathVariable Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
+    }
+
+--------------------------------------
+Bean Validation (Hibernate Validator)
+JSR-303 implementation:
+-----------------------
+Add @Valid to @RequestBody. Done, bean validation is enabled now.
+
+
+If the bean validation is failed, it will trigger a MethodArgumentNotValidException. By default, Spring will send back an HTTP status 400 Bad Request, but no error detail.
+
+
+
+
+
+ResponseEntityExceptionHandler
+------------------------------
+- handleMethodArgumentNotValid
+- handleHttpRequestMethodNotSupported 
+
+@Override
+protected ResponseEntity<Object> handleMethodArgumentNotValid(
+	1. MethodArgumentNotValidException ex,
+	2. HttpHeaders headers,
+	3. HttpStatus status,
+	4. WebRequest request) {
+	
+	status.value();-->
+}
+
+
+MethodArgumentNotValidException:
+Exception to be thrown when validation on an argument annotated with @Valid fails. Extends BindException as of 5.3.
+
+BindException:
+Thrown when binding errors are considered fatal. Implements the BindingResult interface (and its super-interface Errors) to allow for the direct analysis of binding errors.
+
+As of Spring 2.0, this is a special-purpose class. Normally, application code will work with the BindingResult interface, or with a DataBinder that in turn exposes a BindingResult via DataBinder.getBindingResult().
+
+
+
+
+PathVariable Annotation:
+------------------------
+
+@RestController
+@Validated // class level
+public class BookController {
+
+    @GetMapping("/books/{id}")
+    Book findOne(@PathVariable @Min(1) Long id) { //jsr 303 annotations
+        return repository.findById(id)
+                .orElseThrow(() -> new BookNotFoundException(id));
+    }
+	//...
+}
+
+
+
+
+ @ExceptionHandler(ConstraintViolationException.class)
+    public void constraintViolationException(HttpServletResponse response) throws IOException {
+        response.sendError(HttpStatus.BAD_REQUEST.value());
+    }
+
+
+
+
+
+
+Multi Value Map:
+----------------
+public interface MultiValueMap<K, V> extends Map<K, List<V>>{}
+
+
+
+
+public ResponseEntity(
+	@Nullable T body,
+	@Nullable MultiValueMap<String, String> headers,
+	HttpStatus status)
+	{
+		this(body, headers, (Object) status);
+	}
+
+
+
+
+All Exception:
+
+HttpMessageNotReadableException:
+Except: "doj": "2021-06-05"
+Found : "doj": "2021-6-5"
+
+HttpRequestMethodNotSupportedException:
+Except: GET
+Found : POST
+
+
+MethodArgumentNotValidException:
+
+
+
+
+

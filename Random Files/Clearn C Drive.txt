@@ -1,0 +1,20 @@
+
+1. Cleaning
+
+
+Run > temp > delete
+Run > %temp% > delete
+Run > prefetch > delete
+
+2. Delete Recycle bin
+
+3. Uninstall not using apps.
+
+4. Optimise
+C Right click > Properties > Tool > Disk defragmentation.
+
+5. Start > Disk clean up.
+
+https://ig.me/1HZxsLKvDeEhb8v
+
+Soumss

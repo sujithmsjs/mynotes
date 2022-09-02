@@ -1,0 +1,78 @@
+#1
+
+Initial:/proddatta
+Changed to: /products
+
+http://localhost:8080/api/proddatta
+
+api: GET:/api/products
+class: ProductController
+resource: all products list
+
+Success Response: 302 Found
+
+
+#2
+TicketAssignController
+	TicketAssignService ticketassignservice;
+	-> "gethistoryforTicket/{id}"
+	
+/gethistoryforTicket/""
+
+Modification:
+TicketHistoryModel = db: case_history WHY?
+
+http://localhost:8080/api/gethistoryforTicket/GO_0X7NN5700
+
+#3
+getmailId/
+
+
+http://localhost:8080/api/getmailId/b@onpassive.com
+
+
+Controller: OLeadLoginController
+
+String GET_MAIL_ID="/getmailId/{maildId}";
+
+
+String GET_MAIL_ID="/employees/mail/{maildId}";
+
+
+Depricated: public EmployeeDTO getMailId(String mailId);
+New Alternative: public Optional<EmployeeDTO> getAgentDetailsByEmailId(String mailId);
+
+Depricated: EmpserviceImpl
+New Alternative: EmployeeServiceImpl
+
+Depricated: Empservice
+New Alternative: EmployeeService
+
+Depricated: EmpDto 
+Reasons: Naming Conventions and not having encapulation.
+New Alternative: EmployeeDTO
+
+Changes in CustomException class;
+
+
+
+@GetMapping(value = WebUrlConstants.GET_MAIL_ID)
+	public ResponseEntity<Response> getMailId(@PathVariable(required = true) String maildId) throws Exception {
+		//...
+	}
+
+
+
+public class EmpDto {
+	empId;
+	empName;
+	mailId;
+	agentId;
+}
+
+@Autowired
+	OleadUserLoginService loginService;
+	
+
+EmployeeModel employee = empservice.findByMailId(mailId).get();
+		
