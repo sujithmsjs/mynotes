@@ -1,2 +1,0 @@
-http:www.yifysubtitles.org:80:.:^userContextId=5:.	0	18599	http:www.yifysubtitles.org:80:www.yifysubtitles.org:443::n:1607015213:h2:y:1607008381:n:^userContextId=5:http://www.yifysubtitles.org|n:n:
-http:potrivire.jra.ro:80:.::.	0	18599	http:potrivire.jra.ro:80:potrivire.jra.ro:443::n:1607009422:h2:y:1607008381:n::https://1337x.to|n:n:

@@ -1,5 +1,0 @@
-
-
-Query query = session.createQuery("from UserData where uid=:uid");
-query.setParameter("uid", 1);
-UserData data = (UserData) query.uniqueResult();
